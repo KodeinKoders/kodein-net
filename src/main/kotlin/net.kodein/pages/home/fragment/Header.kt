@@ -61,7 +61,9 @@ val Header by functionalComponent<HeaderProps> { props ->
                     }
                     +"We are Kodein Koders, a tech company"
                     br {}
-                    +"that is driven by our passion for Kotlin."
+                    +"that is driven by our ideas for multiplatform"
+                    br {}
+                    +"and our passion for craftsmanship."
                 }
 
                 flexColumn(alignItems = Align.center) {
@@ -113,10 +115,9 @@ val Header by functionalComponent<HeaderProps> { props ->
     }
 }
 
-fun Double.format(): String = ((this * 1000.0).roundToLong().toDouble() / 1000.0).toString()
+private fun Double.format(): String = ((this * 1000.0).roundToLong().toDouble() / 1000.0).toString()
 
-//fun gradient(angle: Double): String = "linear-gradient(${angle.format()}rad, ${Color.kodein.kuivre} 20%, ${Color.kodein.kyzantium} 60%)"
-fun gradient(angle: Double): String = "linear-gradient(${angle.format()}rad, ${Color.kodein.kyzantium} 40%, ${Color.kodein.kuivre} 80%)"
+private fun gradient(angle: Double): String = "linear-gradient(${angle.format()}rad, ${Color.kodein.kyzantium} 40%, ${Color.kodein.kuivre} 80%)"
 
 private val Sphere by functionalComponent {
     val largeSphereDiv = useRef<HTMLDivElement?>(null)
@@ -150,8 +151,8 @@ private val Sphere by functionalComponent {
         val mousemove = EventListener { event ->
             event as MouseEvent
             val (divX, divY) = largeSphereDiv.current!!.recursiveOffset()
-            val mouseVectorX = event.clientX.toDouble() - (divX + largeSphereDiv.current!!.clientWidth / 2)
-            val mouseVectorY = event.clientY.toDouble() - (divY + largeSphereDiv.current!!.clientHeight / 2)
+            val mouseVectorX = (event.clientX + window.scrollX) - (divX + largeSphereDiv.current!!.clientWidth / 2)
+            val mouseVectorY = (event.clientY + window.scrollY) - (divY + largeSphereDiv.current!!.clientHeight / 2)
             val mouseVectorLen = sqrt(mouseVectorX.pow(2) + mouseVectorY.pow(2))
 
             val ratio = mouseVectorLen / 512.0

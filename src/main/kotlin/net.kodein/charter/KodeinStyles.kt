@@ -58,7 +58,7 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
     val intertitre by css {
         fontSize = modulor * 1.5
         letterSpacing = 0.05.em
-        lineHeight = (modulor * 1.5).lh
+        lineHeight = (modulor * 1.8).lh
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
     }
@@ -69,5 +69,12 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         lineHeight = (modulor * 1.5).lh
         fontFamily = picon
         fontWeight = FontWeight.regular
+    }
+
+    val link by css {
+        fontSize = modulor * 0.825
+        fontWeight = FontWeight.medium
+        letterSpacing = 0.025.em
+        lineHeight = (modulor * 1.5).lh
     }
 }

@@ -4,7 +4,9 @@ import kotlinx.browser.window
 import kotlinx.css.*
 import net.kodein.charter.kodein
 import net.kodein.components.MenuTop
+import net.kodein.components.Separator
 import net.kodein.pages.home.fragment.Header
+import net.kodein.pages.home.fragment.Departments
 import net.kodein.utils.getValue
 import net.kodein.utils.recursiveOffset
 import org.w3c.dom.HTMLElement
@@ -38,13 +40,17 @@ val Home by functionalComponent {
         styledDiv {
             css {
                 backgroundColor = Color.kodein.orange
-                height = 0.1.rem
+                height = 0.05.rem
             }
         }
     }
 
     child(MenuTop)
 
+    child(Departments)
+
+    child(Separator)
+
     p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sodales sem quis urna dapibus lobortis. Suspendisse vitae luctus leo. Curabitur mattis dui lorem. Ut ultricies egestas magna sed sagittis. Vestibulum vulputate iaculis aliquam. Etiam odio tortor, consequat sed mollis semper, vulputate in nisi. Suspendisse massa leo, euismod a tellus nec, faucibus commodo est. Pellentesque massa libero, faucibus at faucibus sit amet, dapibus sed massa. Integer urna lectus, varius et lacus gravida, euismod pulvinar justo. Morbi a elit nibh. Phasellus eu elementum quam. Nullam at congue odio. Maecenas pellentesque ante at erat varius posuere. Nullam quis nulla varius, tempor massa nec, sodales est." }
     p { +"Duis id purus ligula. Integer congue nulla augue, sit amet gravida ligula varius eget. Integer ut eros non justo sagittis varius. Aenean ac ex vitae turpis commodo iaculis sit amet in ipsum. Nam nec dignissim urna, at consectetur magna. Nulla facilisi. Suspendisse ut tortor vel nibh consequat cursus. Suspendisse est elit, sollicitudin vel felis nec, suscipit tincidunt quam. Suspendisse tincidunt, orci eu porttitor blandit, metus arcu commodo quam, vel porttitor risus lectus eu magna." }
     p { +"Suspendisse suscipit vel dolor vitae lobortis. Nam nec velit nec eros facilisis molestie quis id orci. Sed sit amet ligula fringilla, porttitor felis sed, malesuada orci. Vivamus vehicula nisl nec eros pretium vulputate. Sed sit amet sem lectus. Morbi fermentum nibh sed nisl faucibus, ac interdum orci rutrum. Pellentesque vel convallis libero, in laoreet ante. Pellentesque viverra nulla eget massa blandit feugiat. Suspendisse potenti. Proin ultricies quis eros a lobortis. Aliquam erat volutpat. Curabitur vitae tortor leo." }
@@ -66,17 +72,4 @@ val Home by functionalComponent {
     p { +"Quisque id nisi id est maximus sollicitudin. In hac habitasse platea dictumst. Pellentesque mattis augue id laoreet scelerisque. Vivamus posuere fermentum augue eget luctus. Proin hendrerit congue orci, ac sollicitudin quam euismod quis. Donec ut turpis non tortor porta interdum vitae ac mauris. Mauris rutrum ligula leo, nec convallis nisi maximus nec. Ut viverra scelerisque odio in pulvinar. Mauris ornare eget magna ut ultrices. Sed et mollis tellus. Ut ut turpis finibus, blandit ipsum vitae, ultricies orci. Fusce luctus sem et elit varius accumsan. Donec euismod scelerisque lorem. Mauris cursus ante sed nunc auctor iaculis. Pellentesque dignissim metus at sapien varius fermentum." }
     p { +"Vestibulum sodales, nisl nec tempor pharetra, purus nunc varius dolor, at tincidunt erat enim quis enim. Quisque rutrum, libero ut elementum pellentesque, ipsum leo porta quam, quis porttitor urna turpis eget nisl. Vestibulum in facilisis ex, at volutpat enim. Curabitur tempor cursus ullamcorper. Cras malesuada auctor sem sed viverra. Vestibulum magna eros, porta quis aliquam ut, ultricies vitae arcu. Donec commodo consectetur lectus at luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque quis libero tempor, porta turpis ut, fringilla mi. Nullam sit amet tellus dolor." }
 
-//    child(Separator::class) {}
-//    child(Performance::class) {}
-//    child(Separator::class) {}
-//    // Fake div
-//    styledDiv {
-//        css.height = 1024.px
-//    }
-//    styledDiv {
-//        css.backgroundColor = Palette.dark.color
-//        css.color = Palette.purple.color
-//        css.textAlign = TextAlign.center
-//        +"fooooooooter!"
-//    }
 }

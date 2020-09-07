@@ -1,85 +1,108 @@
 package net.kodein.components
 
-import kotlinx.browser.window
 import kotlinx.css.*
-import kotlinx.css.properties.TextDecoration
-import kotlinx.css.properties.s
-import kotlinx.css.properties.transition
+import kotlinx.css.properties.*
 import net.kodein.charter.kodein
+import net.kodein.utils.flexColumn
 import net.kodein.utils.flexRow
 import net.kodein.utils.getValue
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.events.EventListener
-import react.*
+import react.child
 import react.dom.a
+import react.functionalComponent
+import react.useRef
 import styled.css
+import styled.styledA
 
 
 val MenuTop by functionalComponent {
-    var isDark by useState(false)
-    val div = useRef<HTMLDivElement?>(null)
+//    var isDark by useState(false)
+//    val div = useRef<HTMLDivElement?>(null)
 
-    useEffectWithCleanup {
-        val scroll = EventListener {
-            val top = div.current!!.getBoundingClientRect().top
-            isDark = top != 0.0
-        }
-        window.addEventListener("scroll", scroll)
-        ({ window.removeEventListener("scroll", scroll) })
-    }
+//    useEffectWithCleanup {
+//        val scroll = EventListener {
+//            val top = div.current!!.getBoundingClientRect().top
+//            isDark = top != 0.0
+//        }
+//        window.addEventListener("scroll", scroll)
+//        ({ window.removeEventListener("scroll", scroll) })
+//    }
 
-    flexRow {
-        ref = div
+    flexColumn {
         css {
-            backgroundColor = if (isDark) Color.kodein.dark else Color.kodein.cute
             position = Position.sticky
             left = 0.px
             top = 0.px
             right = 0.px
-            transition(::backgroundColor, duration = .5.s)
-            padding(.75.em, 3.em)
+            zIndex = 1000
+            boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
         }
 
-        // Logo
-        child(KodeinLogo) {
-            attrs {
-                bold = "KODEIN"
-                light = "Koders"
-                colorName = Color.kodein.nameOf { orange }
-            }
-        }
-
-        // Menu
-        flexRow(JustifyContent.flexEnd, Align.center) {
+        flexRow {
+//            ref = div
             css {
-                color = Color.kodein.orange
-                fontWeight = FontWeight.w700
-                flexGrow = 1.0
+//                backgroundColor = if (isDark) Color.kodein.dark else Color.kodein.cute
+//                transition(::backgroundColor, duration = .5.s)
+//                if (!isDark) boxShadow(Color.black, offsetY = 0.2.rem)
 
-                "a" {
-                    display = Display.block
-                    fontWeight = FontWeight.w700
-                    padding(left = 2.em)
-                    textDecoration = TextDecoration.none
+                backgroundColor = Color.kodein.dark
+                padding(1.rem, 3.rem)
+                fontSize = .8.rem
+            }
+
+            // Logo
+            child(KodeinLogo) {
+                attrs {
+                    bold = "KODEIN"
+                    light = "Koders"
+                    colorName = Color.kodein.nameOf { orange }
+                }
+            }
+
+            // Menu
+            flexRow(JustifyContent.flexEnd, Align.center) {
+                css {
                     color = Color.kodein.orange
-                    cursor = Cursor.pointer
-                    transition("fontWeight", duration = 0.15.s)
+                    fontWeight = FontWeight.w700
+                    flexGrow = 1.0
+
+                    "a" {
+                        display = Display.block
+                        fontWeight = FontWeight.w700
+                        marginLeft = 2.em
+                        textDecoration = TextDecoration.none
+                        color = Color.kodein.orange
+                        cursor = Cursor.pointer
+                        transition("fontWeight", duration = 0.15.s)
+                    }
+
+    //                    maxWidthXM {
+    //                        display = Display.none
+    //                    }
                 }
 
-//                    maxWidthXM {
-//                        display = Display.none
-//                    }
+                a(href = "") { +"SERVICES" }
+                a(href = "") { +"KOTLIN" }
+                a(href = "") { +"TRAINING" }
+                a(href = "") { +"OSS" }
+                a(href = "") { +"TEAM" }
+                a(href = "") { +"BLOG" }
+                a(href = "") { +"CONTACT" }
+                styledA(href = "") {
+                    css {
+                        border(.1.rem, BorderStyle.solid, Color.kodein.orange)
+                        borderRadius = 1.rem
+                        padding(.3.rem, .6.rem)
+                    }
+                    +"GUYS: WE'RE HIRING!"
+                }
             }
+        }
 
-            a(href = "") { +"SERVICE" }
-            a(href = "") { +"TRAINING" }
-            a(href = "") { +"OSS" }
-            a(href = "") { +"TEAM" }
-            a(href = "") { +"BLOG" }
-            a(href = "") { +"CONTACT" }
+        child(Separator) {
+            attrs.height = 0.3.em
         }
     }
-
 }
 
 //class Header : RComponent<RProps, Header.State>() {
