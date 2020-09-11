@@ -1,5 +1,5 @@
 plugins {
-    kotlin("js") version "1.4.0"
+    kotlin("js") version "1.4.10"
 }
 
 version = "1.0"
@@ -10,7 +10,7 @@ repositories {
 }
 
 kotlin {
-    target {
+    js {
         browser()
         useCommonJs()
 
@@ -24,16 +24,12 @@ kotlin {
             implementation("org.jetbrains:kotlin-react-dom:$reactVersion-$kotlinWrapperVersion")
             implementation("org.jetbrains:kotlin-react-router-dom:$reactRouterVersion-$kotlinWrapperVersion")
             implementation("org.jetbrains:kotlin-styled:1.0.0-$kotlinWrapperVersion")
-
-//            implementation(npm("react", "^$reactVersion"))
-//            implementation(npm("react-dom", "^$reactVersion"))
-//            implementation(npm("react-router", "^$reactRouterVersion"))
-//            implementation(npm("react-router-dom", "^$reactRouterVersion"))
-//
-//            implementation(npm("css-in-js-utils", "3.0.2"))
-//            implementation(npm("inline-style-prefixer", "5.1.0"))
-//            implementation(npm("styled-components", "4.3.2"))
-//            implementation(npm("core-js", "3.2.0"))
         }
     }
+}
+
+task<Sync>("publish") {
+    dependsOn("browserDistribution")
+    from("$buildDir/distributions")
+    into("$rootDir/docs")
 }

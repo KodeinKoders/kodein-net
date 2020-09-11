@@ -54,7 +54,7 @@ val Header by functionalComponent<HeaderProps> { props ->
 
                 styledP {
                     css {
-                        +KodeinStyles.intertitre
+                        +KodeinStyles.chapo
                         textAlign = TextAlign.start
                         color = Color.purple
                         margin(1.rem, 2.rem)
@@ -132,11 +132,12 @@ private val Sphere by functionalComponent {
         // Considering a geometric reference whose origin (0, 0) is the center of the large sphere,
         //   and whose positive values for X is right and for Y is down.
         // The large sphere radius is 1 (therefore its diameter is 2).
-        // MouseVector is the vector between the center.
-        // The small sphere center must be between 0 and (1 - smallSphereRadius) or the large sphere,
+        // MouseVector is the vector between starting at the center and pointing to the mouse.
+        // The small sphere center must be between 0 and (1 - smallSphereRadius) of the large sphere,
         //   since we don't want the small sphere to escape the large.
         // The exact distance between the center of the large sphere and the center of the small sphere
-        //   is function of the distance between the large sphere center and the mouse.
+        //   is function of the distance between the large sphere center and the mouse
+        //   (e.g. the length of MouseVector).
         // Since the small sphere center is on the vector of the mouse, we can assert:
         //   mouseVectorX / mouseVectorY = smallSphereX / smallSphereY
         // Also, since we know the distance between the 2 centers we can assert that:
@@ -144,7 +145,7 @@ private val Sphere by functionalComponent {
         // From those equation, we deduct:
         //   smallSphereY = distance / sqrt((mouseVectorX^2 / mouseVectorY^2) + 1) * sign(mouseVectorY)
         //   smallSphereX = sqrt(distance^2 - smallSphereY^2) * sign(mouseVectorX)
-        // Finally, since corrodinate of the small sphere is the top left corner of its div
+        // Finally, since the coordinates of the small sphere is the top left corner of its div
         //   relative to the top left corner of the large sphere div, we first need to transform
         //   the coordinate of the small sphere from its center to its top left corner (x - smallSphereRadius, y - smallSphereRadius),
         //   then we need to map these coordinates to the large sphere top left corner reference (1 + x, 1 + y)

@@ -19,16 +19,19 @@ val Departments by functionalComponent {
 
         child(Department) {
             attrs.title = "ADVISORY"
+            attrs.icon = "advisory"
             +"Empowering your engineering teams to take on challenges with Kotlin"
         }
 
         child(Department) {
             attrs.title = "TRAINING"
+            attrs.icon = "training"
             +"Regardless that you do Mobile, Backend or Frontend we can help you increase your Kotlin expertise!"
         }
 
         child(Department) {
             attrs.title = "DEVELOPMENT"
+            attrs.icon = "development"
             attrs.isLastItem = true
             +"We can help you reach your goals by taking care of the technical challenges you have!"
         }
@@ -37,6 +40,7 @@ val Departments by functionalComponent {
 
 private interface DepartmentProps : RProps {
     var title: String
+    var icon: String
     var isLastItem: Boolean?
 }
 
@@ -53,6 +57,13 @@ private val Department by functionalComponent<DepartmentProps> { props ->
 //            maxWidthXM {
 //                width = 100.pct
 //            }
+        }
+
+        styledImg(src="imgs/ic_${props.icon}.svg") {
+            css {
+                width = 3.em
+                padding(0.rem, 0.rem, 1.rem, 3.rem)
+            }
         }
 
         styledDiv {
@@ -78,18 +89,9 @@ private val Department by functionalComponent<DepartmentProps> { props ->
 
         styledA {
             css {
+                +KodeinStyles.readMore
                 alignSelf = Align.flexStart
-                +KodeinStyles.link
                 margin(1.rem)
-                padding(vertical = 0.3.rem, horizontal = 1.rem)
-                backgroundColor = Color.kodein.orange
-                color = Color.kodein.cute.withAlpha(0.8)
-                borderRadius = 2.rem
-                cursor = Cursor.pointer
-                hover {
-                    backgroundColor = Color.kodein.kuivre
-                    color = Color.kodein.cute
-                }
             }
             +"READ MORE"
         }
