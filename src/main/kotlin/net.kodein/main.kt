@@ -2,6 +2,10 @@ package net.kodein
 
 import kotlinx.browser.document
 import kotlinx.css.*
+import kotlinx.css.properties.TextDecoration
+import kotlinx.css.properties.s
+import kotlinx.css.properties.transition
+import net.kodein.charter.kodein
 import react.dom.render
 import styled.injectGlobal
 
@@ -25,6 +29,17 @@ fun main() {
 //                maxWidthS {
 //                    fontSize = 1.em
 //                }
+            }
+
+            a {
+                textDecoration = TextDecoration.none
+                color = Color.inherit
+                transition(::color, 0.2.s)
+
+                hover {
+                    color = Color.kodein.purple
+                }
+
             }
         }
 
