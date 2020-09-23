@@ -4,8 +4,7 @@ import kotlinx.css.*
 import kotlinx.css.LinearDimension.Companion.auto
 import kotlinx.css.properties.boxShadow
 import kotlinx.css.properties.lh
-import net.kodein.utils.medium
-import net.kodein.utils.regular
+import net.kodein.utils.*
 import styled.StyleSheet
 
 
@@ -60,6 +59,17 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
     val separator by css {
         height = 7.rem
         margin(3.rem, auto)
+        minSize(360) { height = 3.rem }
+        minSize(440) { height = 3.5.rem }
+        minSize(520) { height = 4.rem }
+        minSize(600) { height = 4.5.rem }
+        minSize(680) { height = 5.rem }
+        minSize(760) { height = 5.5.rem }
+        minSize(840) { height = 6.rem }
+        media("(min-width: 1024px) and (min-height: 1200px)") {
+            height = 24.rem
+            marginTop = 10.rem
+        }
     }
 
     val intertitre by css {

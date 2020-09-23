@@ -31,23 +31,16 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
             color = props.color
             marginRight = 10.em
             transition("marginRight", duration = 0.15.s)
-
-            maxWidthXXL { marginRight = 8.em }
-            maxWidth(1050.px) { marginRight = 6.em }
-            maxWidthXL { marginRight = 3.em }
-            maxWidth(950.px) { marginRight = 2.em }
-            maxWidth(800.px) {
-                fontSize = 0.9.em
-                marginRight = 0.em
-            }
-            maxWidth(600.px) { fontSize = 0.8.em }
-            maxWidthXS { fontSize = 0.75.em }
         }
         styledImg(alt = "Kodein logo", src = "imgs/logo-${props.logo}.svg") {
             css {
                 display = Display.block
                 padding(right = 1.em)
                 height = props.logoHeight ?: 3.em
+                mobileL {
+                    width = 4.em
+                    height = 4.em
+                }
             }
         }
         styledDiv {
@@ -58,13 +51,17 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
                     props.titleColor?.let {
                         color = it
                     }
+                    mobileL { fontSize = 3.rem }
                 }
 
                 +props.bold
 
-                styledSpan {
-                    css.opacity = 0.8
-                    css.fontWeight = FontWeight.w300
+            styledSpan {
+                css {
+                    opacity = 0.8
+                    fontWeight = FontWeight.w300
+                    mobileL { fontSize = 3.rem }
+                }
                     +props.light
                 }
             }

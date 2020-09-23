@@ -29,9 +29,92 @@ val Header by functionalComponent<HeaderProps> { props ->
             backgroundColor = Color.kodein.dark
         }
 
+        // Mobile & Tablet
+        flexColumn(justifyContent = JustifyContent.center) {
+            css {
+                flexGrow = 1.0
+                minWidth(1025) { display = Display.none }
+            }
+
+                styledH1 {
+                    css {
+                        +kodein.display2
+                        fontWeight = FontWeight.hairline
+                        color = Color.kodein.kaumon
+                        textAlign = TextAlign.center
+                        margin(0.5.rem, 2.rem)
+                    }
+                    +"Everywhere Kotlin goes,"
+                    br {}
+                    +"you should find the experts you need!"
+                }
+
+                styledP {
+                    css {
+                        +kodein.chapo
+                        textAlign = TextAlign.center
+                        color = Color.purple
+                        margin(1.rem, 2.rem)
+                    }
+                    +"We are Kodein Koders,"
+                    br {}
+                    +"a tech company that is driven by our ideas for multiplatform"
+                    br {}
+                    +"and our passion for craftsmanship."
+                }
+
+                flexRow {
+                    css {
+                        flexGrow = 1.0
+                    }
+                    flexColumn(alignItems = Align.center) {
+                        css {
+                            width = 3.rem
+                            marginLeft = 4.rem
+                            flexGrow = 1.0
+                            maxHeight(480) { marginLeft = 0.rem }
+                        }
+
+                        styledSpan {
+                            css {
+                                +kodein.separator
+                                display = Display.block
+                                width = 0.05.rem
+                                backgroundColor = Color.kodein.korail
+                                maxHeight(480) { display = Display.none }
+                            }
+                        }
+
+                        styledImg(src = "imgs/logo-kaumon.svg") {
+                            css {
+                                width = 1.5.rem
+                                height = 1.5.rem
+                                padding(0.5.rem)
+                                margin(1.rem)
+                                border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
+                                cursor = Cursor.pointer
+                            }
+                            attrs.onClickFunction = {
+                                props.onScrollClick()
+                            }
+                        }
+                    }
+
+                    flexColumn(justifyContent = JustifyContent.center, alignItems = Align.center) {
+                        css {
+                            flexGrow = 1.0
+                            maxHeight(480) { display = Display.none }
+                        }
+                        child(Sphere)
+                    }
+                }
+        }
+
+        // Desktop
         flexRow {
             css {
                 flexGrow = 1.0
+                maxWidth(1024) { display = Display.none }
             }
 
             flexColumn(justifyContent = JustifyContent.center) {
@@ -107,6 +190,7 @@ val Header by functionalComponent<HeaderProps> { props ->
         flexRow(JustifyContent.center) {
             css {
                 paddingBottom = 2.rem
+                maxHeight(380) { display = Display.none }
             }
 
             child(ScrollIndicator, props)
@@ -194,6 +278,22 @@ private val Sphere by functionalComponent {
             borderRadius = 100.pct
             marginTop = (-5).rem
             transition(::marginTop, respirationInterval.ms, Timing.easeInOut)
+
+            fun CSSBuilder.adaptiveHeight(modular: Double) {
+                height = (modular * amplitude).rem
+            }
+
+            minSize(360) { adaptiveHeight(0.25) }
+            minSize(440) { adaptiveHeight(0.5) }
+            minSize(520) { adaptiveHeight(0.75) }
+            minSize(600) { adaptiveHeight(1.0) }
+            minSize(680) { adaptiveHeight(1.25) }
+            minSize(760) { adaptiveHeight(1.5) }
+            minSize(840) { adaptiveHeight(1.75) }
+
+            media("(max-width: 380px) and (max-height: 1024px)") { adaptiveHeight(1.25) }
+            media("(max-width: 280px) and (max-height: 1024px)") { adaptiveHeight(0.75) }
+            media("(min-width: 1024px) and (min-height: 1200px)") { adaptiveHeight(2.5) }
         }
         styledSpan {
             ref = smallSphereDiv
@@ -207,6 +307,23 @@ private val Sphere by functionalComponent {
                 height = ((2 * smallSphereRadius) * amplitude).rem
                 borderRadius = 100.pct
                 background = gradient(-0.18)
+
+
+                fun CSSBuilder.adaptiveSize(modulor: Double) {
+                    width = ((modulor * smallSphereRadius) * amplitude).rem
+                    height = ((modulor * smallSphereRadius) * amplitude).rem
+                }
+
+                minSize(360) { adaptiveSize(0.25) }
+                minSize(440) { adaptiveSize(0.5) }
+                minSize(520) { adaptiveSize(0.75) }
+                minSize(600) { adaptiveSize(1.0) }
+                minSize(680) { adaptiveSize(1.25) }
+                minSize(760) { adaptiveSize(1.5) }
+                minSize(840) { adaptiveSize(1.75) }
+                media("(max-width: 380px) and (max-height: 1024px)") { adaptiveSize(1.25) }
+                media("(max-width: 280px) and (max-height: 1024px)") { adaptiveSize(0.75) }
+                media("(min-width: 1024px) and (min-height: 1200px)") { adaptiveSize(2.5) }
             }
         }
     }

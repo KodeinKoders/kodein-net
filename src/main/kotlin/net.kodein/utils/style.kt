@@ -1,20 +1,26 @@
 package net.kodein.utils
 
-import kotlinx.css.FontWeight
-import kotlinx.css.CSSBuilder
-import kotlinx.css.LinearDimension
-import kotlinx.css.RuleSet
-import kotlinx.css.px
+import kotlinx.css.*
 
-fun CSSBuilder.maxWidth(maxWidth: LinearDimension, block: RuleSet) = media("(max-width: ${maxWidth.value})", block)
-fun CSSBuilder.maxWidthXXL(block: RuleSet) = maxWidth(1100.px, block)
-fun CSSBuilder.maxWidthXL(block: RuleSet) = maxWidth(1000.px, block)
-fun CSSBuilder.maxWidthL(block: RuleSet) = maxWidth(900.px, block)
-fun CSSBuilder.maxWidthM(block: RuleSet) = maxWidth(800.px, block)
-fun CSSBuilder.maxWidthXM(block: RuleSet) = maxWidth(700.px, block)
-fun CSSBuilder.maxWidthS(block: RuleSet) = maxWidth(500.px, block)
-fun CSSBuilder.maxWidthXS(block: RuleSet) = maxWidth(400.px, block)
-fun CSSBuilder.maxWidthXXS(block: RuleSet) = maxWidth(320.px, block)
+// CSS utils
+fun CSSBuilder.rangeWidth(min: Int, max: Int, block: RuleSet): Rule = media("(min-width: ${min}px) and (max-width: ${max}px)", block)
+fun CSSBuilder.rangeHeight(min: Int, max: Int, block: RuleSet): Rule = media("(min-height: ${min}px) and (max-height: ${max}px)", block)
+fun CSSBuilder.maxWidth(max: Int, block: RuleSet): Rule = media("(max-width: ${max}px)", block)
+fun CSSBuilder.minWidth(min: Int, block: RuleSet): Rule = media("(min-width: ${min}px)", block)
+fun CSSBuilder.maxHeight(max: Int, block: RuleSet): Rule = media("(max-height: ${max}px)", block)
+fun CSSBuilder.minHeight(min: Int, block: RuleSet): Rule = media("(min-height: ${min}px)", block)
+fun CSSBuilder.maxSize(max: Int, block: RuleSet): Rule = media("(max-width: ${max}px), (max-height: ${max}px)", block)
+fun CSSBuilder.minSize(min: Int, block: RuleSet): Rule = media("(min-height: ${min}px), (min-width: ${min}px)", block)
+
+// CSS devices' sizes
+fun CSSBuilder.mobileS(block: RuleSet) = maxSize(max = 280, block = block)
+fun CSSBuilder.mobileM(block: RuleSet) = maxSize(max = 360, block = block)
+fun CSSBuilder.mobileL(block: RuleSet) = maxSize(max = 480, block = block)
+fun CSSBuilder.tablet(block: RuleSet) = maxSize(max = 768, block = block)
+fun CSSBuilder.computerS(block: RuleSet) = rangeWidth(min = 769, max = 1024, block = block)
+fun CSSBuilder.computerM(block: RuleSet) = rangeWidth(min = 1025, max = 1200, block = block)
+fun CSSBuilder.computerL(block: RuleSet) = rangeWidth(min = 1201, max = 1440, block = block)
+fun CSSBuilder.computerWide(block: RuleSet) = minWidth(min = 1441, block = block)
 
 val FontWeight.Companion.hairline get() = w100
 val FontWeight.Companion.ultraLight get() = w200

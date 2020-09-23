@@ -6,16 +6,19 @@ import net.kodein.charter.kodein
 import net.kodein.utils.flexColumn
 import net.kodein.utils.flexRow
 import net.kodein.utils.getValue
+import net.kodein.utils.mobileM
 import org.w3c.dom.HTMLDivElement
-import react.child
+import react.*
 import react.dom.a
-import react.functionalComponent
-import react.useRef
 import styled.css
 import styled.styledA
+import styled.styledDiv
 
 
 val MenuTop by functionalComponent {
+    val isOpen by useState(false)
+    val menuButton = useRef<HTMLDivElement?>(null)
+
 //    var isDark by useState(false)
 //    val div = useRef<HTMLDivElement?>(null)
 
@@ -60,7 +63,19 @@ val MenuTop by functionalComponent {
                 }
             }
 
-            // Menu
+//            // Menu button for mobileM (and more?)
+//            flexRow(JustifyContent.flexEnd) {
+//                styledDiv {
+//                    css {
+//                        border(.1.rem, BorderStyle.solid, Color.kodein.orange)
+//                        borderRadius = 1.rem
+//                        padding(.3.rem, .6.rem)
+//                    }
+//                    +"X"
+//                }
+//            }
+
+            // Menu tablet / desktop
             flexRow(JustifyContent.flexEnd, Align.center) {
                 css {
                     color = Color.kodein.orange
@@ -77,9 +92,7 @@ val MenuTop by functionalComponent {
                         transition("fontWeight", duration = 0.15.s)
                     }
 
-    //                    maxWidthXM {
-    //                        display = Display.none
-    //                    }
+                    mobileM { display = Display.none }
                 }
 
                 a(href = "") { +"SERVICES" }
