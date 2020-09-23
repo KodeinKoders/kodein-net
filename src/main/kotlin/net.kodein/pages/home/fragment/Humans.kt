@@ -3,7 +3,6 @@ package net.kodein.pages.home.fragment
 import kotlinx.css.*
 import kotlinx.css.properties.border
 import kotlinx.css.properties.boxShadow
-import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
 import net.kodein.utils.*
 import react.RProps
@@ -24,7 +23,7 @@ val Humans by functionalComponent {
 
     styledH1 {
         css {
-            +KodeinStyles.display2
+            +kodein.display2
             fontWeight = FontWeight.hairline
             color = Color.kodein.orange
             textAlign = TextAlign.start
@@ -35,7 +34,7 @@ val Humans by functionalComponent {
 
     styledH3 {
         css {
-            +KodeinStyles.display1
+            +kodein.display1
             fontWeight = FontWeight.regular
             color = Color.kodein.orange
             textAlign = TextAlign.start
@@ -140,8 +139,10 @@ private val Human by functionalComponent<HumanProps> { props ->
         }
         styledH3 {
             css {
-                +KodeinStyles.intertitre
+                +kodein.intertitre
                 marginTop = 2.5.rem
+                width = 18.rem
+                textAlign = TextAlign.center
             }
             a(href = props.url, target="_blank") {
                 +props.name
@@ -149,7 +150,8 @@ private val Human by functionalComponent<HumanProps> { props ->
         }
         styledP {
             css {
-                +KodeinStyles.body
+                +kodein.body
+                width = 18.rem
                 marginTop = 0.5.rem
                 color = Color.kodein.orange
                 textAlign = TextAlign.center

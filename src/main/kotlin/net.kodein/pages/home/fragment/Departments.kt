@@ -2,11 +2,13 @@ package net.kodein.pages.home.fragment
 
 import kotlinx.css.*
 import kotlinx.html.unsafe
-import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
-import net.kodein.utils.*
-import react.*
-import react.dom.svg
+import net.kodein.utils.flexColumn
+import net.kodein.utils.flexRow
+import net.kodein.utils.getValue
+import react.RProps
+import react.child
+import react.functionalComponent
 import styled.*
 
 val Departments by functionalComponent {
@@ -69,7 +71,7 @@ private val Department by functionalComponent<DepartmentProps> { props ->
         styledDiv {
             css {
                 color = Color.kodein.purple
-                +KodeinStyles.display1
+                +kodein.display1
                 padding(0.5.rem, 1.rem)
             }
             +props.title.toUpperCase()
@@ -77,7 +79,7 @@ private val Department by functionalComponent<DepartmentProps> { props ->
         styledDiv {
             css {
                 color = Color.kodein.orange
-                +KodeinStyles.body
+                +kodein.body
                 padding(0.5.rem, 1.rem)
                 height = 15.rem
 //                maxWidthXM {
@@ -89,7 +91,7 @@ private val Department by functionalComponent<DepartmentProps> { props ->
 
         styledA {
             css {
-                +KodeinStyles.readMore
+                +kodein.readMore
                 alignSelf = Align.flexStart
                 margin(1.rem)
             }

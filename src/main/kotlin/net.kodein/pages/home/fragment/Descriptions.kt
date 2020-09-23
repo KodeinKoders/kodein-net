@@ -4,7 +4,6 @@ import kotlinx.css.*
 import kotlinx.css.properties.Timing
 import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
-import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
 import net.kodein.utils.flexColumn
 import net.kodein.utils.flexRow
@@ -14,7 +13,10 @@ import react.child
 import react.dom.img
 import react.dom.p
 import react.functionalComponent
-import styled.*
+import styled.css
+import styled.styledA
+import styled.styledDiv
+import styled.styledH2
 
 
 val Descriptions by functionalComponent {
@@ -121,7 +123,7 @@ private val Description by functionalComponent<DescriptionProps> { props ->
 
             styledH2 {
                 css {
-                    +KodeinStyles.intertitre
+                    +kodein.intertitre
                     flexGrow = 1.0
                 }
                 +props.title
@@ -129,7 +131,7 @@ private val Description by functionalComponent<DescriptionProps> { props ->
 
             styledDiv {
                 css {
-                    +KodeinStyles.body
+                    +kodein.body
                     flexGrow = 1.0
 
                     "p" {
@@ -142,7 +144,7 @@ private val Description by functionalComponent<DescriptionProps> { props ->
 
             styledA {
                 css {
-                    +KodeinStyles.readMore
+                    +kodein.readMore
                     alignSelf = Align.flexStart
                     margin(1.rem, 0.rem)
                 }

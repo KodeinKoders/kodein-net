@@ -11,14 +11,11 @@ import styled.StyleSheet
 
 object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
 
-    private val modulor = .85.rem
-//    private val modulor = 1.125.em
-
     val picon = "Picon"
     val piconExtended = "Picon-Extended"
 
     val subHead by css {
-        fontSize = modulor * 2
+        fontSize = 2.rem
         letterSpacing = 0.025.em
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
@@ -26,7 +23,7 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
     }
 
     val display2 by css {
-        fontSize = modulor * 4
+        fontSize = 4.rem
         letterSpacing = 0.025.em
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
@@ -34,7 +31,7 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
     }
 
     val display1 by css {
-        fontSize = modulor * 2
+        fontSize = 2.rem
         lineHeight = 1.25.em.lh
         letterSpacing = 0.025.em
         fontFamily = piconExtended
@@ -42,7 +39,7 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
     }
 
     val chapo by css {
-        fontSize = modulor * 2
+        fontSize = 2.rem
         lineHeight = 1.25.em.lh
         letterSpacing = 0.05.em
         fontFamily = picon
@@ -51,31 +48,31 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
     }
 
     val separator by css {
-        height = modulor * 7
-        margin(modulor * 3, auto)
+        height = 7.rem
+        margin(3.rem, auto)
     }
 
     val intertitre by css {
-        fontSize = modulor * 1.5
+        fontSize = 1.5.rem
         letterSpacing = 0.025.em
-        lineHeight = (modulor * 1.8).lh
+        lineHeight = 1.8.rem.lh
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
     }
 
     val body by css {
-        fontSize = modulor
+        fontSize = 1.rem
         letterSpacing = 0.025.em
-        lineHeight = (modulor * 1.5).lh
+        lineHeight = 1.5.rem.lh
         fontFamily = picon
         fontWeight = FontWeight.regular
     }
 
     val link by css {
-        fontSize = modulor * 0.825
+        fontSize = 0.825.rem
         fontWeight = FontWeight.medium
         letterSpacing = 0.025.em
-        lineHeight = (modulor * 1.5).lh
+        lineHeight = 1.5.rem.lh
     }
 
 
@@ -94,3 +91,5 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         }
     }
 }
+
+val CSSBuilder.kodein get() = KodeinStyles

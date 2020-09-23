@@ -5,7 +5,6 @@ import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
 import kotlinx.html.js.onClickFunction
-import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
 import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
@@ -39,7 +38,7 @@ val Header by functionalComponent<HeaderProps> { props ->
 
                 styledH1 {
                     css {
-                        +KodeinStyles.display2
+                        +kodein.display2
                         fontWeight = FontWeight.hairline
                         color = Color.kodein.kaumon
                         textAlign = TextAlign.start
@@ -54,7 +53,7 @@ val Header by functionalComponent<HeaderProps> { props ->
 
                 styledP {
                     css {
-                        +KodeinStyles.chapo
+                        +kodein.chapo
                         textAlign = TextAlign.start
                         color = Color.purple
                         margin(1.rem, 2.rem)
@@ -74,7 +73,7 @@ val Header by functionalComponent<HeaderProps> { props ->
 
                     styledSpan {
                         css {
-                            +KodeinStyles.separator
+                            +kodein.separator
                             display = Display.block
                             width = 0.05.rem
                             backgroundColor = Color.kodein.korail
@@ -287,7 +286,7 @@ private val ScrollIndicator by functionalComponent<HeaderProps> { props ->
         }
         styledP {
             css {
-                +KodeinStyles.body
+                +kodein.body
                 color = Color.kodein.korail
             }
             +"SCROLL"
