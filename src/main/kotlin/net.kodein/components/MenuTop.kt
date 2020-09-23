@@ -53,9 +53,10 @@ val MenuTop by functionalComponent {
             // Logo
             child(KodeinLogo) {
                 attrs {
+                    logo = "orange"
                     bold = "KODEIN"
                     light = "Koders"
-                    colorName = Color.kodein.nameOf { orange }
+                    color = Color.kodein.orange
                 }
             }
 

@@ -22,7 +22,7 @@ val Humans by functionalComponent {
 
         styledH1 {
             css {
-                +kodein.display2
+                +kodein.display3
                 fontWeight = FontWeight.hairline
                 color = Color.kodein.orange
                 textAlign = TextAlign.start

@@ -25,6 +25,8 @@ object KodeinColors {
     val cute by Color("#F7E1DE")
     val dark by Color("#240821")
 
+    val darker by Color("#120411")
+
     // Tertiary
     val kyzantium by Color("#480F40")
     val kinzolin by Color("#6D1761")

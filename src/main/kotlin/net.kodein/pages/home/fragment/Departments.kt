@@ -89,7 +89,7 @@ private val Department by functionalComponent<DepartmentProps> { props ->
 
         styledA {
             css {
-                +kodein.readMore
+                +kodein.button
                 alignSelf = Align.flexStart
                 margin(1.rem)
             }

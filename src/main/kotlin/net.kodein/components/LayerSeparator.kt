@@ -37,7 +37,7 @@ val LayerSeparator by functionalComponent {
             closePath()
         }
 
-        layer(Color.kodein.cute, 8) {
+        layer(Color.kodein.kaumon, 8) {
             moveTo(0, 4)
             verticalLineTo(70)
             lineTo(100, 50)
@@ -45,7 +45,7 @@ val LayerSeparator by functionalComponent {
             closePath()
         }
 
-        layer(Color.kodein.purple, 7) {
+        layer(Color.kodein.kinzolin, 7) {
             moveTo(0, 6)
             verticalLineTo(90)
             lineTo(100, 35)

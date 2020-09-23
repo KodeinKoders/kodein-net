@@ -144,7 +144,7 @@ private val Description by functionalComponent<DescriptionProps> { props ->
 
             styledA {
                 css {
-                    +kodein.readMore
+                    +kodein.button
                     alignSelf = Align.flexStart
                     margin(1.rem, 0.rem)
                 }

@@ -6,13 +6,18 @@ import kotlinx.css.properties.transition
 import net.kodein.charter.kodein
 import net.kodein.utils.*
 import react.*
+import react.dom.br
 import styled.*
 
 
 interface KodeinLogoProps : RProps {
+    var logo: String
+    var logoHeight: LinearDimension?
     var bold: String
     var light: String
-    var colorName: String
+    var color: Color
+    var titleColor: Color?
+    var subtitle: String?
 }
 
 val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
@@ -23,7 +28,7 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
             flexDirection = FlexDirection.row
             alignItems = Align.center
             justifyContent = JustifyContent.flexStart
-            color = Color.kodein[props.colorName]
+            color = props.color
             marginRight = 10.em
             transition("marginRight", duration = 0.15.s)
 
@@ -38,25 +43,41 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
             maxWidth(600.px) { fontSize = 0.8.em }
             maxWidthXS { fontSize = 0.75.em }
         }
-        styledImg(alt = "Kodein logo", src = "imgs/logo-${props.colorName}.svg") {
+        styledImg(alt = "Kodein logo", src = "imgs/logo-${props.logo}.svg") {
             css {
                 display = Display.block
                 padding(right = 1.em)
-                width = 3.em
-                height = 3.em
+                height = props.logoHeight ?: 3.em
             }
         }
-        styledH1 {
-            css {
-                fontWeight = FontWeight.w700
+        styledDiv {
+            styledH1 {
+                css {
+                    fontWeight = FontWeight.w700
+                    fontSize = if (props.subtitle == null) 2.em else 1.4.em
+                    props.titleColor?.let {
+                        color = it
+                    }
+                }
+
+                +props.bold
+
+                styledSpan {
+                    css.opacity = 0.8
+                    css.fontWeight = FontWeight.w300
+                    +props.light
+                }
             }
-
-            +props.bold
-
-            styledSpan {
-                css.opacity = 0.8
-                css.fontWeight = FontWeight.w300
-                +props.light
+            props.subtitle?.let { subtitle ->
+                styledP {
+                    css {
+                        fontWeight = FontWeight.w600
+                        letterSpacing = 0.075.em
+                        fontSize = 0.8.em
+                        marginTop = (-0.25).em
+                    }
+                    +subtitle
+                }
             }
         }
     }

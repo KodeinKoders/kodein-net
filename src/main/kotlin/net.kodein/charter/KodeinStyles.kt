@@ -22,8 +22,18 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         textAlign = TextAlign.center
     }
 
-    val display2 by css {
+    val display3 by css {
         fontSize = 4.rem
+        lineHeight = 1.25.em.lh
+        letterSpacing = 0.025.em
+        fontFamily = piconExtended
+        fontWeight = FontWeight.medium
+        textAlign = TextAlign.center
+    }
+
+    val display2 by css {
+        fontSize = 3.rem
+        lineHeight = 1.25.em.lh
         letterSpacing = 0.025.em
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
@@ -39,7 +49,7 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
     }
 
     val chapo by css {
-        fontSize = 2.rem
+        fontSize = 1.8.rem
         lineHeight = 1.25.em.lh
         letterSpacing = 0.05.em
         fontFamily = picon
@@ -75,9 +85,11 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         lineHeight = 1.5.rem.lh
     }
 
-
-    val readMore by css {
+    val button by css {
         +link
+        display = Display.flex
+        flexDirection = FlexDirection.row
+        alignItems = Align.center
         padding(vertical = 0.3.rem, horizontal = 1.rem)
         backgroundColor = Color.kodein.orange
         color = Color.kodein.cute.withAlpha(0.8)
@@ -85,9 +97,21 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         cursor = Cursor.pointer
         boxShadow(Color.kodein.dark.withAlpha(0.2), offsetY = 0.1.rem, blurRadius = 0.2.rem)
 
+        focus {
+            outline = Outline.none
+        }
+
+        img {
+            opacity = 0.8
+        }
+
         hover {
             backgroundColor = Color.kodein.kuivre
             color = Color.kodein.cute
+
+            img {
+                opacity = 1
+            }
         }
     }
 }
