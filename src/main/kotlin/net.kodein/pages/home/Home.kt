@@ -3,6 +3,7 @@ package net.kodein.pages.home
 import kotlinx.browser.window
 import kotlinx.css.*
 import net.kodein.charter.kodein
+import net.kodein.components.LayerSeparator
 import net.kodein.components.MenuTop
 import net.kodein.components.Separator
 import net.kodein.pages.home.fragment.Header
@@ -56,6 +57,8 @@ val Home by functionalComponent {
     child(Descriptions)
 
     child(Humans)
+
+    child(LayerSeparator)
 
 
     styledDiv {

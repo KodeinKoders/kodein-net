@@ -17,72 +17,72 @@ val Humans by functionalComponent {
 
     styledDiv {
         css {
-            marginTop = 3.rem
-        }
-    }
-
-    styledH1 {
-        css {
-            +kodein.display2
-            fontWeight = FontWeight.hairline
-            color = Color.kodein.orange
-            textAlign = TextAlign.start
-            paddingLeft = 5.rem
-        }
-        +"Humans trust us!"
-    }
-
-    styledH3 {
-        css {
-            +kodein.display1
-            fontWeight = FontWeight.regular
-            color = Color.kodein.orange
-            textAlign = TextAlign.start
-            paddingLeft = 5.rem
-        }
-        +"Are you next?"
-    }
-
-    flexRow {
-        css {
-            padding(2.em)
-            flexWrap = FlexWrap.wrap
+            margin(3.rem, 0.rem)
         }
 
-        child(Human) {
-            attrs.name = "Fabrice Drouin"
-            attrs.picture = "fabrice-drouin.jpeg"
-            attrs.job = "Founder & CTO at ACINQ"
-            attrs.url = "https://www.linkedin.com/in/fabrice-drouin-95ab8012"
-            attrs.twitter = "acinq_co"
+        styledH1 {
+            css {
+                +kodein.display2
+                fontWeight = FontWeight.hairline
+                color = Color.kodein.orange
+                textAlign = TextAlign.start
+                paddingLeft = 5.rem
+            }
+            +"Humans trust us!"
         }
-        child(Human) {
-            attrs.name = "Thalia Cruz Castañares"
-            attrs.picture = "thalia-cruz.jpg"
-            attrs.job = "Android team manager at Softbank Robotics"
-            attrs.url = "https://www.linkedin.com/in/thal%C3%ADa-cruz-casta%C3%B1ares-a1257a3a"
-            attrs.twitter = "sbreurope"
+
+        styledH3 {
+            css {
+                +kodein.display1
+                fontWeight = FontWeight.regular
+                color = Color.kodein.orange
+                textAlign = TextAlign.start
+                paddingLeft = 5.rem
+            }
+            +"Are you next?"
         }
-        child(Human) {
-            attrs.name = "Jochen Buhler"
-            attrs.picture = "jochen-buhler.jpg"
-            attrs.job = "Software Engineer at Bosch"
-            attrs.url = "https://www.xing.com/profile/Jochen_Buehler8"
-            attrs.twitter = "boschglobal"
-        }
-        child(Human) {
-            attrs.name = "Rémi B. Loizeau"
-            attrs.picture = "remi-bouvet.jpg"
-            attrs.job = "Crayola quand il y pense"
-            attrs.url = "https://www.linkedin.com/in/r%C3%A9mi-bouvet-loizeau-914536155"
-            attrs.twitter = "remi_b_loizeau"
-        }
-        child(Human) {
-            attrs.name = "Cedric Ravalec"
-            attrs.picture = "cedric-ravalec.jpeg"
-            attrs.job = "Embedded & IoT Business Line Manager at Smile"
-            attrs.url = "https://www.linkedin.com/in/ravalec"
-            attrs.twitter = "groupesmile"
+
+        flexRow {
+            css {
+                padding(2.em)
+                flexWrap = FlexWrap.wrap
+            }
+
+            child(Human) {
+                attrs.name = "Fabrice Drouin"
+                attrs.picture = "fabrice-drouin.jpeg"
+                attrs.job = "Founder & CTO at ACINQ"
+                attrs.url = "https://www.linkedin.com/in/fabrice-drouin-95ab8012"
+                attrs.twitter = "acinq_co"
+            }
+            child(Human) {
+                attrs.name = "Thalia Cruz Castañares"
+                attrs.picture = "thalia-cruz.jpg"
+                attrs.job = "Android team manager at Softbank Robotics"
+                attrs.url = "https://www.linkedin.com/in/thal%C3%ADa-cruz-casta%C3%B1ares-a1257a3a"
+                attrs.twitter = "sbreurope"
+            }
+            child(Human) {
+                attrs.name = "Jochen Buhler"
+                attrs.picture = "jochen-buhler.jpg"
+                attrs.job = "Software Engineer at Bosch"
+                attrs.url = "https://www.xing.com/profile/Jochen_Buehler8"
+                attrs.twitter = "boschglobal"
+            }
+            child(Human) {
+                attrs.name = "Rémi B. Loizeau"
+                attrs.picture = "remi-bouvet.jpg"
+                attrs.job = "Crayola quand il y pense"
+                attrs.url = "https://www.linkedin.com/in/r%C3%A9mi-bouvet-loizeau-914536155"
+                attrs.twitter = "remi_b_loizeau"
+            }
+            child(Human) {
+                attrs.name = "Cedric Ravalec"
+                attrs.picture = "cedric-ravalec.jpeg"
+                attrs.job = "Embedded & IoT Business Line Manager at Smile"
+                attrs.url = "https://www.linkedin.com/in/ravalec"
+                attrs.twitter = "groupesmile"
+            }
         }
     }
 }

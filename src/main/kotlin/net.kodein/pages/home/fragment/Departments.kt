@@ -1,11 +1,9 @@
 package net.kodein.pages.home.fragment
 
 import kotlinx.css.*
-import kotlinx.html.unsafe
+import kotlinx.html.SVG
 import net.kodein.charter.kodein
-import net.kodein.utils.flexColumn
-import net.kodein.utils.flexRow
-import net.kodein.utils.getValue
+import net.kodein.utils.*
 import react.RProps
 import react.child
 import react.functionalComponent
@@ -112,16 +110,19 @@ private val Department by functionalComponent<DepartmentProps> { props ->
                     put("clip-path", "polygon(0% 0%, 0% 100%, 500% 100%, 500% 0%)")
                 }
 
-                attrs["viewBox"] = "0 0 6 100"
-                attrs.unsafe {
-                    +"""
-                        <g>
-                            <path id="svg_1"
-                                d="M 0 0 V 100 H 2 V 60 L 6 0 Z"
-                                fill="${Color.kodein.cute}"
-                            />
-                        </g>
-                    """
+                val s: SVG = attrs
+
+                attrs.viewBox(0, 0, 6, 100)
+
+                draw {
+                    path(fill = Color.kodein.cute) {
+                        moveTo(0, 0)
+                        verticalLineTo(100)
+                        horizontalLineTo(2)
+                        verticalLineTo(60)
+                        lineTo(6, 0)
+                        closePath()
+                    }
                 }
             }
         }
