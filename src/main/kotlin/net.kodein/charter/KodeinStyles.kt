@@ -67,7 +67,7 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         minSize(760) { height = 5.5.rem }
         minSize(840) { height = 6.rem }
         media("(min-width: 1024px) and (min-height: 1200px)") {
-            height = 24.rem
+            height = 12.rem
             marginTop = 10.rem
         }
     }

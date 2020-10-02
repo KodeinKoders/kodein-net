@@ -33,6 +33,7 @@ val Header by functionalComponent<HeaderProps> { props ->
         flexColumn(justifyContent = JustifyContent.center) {
             css {
                 flexGrow = 1.0
+                paddingTop = 3.rem
                 minWidth(1025) { display = Display.none }
             }
 
@@ -43,6 +44,9 @@ val Header by functionalComponent<HeaderProps> { props ->
                         color = Color.kodein.kaumon
                         textAlign = TextAlign.center
                         margin(0.5.rem, 2.rem)
+                        media("(min-width: 1024px) and (min-height: 1200px)") {
+                            fontSize = 4.rem
+                        }
                     }
                     +"Everywhere Kotlin goes,"
                     br {}
@@ -55,6 +59,10 @@ val Header by functionalComponent<HeaderProps> { props ->
                         textAlign = TextAlign.center
                         color = Color.purple
                         margin(1.rem, 2.rem)
+                        media("(min-width: 1024px) and (min-height: 1200px)") {
+                            fontSize = 2.rem
+                            paddingTop = 5.rem
+                        }
                     }
                     +"We are Kodein Koders,"
                     br {}
