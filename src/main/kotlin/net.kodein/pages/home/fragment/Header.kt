@@ -27,6 +27,7 @@ val Header by functionalComponent<HeaderProps> { props ->
             width = 100.pct
             height = 100.pct
             backgroundColor = Color.kodein.dark
+            landscapeMobile { minHeight = 280.px }
         }
 
         flexRow {
