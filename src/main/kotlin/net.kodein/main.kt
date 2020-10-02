@@ -18,17 +18,19 @@ fun main() {
                 margin(0.px)
                 padding(0.px)
 
-                minSize(min = 280) { fontSize = 6.px }
-                minSize(min = 360) { fontSize = 7.px }
-                minSize(min = 440) { fontSize = 8.px }
-                minSize(min = 520) { fontSize = 9.px }
-                minSize(min = 600) { fontSize = 10.px }
-                minSize(min = 680) { fontSize = 11.px }
-                minSize(min = 840) { fontSize = 12.px }
-                minSize(min = 1200) { fontSize = 13.px }
-                minSize(min = 1300) { fontSize = 14.px }
-                minSize(min = 1400) { fontSize = 16.px }
-                minSize(min = 1500) { fontSize = 18.px }
+                minSize(min = 280) { fontSize = 5.px }
+                minSize(min = 360) { fontSize = 6.px }
+                minSize(min = 440) { fontSize = 7.px }
+                minSize(min = 520) { fontSize = 8.px }
+                minSize(min = 600) { fontSize = 9.px }
+                minSize(min = 680) { fontSize = 10.px }
+                minSize(min = 840) { fontSize = 11.px }
+                minSize(min = 920) { fontSize = 12.px }
+                minSize(min = 1024) { fontSize = 14.px }
+                minSize(min = 1280) { fontSize = 16.px }
+                minSize(min = 2000) { fontSize = 18.px }
+                minSize(min = 2500) { fontSize = 20.px }
+                minSize(min = 3000) { fontSize = 22.px }
             }
 
             body {

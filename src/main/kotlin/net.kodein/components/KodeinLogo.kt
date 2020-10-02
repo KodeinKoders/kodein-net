@@ -29,17 +29,18 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
             alignItems = Align.center
             justifyContent = JustifyContent.flexStart
             color = props.color
-            marginRight = 10.em
+            marginRight = 10.rem
+            fontSize = if (props.subtitle == null) 2.rem else 1.4.rem
             transition("marginRight", duration = 0.15.s)
         }
         styledImg(alt = "Kodein logo", src = "imgs/logo-${props.logo}.svg") {
             css {
                 display = Display.block
-                padding(right = 1.em)
-                height = props.logoHeight ?: 3.em
-                mobileL {
-                    width = 4.em
-                    height = 4.em
+                padding(right = 1.rem)
+                height = props.logoHeight ?: 3.rem
+                maxSize(480) {
+                    width = 4.rem
+                    height = 4.rem
                 }
             }
         }
@@ -47,11 +48,10 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
             styledH1 {
                 css {
                     fontWeight = FontWeight.w700
-                    fontSize = if (props.subtitle == null) 2.em else 1.4.em
                     props.titleColor?.let {
                         color = it
                     }
-                    mobileL { fontSize = 3.rem }
+                    maxSize(480) { fontSize = 3.rem }
                 }
 
                 +props.bold
@@ -60,7 +60,7 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
                 css {
                     opacity = 0.8
                     fontWeight = FontWeight.w300
-                    mobileL { fontSize = 3.rem }
+                    maxSize(480) { fontSize = 3.rem }
                 }
                     +props.light
                 }
@@ -69,9 +69,9 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
                 styledP {
                     css {
                         fontWeight = FontWeight.w600
-                        letterSpacing = 0.075.em
-                        fontSize = 0.8.em
-                        marginTop = (-0.25).em
+                        letterSpacing = 0.075.rem
+                        fontSize = 0.8.rem
+                        marginTop = (-0.25).rem
                     }
                     +subtitle
                 }
