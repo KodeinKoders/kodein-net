@@ -79,9 +79,6 @@ val Header by functionalComponent<HeaderProps> { props ->
                     }
 
                     flexRow {
-                        css {
-                            flexGrow = 1.0
-                        }
                         flexColumn(alignItems = Align.center) {
                             css {
                                 flexGrow = 0.0
