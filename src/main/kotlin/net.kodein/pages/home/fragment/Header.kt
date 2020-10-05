@@ -34,105 +34,103 @@ val Header by functionalComponent<HeaderProps> { props ->
             css {
                 flexGrow = 1.0
                 landscape { flexDirection = FlexDirection.row }
-                portrait { flexDirection = FlexDirection.column }
+                portrait {
+                    flexGrow = 2.0
+                    flexDirection = FlexDirection.column
+                    paddingTop = 3.rem
+                }
             }
 
-            flexRow {
+            flexColumn(justifyContent = JustifyContent.center) {
                 css {
-                    flexGrow = 1.0
-                    portrait { paddingTop = 3.rem }
+                    portrait { flexGrow = 0.0 }
+                }
+                styledH1 {
+                    css {
+                        +kodein.display3
+                        fontWeight = FontWeight.hairline
+                        color = Color.kodein.kaumon
+                        textAlign = TextAlign.start
+                        portrait { textAlign = TextAlign.center }
+                        margin(1.rem, 2.rem)
+                    }
+                    +"Everywhere Kotlin goes,"
+                    br {}
+                    +"you should find"
+                    br {}
+                    +"the experts you need!"
                 }
 
-                flexColumn(justifyContent = JustifyContent.center) {
+                styledP {
                     css {
-                        flexGrow = 1.0
+                        +kodein.chapo
+                        textAlign = TextAlign.start
+                        color = Color.purple
+                        margin(1.rem, 2.rem)
+                        portrait { textAlign = TextAlign.center }
                     }
-                    styledH1 {
-                        css {
-                            +kodein.display3
-                            fontWeight = FontWeight.hairline
-                            color = Color.kodein.kaumon
-                            textAlign = TextAlign.start
-                            portrait { textAlign = TextAlign.center }
-                            margin(1.rem, 2.rem)
-                        }
-                        +"Everywhere Kotlin goes,"
-                        br {}
-                        +"you should find"
-                        br {}
-                        +"the experts you need!"
-                    }
+                    +"We are Kodein Koders, a tech company"
+                    br {}
+                    +"that is driven by our ideas for multiplatform"
+                    br {}
+                    +"and our passion for craftsmanship."
+                }
 
-                    styledP {
+                flexRow {
+                    flexColumn(alignItems = Align.center) {
                         css {
-                            +kodein.chapo
-                            textAlign = TextAlign.start
-                            color = Color.purple
-                            margin(1.rem, 2.rem)
-                            portrait { textAlign = TextAlign.center }
+                            flexGrow = 0.0
+                            width = 3.rem
+                            marginLeft = 4.rem
+                            portrait { margin(0.5.rem, LinearDimension.auto) }
+                            landscapeMobile { marginLeft = 2.rem }
                         }
-                        +"We are Kodein Koders, a tech company"
-                        br {}
-                        +"that is driven by our ideas for multiplatform"
-                        br {}
-                        +"and our passion for craftsmanship."
-                    }
 
-                    flexRow {
-                        flexColumn(alignItems = Align.center) {
+                        styledSpan {
                             css {
-                                flexGrow = 0.0
-                                width = 3.rem
-                                marginLeft = 4.rem
-                                landscapeMobile { marginLeft = 2.rem }
-                            }
+                                +kodein.separator
+                                display = Display.block
+                                width = 0.05.rem
+                                backgroundColor = Color.kodein.korail
 
-                            styledSpan {
-                                css {
-                                    +kodein.separator
-                                    display = Display.block
-                                    width = 0.05.rem
-                                    backgroundColor = Color.kodein.korail
-                                    landscapeMobile { display = Display.none }
-                                }
-                            }
-
-                            styledImg(src = "imgs/logo-kaumon.svg") {
-                                css {
-                                    width = 1.5.rem
-                                    height = 1.5.rem
-                                    padding(0.5.rem)
+                                portrait {
                                     margin(1.rem)
-                                    border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
-                                    cursor = Cursor.pointer
+                                    height = 3.rem
+//                                    display = Display.none
                                 }
-                                attrs.onClickFunction = {
-                                    props.onScrollClick()
+                                landscape {
+                                    minSize(360) { height = 3.rem }
+                                    minSize(440) { height = 3.5.rem }
+                                    minSize(520) { height = 4.rem }
+                                    minSize(600) { height = 4.5.rem }
+                                    minSize(680) { height = 5.rem }
+                                    minSize(760) { height = 5.5.rem }
+                                    minSize(840) { height = 6.rem }
                                 }
+                                landscapeMobile { display = Display.none }
                             }
                         }
 
-                        flexColumn(justifyContent = JustifyContent.center, alignItems = Align.center) {
+                        styledImg(src = "imgs/logo-kaumon.svg") {
                             css {
-                                flexGrow = 1.0
-                                landscape { display = Display.none }
-                                minWidth(1025) { display = Display.none }
+                                width = 1.5.rem
+                                height = 1.5.rem
+                                padding(0.5.rem)
+                                margin(1.rem)
+                                border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
+                                cursor = Cursor.pointer
                             }
-                            child(Sphere)
+                            attrs.onClickFunction = {
+                                props.onScrollClick()
+                            }
                         }
                     }
-                }
-
-                flexColumn(justifyContent = JustifyContent.center, alignItems = Align.center) {
-                    css {
-                        flexGrow = 1.0
-                        maxWidth(1024) { display = Display.none }
-                        landscape { display = Display.flex }
-                    }
-                    child(Sphere)
                 }
             }
+
+            child(Sphere)
         }
+
         flexRow(JustifyContent.center) {
             css {
                 paddingBottom = 2.rem
@@ -215,63 +213,32 @@ private val Sphere by functionalComponent {
         ({ window.clearInterval(handle) })
     }
 
-    styledDiv {
-        ref = largeSphereDiv
-        css {
-            position = Position.relative
-            width = (2 * amplitude).rem
-            height = (2 * amplitude).rem
-            borderRadius = 100.pct
-            marginTop = (-5).rem
-            transition(::marginTop, respirationInterval.ms, Timing.easeInOut)
+    flexColumn(justifyContent = JustifyContent.center, alignItems = Align.center) {
+        css { flexGrow = 2.0 }
 
-            fun CSSBuilder.adaptiveSize(modular: Double) {
-                marginRight = modular.rem
-                width = (modular * amplitude).rem
-                height = (modular * amplitude).rem
-            }
-
-            minSize(360) { adaptiveSize(0.25) }
-            minSize(440) { adaptiveSize(0.5) }
-            minSize(520) { adaptiveSize(0.75) }
-            minSize(600) { adaptiveSize(1.0) }
-            minSize(680) { adaptiveSize(1.25) }
-            minSize(760) { adaptiveSize(1.5) }
-            minSize(840) { adaptiveSize(1.75) }
-
-            media("(max-width: 380px) and (max-height: 1024px)") { adaptiveSize(1.25) }
-            media("(max-width: 280px) and (max-height: 1024px)") { adaptiveSize(0.75) }
-            media("(min-width: 1024px) and (min-height: 1200px)") { adaptiveSize(2.5) }
-        }
-        styledSpan {
-            ref = smallSphereDiv
+        styledDiv {
+            ref = largeSphereDiv
             css {
-                position = Position.absolute
-                top = ((1 - smallSphereRadius) * amplitude).rem
-                left = ((1 - smallSphereRadius) * amplitude).rem
-                transition(::top, 2.s, timing = Timing.easeOut)
-                transition(::left, 2.s, timing = Timing.easeOut)
-                width = ((2 * smallSphereRadius) * amplitude).rem
-                height = ((2 * smallSphereRadius) * amplitude).rem
+                position = Position.relative
+                width = (2 * amplitude).rem
+                height = (2 * amplitude).rem
                 borderRadius = 100.pct
-                background = gradient(-0.18)
-
-
-                fun CSSBuilder.adaptiveSize(modulor: Double) {
-                    width = ((modulor * smallSphereRadius) * amplitude).rem
-                    height = ((modulor * smallSphereRadius) * amplitude).rem
+                marginTop = (-5).rem
+                transition(::marginTop, respirationInterval.ms, Timing.easeInOut)
+            }
+            styledSpan {
+                ref = smallSphereDiv
+                css {
+                    position = Position.absolute
+                    top = ((1 - smallSphereRadius) * amplitude).rem
+                    left = ((1 - smallSphereRadius) * amplitude).rem
+                    transition(::top, 2.s, timing = Timing.easeOut)
+                    transition(::left, 2.s, timing = Timing.easeOut)
+                    width = ((2 * smallSphereRadius) * amplitude).rem
+                    height = ((2 * smallSphereRadius) * amplitude).rem
+                    borderRadius = 100.pct
+                    background = gradient(-0.18)
                 }
-
-                minSize(360) { adaptiveSize(0.25) }
-                minSize(440) { adaptiveSize(0.5) }
-                minSize(520) { adaptiveSize(0.75) }
-                minSize(600) { adaptiveSize(1.0) }
-                minSize(680) { adaptiveSize(1.25) }
-                minSize(760) { adaptiveSize(1.5) }
-                minSize(840) { adaptiveSize(1.75) }
-                media("(max-width: 380px) and (max-height: 1024px)") { adaptiveSize(1.25) }
-                media("(max-width: 280px) and (max-height: 1024px)") { adaptiveSize(0.75) }
-                media("(min-width: 1024px) and (min-height: 1200px)") { adaptiveSize(2.5) }
             }
         }
     }
