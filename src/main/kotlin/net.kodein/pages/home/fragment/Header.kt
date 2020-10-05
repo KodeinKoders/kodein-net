@@ -96,7 +96,6 @@ val Header by functionalComponent<HeaderProps> { props ->
                                 portrait {
                                     margin(1.rem)
                                     height = 3.rem
-//                                    display = Display.none
                                 }
                                 landscape {
                                     minSize(360) { height = 3.rem }
