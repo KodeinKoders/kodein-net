@@ -54,11 +54,23 @@ val Header by functionalComponent<HeaderProps> { props ->
                         portrait { textAlign = TextAlign.center }
                         margin(1.rem, 2.rem)
                     }
-                    +"Everywhere Kotlin goes,"
+                    +"Everywhere "
+                    styledSpan {
+                        css {
+                            whiteSpace = WhiteSpace.nowrap
+                        }
+                        +"Kotlin goes,"
+                    }
                     br {}
                     +"you should find"
                     br {}
-                    +"the experts you need!"
+                    +"the experts "
+                    styledSpan {
+                        css {
+                            whiteSpace = WhiteSpace.nowrap
+                        }
+                        +"you need!"
+                    }
                 }
 
                 styledP {

@@ -17,7 +17,9 @@ fun main() {
             universal {
                 margin(0.px)
                 padding(0.px)
+            }
 
+            html {
                 minSize(min = 360) { fontSize = 6.px }
                 minSize(min = 480) { fontSize = 8.px }
                 minSize(min = 680) { fontSize = 8.px }
