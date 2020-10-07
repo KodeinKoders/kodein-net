@@ -53,7 +53,6 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
                     props.titleColor?.let {
                         color = it
                     }
-                    maxSize(480) { fontSize = 3.em }
                 }
 
                 +props.bold
@@ -62,7 +61,6 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
                 css {
                     opacity = 0.7
                     fontWeight = FontWeight.w300
-                    maxSize(480) { fontSize = 3.em }
                 }
                     +props.light
                 }
