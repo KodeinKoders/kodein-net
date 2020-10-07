@@ -135,7 +135,8 @@ private val Description by functionalComponent<DescriptionProps> { props ->
                 styledImg(src = "imgs/illus/${props.illus}_1920.jpg") {
                     css {
                         width = 100.pct
-                        maxHeight = 42.rem
+                        if (props.first == true || props.last  == true) maxHeight = (48 - slant / 2).rem
+                        else maxHeight = 48.rem
                         objectFit = ObjectFit.cover
                     }
                 }

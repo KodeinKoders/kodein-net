@@ -1,16 +1,19 @@
 package net.kodein.pages.home.fragment
 
+import kotlinext.js.jsObject
+import kotlinx.browser.window
 import kotlinx.css.*
-import kotlinx.css.properties.border
-import kotlinx.css.properties.boxShadow
+import kotlinx.css.properties.*
+import kotlinx.html.id
 import net.kodein.charter.kodein
 import net.kodein.utils.*
-import react.RProps
-import react.child
+import org.w3c.dom.HTMLDivElement
+import react.*
 import react.dom.a
 import react.dom.br
-import react.functionalComponent
+import react.dom.key
 import styled.*
+import kotlin.time.seconds
 
 
 val Humans by functionalComponent {
@@ -42,46 +45,91 @@ val Humans by functionalComponent {
             +"Are you next?"
         }
 
+        child(HumanList)
+
+    }
+}
+
+val humans = listOf(
+        HumanProps(
+                name = "Fabrice Drouin",
+                picture = "fabrice-drouin.jpeg",
+                job = "Founder & CTO",
+                company = "ACINQ",
+                url = "https://www.linkedin.com/in/fabrice-drouin-95ab8012",
+                twitter = "acinq_co"
+        ),
+        HumanProps(
+                name = "Thalia Cruz Castañares",
+                picture = "thalia-cruz.jpg",
+                job = "Android team manager",
+                company = "Softbank Robotics",
+                url = "https://www.linkedin.com/in/thal%C3%ADa-cruz-casta%C3%B1ares-a1257a3a",
+                twitter = "sbreurope"
+        ),
+        HumanProps(
+                name = "Jochen Buhler",
+                picture = "jochen-buhler.jpg",
+                job = "Software Engineer",
+                company = "Bosch",
+                url = "https://www.xing.com/profile/Jochen_Buehler8",
+                twitter = "boschglobal"
+        ),
+        HumanProps(
+                name = "Rémi B. Loizeau",
+                picture = "remi-bouvet.jpg",
+                job = "Crayola en chef",
+                company = "Methodic.Design",
+                url = "https://www.linkedin.com/in/r%C3%A9mi-bouvet-loizeau-914536155",
+                twitter = "remi_b_loizeau"
+        ),
+        HumanProps(
+                name = "Cedric Ravalec",
+                picture = "cedric-ravalec.jpeg",
+                job = "Embedded & IoT Business Line Manager",
+                company = "Smile",
+                url = "https://www.linkedin.com/in/ravalec",
+                twitter = "groupesmile"
+        )
+).shuffled()
+
+@OptIn(ExperimentalStdlibApi::class)
+val HumanList by functionalComponent {
+    val div = useRef<HTMLDivElement?>(null)
+
+    styledDiv {
+        css {
+            overflow = Overflow.hidden
+            width = 100.pct
+        }
+
+        val count = 4
+
         flexRow {
+            ref = div
             css {
-                padding(2.em)
-                flexWrap = FlexWrap.wrap
+                width = 20.rem * humans.size * 3
+                padding(vertical = 2.em)
+                animation(
+                        duration = (humans.size * 8).s,
+                        timing = Timing.linear,
+                        iterationCount = IterationCount.infinite
+                ) {
+                    from {
+                        transform { translateX(0.rem) }
+                    }
+                    to {
+                        transform { translateX((humans.size * -20).rem) }
+                    }
+                }
             }
 
-            child(Human) {
-                attrs.name = "Fabrice Drouin"
-                attrs.picture = "fabrice-drouin.jpeg"
-                attrs.job = "Founder & CTO at ACINQ"
-                attrs.url = "https://www.linkedin.com/in/fabrice-drouin-95ab8012"
-                attrs.twitter = "acinq_co"
-            }
-            child(Human) {
-                attrs.name = "Thalia Cruz Castañares"
-                attrs.picture = "thalia-cruz.jpg"
-                attrs.job = "Android team manager at Softbank Robotics"
-                attrs.url = "https://www.linkedin.com/in/thal%C3%ADa-cruz-casta%C3%B1ares-a1257a3a"
-                attrs.twitter = "sbreurope"
-            }
-            child(Human) {
-                attrs.name = "Jochen Buhler"
-                attrs.picture = "jochen-buhler.jpg"
-                attrs.job = "Software Engineer at Bosch"
-                attrs.url = "https://www.xing.com/profile/Jochen_Buehler8"
-                attrs.twitter = "boschglobal"
-            }
-            child(Human) {
-                attrs.name = "Rémi B. Loizeau"
-                attrs.picture = "remi-bouvet.jpg"
-                attrs.job = "Crayola quand il y pense"
-                attrs.url = "https://www.linkedin.com/in/r%C3%A9mi-bouvet-loizeau-914536155"
-                attrs.twitter = "remi_b_loizeau"
-            }
-            child(Human) {
-                attrs.name = "Cedric Ravalec"
-                attrs.picture = "cedric-ravalec.jpeg"
-                attrs.job = "Embedded & IoT Business Line Manager at Smile"
-                attrs.url = "https://www.linkedin.com/in/ravalec"
-                attrs.twitter = "groupesmile"
+            repeat(3) {
+                humans.forEach { human ->
+                    child(Human, human) {
+                        attrs.key = attrs.name
+                    }
+                }
             }
         }
     }
@@ -91,8 +139,27 @@ interface HumanProps: RProps {
     var name: String
     var picture: String
     var job: String
+    var company: String
     var url: String
     var twitter: String
+
+    companion object {
+        operator fun invoke(
+                name: String,
+                picture: String,
+                job: String,
+                company: String,
+                url: String,
+                twitter: String
+        ) = jsObject<HumanProps> {
+            this.name = name
+            this.picture = picture
+            this.job = job
+            this.company = company
+            this.url = url
+            this.twitter = twitter
+        }
+    }
 }
 
 private val Human by functionalComponent<HumanProps> { props ->
@@ -105,7 +172,8 @@ private val Human by functionalComponent<HumanProps> { props ->
             firstChild {
                 put("clip-path", "inherit")
             }
-            paddingBottom = 8.rem
+            width = 20.rem
+            height = 32.rem
         }
 
         styledDiv {
@@ -156,7 +224,11 @@ private val Human by functionalComponent<HumanProps> { props ->
                 color = Color.kodein.orange
                 textAlign = TextAlign.center
             }
-            +props.job
+            +"${props.job} "
+            styledSpan {
+                css.whiteSpace = WhiteSpace.nowrap
+                +"at ${props.company}"
+            }
             br {}
             a(href = "https://twitter.com/${props.twitter}") {
                 +"@${props.twitter}"

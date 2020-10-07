@@ -28,8 +28,8 @@ fun main() {
                 minSize(min = 980) { fontSize = 12.px }
                 minSize(min = 1024) { fontSize = 14.px }
                 minSize(min = 1920) { fontSize = 16.px }
-                minSize(min = 2500) { fontSize = 20.px }
-                minSize(min = 3000) { fontSize = 22.px }
+                minSize(min = 2500) { fontSize = 18.px }
+//                minSize(min = 3000) { fontSize = 22.px }
             }
 
             body {
