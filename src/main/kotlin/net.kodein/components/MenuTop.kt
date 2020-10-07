@@ -48,14 +48,14 @@ val MenuTop by functionalComponent {
 //                if (!isDark) boxShadow(Color.black, offsetY = 0.2.rem)
 
                 backgroundColor = Color.kodein.dark
-                padding(1.rem, 3.rem)
+                padding(0.75.rem, 3.rem)
                 fontSize = .8.rem
             }
 
             // Logo
             child(KodeinLogo) {
                 attrs {
-                    logo = "orange"
+                    logo = "orange-fat"
                     bold = "KODEIN"
                     light = "Koders"
                     color = Color.kodein.orange

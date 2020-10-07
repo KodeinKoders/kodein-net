@@ -5,18 +5,12 @@ import kotlinx.css.properties.Timing
 import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
 import net.kodein.charter.kodein
-import net.kodein.utils.flexColumn
-import net.kodein.utils.flexRow
-import net.kodein.utils.getValue
+import net.kodein.utils.*
 import react.RProps
 import react.child
-import react.dom.img
 import react.dom.p
 import react.functionalComponent
-import styled.css
-import styled.styledA
-import styled.styledDiv
-import styled.styledH2
+import styled.*
 
 
 val Descriptions by functionalComponent {
@@ -91,9 +85,7 @@ private val Description by functionalComponent<DescriptionProps> { props ->
             )
             if (props.first != true) marginTop = -(slant.rem + 1.px)
 
-            "img.illus" {
-                width = 55.pct
-//                put("clip-path", "polygon(0% 0%, 20% 50%, 0% 100%, 100% 100%, 100% 0%)")
+            "img" {
                 val l = if (props.even) 0 else 9
                 val r = if (!props.even) 100 else 91
                 put("clip-path", "polygon($l% 0%, $l% 50%, $l% 100%, $r% 100%, $r% 50%, $r% 0%)")
@@ -101,54 +93,99 @@ private val Description by functionalComponent<DescriptionProps> { props ->
             }
 
             hover {
-                "img.illus" {
+                "img" {
                     val l = if (!props.even) 18 else 0
                     val r = if (props.even) 82 else 100
                     put("clip-path", "polygon(0% 0%, $l% 50%, 0% 100%, 100% 100%, $r% 50%, 100% 0%)")
                 }
             }
+
         }
 
-        img(src = "imgs/illus_${props.illus}.png", classes = "illus") {
-        }
-
-        flexColumn {
+        styledDiv {
             css {
-                padding(4.rem)
-                if (props.first != true) {
-                    if (props.even) marginTop = (slant / 2).rem + 1.px
-                    else marginTop = slant.rem + 1.px
-                }
+                flexGrow = 55.0
+                flexBasis = FlexBasis.zero
             }
 
-            styledH2 {
-                css {
-                    +kodein.intertitre
-                    flexGrow = 1.0
+            picture {
+                source("image/webp",
+                        "imgs/illus/${props.illus}_960.webp" to "960w",
+                        "imgs/illus/${props.illus}_1200.webp" to "1200w",
+                        "imgs/illus/${props.illus}_1440.webp" to "1440w",
+                        "imgs/illus/${props.illus}_1680.webp" to "1680w",
+                        "imgs/illus/${props.illus}_1920.webp" to "1920w",
+                        "imgs/illus/${props.illus}_2400.webp" to "2400w",
+                        "imgs/illus/${props.illus}_2880.webp" to "2880w",
+                        "imgs/illus/${props.illus}_3360.webp" to "3360w",
+                        "imgs/illus/${props.illus}_3840.webp" to "3840w"
+                )
+                source("image/jpeg",
+                        "imgs/illus/${props.illus}_960.jpg" to "960w",
+                        "imgs/illus/${props.illus}_1200.jpg" to "1200w",
+                        "imgs/illus/${props.illus}_1440.jpg" to "1440w",
+                        "imgs/illus/${props.illus}_1680.jpg" to "1680w",
+                        "imgs/illus/${props.illus}_1920.jpg" to "1920w",
+                        "imgs/illus/${props.illus}_2400.jpg" to "2400w",
+                        "imgs/illus/${props.illus}_2880.jpg" to "2880w",
+                        "imgs/illus/${props.illus}_3360.jpg" to "3360w",
+                        "imgs/illus/${props.illus}_3840.jpg" to "3840w"
+                )
+
+                styledImg(src = "imgs/illus/${props.illus}_1920.jpg") {
+                    css {
+                        width = 100.pct
+                        maxHeight = 42.rem
+                        objectFit = ObjectFit.cover
+                    }
                 }
-                +props.title
+            }
+        }
+
+        styledDiv {
+            css {
+                flexGrow = 45.0
+                flexBasis = FlexBasis.zero
             }
 
-            styledDiv {
+            flexColumn {
                 css {
-                    +kodein.body
-                    flexGrow = 1.0
-
-                    "p" {
-                        paddingBottom = 0.6.rem
+                    padding(4.rem)
+                    if (props.first != true) {
+                        if (props.even) marginTop = (slant / 2).rem + 1.px
+                        else marginTop = slant.rem + 1.px
                     }
                 }
 
-                props.children()
-            }
-
-            styledA {
-                css {
-                    +kodein.button
-                    alignSelf = Align.flexStart
-                    margin(1.rem, 0.rem)
+                styledH2 {
+                    css {
+                        +kodein.intertitre
+                        flexGrow = 1.0
+                    }
+                    +props.title
                 }
-                +"READ MORE"
+
+                styledDiv {
+                    css {
+                        +kodein.body
+                        flexGrow = 1.0
+
+                        "p" {
+                            paddingBottom = 0.6.rem
+                        }
+                    }
+
+                    props.children()
+                }
+
+                styledA {
+                    css {
+                        +kodein.button
+                        alignSelf = Align.flexStart
+                        margin(1.rem, 0.rem)
+                    }
+                    +"READ MORE"
+                }
             }
         }
     }

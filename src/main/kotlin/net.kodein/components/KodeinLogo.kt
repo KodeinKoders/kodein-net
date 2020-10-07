@@ -1,6 +1,7 @@
 package net.kodein.components
 
 import kotlinx.css.*
+import kotlinx.css.properties.lh
 import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
 import net.kodein.charter.kodein
@@ -29,38 +30,39 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
             alignItems = Align.center
             justifyContent = JustifyContent.flexStart
             color = props.color
-            marginRight = 10.rem
-            fontSize = if (props.subtitle == null) 2.rem else 1.4.rem
+            marginRight = 10.em
+            fontSize = if (props.subtitle == null) 2.em else 1.4.em
             transition("marginRight", duration = 0.15.s)
         }
         styledImg(alt = "Kodein logo", src = "imgs/logo-${props.logo}.svg") {
             css {
                 display = Display.block
-                padding(right = 1.rem)
-                height = props.logoHeight ?: 3.rem
-                maxSize(480) {
-                    width = 4.rem
-                    height = 4.rem
-                }
+                padding(right = 1.em)
+                height = props.logoHeight ?: 1.8.em
             }
         }
         styledDiv {
             styledH1 {
                 css {
+                    fontSize = 1.4.em
                     fontWeight = FontWeight.w700
+                    if (props.subtitle == null) {
+                        lineHeight = 1.em.lh
+                        paddingTop = 0.25.em
+                    }
                     props.titleColor?.let {
                         color = it
                     }
-                    maxSize(480) { fontSize = 3.rem }
+                    maxSize(480) { fontSize = 3.em }
                 }
 
                 +props.bold
 
             styledSpan {
                 css {
-                    opacity = 0.8
+                    opacity = 0.7
                     fontWeight = FontWeight.w300
-                    maxSize(480) { fontSize = 3.rem }
+                    maxSize(480) { fontSize = 3.em }
                 }
                     +props.light
                 }
@@ -69,9 +71,9 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
                 styledP {
                     css {
                         fontWeight = FontWeight.w600
-                        letterSpacing = 0.075.rem
-                        fontSize = 0.8.rem
-                        marginTop = (-0.25).rem
+                        letterSpacing = 0.075.em
+                        fontSize = 0.8.em
+                        marginTop = (-0.25).em
                     }
                     +subtitle
                 }
