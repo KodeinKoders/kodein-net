@@ -2,20 +2,19 @@ package net.kodein.components
 
 import kotlinx.css.*
 import kotlinx.css.properties.*
+import kotlinx.html.InputType
+import kotlinx.html.js.onClickFunction
 import net.kodein.charter.kodein
-import net.kodein.utils.flexColumn
-import net.kodein.utils.flexRow
-import net.kodein.utils.getValue
+import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.get
 import react.*
-import react.dom.a
-import styled.css
-import styled.styledA
-import styled.styledDiv
+import react.dom.*
+import styled.*
 
 
 val MenuTop by functionalComponent {
-    val isOpen by useState(false)
+    var isOpen by useState(false)
     val menuButton = useRef<HTMLDivElement?>(null)
 
 //    var isDark by useState(false)
@@ -62,6 +61,53 @@ val MenuTop by functionalComponent {
                 }
             }
 
+            // Menu < 1024
+            flexRow(JustifyContent.flexEnd, Align.center) {
+                css {
+                    flexGrow = 1.0
+                    minWidth(1024) { display = Display.none }
+                }
+
+                flexColumn(justifyContent = JustifyContent.center) {
+                    ref = menuButton
+                    css {
+                        "span" {
+                            display = Display.block
+                            width = 30.px
+                            height = 2.px
+                            margin(2.px)
+                            backgroundColor = Color.kodein.orange
+                            borderRadius = 3.px
+                            zIndex= 1
+                            put("transition",
+                                    """transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), 
+                                    |background 0.5s cubic-bezier(0.77,0.2,0.05,1.0), 
+                                    |opacity 0.55s ease;""".trimMargin())
+                        }
+
+                        "span.first" {
+                            backgroundColor = Color.kodein.kaumon
+                            put("transform", "rotate(45deg) translate(4px, 4px);")
+                        }
+                        "span.middle" { opacity = 0 }
+                        "span.last" {
+                            backgroundColor = Color.kodein.kaumon
+                            put("transform", "rotate(-45deg) translate(5px, -4px);")
+                        }
+                    }
+                    attrs.onClickFunction = {
+                        menuButton.current!!.children[0]?.classList?.toggle("first")
+                        menuButton.current!!.children[1]?.classList?.toggle("middle")
+                        menuButton.current!!.children[2]?.classList?.toggle("last")
+                    }
+
+                    span { }
+                    span { }
+                    span { }
+                }
+            }
+
+            // Menu > 1024
             flexRow(JustifyContent.flexEnd, Align.center) {
                 css {
                     color = Color.kodein.orange
@@ -77,6 +123,7 @@ val MenuTop by functionalComponent {
                         cursor = Cursor.pointer
                         transition("fontWeight", duration = 0.15.s)
                     }
+                    maxWidth(1025) { display = Display.none }
                 }
 
                 a(href = "") { +"SERVICES" }
