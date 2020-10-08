@@ -2,20 +2,24 @@ package net.kodein.components
 
 import kotlinx.css.*
 import kotlinx.css.properties.*
-import kotlinx.html.InputType
-import kotlinx.html.js.onClickFunction
 import net.kodein.charter.kodein
 import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.get
+import org.w3c.dom.events.EventListener
 import react.*
-import react.dom.*
-import styled.*
+import react.dom.a
+import styled.css
+import styled.styledA
+import styled.styledDiv
+import styled.styledSpan
 
 
 val MenuTop by functionalComponent {
-    var isOpen by useState(false)
+    val menuContainer = useRef<HTMLDivElement?>(null)
     val menuButton = useRef<HTMLDivElement?>(null)
+
+    var isMobileMenuOpen by useState(false)
+    var menuContainerHeight by useState(0.0)
 
 //    var isDark by useState(false)
 //    val div = useRef<HTMLDivElement?>(null)
@@ -29,7 +33,16 @@ val MenuTop by functionalComponent {
 //        ({ window.removeEventListener("scroll", scroll) })
 //    }
 
+    useEffectWithCleanup {
+        val openCloseMenu = EventListener {
+            console.log("CLICKED")
+        }
+        menuButton.current!!.addEventListener("mouseup", openCloseMenu)
+        ({ menuButton.current!!.removeEventListener("mouseup", openCloseMenu) })
+    }
+
     flexColumn {
+        ref = menuContainer
         css {
             position = Position.sticky
             left = 0.px
@@ -64,8 +77,8 @@ val MenuTop by functionalComponent {
             // Menu < 1024
             flexRow(JustifyContent.flexEnd, Align.center) {
                 css {
+                    minWidth(1025) { display = Display.none }
                     flexGrow = 1.0
-                    minWidth(1024) { display = Display.none }
                 }
 
                 flexColumn(justifyContent = JustifyContent.center) {
@@ -74,115 +87,151 @@ val MenuTop by functionalComponent {
                         "span" {
                             display = Display.block
                             width = 30.px
-                            height = 2.px
+                            height = 3.px
                             margin(2.px)
                             backgroundColor = Color.kodein.orange
                             borderRadius = 3.px
-                            zIndex= 1
-                            put("transition",
-                                    """transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), 
-                                    |background 0.5s cubic-bezier(0.77,0.2,0.05,1.0), 
-                                    |opacity 0.55s ease;""".trimMargin())
+                            transition(::transform, duration = .3.s, Timing.materialAcceleration)
+                            transition(::background, duration = .3.s, Timing.easeInOut)
+                            transition(::opacity, duration = .3.s, Timing.easeInOut)
                         }
 
                         "span.first" {
-                            backgroundColor = Color.kodein.kaumon
-                            put("transform", "rotate(45deg) translate(4px, 4px);")
+                            transform {
+                                rotate(45.deg)
+                                translate(4.px, 5.px)
+                            }
                         }
                         "span.middle" { opacity = 0 }
                         "span.last" {
-                            backgroundColor = Color.kodein.kaumon
-                            put("transform", "rotate(-45deg) translate(5px, -4px);")
+                            transform {
+                                rotate((-45).deg)
+                                translate(6.px, (-5).px)
+                            }
                         }
                     }
-                    attrs.onClickFunction = {
-                        menuButton.current!!.children[0]?.classList?.toggle("first")
-                        menuButton.current!!.children[1]?.classList?.toggle("middle")
-                        menuButton.current!!.children[2]?.classList?.toggle("last")
-                    }
 
-                    span { }
-                    span { }
-                    span { }
+//                    attrs.onClickFunction = {
+//                        menuButton.current!!.children[0]?.classList?.toggle("first")
+//                        menuButton.current!!.children[1]?.classList?.toggle("middle")
+//                        menuButton.current!!.children[2]?.classList?.toggle("last")
+//                    }
+
+                    styledSpan {
+                        css { if (isMobileMenuOpen) +"first" }
+                    }
+                    styledSpan {
+                        css { if (isMobileMenuOpen) +"middle" }
+                    }
+                    styledSpan {
+                        css { if (isMobileMenuOpen) +"last" }
+                    }
                 }
             }
 
             // Menu > 1024
-            flexRow(JustifyContent.flexEnd, Align.center) {
-                css {
-                    color = Color.kodein.orange
-                    fontWeight = FontWeight.w700
-                    flexGrow = 1.0
-
-                    "a" {
-                        display = Display.block
-                        fontWeight = FontWeight.w700
-                        marginLeft = 2.em
-                        textDecoration = TextDecoration.none
-                        color = Color.kodein.orange
-                        cursor = Cursor.pointer
-                        transition("fontWeight", duration = 0.15.s)
-                    }
-                    maxWidth(1025) { display = Display.none }
-                }
-
-                a(href = "") { +"SERVICES" }
-                a(href = "") { +"KOTLIN" }
-                a(href = "") { +"TRAINING" }
-                a(href = "") { +"OSS" }
-                a(href = "") { +"TEAM" }
-                a(href = "") { +"BLOG" }
-                a(href = "") { +"CONTACT" }
-                styledA(href = "") {
-                    css {
-                        border(.1.rem, BorderStyle.solid, Color.kodein.orange)
-                        borderRadius = 1.rem
-                        padding(.3.rem, .6.rem)
-                    }
-                    +"GUYS: WE'RE HIRING!"
-                }
-            }
+            menuNavigation() { maxWidth(1024) { display = Display.none } }
         }
 
         child(Separator) {
             attrs.height = 0.3.em
         }
     }
+
+    flexRow(JustifyContent.center, Align.center) {
+        css {
+            minWidth(1025) { display = Display.none }
+
+            position = Position.sticky
+            left = 0.px
+            top = 0.px
+            right = 0.px
+            zIndex = 999
+            boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
+
+            transition(::height, duration = .5.s, Timing.linear)
+            transition(::visibility, duration = 0.s)
+            transition(::opacity, duration = .5.s, Timing.easeInOut)
+
+            if (isMobileMenuOpen) {
+                display = Display.flex
+                opacity = 1
+                visibility = Visibility.visible
+            } else {
+                display = Display.none
+                opacity = 0
+                visibility = Visibility.hidden
+            }
+        }
+
+        menuNavigation(isMobile = true) {
+            backgroundColor = Color.kodein.kaumon
+            "a" { margin(.5.em) }
+        }
+    }
 }
 
-//class Header : RComponent<RProps, Header.State>() {
-//    interface State : RState {
-//        var isPageUp: Boolean
-//        var hasTransition: Boolean
-//    }
-//
-//    override fun State.init() {
-//        isPageUp = true
-//        hasTransition = false
-//    }
-//
-//
-//    private val scrollCallback: (Event) -> Unit = { setHeaderBackgroundColor(false) }
-//
-//    private fun setHeaderBackgroundColor(firstCall: Boolean) {
-//        if (!firstCall) {
-//            val isPageUp = window.scrollY.toInt() < 50
-//
-//            if (state.isPageUp != isPageUp || state.hasTransition != !firstCall)
-//                setState {
-//                    this.isPageUp = isPageUp
-//                    this.hasTransition = !firstCall
-//                }
-//        }
-//    }
-//
-//    override fun componentDidMount() {
-//        setHeaderBackgroundColor(true)
-//        document.addEventListener("scroll", scrollCallback)
-//    }
-//
-//    override fun componentWillUnmount() {
-//        document.removeEventListener("scroll", scrollCallback)
-//    }
-//
-//}
+private fun RBuilder.menuNavigation(
+        isMobile: Boolean = false,
+        additionalStyle : RuleSet = {}
+) {
+    val foregroundColor = if (isMobile)  Color.kodein.kinzolin else  Color.kodein.orange
+    val justify = if (isMobile) JustifyContent.center else JustifyContent.flexEnd
+
+    flexRow {
+        css {
+            color = foregroundColor
+            fontWeight = FontWeight.w700
+            justifyContent = justify
+            alignItems = Align.center
+            flexGrow = 1.0
+            if (isMobile) flexDirection = FlexDirection.column
+
+            "a" {
+                display = Display.block
+                fontWeight = FontWeight.w700
+                marginLeft = 2.em
+                textDecoration = TextDecoration.none
+                color = foregroundColor
+                cursor = Cursor.pointer
+                transition("fontWeight", duration = 0.15.s)
+            }
+            +additionalStyle
+        }
+
+        a(href = "") { +"SERVICES" }
+        if (isMobile) menuSeparator()
+        a(href = "") { +"KOTLIN" }
+        if (isMobile) menuSeparator()
+        a(href = "") { +"TRAINING" }
+        if (isMobile) menuSeparator()
+        a(href = "") { +"OSS" }
+        if (isMobile) menuSeparator()
+        a(href = "") { +"TEAM" }
+        if (isMobile) menuSeparator()
+        a(href = "") { +"BLOG" }
+        if (isMobile) menuSeparator()
+        a(href = "") { +"CONTACT" }
+        if (isMobile) menuSeparator()
+        styledA(href = "") {
+                css {
+                    if (!isMobile) {
+                        border(.1.rem, BorderStyle.solid, foregroundColor)
+                        borderRadius = 1.rem
+                        padding(.3.rem, .6.rem)
+                    }
+                }
+                +"GUYS: WE'RE HIRING!"
+            }
+    }
+}
+private fun RBuilder.menuSeparator() {
+    styledDiv {
+        css {
+            width = 95.pct
+            opacity = .5
+            backgroundColor = Color.kodein.kamethiste
+            height = 0.05.rem
+        }
+    }
+}
