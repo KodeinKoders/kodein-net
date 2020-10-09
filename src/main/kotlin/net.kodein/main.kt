@@ -23,7 +23,7 @@ fun main() {
                 minSize(min = 360) { fontSize = 6.px }
                 minSize(min = 480) { fontSize = 8.px }
                 minSize(min = 680) { fontSize = 8.px }
-                minSize(min = 768) { fontSize = 10.px }
+                minSize(min = 768) { fontSize = 9.px }
                 minSize(min = 880) { fontSize = 10.px }
                 minSize(min = 980) { fontSize = 12.px }
                 minSize(min = 1024) { fontSize = 14.px }

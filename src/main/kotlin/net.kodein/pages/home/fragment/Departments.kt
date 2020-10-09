@@ -54,17 +54,19 @@ private val Department by functionalComponent<DepartmentProps> { props ->
             backgroundColor = Color.kodein.cute
             flex(flexGrow = 1.0, flexBasis = FlexBasis.zero)
             padding(5.rem, 3.rem)
+
             minWidth(769) { height = dptHeight - 5.em * 2 }
             maxWidth(768) {
-                flexDirection = FlexDirection.row
                 padding(2.rem)
+            }
+
+            "a" {
+                +kodein.button
+                alignSelf = Align.flexStart
+                margin(1.rem)
             }
         }
 
-        flexColumn {
-            css {
-                maxWidth(768) { width = 40.pct }
-            }
             styledImg(src="imgs/ic_${props.icon}.svg") {
                 css {
                     width = 3.em
@@ -80,39 +82,19 @@ private val Department by functionalComponent<DepartmentProps> { props ->
                 }
                 +props.title.toUpperCase()
             }
-        }
-
-        flexColumn {
-            css {
-                maxWidth(768) {
-                    width = 60.pct
-                }
-
-                "a" {
-                    +kodein.button
-                    alignSelf = Align.flexStart
-                    margin(1.rem)
-                    maxWidth(768) {
-                        alignSelf = Align.flexEnd
-                    }
-                }
-            }
 
             styledDiv {
                 css {
-                    maxWidth(768) {
-                        height = 5.rem
-                    }
                     color = Color.kodein.orange
                     +kodein.body
                     padding(0.5.rem, 1.rem)
                     height = 15.rem
+                    maxWidth(768) { height = 5.rem }
                 }
                 props.children()
             }
 
             a { +"READ MORE" }
-        }
     }
 
     if(props.isLastItem != true) {
