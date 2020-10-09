@@ -39,17 +39,12 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
                 display = Display.block
                 padding(right = 1.em)
                 height = props.logoHeight ?: 1.8.em
-                maxWidth(768) {
-                    fontSize = 2.em
-                    padding(right = .5.em)
-                }
             }
         }
         styledDiv {
             styledH1 {
                 css {
                     fontSize = 1.4.em
-                    maxWidth(768) { fontSize = 2.em }
                     fontWeight = FontWeight.w700
                     if (props.subtitle == null) {
                         lineHeight = 1.em.lh

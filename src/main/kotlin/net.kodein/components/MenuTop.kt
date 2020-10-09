@@ -60,15 +60,18 @@ val MenuTop by functionalComponent {
             }
 
             // Menu > 1024
-
             flexRow {
-                css { maxWidth(1024) { display = Display.none } }
+                css {
+                    flexGrow = 1.0
+                    maxWidth(1024) { display = Display.none }
+                }
                 child(MenuNavigation)
             }
 
             // Menu < 1024
             flexRow(JustifyContent.flexEnd, Align.center) {
                 css {
+                    flexGrow = 1.0
                     minWidth(1025) { display = Display.none }
                 }
 
