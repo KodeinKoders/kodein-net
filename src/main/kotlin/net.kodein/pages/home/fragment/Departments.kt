@@ -57,13 +57,13 @@ private val Department by functionalComponent<DepartmentProps> { props ->
             minWidth(769) { height = dptHeight - 5.em * 2 }
             maxWidth(768) {
                 flexDirection = FlexDirection.row
-                padding(2.rem, 0.rem, 0.rem, 2.rem)
+                padding(2.rem)
             }
         }
 
         flexColumn {
             css {
-                maxWidth(768) { width = 75.pct }
+                maxWidth(768) { width = 40.pct }
             }
             styledImg(src="imgs/ic_${props.icon}.svg") {
                 css {
@@ -80,34 +80,37 @@ private val Department by functionalComponent<DepartmentProps> { props ->
                 }
                 +props.title.toUpperCase()
             }
-            styledDiv {
-                css {
-                    color = Color.kodein.orange
-                    +kodein.body
-                    padding(0.5.rem, 1.rem)
-                    height = 15.rem
-                    maxWidth(768) {
-                        height = 5.rem
-                        width = 80.pct
-                    }
-                }
-                props.children()
-            }
         }
 
-        flexRow {
+        flexColumn {
             css {
                 maxWidth(768) {
-                    margin(LinearDimension.auto)
-                    justifyContent = JustifyContent.flexEnd
+                    width = 60.pct
                 }
 
                 "a" {
                     +kodein.button
                     alignSelf = Align.flexStart
                     margin(1.rem)
+                    maxWidth(768) {
+                        alignSelf = Align.flexEnd
+                    }
                 }
             }
+
+            styledDiv {
+                css {
+                    maxWidth(768) {
+                        height = 5.rem
+                    }
+                    color = Color.kodein.orange
+                    +kodein.body
+                    padding(0.5.rem, 1.rem)
+                    height = 15.rem
+                }
+                props.children()
+            }
+
             a { +"READ MORE" }
         }
     }
