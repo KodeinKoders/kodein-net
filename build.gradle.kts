@@ -20,7 +20,7 @@ kotlin {
             val reactVersion = "16.13.1"
             val reactRouterVersion = "5.1.2"
             val styledVersion = "5.2.0"
-            val kotlinWrapperVersion = "pre.118-kotlin-1.4.10"
+            val kotlinWrapperVersion = "pre.124-kotlin-1.4.10"
 
             api("org.jetbrains:kotlin-react-dom:$reactVersion-$kotlinWrapperVersion")
             api("org.jetbrains:kotlin-react-router-dom:$reactRouterVersion-$kotlinWrapperVersion")

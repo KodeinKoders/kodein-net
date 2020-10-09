@@ -21,25 +21,15 @@ val MenuTop by functionalComponent {
     var isMobileMenuOpen by useState(false)
     var menuContainerHeight by useState(0.0)
 
-//    var isDark by useState(false)
-//    val div = useRef<HTMLDivElement?>(null)
-
-//    useEffectWithCleanup {
-//        val scroll = EventListener {
-//            val top = div.current!!.getBoundingClientRect().top
-//            isDark = top != 0.0
-//        }
-//        window.addEventListener("scroll", scroll)
-//        ({ window.removeEventListener("scroll", scroll) })
-//    }
-
     useEffectWithCleanup {
         val openCloseMenu = EventListener {
-            console.log("CLICKED")
+            isMobileMenuOpen = !isMobileMenuOpen
         }
         menuButton.current!!.addEventListener("mouseup", openCloseMenu)
         ({ menuButton.current!!.removeEventListener("mouseup", openCloseMenu) })
     }
+
+    useEffect { menuContainerHeight = menuContainer.current!!.getBoundingClientRect().height }
 
     flexColumn {
         ref = menuContainer
@@ -53,12 +43,7 @@ val MenuTop by functionalComponent {
         }
 
         flexRow {
-//            ref = div
             css {
-//                backgroundColor = if (isDark) Color.kodein.dark else Color.kodein.cute
-//                transition(::backgroundColor, duration = .5.s)
-//                if (!isDark) boxShadow(Color.black, offsetY = 0.2.rem)
-
                 backgroundColor = Color.kodein.dark
                 padding(0.75.rem, 3.rem)
                 fontSize = .8.rem
@@ -74,11 +59,17 @@ val MenuTop by functionalComponent {
                 }
             }
 
+            // Menu > 1024
+
+            flexRow {
+                css { maxWidth(1024) { display = Display.none } }
+                child(MenuNavigation)
+            }
+
             // Menu < 1024
             flexRow(JustifyContent.flexEnd, Align.center) {
                 css {
                     minWidth(1025) { display = Display.none }
-                    flexGrow = 1.0
                 }
 
                 flexColumn(justifyContent = JustifyContent.center) {
@@ -91,9 +82,9 @@ val MenuTop by functionalComponent {
                             margin(2.px)
                             backgroundColor = Color.kodein.orange
                             borderRadius = 3.px
-                            transition(::transform, duration = .3.s, Timing.materialAcceleration)
-                            transition(::background, duration = .3.s, Timing.easeInOut)
-                            transition(::opacity, duration = .3.s, Timing.easeInOut)
+                            transition(::transform, duration = .1.s, Timing.materialAcceleration)
+                            transition(::background, duration = .1.s, Timing.easeInOut)
+                            transition(::opacity, duration = .1.s, Timing.easeInOut)
                         }
 
                         "span.first" {
@@ -111,12 +102,6 @@ val MenuTop by functionalComponent {
                         }
                     }
 
-//                    attrs.onClickFunction = {
-//                        menuButton.current!!.children[0]?.classList?.toggle("first")
-//                        menuButton.current!!.children[1]?.classList?.toggle("middle")
-//                        menuButton.current!!.children[2]?.classList?.toggle("last")
-//                    }
-
                     styledSpan {
                         css { if (isMobileMenuOpen) +"first" }
                     }
@@ -128,9 +113,6 @@ val MenuTop by functionalComponent {
                     }
                 }
             }
-
-            // Menu > 1024
-            menuNavigation() { maxWidth(1024) { display = Display.none } }
         }
 
         child(Separator) {
@@ -144,7 +126,7 @@ val MenuTop by functionalComponent {
 
             position = Position.sticky
             left = 0.px
-            top = 0.px
+            top = menuContainerHeight.px
             right = 0.px
             zIndex = 999
             boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
@@ -164,19 +146,23 @@ val MenuTop by functionalComponent {
             }
         }
 
-        menuNavigation(isMobile = true) {
-            backgroundColor = Color.kodein.kaumon
-            "a" { margin(.5.em) }
+        child(MenuNavigation) {
+            attrs.isMobile = true
         }
     }
 }
 
-private fun RBuilder.menuNavigation(
-        isMobile: Boolean = false,
-        additionalStyle : RuleSet = {}
-) {
-    val foregroundColor = if (isMobile)  Color.kodein.kinzolin else  Color.kodein.orange
-    val justify = if (isMobile) JustifyContent.center else JustifyContent.flexEnd
+//
+
+
+interface MenuProps : RProps {
+    var isMobile: Boolean
+    var additionalStyle: RuleSet?
+}
+
+val MenuNavigation by functionalComponent<MenuProps> { props ->
+    val foregroundColor = if (props.isMobile)  Color.kodein.kinzolin else  Color.kodein.orange
+    val justify = if (props.isMobile) JustifyContent.center else JustifyContent.flexEnd
 
     flexRow {
         css {
@@ -185,7 +171,7 @@ private fun RBuilder.menuNavigation(
             justifyContent = justify
             alignItems = Align.center
             flexGrow = 1.0
-            if (isMobile) flexDirection = FlexDirection.column
+            if (props.isMobile) flexDirection = FlexDirection.column
 
             "a" {
                 display = Display.block
@@ -196,35 +182,46 @@ private fun RBuilder.menuNavigation(
                 cursor = Cursor.pointer
                 transition("fontWeight", duration = 0.15.s)
             }
-            +additionalStyle
+
+            if (props.isMobile) {
+                backgroundColor = Color.kodein.kaumon
+                "a" {
+                    fontSize = 2.rem
+                    flexDirection = FlexDirection.column
+                    margin(.5.em)
+                }
+            }
+
+            props.additionalStyle?.invoke(this)
         }
 
         a(href = "") { +"SERVICES" }
-        if (isMobile) menuSeparator()
+        if (props.isMobile) menuSeparator()
         a(href = "") { +"KOTLIN" }
-        if (isMobile) menuSeparator()
+        if (props.isMobile) menuSeparator()
         a(href = "") { +"TRAINING" }
-        if (isMobile) menuSeparator()
+        if (props.isMobile) menuSeparator()
         a(href = "") { +"OSS" }
-        if (isMobile) menuSeparator()
+        if (props.isMobile) menuSeparator()
         a(href = "") { +"TEAM" }
-        if (isMobile) menuSeparator()
+        if (props.isMobile) menuSeparator()
         a(href = "") { +"BLOG" }
-        if (isMobile) menuSeparator()
+        if (props.isMobile) menuSeparator()
         a(href = "") { +"CONTACT" }
-        if (isMobile) menuSeparator()
+        if (props.isMobile) menuSeparator()
         styledA(href = "") {
-                css {
-                    if (!isMobile) {
-                        border(.1.rem, BorderStyle.solid, foregroundColor)
-                        borderRadius = 1.rem
-                        padding(.3.rem, .6.rem)
-                    }
+            css {
+                if (!props.isMobile) {
+                    border(.1.rem, BorderStyle.solid, foregroundColor)
+                    borderRadius = 1.rem
+                    padding(.3.rem, .6.rem)
                 }
-                +"GUYS: WE'RE HIRING!"
             }
+            +"GUYS: WE'RE HIRING!"
+        }
     }
 }
+
 private fun RBuilder.menuSeparator() {
     styledDiv {
         css {
