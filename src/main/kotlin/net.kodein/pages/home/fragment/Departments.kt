@@ -14,6 +14,7 @@ val Departments by functionalComponent {
     flexRow {
         css {
             maxWidth(768) {
+                display = Display.block
                 flexDirection = FlexDirection.column
             }
         }
