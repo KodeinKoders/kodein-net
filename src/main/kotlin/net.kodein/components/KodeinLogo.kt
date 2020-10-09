@@ -46,7 +46,7 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
             styledH1 {
                 css {
                     fontSize = 1.4.em
-                    maxSize(480) { fontSize = 2.em }
+                    maxSize(480) { fontSize = 1.5.em }
                     fontWeight = FontWeight.w700
                     if (props.subtitle == null) {
                         lineHeight = 1.em.lh

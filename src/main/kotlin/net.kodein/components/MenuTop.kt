@@ -189,7 +189,7 @@ val MenuNavigation by functionalComponent<MenuProps> { props ->
             if (props.isMobile) {
                 backgroundColor = Color.kodein.kaumon
                 "a" {
-                    fontSize = 2.rem
+                    fontSize = 1.5.rem
                     flexDirection = FlexDirection.column
                     margin(.5.em)
                 }
