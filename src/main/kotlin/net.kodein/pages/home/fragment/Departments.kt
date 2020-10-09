@@ -6,16 +6,17 @@ import net.kodein.charter.kodein
 import net.kodein.utils.*
 import react.RProps
 import react.child
+import react.dom.a
 import react.functionalComponent
 import styled.*
 
 val Departments by functionalComponent {
     flexRow {
-//        css {
-//            maxWidthXM {
-//                flexDirection = FlexDirection.column
-//            }
-//        }
+        css {
+            maxWidth(768) {
+                flexDirection = FlexDirection.column
+            }
+        }
 
         child(Department) {
             attrs.title = "ADVISORY"
@@ -50,50 +51,64 @@ private val Department by functionalComponent<DepartmentProps> { props ->
 
     flexColumn {
         css {
-            height = dptHeight - 5.em * 2
             backgroundColor = Color.kodein.cute
             flex(flexGrow = 1.0, flexBasis = FlexBasis.zero)
             padding(5.rem, 3.rem)
-//            maxWidthXM {
-//                width = 100.pct
-//            }
-        }
-
-        styledImg(src="imgs/ic_${props.icon}.svg") {
-            css {
-                width = 3.em
-                padding(0.rem, 0.rem, 1.rem, 3.rem)
+            minWidth(769) { height = dptHeight - 5.em * 2 }
+            maxWidth(768) {
+                flexDirection = FlexDirection.row
+                padding(2.rem, 0.rem, 0.rem, 2.rem)
             }
         }
 
-        styledDiv {
+        flexColumn {
             css {
-                color = Color.kodein.purple
-                +kodein.display1
-                padding(0.5.rem, 1.rem)
+                maxWidth(768) { width = 75.pct }
             }
-            +props.title.toUpperCase()
-        }
-        styledDiv {
-            css {
-                color = Color.kodein.orange
-                +kodein.body
-                padding(0.5.rem, 1.rem)
-                height = 15.rem
-//                maxWidthXM {
-//                    width = 75.pct
-//                }
+            styledImg(src="imgs/ic_${props.icon}.svg") {
+                css {
+                    width = 3.em
+                    padding(0.rem, 0.rem, 1.rem, 3.rem)
+                }
             }
-            props.children()
+
+            styledDiv {
+                css {
+                    color = Color.kodein.purple
+                    +kodein.display1
+                    padding(0.5.rem, 1.rem)
+                }
+                +props.title.toUpperCase()
+            }
+            styledDiv {
+                css {
+                    color = Color.kodein.orange
+                    +kodein.body
+                    padding(0.5.rem, 1.rem)
+                    height = 15.rem
+                    maxWidth(768) {
+                        height = 5.rem
+                        width = 80.pct
+                    }
+                }
+                props.children()
+            }
         }
 
-        styledA {
+        flexRow {
             css {
-                +kodein.button
-                alignSelf = Align.flexStart
-                margin(1.rem)
+                maxWidth(768) {
+                    margin(LinearDimension.auto)
+                    justifyContent = JustifyContent.flexEnd
+                }
+
+                "a" {
+                    +kodein.button
+                    alignSelf = Align.flexStart
+                    margin(1.rem)
+                }
             }
-            +"READ MORE"
+            a { +"READ MORE" }
         }
     }
 
@@ -105,6 +120,8 @@ private val Department by functionalComponent<DepartmentProps> { props ->
 
             styledSvg {
                 css {
+                    maxWidth(768) { display = Display.none }
+
                     height = dptHeight
                     filter = "drop-shadow(.8rem 0 1.5rem ${Color.kodein.kaumon.withAlpha(0.5)})"
                     put("clip-path", "polygon(0% 0%, 0% 100%, 500% 100%, 500% 0%)")
@@ -121,6 +138,34 @@ private val Department by functionalComponent<DepartmentProps> { props ->
                         horizontalLineTo(2)
                         verticalLineTo(60)
                         lineTo(6, 0)
+                        closePath()
+                    }
+                }
+            }
+
+            styledSvg {
+                css {
+                    height = dptHeight / 10
+                    width = 100.pct
+
+                    minWidth(769) { display = Display.none }
+                    landscapeMobile { height = dptHeight / 8 }
+                    filter = "drop-shadow(0 0.8rem 1rem  ${Color.kodein.kaumon.withAlpha(0.5)})"
+                    put("clip-path", "polygon(0 30%, 100% 30%, 100% 35%, 100% 500%, 0 500%)")
+                }
+
+                val s: SVG = attrs
+
+                attrs.viewBox(0, 0, 300, 12)
+
+                draw {
+                    // M 0 0, H 300, V 6, L 100 2, H 0, Z
+                    path(fill = Color.kodein.cute) {
+                        moveTo(0, 0)
+                        horizontalLineTo(300)
+                        verticalLineTo(10)
+                        lineTo(100, 4)
+                        horizontalLineTo(0)
                         closePath()
                     }
                 }
