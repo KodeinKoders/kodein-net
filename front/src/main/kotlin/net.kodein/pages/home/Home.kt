@@ -15,7 +15,6 @@ import org.w3c.dom.SMOOTH
 import org.w3c.dom.ScrollBehavior
 import org.w3c.dom.ScrollToOptions
 import react.child
-import react.dom.p
 import react.functionalComponent
 import react.useRef
 import styled.css
@@ -58,7 +57,7 @@ val Home by functionalComponent {
 
     child(LayerSeparator)
 
-    child(ContactForm)
+    child(ContactUs)
 
     child(Footer)
 

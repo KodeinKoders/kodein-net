@@ -126,9 +126,7 @@ val HumanList by functionalComponent {
 
             repeat(3) {
                 humans.forEach { human ->
-                    child(Human, human) {
-                        attrs.key = attrs.name
-                    }
+                    child(Human, human)
                 }
             }
         }

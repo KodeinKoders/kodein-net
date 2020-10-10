@@ -1,36 +1,23 @@
-plugins {
-    kotlin("js") version "1.4.10"
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10")
+        classpath("com.google.cloud.tools:appengine-gradle-plugin:2.2.0")
+    }
 }
 
-version = "1.0"
-
-repositories {
-    jcenter()
-    maven( url = "https://kotlin.bintray.com/kotlin-js-wrappers")
-}
-
-kotlin {
-    js {
-        browser()
-        useCommonJs()
-
-        sourceSets["main"].dependencies {
-            implementation(kotlin("stdlib-js"))
-
-            val reactVersion = "16.13.1"
-            val reactRouterVersion = "5.1.2"
-            val styledVersion = "5.2.0"
-            val kotlinWrapperVersion = "pre.118-kotlin-1.4.10"
-
-            api("org.jetbrains:kotlin-react-dom:$reactVersion-$kotlinWrapperVersion")
-            api("org.jetbrains:kotlin-react-router-dom:$reactRouterVersion-$kotlinWrapperVersion")
-            implementation("org.jetbrains:kotlin-styled:$styledVersion-$kotlinWrapperVersion")
-        }
+allprojects {
+    repositories {
+        jcenter()
+        maven( url = "https://kotlin.bintray.com/kotlin-js-wrappers")
     }
 }
 
 task<Sync>("publish") {
-    dependsOn("browserDistribution")
-    from("$buildDir/distributions")
+    dependsOn(":front:browserDistribution")
+    from("front/build/distributions")
     into("$rootDir/docs")
 }

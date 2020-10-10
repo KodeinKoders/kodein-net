@@ -22,3 +22,6 @@ node_modules/
 
 #SASS
 .sass-cache
+
+# API Keys
+*.key
