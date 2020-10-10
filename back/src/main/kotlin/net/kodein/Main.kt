@@ -65,7 +65,7 @@ class Main : HttpFunction {
                     ).build()
                 })
 
-        if (sent.statusCode != 200) {
+        if (sent.statusCode !in 200..299) {
             return response.error(500, "${sent.statusCode}\n${sent.body}")
         }
 
