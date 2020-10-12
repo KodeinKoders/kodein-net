@@ -25,6 +25,7 @@ kotlin {
             api("org.jetbrains:kotlin-react-dom:$reactVersion-$kotlinWrapperVersion")
             api("org.jetbrains:kotlin-react-router-dom:$reactRouterVersion-$kotlinWrapperVersion")
             implementation("org.jetbrains:kotlin-styled:$styledVersion-$kotlinWrapperVersion")
+            implementation(npm("styled-components", "4.4.1"))
         }
     }
 }
