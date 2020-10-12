@@ -9,6 +9,7 @@ import net.kodein.charter.kodein
 import net.kodein.utils.flexColumn
 import net.kodein.utils.flexRow
 import net.kodein.utils.getValue
+import net.kodein.utils.maxWidth
 import react.child
 import react.dom.*
 import react.functionalComponent
@@ -80,6 +81,10 @@ val Footer by functionalComponent {
                     maxWidth = 65.rem
                     margin(LinearDimension.auto)
 
+                    maxWidth(768) {
+                        flexDirection = FlexDirection.column
+                    }
+
                     "p" {
                         width = 10.rem
 
@@ -146,6 +151,10 @@ val Footer by functionalComponent {
                     maxWidth = 65.rem
                     margin(LinearDimension.auto)
                     color = Color.kodein.kuivre
+
+                    maxWidth(768) {
+                        flexDirection = FlexDirection.column
+                    }
                 }
                 flexRow(alignItems = Align.center) {
                     styledImg(src = "imgs/logo-kaumon.svg") {
