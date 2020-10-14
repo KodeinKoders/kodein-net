@@ -1,6 +1,7 @@
 package net.kodein.utils
 
 import react.FunctionalComponent
+import react.RMutableRef
 import react.RSetState
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -10,6 +11,11 @@ internal operator fun <P> FunctionalComponent<P>.getValue(thisRef: Any?, propert
     this.asDynamic().displayName = property.name.capitalize()
     return this
 }
+
+internal operator fun <R> RMutableRef<R?>.invoke(): R {
+    return this.current!!
+}
+
 
 internal class StateDelegate<T>(state: Pair<T, RSetState<T>>) : ReadWriteProperty<Any?, T> {
 

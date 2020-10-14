@@ -1,15 +1,17 @@
 package net.kodein.pages.home.fragment
 
+import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.Timing
 import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
+import kotlinx.html.classes
 import net.kodein.charter.kodein
 import net.kodein.utils.*
-import react.RProps
-import react.child
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.events.Event
+import react.*
 import react.dom.p
-import react.functionalComponent
 import styled.*
 
 
@@ -28,7 +30,7 @@ val Descriptions by functionalComponent {
             attrs.illus = "services"
             attrs.first = true
 
-            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus euismod ullamcorper. Fusce nibh nisi, imperdiet id libero id, iaculis consectetur libero. Morbi turpis dui, eleifend ut bibendum et, lobortis sit amet velit. Vivamus malesuada viverra tellus eget finibus. Praesent eget turpis ut neque egestas varius. Cras ac facilisis odio. Pellentesque posuere, ante at elementum vestibulum, ante odio semper dui, ac accumsan felis nisl ac est. Donec ut aliquet turpis. Integer eros augue, faucibus at cursus a, imperdiet vitae massa. Duis consequat lectus dolor, quis sollicitudin massa aliquam eget. Proin tincidunt cursus lacus eu elementum. Fusce ac auctor ante, quis congue ante." }
+            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus euismod ullamcorper. Fusce nibh nisi, imperdiet id libero id, iaculis consectetur libero. Morbi turpis dui, eleifend ut bibendum et, lobortis sit amet velit. Vivamus malesuada viverra tellus eget finibus. Praesent eget turpis ut neque egestas varius. Cras ac facilisis odio. Pellentesque posuere, ante at elementum vestibulum, ante odio semper dui, ac accumsan felis nisl ac est." }
             p { +"Aliquam nunc urna, imperdiet non viverra eu, interdum ut dui. In hac habitasse platea dictumst." }
         }
 
@@ -37,7 +39,7 @@ val Descriptions by functionalComponent {
             attrs.title = "Work for humans"
             attrs.illus = "team"
 
-            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus euismod ullamcorper. Fusce nibh nisi, imperdiet id libero id, iaculis consectetur libero. Morbi turpis dui, eleifend ut bibendum et, lobortis sit amet velit. Vivamus malesuada viverra tellus eget finibus. Praesent eget turpis ut neque egestas varius. Cras ac facilisis odio. Pellentesque posuere, ante at elementum vestibulum, ante odio semper dui, ac accumsan felis nisl ac est. Donec ut aliquet turpis. Integer eros augue, faucibus at cursus a, imperdiet vitae massa. Duis consequat lectus dolor, quis sollicitudin massa aliquam eget. Proin tincidunt cursus lacus eu elementum. Fusce ac auctor ante, quis congue ante." }
+            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus euismod ullamcorper. Fusce nibh nisi, imperdiet id libero id, iaculis consectetur libero. Morbi turpis dui, eleifend ut bibendum et, lobortis sit amet velit. Vivamus malesuada viverra tellus eget finibus. Praesent eget turpis ut neque egestas varius. Cras ac facilisis odio. Pellentesque posuere, ante at elementum vestibulum, ante odio semper dui, ac accumsan felis nisl ac est." }
             p { +"Aliquam nunc urna, imperdiet non viverra eu, interdum ut dui. In hac habitasse platea dictumst." }
         }
 
@@ -46,7 +48,7 @@ val Descriptions by functionalComponent {
             attrs.title = "Kodein Framework: Open Source at our core"
             attrs.illus = "open-source"
 
-            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus euismod ullamcorper. Fusce nibh nisi, imperdiet id libero id, iaculis consectetur libero. Morbi turpis dui, eleifend ut bibendum et, lobortis sit amet velit. Vivamus malesuada viverra tellus eget finibus. Praesent eget turpis ut neque egestas varius. Cras ac facilisis odio. Pellentesque posuere, ante at elementum vestibulum, ante odio semper dui, ac accumsan felis nisl ac est. Donec ut aliquet turpis. Integer eros augue, faucibus at cursus a, imperdiet vitae massa. Duis consequat lectus dolor, quis sollicitudin massa aliquam eget. Proin tincidunt cursus lacus eu elementum. Fusce ac auctor ante, quis congue ante." }
+            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus euismod ullamcorper. Fusce nibh nisi, imperdiet id libero id, iaculis consectetur libero. Morbi turpis dui, eleifend ut bibendum et, lobortis sit amet velit. Vivamus malesuada viverra tellus eget finibus. Praesent eget turpis ut neque egestas varius. Cras ac facilisis odio. Pellentesque posuere, ante at elementum vestibulum, ante odio semper dui, ac accumsan felis nisl ac est." }
             p { +"Aliquam nunc urna, imperdiet non viverra eu, interdum ut dui. In hac habitasse platea dictumst." }
         }
 
@@ -56,7 +58,7 @@ val Descriptions by functionalComponent {
             attrs.illus = "training"
             attrs.last = true
 
-            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus euismod ullamcorper. Fusce nibh nisi, imperdiet id libero id, iaculis consectetur libero. Morbi turpis dui, eleifend ut bibendum et, lobortis sit amet velit. Vivamus malesuada viverra tellus eget finibus. Praesent eget turpis ut neque egestas varius. Cras ac facilisis odio. Pellentesque posuere, ante at elementum vestibulum, ante odio semper dui, ac accumsan felis nisl ac est. Donec ut aliquet turpis. Integer eros augue, faucibus at cursus a, imperdiet vitae massa. Duis consequat lectus dolor, quis sollicitudin massa aliquam eget. Proin tincidunt cursus lacus eu elementum. Fusce ac auctor ante, quis congue ante." }
+            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus euismod ullamcorper. Fusce nibh nisi, imperdiet id libero id, iaculis consectetur libero. Morbi turpis dui, eleifend ut bibendum et, lobortis sit amet velit. Vivamus malesuada viverra tellus eget finibus. Praesent eget turpis ut neque egestas varius. Cras ac facilisis odio. Pellentesque posuere, ante at elementum vestibulum, ante odio semper dui, ac accumsan felis nisl ac est." }
             p { +"Aliquam nunc urna, imperdiet non viverra eu, interdum ut dui. In hac habitasse platea dictumst." }
         }
     }
@@ -86,7 +88,7 @@ private val Description by functionalComponent<DescriptionProps> { props ->
                     }
                 )
 
-                "img" {
+                ".illustration" {
                     val l = if (props.even) 0 else 9
                     val r = if (!props.even) 100 else 91
                     put("clip-path", "polygon($l% 0%, $l% 50%, $l% 100%, $r% 100%, $r% 50%, $r% 0%)")
@@ -94,73 +96,25 @@ private val Description by functionalComponent<DescriptionProps> { props ->
                 }
 
                 hover {
-                    "img" {
+                    ".illustration" {
                         val l = if (!props.even) 18 else 0
                         val r = if (props.even) 82 else 100
                         put("clip-path", "polygon(0% 0%, $l% 50%, 0% 100%, 100% 100%, $r% 50%, 100% 0%)")
                     }
                 }
 
-                if (props.first != true) marginTop = -(slant.rem + 1.px)
+                if (props.first != true) marginTop = -(slant.rem)
             }
 
             maxWidth(768) {
                 flexDirection = FlexDirection.column
-
-                "img" {
-                    width = 100.pct
-                    height = 24.rem
-                    put("clip-path",
-                        when {
-                            props.first == true ->  "polygon(0% 0%, 100% 0%, 100% 90%, 0% 100%)"
-                            props.even ->           "polygon(0% 0%, 100% 10%, 100% 90%, 0% 100%)"
-                            else ->                 "polygon(0% 10%, 100% 0%, 100% 100%, 0% 90%)"
-                        })
-
-                    transition("clip-path", 0.3.s, Timing.easeOut)
-                }
             }
         }
 
-        styledDiv {
-            css {
-                flexGrow = 55.0
-                flexBasis = FlexBasis.zero
-            }
-
-            picture {
-                source("image/webp",
-                        "imgs/illus/${props.illus}_960.webp" to "960w",
-                        "imgs/illus/${props.illus}_1200.webp" to "1200w",
-                        "imgs/illus/${props.illus}_1440.webp" to "1440w",
-                        "imgs/illus/${props.illus}_1680.webp" to "1680w",
-                        "imgs/illus/${props.illus}_1920.webp" to "1920w",
-                        "imgs/illus/${props.illus}_2400.webp" to "2400w",
-                        "imgs/illus/${props.illus}_2880.webp" to "2880w",
-                        "imgs/illus/${props.illus}_3360.webp" to "3360w",
-                        "imgs/illus/${props.illus}_3840.webp" to "3840w"
-                )
-                source("image/jpeg",
-                        "imgs/illus/${props.illus}_960.jpg" to "960w",
-                        "imgs/illus/${props.illus}_1200.jpg" to "1200w",
-                        "imgs/illus/${props.illus}_1440.jpg" to "1440w",
-                        "imgs/illus/${props.illus}_1680.jpg" to "1680w",
-                        "imgs/illus/${props.illus}_1920.jpg" to "1920w",
-                        "imgs/illus/${props.illus}_2400.jpg" to "2400w",
-                        "imgs/illus/${props.illus}_2880.jpg" to "2880w",
-                        "imgs/illus/${props.illus}_3360.jpg" to "3360w",
-                        "imgs/illus/${props.illus}_3840.jpg" to "3840w"
-                )
-
-                styledImg(src = "imgs/illus/${props.illus}_1920.jpg") {
-                    css {
-                        width = 100.pct
-                        maxHeight = if (props.first == true || props.last  == true) (48 - slant / 2).rem
-                        else 48.rem
-                        objectFit = ObjectFit.cover
-                    }
-                }
-            }
+        child(Illustration) {
+            attrs.color = if (props.even) Color.kodein.kyzantium else Color.kodein.kuivre
+            attrs.slantCorrection = if (props.first == true || props.last  == true) (slant / 2).rem else 0.rem
+            attrs.image = props.illus
         }
 
         styledDiv {
@@ -209,6 +163,66 @@ private val Description by functionalComponent<DescriptionProps> { props ->
                         margin(1.rem, 0.rem)
                     }
                     +"READ MORE"
+                }
+            }
+        }
+    }
+}
+
+private val illustrationWidths = listOf(960, 1200, 1440, 1680, 1920, 2400, 2880, 3360, 3840)
+
+interface IllustrationProps : RProps {
+    var color: Color
+    var image: String
+    var slantCorrection: LinearDimension
+}
+
+private val Illustration by functionalComponent<IllustrationProps> { props ->
+    val div = useRef<HTMLDivElement?>(null)
+
+    var image: String? by useState(null)
+
+    useEffectWithCleanup(emptyList()) {
+        val onResize: ((Event?) -> Unit) = {
+            val divWidth = div.current!!.clientWidth
+            val imgWidth = illustrationWidths.firstOrNull { it >= (divWidth * 1.2) } ?: illustrationWidths.last()
+            image = "${props.image}_${imgWidth}"
+        }
+        window.addEventListener("resize", onResize)
+        onResize(null)
+        ({ window.removeEventListener("resize", onResize) })
+    }
+
+    styledDiv {
+        ref = div
+        attrs.classes += "illustration"
+        css {
+            flexGrow = 55.0
+            flexBasis = FlexBasis.zero
+            minHeight = 38.rem - props.slantCorrection
+            minWidth(1950) {
+                minHeight = 44.rem - props.slantCorrection
+            }
+            backgroundColor = props.color
+            backgroundSize = "cover"
+            backgroundPosition = "center"
+
+            "body.webp &" {
+                backgroundColor = Color.kodein.kaumon
+            }
+        }
+
+        if (image != null) {
+            picture {
+                source("image/webp", "imgs/illus/$image.webp" to null)
+                source("image/jpeg", "imgs/illus/$image.jpg" to null)
+
+                styledImg(alt = image, src = "imgs/illus/$image.jpg") {
+                    css {
+                        width = 100.pct
+                        height = 100.pct
+                        objectFit = ObjectFit.cover
+                    }
                 }
             }
         }
