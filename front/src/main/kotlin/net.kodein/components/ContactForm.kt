@@ -45,9 +45,11 @@ val ContactUs by functionalComponent {
         styledH1 {
             css {
                 +kodein.display2
-                textAlign = TextAlign.start
+                specific {
+                    fontWeight = FontWeight.hairline
+                    textAlign = TextAlign.start
+                }
                 color = Color.kodein.orange
-                fontWeight = FontWeight.hairline
             }
 
             +"Contact us"
@@ -55,7 +57,7 @@ val ContactUs by functionalComponent {
 
         when (val s = status) {
             FormStatus.Ready -> child(ContactForm) {
-                attrs.onSubmitFunction = { from, subject, message ->
+                attrs.submit = { from, subject, message ->
                     status = FormStatus.Sending
                     sendContactForm(from, subject, message) {
                         status = FormStatus.Sent(it)
@@ -97,16 +99,59 @@ val ContactUs by functionalComponent {
 }
 
 interface ContactFormProps : RProps {
-    var onSubmitFunction: (from: String, subject: String, message: String) -> Unit
+    var submit: (from: String, subject: String, message: String) -> Unit
 }
 
 private val ContactForm by functionalComponent<ContactFormProps> { props ->
     var from: String by useState("")
     var subject: String by useState("")
     var message: String by useState("")
-
     var bads: List<String> by useState(emptyList())
 
+    child(contactFormView) {
+        attrs.from = from
+        attrs.setFrom = {
+            if (it.isNotEmpty() && "from" in bads && emailRegex.matches(it)) bads -= "from"
+            from = it
+        }
+        attrs.subject = subject
+        attrs.setSubject = {
+            if (it.isNotEmpty() && "subject" in bads) bads -= "subject"
+            subject = it
+        }
+        attrs.message = message
+        attrs.setMessage = {
+            if (it.isNotEmpty() && "message" in bads) bads -= "message"
+            message = it
+        }
+        attrs.bads = bads
+        attrs.submit = send@ {
+            val newBads = mutableListOf<String>()
+            if (from.isEmpty() || !emailRegex.matches(from)) newBads.add("from")
+            if (subject.isEmpty()) newBads.add("subject")
+            if (message.isEmpty()) newBads.add("message")
+            bads = newBads
+            println(newBads)
+            if (newBads.isNotEmpty()) return@send
+
+            props.submit(from, subject, message)
+        }
+    }
+
+}
+
+interface contactFormViewProps : RProps {
+    var from: String
+    var setFrom: (String) -> Unit
+    var subject: String
+    var setSubject: (String) -> Unit
+    var message: String
+    var setMessage: (String) -> Unit
+    var bads: List<String>
+    var submit: () -> Unit
+}
+
+private val contactFormView by functionalComponent<contactFormViewProps> { props ->
     styledDiv {
         css {
             height = 25.rem
@@ -151,46 +196,36 @@ private val ContactForm by functionalComponent<ContactFormProps> { props ->
 
         p("input") {
             styledSpan {
-                if ("from" in bads) css.specific(3) { color = Color.red }
+                if ("from" in props.bads) css.specific(3) { color = Color.red }
                 +"From:"
             }
             input(InputType.email, name = "email") {
                 attrs.placeholder = "Your e-mail*"
-                attrs.onChangeFunction = {
-                    val newValue = (it.target as HTMLInputElement).value
-                    if (newValue.isNotEmpty() && "from" in bads && emailRegex.matches(newValue)) bads -= "from"
-                    from = newValue
-                }
+                attrs.onChangeFunction = { props.setFrom((it.target as HTMLInputElement).value) }
             }
         }
 
         p("input") {
             styledSpan {
-                if ("subject" in bads) css.specific(3) { color = Color.red }
+                if ("subject" in props.bads) css.specific(3) { color = Color.red }
                 +"Object:"
             }
             input(InputType.text, name = "object") {
                 attrs.placeholder = "What's on your mind?*"
                 attrs.onChangeFunction = {
-                    val newValue = (it.target as HTMLInputElement).value
-                    if (newValue.isNotEmpty() && "subject" in bads) bads -= "subject"
-                    subject = newValue
+                    attrs.onChangeFunction = { props.setSubject((it.target as HTMLInputElement).value) }
                 }
             }
         }
 
         p("input") {
             styledSpan {
-                if ("message" in bads) css.specific(3) { color = Color.red }
+                if ("message" in props.bads) css.specific(3) { color = Color.red }
                 +"Message:"
             }
             textArea {
                 attrs.placeholder = "Tell us a little more about your needs*"
-                attrs.onChangeFunction = {
-                    val newValue = (it.target as HTMLTextAreaElement).value
-                    if (newValue.isNotEmpty() && "message" in bads) bads -= "message"
-                    message = newValue
-                }
+                attrs.onChangeFunction = { props.setMessage((it.target as HTMLTextAreaElement).value) }
             }
         }
 
@@ -208,21 +243,13 @@ private val ContactForm by functionalComponent<ContactFormProps> { props ->
                         marginRight = 0.4.em // not rem!
                     }
                 }
-                attrs.onClickFunction = click@ {
-                    val newBads = mutableListOf<String>()
-                    if (from.isEmpty() || !emailRegex.matches(from)) newBads.add("from")
-                    if (subject.isEmpty()) newBads.add("subject")
-                    if (message.isEmpty()) newBads.add("message")
-                    bads = newBads
-                    println(newBads)
-                    if (newBads.isNotEmpty()) return@click
-
-                    props.onSubmitFunction(from, subject, message)
+                attrs.onClickFunction = {
+                    props.submit()
                 }
                 +"SEND"
             }
 
-            if (bads.isNotEmpty()) {
+            if (props.bads.isNotEmpty()) {
                 styledSpan {
                     css {
                         +KodeinStyles.body

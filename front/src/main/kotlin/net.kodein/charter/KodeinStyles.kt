@@ -10,8 +10,8 @@ import styled.StyleSheet
 
 object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
 
-    val picon = "Picon"
-    val piconExtended = "Picon-Extended"
+    val picon = "Picon, Arial, sans-serif"
+    val piconExtended = "Picon-Extended, Verdana, sans-serif"
 
     val subHead by css {
         fontSize = 2.rem

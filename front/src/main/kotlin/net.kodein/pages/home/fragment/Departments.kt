@@ -59,7 +59,11 @@ private val Department by functionalComponent<DepartmentProps> { props ->
 //            }
         }
 
-        styledImg(src="imgs/ic_${props.icon}.svg") {
+        styledImg(alt="${props.title} icon", src="imgs/ic_${props.icon}.svg") {
+            attrs {
+                width = "48"
+                height = "38"
+            }
             css {
                 width = 3.em
                 padding(0.rem, 0.rem, 1.rem, 3.rem)

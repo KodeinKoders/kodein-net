@@ -48,9 +48,11 @@ val Header by functionalComponent<HeaderProps> { props ->
                 styledH1 {
                     css {
                         +kodein.display3
-                        fontWeight = FontWeight.hairline
+                        specific {
+                            fontWeight = FontWeight.hairline
+                            textAlign = TextAlign.start
+                        }
                         color = Color.kodein.kaumon
-                        textAlign = TextAlign.start
                         portrait { textAlign = TextAlign.center }
                         margin(1.rem, 2.rem)
                     }

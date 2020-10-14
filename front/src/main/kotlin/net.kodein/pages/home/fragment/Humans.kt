@@ -26,9 +26,11 @@ val Humans by functionalComponent {
         styledH1 {
             css {
                 +kodein.display3
-                fontWeight = FontWeight.hairline
+                specific {
+                    fontWeight = FontWeight.hairline
+                    textAlign = TextAlign.start
+                }
                 color = Color.kodein.orange
-                textAlign = TextAlign.start
                 paddingLeft = 5.rem
             }
             +"Humans trust us!"

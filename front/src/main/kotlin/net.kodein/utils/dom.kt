@@ -65,6 +65,7 @@ fun RDOMBuilder<PICTURE>.source(type: String, vararg srcset: Pair<String, String
     source {
         attrs["type"] = type
         attrs["srcSet"] = srcset.joinToString { (src, cst) -> if (cst != null) "$src $cst" else src }
+        attrs["sizes"] = "250px"
     }
 }
 
