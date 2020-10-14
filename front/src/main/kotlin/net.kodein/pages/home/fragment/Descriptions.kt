@@ -75,31 +75,51 @@ private val Description by functionalComponent<DescriptionProps> { props ->
     flexRow {
         val slant = 4
         css {
-            flexDirection = if (props.even) FlexDirection.row else FlexDirection.rowReverse
-            put("clip-path",
+            minWidth(769) {
+                flexDirection = if (props.even) FlexDirection.row else FlexDirection.rowReverse
+
+                put("clip-path",
                     when {
                         props.first == true -> "polygon(0% 0%,   100% 0%, 100% calc(100% - ${slant}rem),        0% 100%)"
                         props.last == true  -> "polygon(0% ${slant}rem, 100% 0%, 100% 100%,                     0% 100%)"
                         else                -> "polygon(0% ${slant}rem, 100% 0%, 100% calc(100% - ${slant}rem), 0% 100%)"
                     }
-            )
-            if (props.first != true) marginTop = -(slant.rem + 1.px)
+                )
 
-            "img" {
-                val l = if (props.even) 0 else 9
-                val r = if (!props.even) 100 else 91
-                put("clip-path", "polygon($l% 0%, $l% 50%, $l% 100%, $r% 100%, $r% 50%, $r% 0%)")
-                transition("clip-path", 0.3.s, Timing.easeOut)
+                "img" {
+                    val l = if (props.even) 0 else 9
+                    val r = if (!props.even) 100 else 91
+                    put("clip-path", "polygon($l% 0%, $l% 50%, $l% 100%, $r% 100%, $r% 50%, $r% 0%)")
+                    transition("clip-path", 0.3.s, Timing.easeOut)
+                }
+
+                hover {
+                    "img" {
+                        val l = if (!props.even) 18 else 0
+                        val r = if (props.even) 82 else 100
+                        put("clip-path", "polygon(0% 0%, $l% 50%, 0% 100%, 100% 100%, $r% 50%, 100% 0%)")
+                    }
+                }
+
+                if (props.first != true) marginTop = -(slant.rem + 1.px)
             }
 
-            hover {
+            maxWidth(768) {
+                flexDirection = FlexDirection.column
+
                 "img" {
-                    val l = if (!props.even) 18 else 0
-                    val r = if (props.even) 82 else 100
-                    put("clip-path", "polygon(0% 0%, $l% 50%, 0% 100%, 100% 100%, $r% 50%, 100% 0%)")
+                    width = 100.pct
+                    height = 24.rem
+                    put("clip-path",
+                        when {
+                            props.first == true ->  "polygon(0% 0%, 100% 0%, 100% 90%, 0% 100%)"
+                            props.even ->           "polygon(0% 0%, 100% 10%, 100% 90%, 0% 100%)"
+                            else ->                 "polygon(0% 10%, 100% 0%, 100% 100%, 0% 90%)"
+                        })
+
+                    transition("clip-path", 0.3.s, Timing.easeOut)
                 }
             }
-
         }
 
         styledDiv {
@@ -135,8 +155,8 @@ private val Description by functionalComponent<DescriptionProps> { props ->
                 styledImg(src = "imgs/illus/${props.illus}_1920.jpg") {
                     css {
                         width = 100.pct
-                        if (props.first == true || props.last  == true) maxHeight = (48 - slant / 2).rem
-                        else maxHeight = 48.rem
+                        maxHeight = if (props.first == true || props.last  == true) (48 - slant / 2).rem
+                        else 48.rem
                         objectFit = ObjectFit.cover
                     }
                 }
@@ -152,9 +172,12 @@ private val Description by functionalComponent<DescriptionProps> { props ->
             flexColumn {
                 css {
                     padding(4.rem)
-                    if (props.first != true) {
-                        if (props.even) marginTop = (slant / 2).rem + 1.px
-                        else marginTop = slant.rem + 1.px
+
+                    minWidth(769) {
+                        if (props.first != true) {
+                            marginTop = if (props.even) (slant / 2).rem + 1.px
+                            else slant.rem + 1.px
+                        }
                     }
                 }
 

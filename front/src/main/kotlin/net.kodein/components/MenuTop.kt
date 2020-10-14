@@ -3,34 +3,36 @@ package net.kodein.components
 import kotlinx.css.*
 import kotlinx.css.properties.*
 import net.kodein.charter.kodein
-import net.kodein.utils.flexColumn
-import net.kodein.utils.flexRow
-import net.kodein.utils.getValue
+import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.events.EventListener
 import react.*
 import react.dom.a
 import styled.css
 import styled.styledA
 import styled.styledDiv
+import styled.styledSpan
 
 
 val MenuTop by functionalComponent {
-    val isOpen by useState(false)
+    val menuContainer = useRef<HTMLDivElement?>(null)
     val menuButton = useRef<HTMLDivElement?>(null)
 
-//    var isDark by useState(false)
-//    val div = useRef<HTMLDivElement?>(null)
+    var isMobileMenuOpen by useState(false)
+    var menuContainerHeight by useState(0.0)
 
-//    useEffectWithCleanup {
-//        val scroll = EventListener {
-//            val top = div.current!!.getBoundingClientRect().top
-//            isDark = top != 0.0
-//        }
-//        window.addEventListener("scroll", scroll)
-//        ({ window.removeEventListener("scroll", scroll) })
-//    }
+    useEffectWithCleanup {
+        val openCloseMenu = EventListener {
+            isMobileMenuOpen = !isMobileMenuOpen
+        }
+        menuButton.current!!.addEventListener("mouseup", openCloseMenu)
+        ({ menuButton.current!!.removeEventListener("mouseup", openCloseMenu) })
+    }
+
+    useEffect { menuContainerHeight = menuContainer.current!!.getBoundingClientRect().height }
 
     flexColumn {
+        ref = menuContainer
         css {
             position = Position.sticky
             left = 0.px
@@ -41,12 +43,7 @@ val MenuTop by functionalComponent {
         }
 
         flexRow {
-//            ref = div
             css {
-//                backgroundColor = if (isDark) Color.kodein.dark else Color.kodein.cute
-//                transition(::backgroundColor, duration = .5.s)
-//                if (!isDark) boxShadow(Color.black, offsetY = 0.2.rem)
-
                 backgroundColor = Color.kodein.dark
                 padding(0.75.rem, 3.rem)
                 fontSize = .8.rem
@@ -62,37 +59,61 @@ val MenuTop by functionalComponent {
                 }
             }
 
+            // Menu > 1024
+            flexRow {
+                css {
+                    flexGrow = 1.0
+                    maxWidth(1024) { display = Display.none }
+                }
+                child(MenuNavigation)
+            }
+
+            // Menu < 1024
             flexRow(JustifyContent.flexEnd, Align.center) {
                 css {
-                    color = Color.kodein.orange
-                    fontWeight = FontWeight.w700
                     flexGrow = 1.0
-
-                    "a" {
-                        display = Display.block
-                        fontWeight = FontWeight.w700
-                        marginLeft = 2.em
-                        textDecoration = TextDecoration.none
-                        color = Color.kodein.orange
-                        cursor = Cursor.pointer
-                        transition("fontWeight", duration = 0.15.s)
-                    }
+                    minWidth(1025) { display = Display.none }
                 }
 
-                a(href = "") { +"SERVICES" }
-                a(href = "") { +"KOTLIN" }
-                a(href = "") { +"TRAINING" }
-                a(href = "") { +"OSS" }
-                a(href = "") { +"TEAM" }
-                a(href = "") { +"BLOG" }
-                a(href = "") { +"CONTACT" }
-                styledA(href = "") {
+                flexColumn(justifyContent = JustifyContent.center) {
+                    ref = menuButton
                     css {
-                        border(.1.rem, BorderStyle.solid, Color.kodein.orange)
-                        borderRadius = 1.rem
-                        padding(.3.rem, .6.rem)
+                        "span" {
+                            display = Display.block
+                            width = 30.px
+                            height = 3.px
+                            margin(2.px)
+                            backgroundColor = Color.kodein.orange
+                            borderRadius = 3.px
+                            transition(::transform, duration = .1.s, Timing.materialAcceleration)
+                            transition(::background, duration = .1.s, Timing.easeInOut)
+                            transition(::opacity, duration = .1.s, Timing.easeInOut)
+                        }
+
+                        "span.first" {
+                            transform {
+                                rotate(45.deg)
+                                translate(4.px, 5.px)
+                            }
+                        }
+                        "span.middle" { opacity = 0 }
+                        "span.last" {
+                            transform {
+                                rotate((-45).deg)
+                                translate(6.px, (-5).px)
+                            }
+                        }
                     }
-                    +"GUYS: WE'RE HIRING!"
+
+                    styledSpan {
+                        css { if (isMobileMenuOpen) +"first" }
+                    }
+                    styledSpan {
+                        css { if (isMobileMenuOpen) +"middle" }
+                    }
+                    styledSpan {
+                        css { if (isMobileMenuOpen) +"last" }
+                    }
                 }
             }
         }
@@ -101,41 +122,116 @@ val MenuTop by functionalComponent {
             attrs.height = 0.3.em
         }
     }
+
+    flexRow(JustifyContent.center, Align.center) {
+        css {
+            minWidth(1025) { display = Display.none }
+
+            position = Position.sticky
+            left = 0.px
+            top = menuContainerHeight.px
+            right = 0.px
+            zIndex = 999
+            boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
+
+            transition(::height, duration = .5.s, Timing.linear)
+            transition(::visibility, duration = 0.s)
+            transition(::opacity, duration = .5.s, Timing.easeInOut)
+
+            if (isMobileMenuOpen) {
+                display = Display.flex
+                opacity = 1
+                visibility = Visibility.visible
+            } else {
+                display = Display.none
+                opacity = 0
+                visibility = Visibility.hidden
+            }
+        }
+
+        child(MenuNavigation) {
+            attrs.isMobile = true
+        }
+    }
 }
 
-//class Header : RComponent<RProps, Header.State>() {
-//    interface State : RState {
-//        var isPageUp: Boolean
-//        var hasTransition: Boolean
-//    }
 //
-//    override fun State.init() {
-//        isPageUp = true
-//        hasTransition = false
-//    }
-//
-//
-//    private val scrollCallback: (Event) -> Unit = { setHeaderBackgroundColor(false) }
-//
-//    private fun setHeaderBackgroundColor(firstCall: Boolean) {
-//        if (!firstCall) {
-//            val isPageUp = window.scrollY.toInt() < 50
-//
-//            if (state.isPageUp != isPageUp || state.hasTransition != !firstCall)
-//                setState {
-//                    this.isPageUp = isPageUp
-//                    this.hasTransition = !firstCall
-//                }
-//        }
-//    }
-//
-//    override fun componentDidMount() {
-//        setHeaderBackgroundColor(true)
-//        document.addEventListener("scroll", scrollCallback)
-//    }
-//
-//    override fun componentWillUnmount() {
-//        document.removeEventListener("scroll", scrollCallback)
-//    }
-//
-//}
+
+
+interface MenuProps : RProps {
+    var isMobile: Boolean
+    var additionalStyle: RuleSet?
+}
+
+val MenuNavigation by functionalComponent<MenuProps> { props ->
+    val foregroundColor = if (props.isMobile)  Color.kodein.kinzolin else  Color.kodein.orange
+    val justify = if (props.isMobile) JustifyContent.center else JustifyContent.flexEnd
+
+    flexRow {
+        css {
+            color = foregroundColor
+            fontWeight = FontWeight.w700
+            justifyContent = justify
+            alignItems = Align.center
+            flexGrow = 1.0
+            if (props.isMobile) flexDirection = FlexDirection.column
+
+            "a" {
+                display = Display.block
+                fontWeight = FontWeight.w700
+                marginLeft = 2.em
+                textDecoration = TextDecoration.none
+                color = foregroundColor
+                cursor = Cursor.pointer
+                transition("fontWeight", duration = 0.15.s)
+            }
+
+            if (props.isMobile) {
+                backgroundColor = Color.kodein.kaumon
+                "a" {
+                    fontSize = 1.5.rem
+                    flexDirection = FlexDirection.column
+                    margin(.5.em)
+                }
+            }
+
+            props.additionalStyle?.invoke(this)
+        }
+
+        a(href = "") { +"SERVICES" }
+        if (props.isMobile) menuSeparator()
+        a(href = "") { +"KOTLIN" }
+        if (props.isMobile) menuSeparator()
+        a(href = "") { +"TRAINING" }
+        if (props.isMobile) menuSeparator()
+        a(href = "") { +"OSS" }
+        if (props.isMobile) menuSeparator()
+        a(href = "") { +"TEAM" }
+        if (props.isMobile) menuSeparator()
+        a(href = "") { +"BLOG" }
+        if (props.isMobile) menuSeparator()
+        a(href = "") { +"CONTACT" }
+        if (props.isMobile) menuSeparator()
+        styledA(href = "") {
+            css {
+                if (!props.isMobile) {
+                    border(.1.rem, BorderStyle.solid, foregroundColor)
+                    borderRadius = 1.rem
+                    padding(.3.rem, .6.rem)
+                }
+            }
+            +"GUYS: WE'RE HIRING!"
+        }
+    }
+}
+
+private fun RBuilder.menuSeparator() {
+    styledDiv {
+        css {
+            width = 95.pct
+            opacity = .5
+            backgroundColor = Color.kodein.kamethiste
+            height = 0.05.rem
+        }
+    }
+}

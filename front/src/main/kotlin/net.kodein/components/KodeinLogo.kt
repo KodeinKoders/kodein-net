@@ -33,6 +33,7 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
             marginRight = 10.em
             fontSize = if (props.subtitle == null) 2.em else 1.4.em
             transition("marginRight", duration = 0.15.s)
+            maxWidth(480) { marginRight = 0.em }
         }
         styledImg(alt = "Kodein logo", src = "imgs/logo-${props.logo}.svg") {
             css {
@@ -45,6 +46,7 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
             styledH1 {
                 css {
                     fontSize = 1.4.em
+                    maxSize(480) { fontSize = 1.5.em }
                     fontWeight = FontWeight.w700
                     if (props.subtitle == null) {
                         lineHeight = 1.em.lh
@@ -53,7 +55,6 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
                     props.titleColor?.let {
                         color = it
                     }
-                    maxSize(480) { fontSize = 3.em }
                 }
 
                 +props.bold
@@ -62,7 +63,6 @@ val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
                 css {
                     opacity = 0.7
                     fontWeight = FontWeight.w300
-                    maxSize(480) { fontSize = 3.em }
                 }
                     +props.light
                 }

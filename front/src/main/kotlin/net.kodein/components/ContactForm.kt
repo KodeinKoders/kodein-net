@@ -40,6 +40,10 @@ val ContactUs by functionalComponent {
         css {
             margin(5.rem, LinearDimension.auto)
             maxWidth = 50.rem
+
+            maxWidth(768) {
+                padding(0.rem, 4.rem)
+            }
         }
 
         styledH1 {

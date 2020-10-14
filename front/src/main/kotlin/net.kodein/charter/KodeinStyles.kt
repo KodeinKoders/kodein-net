@@ -75,6 +75,9 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         lineHeight = 1.5.rem.lh
         fontFamily = picon
         fontWeight = FontWeight.regular
+        maxSize(480) {
+            fontSize = 1.5.rem
+        }
     }
 
     val link by css {
@@ -82,6 +85,9 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontWeight = FontWeight.medium
         letterSpacing = 0.025.em
         lineHeight = 1.5.rem.lh
+        maxSize(480) {
+            fontSize = 1.2.rem
+        }
     }
 
     val button by css {
