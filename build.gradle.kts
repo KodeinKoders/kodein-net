@@ -15,9 +15,3 @@ allprojects {
         maven( url = "https://kotlin.bintray.com/kotlin-js-wrappers")
     }
 }
-
-task<Sync>("publish") {
-    dependsOn(":front:browserDistribution")
-    from("front/build/distributions")
-    into("$rootDir/docs")
-}

@@ -30,11 +30,11 @@ tasks.named<ShadowJar>("shadowJar") {
     }
 }
 
-fun getSgKey(): String {
-    val sgKeyFile = rootDir.resolve("sendgrid.key")
-    if (!sgKeyFile.exists()) error("Please add a sendgrid.key file to the root of the project containing Sendgrid API KEY")
-    return sgKeyFile.readText().trim()
-}
+fun getSgKey(): String =
+        (project.findProperty("com.sendgrid.apiKey") as? String)
+                ?.trim()
+                ?.takeIf { it.isNotEmpty() }
+                ?: error("Please add com.sendgrid.apiKey to your ~/.gradle/gradle.properties file")
 
 val runFunction by tasks.creating(JavaExec::class) {
     doFirst {
