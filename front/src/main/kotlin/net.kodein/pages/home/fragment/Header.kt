@@ -37,7 +37,7 @@ val Header = functionalComponent<HeaderProps>("Header") { props ->
                 portrait {
                     flexGrow = 2.0
                     flexDirection = FlexDirection.column
-                    paddingTop = 3.rem
+                    paddingTop = 2.rem
                 }
             }
 
@@ -51,9 +51,10 @@ val Header = functionalComponent<HeaderProps>("Header") { props ->
                         specific {
                             fontWeight = FontWeight.hairline
                             textAlign = TextAlign.start
+
+                            portrait { textAlign = TextAlign.center }
                         }
                         color = Color.kodein.kaumon
-                        portrait { textAlign = TextAlign.center }
                         margin(1.rem, 2.rem)
                     }
                     +"Everywhere "
@@ -78,14 +79,19 @@ val Header = functionalComponent<HeaderProps>("Header") { props ->
                 styledP {
                     css {
                         +kodein.chapo
-                        textAlign = TextAlign.start
                         color = Color.purple
                         margin(1.rem, 2.rem)
                         portrait { textAlign = TextAlign.center }
                     }
-                    +"We are Kodein Koders, a tech company"
+                    +"We are Kodein Koders, "
+                    styledSpan {
+                        css {
+                            whiteSpace = WhiteSpace.nowrap
+                        }
+                        +"a tech company, that is driven by "
+                    }
                     br {}
-                    +"that is driven by our ideas for multiplatform"
+                    +"our ideas for multiplatform"
                     br {}
                     +"and our passion for craftsmanship."
                 }

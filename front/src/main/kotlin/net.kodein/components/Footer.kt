@@ -3,20 +3,17 @@ package net.kodein.components
 import kotlinx.css.*
 import kotlinx.css.properties.border
 import kotlinx.css.properties.lh
-import kotlinx.html.js.onClickFunction
 import kotlinx.html.unsafe
 import net.kodein.charter.kodein
 import net.kodein.utils.flexColumn
 import net.kodein.utils.flexRow
+import net.kodein.utils.maxSize
 import net.kodein.utils.maxWidth
 import react.RProps
 import react.child
 import react.dom.*
 import react.functionalComponent
-import styled.css
-import styled.styledA
-import styled.styledDiv
-import styled.styledImg
+import styled.*
 
 
 val Footer = functionalComponent<RProps>("Footer") {
@@ -38,6 +35,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                     position = Position.relative
                     maxWidth = 65.rem
                     margin(LinearDimension.auto)
+                    padding(0.rem, 1.rem)
                 }
                 child(KodeinLogo) {
                     attrs {
@@ -68,7 +66,11 @@ val Footer = functionalComponent<RProps>("Footer") {
         styledDiv {
             css {
                 backgroundColor = Color.kodein.darker
-                padding(4.rem, 0.rem, 2.rem, 0.rem)
+                padding(4.rem, 1.rem, 2.rem, 1.rem)
+
+                maxWidth(768) {
+                    padding(1.rem)
+                }
             }
 
             flexRow(JustifyContent.spaceBetween) {
@@ -87,10 +89,18 @@ val Footer = functionalComponent<RProps>("Footer") {
 
                     "p" {
                         width = 10.rem
+                        maxWidth(768) {
+                            width = 100.pct
+                        }
 
                         "b" {
                             display = Display.block
                             paddingBottom = 2.rem
+
+                            maxWidth(768) {
+                                paddingTop = 1.rem
+                                paddingBottom = 1.rem
+                            }
                         }
 
                         "ul" {
@@ -154,9 +164,16 @@ val Footer = functionalComponent<RProps>("Footer") {
 
                     maxWidth(768) {
                         flexDirection = FlexDirection.column
+                        paddingTop = 2.rem
                     }
                 }
                 flexRow(alignItems = Align.center) {
+                    css {
+                        maxSize(768) {
+                            flexDirection = FlexDirection.column
+                        }
+                    }
+
                     styledImg(src = "imgs/logo-kaumon.svg") {
                         css {
                             width = 1.5.rem
@@ -168,16 +185,23 @@ val Footer = functionalComponent<RProps>("Footer") {
                         }
                     }
 
-                    +"Proudly powered by the"
-                    span { attrs.unsafe { +"&nbsp;" } }
-                    styledA(href = "https://kodein.org") {
+                    styledP {
                         css {
-                            color = Color.kodein.kinzolin
+                            maxSize(768) {
+                                padding(1.rem, 0.rem)
+                            }
                         }
-                        b { +"KODEIN" }
-                        +"Framework"
+                        +"Proudly powered by the"
+                        span { attrs.unsafe { +"&nbsp;" } }
+                        styledA(href = "https://kodein.org") {
+                            css {
+                                color = Color.kodein.kinzolin
+                            }
+                            b { +"KODEIN" }
+                            +"Framework"
+                        }
+                        +"."
                     }
-                    +"."
                 }
 
                 p {

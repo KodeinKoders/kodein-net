@@ -28,6 +28,10 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
         textAlign = TextAlign.center
+
+        maxSize(980) { fontSize = 3.rem  }
+        maxSize(768) { fontSize = 2.5.rem  }
+        maxSize(480) { fontSize = 2.rem  }
     }
 
     val display2 by css {
@@ -37,6 +41,10 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
         textAlign = TextAlign.center
+
+        maxSize(980) { fontSize = 2.5.rem  }
+        maxSize(768) { fontSize = 2.25.rem  }
+        maxSize(480) { fontSize = 1.75.rem  }
     }
 
     val display1 by css {
@@ -45,6 +53,10 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         letterSpacing = 0.025.em
         fontFamily = piconExtended
         fontWeight = FontWeight.regular
+
+        maxSize(980) { fontSize = 1.75.rem  }
+        maxSize(768) { fontSize = 1.5.rem  }
+        maxSize(480) { fontSize = 1.25.rem  }
     }
 
     val chapo by css {
@@ -54,6 +66,9 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontFamily = picon
         fontWeight = FontWeight.regular
         textAlign = TextAlign.start
+
+        maxSize(980) { fontSize = 1.5.rem  }
+        maxSize(480) { fontSize = 1.25.rem  }
     }
 
     val separator by css {
@@ -75,9 +90,6 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         lineHeight = 1.5.rem.lh
         fontFamily = picon
         fontWeight = FontWeight.regular
-        maxSize(480) {
-            fontSize = 1.5.rem
-        }
     }
 
     val link by css {
@@ -85,9 +97,6 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontWeight = FontWeight.medium
         letterSpacing = 0.025.em
         lineHeight = 1.5.rem.lh
-        maxSize(480) {
-            fontSize = 1.2.rem
-        }
     }
 
     val button by css {

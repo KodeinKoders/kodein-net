@@ -8,6 +8,7 @@ import kotlinx.css.properties.transition
 import net.kodein.charter.kodein
 import net.kodein.pages.home.Home
 import net.kodein.pages.services.Services
+import net.kodein.utils.maxSize
 import net.kodein.utils.minSize
 import org.w3c.dom.get
 import react.*
@@ -21,16 +22,13 @@ val appGlobalStyle: CSSBuilder.() -> Unit = {
     }
 
     html {
-        minSize(min = 360) { fontSize = 6.px }
-        minSize(min = 480) { fontSize = 8.px }
-        minSize(min = 680) { fontSize = 8.px }
-        minSize(min = 768) { fontSize = 9.px }
-        minSize(min = 880) { fontSize = 10.px }
-        minSize(min = 980) { fontSize = 12.px }
-        minSize(min = 1024) { fontSize = 14.px }
-        minSize(min = 1920) { fontSize = 16.px }
+//        maxSize(380) { fontSize = 10.px }
+//        maxSize(480) { fontSize = 11.px }
+//        maxSize(768) { fontSize = 14.px }
+//        maxSize(980) { fontSize = 14.px }
+//        maxSize(1024) { fontSize = 15.px }
+        minSize(min = 1920) { fontSize = 17.px }
         minSize(min = 2500) { fontSize = 18.px }
-//                minSize(min = 3000) { fontSize = 22.px }
     }
 
     body {

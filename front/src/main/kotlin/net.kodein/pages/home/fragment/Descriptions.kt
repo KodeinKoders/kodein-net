@@ -108,6 +108,20 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
 
             maxWidth(768) {
                 flexDirection = FlexDirection.column
+
+                ".illustration" {
+                    width = 100.pct
+                    height = 24.rem
+
+                    put("clip-path",
+                        when {
+                            props.first == true ->  "polygon(0% 0%, 100% 0%, 100% 90%, 0% 100%)"
+                            props.even ->           "polygon(0% 0%, 100% 10%, 100% 90%, 0% 100%)"
+                            else ->                 "polygon(0% 10%, 100% 0%, 100% 100%, 0% 90%)"
+                        })
+
+                    transition("clip-path", 0.3.s, Timing.easeOut)
+                }
             }
         }
 
@@ -126,7 +140,9 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
             flexColumn {
                 css {
                     padding(4.rem)
-
+                    maxWidth(768) {
+                        padding(2.rem)
+                    }
                     minWidth(769) {
                         if (props.first != true) {
                             marginTop = if (props.even) (slant / 2).rem + 1.px

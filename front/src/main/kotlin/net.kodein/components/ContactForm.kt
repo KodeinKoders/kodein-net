@@ -42,7 +42,7 @@ val ContactUs = functionalComponent<RProps>("ContactUs") {
             maxWidth = 50.rem
 
             maxWidth(768) {
-                padding(0.rem, 4.rem)
+                padding(0.rem, 1.rem)
             }
         }
 

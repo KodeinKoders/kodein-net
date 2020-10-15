@@ -32,6 +32,9 @@ val Humans = functionalComponent<RProps>("Humans") {
                 }
                 color = Color.kodein.orange
                 paddingLeft = 5.rem
+                maxWidth(768) {
+                    paddingLeft = 3.rem
+                }
             }
             +"Humans trust us!"
         }
@@ -43,6 +46,9 @@ val Humans = functionalComponent<RProps>("Humans") {
                 color = Color.kodein.orange
                 textAlign = TextAlign.start
                 paddingLeft = 5.rem
+                maxWidth(768) {
+                    paddingLeft = 3.rem
+                }
             }
             +"Are you next?"
         }
