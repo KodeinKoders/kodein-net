@@ -16,7 +16,7 @@ import styled.*
 import kotlin.time.seconds
 
 
-val Humans by functionalComponent {
+val Humans = functionalComponent<RProps>("Humans") {
 
     styledDiv {
         css {
@@ -96,7 +96,7 @@ val humans = listOf(
 ).shuffled()
 
 @OptIn(ExperimentalStdlibApi::class)
-val HumanList by functionalComponent {
+val HumanList = functionalComponent<RProps>("HumanList") {
     val div = useRef<HTMLDivElement?>(null)
 
     styledDiv {
@@ -162,7 +162,7 @@ interface HumanProps: RProps {
     }
 }
 
-private val Human by functionalComponent<HumanProps> { props ->
+private val Human = functionalComponent<HumanProps>("Human") { props ->
     flexColumn(alignItems = Align.center) {
         css {
             border(0.rem, BorderStyle.solid, Color.black, 0.2.rem)

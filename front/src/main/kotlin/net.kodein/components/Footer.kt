@@ -8,8 +8,8 @@ import kotlinx.html.unsafe
 import net.kodein.charter.kodein
 import net.kodein.utils.flexColumn
 import net.kodein.utils.flexRow
-import net.kodein.utils.getValue
 import net.kodein.utils.maxWidth
+import react.RProps
 import react.child
 import react.dom.*
 import react.functionalComponent
@@ -19,7 +19,7 @@ import styled.styledDiv
 import styled.styledImg
 
 
-val Footer by functionalComponent {
+val Footer = functionalComponent<RProps>("Footer") {
 
     flexColumn {
 

@@ -4,6 +4,7 @@ import kotlinx.css.*
 import net.kodein.charter.kodein
 import net.kodein.utils.*
 import react.RBuilder
+import react.RProps
 import react.functionalComponent
 import styled.css
 import styled.styledDiv
@@ -12,7 +13,7 @@ import styled.styledSvg
 
 private val layerHeight = 10.rem
 
-val LayerSeparator by functionalComponent {
+val LayerSeparator = functionalComponent<RProps>("LayerSeparator") {
 
     styledDiv {
         css {

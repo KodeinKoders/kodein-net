@@ -8,19 +8,19 @@ import net.kodein.pages.home.fragment.Header
 import net.kodein.pages.home.fragment.Departments
 import net.kodein.pages.home.fragment.Descriptions
 import net.kodein.pages.home.fragment.Humans
-import net.kodein.utils.getValue
 import net.kodein.utils.recursiveOffset
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.SMOOTH
 import org.w3c.dom.ScrollBehavior
 import org.w3c.dom.ScrollToOptions
+import react.RProps
 import react.child
 import react.functionalComponent
 import react.useRef
 import styled.css
 import styled.styledDiv
 
-val Home by functionalComponent {
+val Home = functionalComponent<RProps>("Home") {
     val div = useRef<HTMLElement?>(null)
 
     child(Header) {

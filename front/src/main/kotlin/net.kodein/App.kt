@@ -1,15 +1,17 @@
 package net.kodein
 
+import kotlinx.browser.document
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
 import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
 import net.kodein.charter.kodein
 import net.kodein.pages.home.Home
-import net.kodein.utils.getValue
+import net.kodein.pages.services.Services
 import net.kodein.utils.minSize
+import org.w3c.dom.get
 import react.*
-import styled.injectGlobal
+import react.dom.render
 
 
 val appGlobalStyle: CSSBuilder.() -> Unit = {
@@ -47,11 +49,27 @@ val appGlobalStyle: CSSBuilder.() -> Unit = {
     }
 }
 
-interface AppProps : RProps {
-    var isStatic: Boolean
-}
+data class Page<P : RProps>(
+        val id: String,
+        val component: () -> FunctionalComponent<P>,
+        val props: P.() -> Unit = {}
+)
 
-val App by functionalComponent<AppProps> {
-//    injectGlobal(appGlobalStyle)
-    child(Home)
+val appPages = listOf(
+        Page("index", { Home }),
+        Page("services", { Services} ),
+)
+
+fun renderApp() {
+    val element = document.getElementById("page") ?: error("Could not find page element")
+    val id = element.attributes["data-page"]?.value ?: error("Page element has no data-page attribute")
+    val page = appPages.find { it.id == id } ?: error("Could not find page $id")
+
+    console.log(page)
+
+    render(element) {
+        child(page.component()) { page.props(attrs) }
+    }
+
+    console.log("SUCCESS")
 }

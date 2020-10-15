@@ -18,6 +18,6 @@ kotlin {
 
 (tasks[kotlin.js().compilations["main"].processResourcesTaskName] as ProcessResources).apply {
     dependsOn(":front:html:generateSsrHtml")
-    from("$rootDir/front/html/build/generated/ssr/index.html")
+    from("$rootDir/front/html/build/generated/ssr")
     from("$rootDir/front/src/main/resources")
 }

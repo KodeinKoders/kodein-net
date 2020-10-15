@@ -21,7 +21,7 @@ interface HeaderProps : RProps {
     var onScrollClick: () -> Unit
 }
 
-val Header by functionalComponent<HeaderProps> { props ->
+val Header = functionalComponent<HeaderProps>("Header") { props ->
     flexColumn {
         css {
             width = 100.pct
@@ -159,7 +159,7 @@ private fun Double.format(): String = ((this * 1000.0).roundToLong().toDouble() 
 
 private fun gradient(angle: Double): String = "linear-gradient(${angle.format()}rad, ${Color.kodein.kyzantium} 40%, ${Color.kodein.kuivre} 80%)"
 
-private val Sphere by functionalComponent {
+private val Sphere = functionalComponent<RProps>("Sphere") {
     val largeSphereDiv = useRef<HTMLDivElement?>(null)
     val smallSphereDiv = useRef<HTMLDivElement?>(null)
 
@@ -257,7 +257,7 @@ private val Sphere by functionalComponent {
     }
 }
 
-private val ScrollIndicator by functionalComponent<HeaderProps> { props ->
+private val ScrollIndicator = functionalComponent<HeaderProps>("ScrollIndicator") { props ->
     var isTop by useState(true)
     var isVisible by useState(false)
     val img = useRef<HTMLImageElement?>(null)

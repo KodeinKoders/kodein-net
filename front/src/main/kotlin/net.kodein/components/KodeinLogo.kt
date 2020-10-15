@@ -21,7 +21,7 @@ interface KodeinLogoProps : RProps {
     var subtitle: String?
 }
 
-val KodeinLogo by functionalComponent<KodeinLogoProps> { props ->
+val KodeinLogo = functionalComponent<KodeinLogoProps>("KodeinLogo") { props ->
 
     styledDiv {
         css {

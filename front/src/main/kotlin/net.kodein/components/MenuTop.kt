@@ -14,7 +14,7 @@ import styled.styledDiv
 import styled.styledSpan
 
 
-val MenuTop by functionalComponent {
+val MenuTop = functionalComponent<RProps>("MenuTop") {
     val menuContainer = useRef<HTMLDivElement?>(null)
     val menuButton = useRef<HTMLDivElement?>(null)
 
@@ -163,7 +163,7 @@ interface MenuProps : RProps {
     var additionalStyle: RuleSet?
 }
 
-val MenuNavigation by functionalComponent<MenuProps> { props ->
+val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
     val foregroundColor = if (props.isMobile)  Color.kodein.kinzolin else  Color.kodein.orange
     val justify = if (props.isMobile) JustifyContent.center else JustifyContent.flexEnd
 

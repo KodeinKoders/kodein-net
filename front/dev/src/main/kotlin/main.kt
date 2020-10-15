@@ -1,13 +1,9 @@
-import kotlinx.browser.document
-import net.kodein.App
-import react.child
-import react.dom.render
+import net.kodein.appGlobalStyle
+import net.kodein.renderApp
+import styled.injectGlobal
 
 
 fun main() {
-    render(document.getElementById("app")) {
-        child(App) {
-            attrs.isStatic = false
-        }
-    }
+    injectGlobal(appGlobalStyle)
+    renderApp()
 }

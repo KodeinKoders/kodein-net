@@ -6,11 +6,11 @@ import react.RSetState
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-// https://github.com/JetBrains/kotlin-wrappers/issues/125
-internal operator fun <P> FunctionalComponent<P>.getValue(thisRef: Any?, property: KProperty<*>): FunctionalComponent<P> {
-    this.asDynamic().displayName = property.name.capitalize()
-    return this
-}
+//// https://github.com/JetBrains/kotlin-wrappers/issues/125
+//internal operator fun <P> FunctionalComponent<P>.getValue(thisRef: Any?, property: KProperty<*>): FunctionalComponent<P> {
+//    this.asDynamic().displayName = property.name.capitalize()
+//    return this
+//}
 
 internal operator fun <R> RMutableRef<R?>.invoke(): R {
     return this.current!!

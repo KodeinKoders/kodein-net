@@ -10,7 +10,7 @@ import react.dom.a
 import react.functionalComponent
 import styled.*
 
-val Departments by functionalComponent {
+val Departments = functionalComponent<RProps>("Departments") {
     flexRow {
         css {
             maxWidth(768) {
@@ -46,7 +46,7 @@ private interface DepartmentProps : RProps {
     var isLastItem: Boolean?
 }
 
-private val Department by functionalComponent<DepartmentProps> { props ->
+private val Department = functionalComponent<DepartmentProps>("Department") { props ->
 
     val dptHeight = 32.rem
 

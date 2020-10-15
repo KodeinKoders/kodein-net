@@ -18,6 +18,6 @@ kotlin {
 
 (tasks[kotlin.js().compilations["main"].processResourcesTaskName] as ProcessResources).apply {
     dependsOn(":front:html:generateBareHtml")
-    from("$rootDir/front/html/build/generated/bare/index.html")
+    from("$rootDir/front/html/build/generated/bare")
     from("$rootDir/front/src/main/resources")
 }

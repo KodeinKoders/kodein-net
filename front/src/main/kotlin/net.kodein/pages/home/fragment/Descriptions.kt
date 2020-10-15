@@ -15,7 +15,7 @@ import react.dom.p
 import styled.*
 
 
-val Descriptions by functionalComponent {
+val Descriptions = functionalComponent<RProps>("Descriptions") {
 
     flexColumn {
         css {
@@ -73,7 +73,7 @@ private interface DescriptionProps : RProps {
     var last: Boolean?
 }
 
-private val Description by functionalComponent<DescriptionProps> { props ->
+private val Description = functionalComponent<DescriptionProps>("Description") { props ->
     flexRow {
         val slant = 4
         css {
@@ -177,7 +177,7 @@ interface IllustrationProps : RProps {
     var slantCorrection: LinearDimension
 }
 
-private val Illustration by functionalComponent<IllustrationProps> { props ->
+private val Illustration = functionalComponent<IllustrationProps>("Illustration") { props ->
     val div = useRef<HTMLDivElement?>(null)
 
     var image: String? by useState(null)

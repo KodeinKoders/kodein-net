@@ -32,7 +32,7 @@ private sealed class FormStatus {
     data class Sent(val error: String?): FormStatus()
 }
 
-val ContactUs by functionalComponent {
+val ContactUs = functionalComponent<RProps>("ContactUs") {
 
     var status: FormStatus by useState(FormStatus.Ready)
 
@@ -106,13 +106,13 @@ interface ContactFormProps : RProps {
     var submit: (from: String, subject: String, message: String) -> Unit
 }
 
-private val ContactForm by functionalComponent<ContactFormProps> { props ->
+private val ContactForm = functionalComponent<ContactFormProps>("ContactForm") { props ->
     var from: String by useState("")
     var subject: String by useState("")
     var message: String by useState("")
     var bads: List<String> by useState(emptyList())
 
-    child(contactFormView) {
+    child(ContactFormView) {
         attrs.from = from
         attrs.setFrom = {
             if (it.isNotEmpty() && "from" in bads && emailRegex.matches(it)) bads -= "from"
@@ -144,7 +144,7 @@ private val ContactForm by functionalComponent<ContactFormProps> { props ->
 
 }
 
-interface contactFormViewProps : RProps {
+interface ContactFormViewProps : RProps {
     var from: String
     var setFrom: (String) -> Unit
     var subject: String
@@ -155,7 +155,7 @@ interface contactFormViewProps : RProps {
     var submit: () -> Unit
 }
 
-private val contactFormView by functionalComponent<contactFormViewProps> { props ->
+private val ContactFormView = functionalComponent<ContactFormViewProps>("ContactFormView") { props ->
     styledDiv {
         css {
             height = 25.rem
@@ -271,7 +271,7 @@ private interface ContactMessageProps : RProps {
     var isError: Boolean
 }
 
-private val ContactMessage by functionalComponent<ContactMessageProps> { props ->
+private val ContactMessage = functionalComponent<ContactMessageProps>("ContactMessage") { props ->
     flexColumn(JustifyContent.center, Align.center) {
         css {
             height = 25.rem
