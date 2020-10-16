@@ -111,7 +111,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
 
                 ".illustration" {
                     width = 100.pct
-                    height = 24.rem
+                    height = 1.rem
 
                     put("clip-path",
                         when {
@@ -218,6 +218,9 @@ private val Illustration = functionalComponent<IllustrationProps>("Illustration"
             minHeight = 38.rem - props.slantCorrection
             minWidth(1950) {
                 minHeight = 44.rem - props.slantCorrection
+            }
+            maxWidth(768) {
+                minHeight = 24.rem
             }
             backgroundColor = props.color
             backgroundSize = "cover"
