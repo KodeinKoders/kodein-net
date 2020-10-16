@@ -114,19 +114,16 @@ val Header = functionalComponent<HeaderProps>("Header") { props ->
                                 backgroundColor = Color.kodein.korail
 
                                 portrait {
-                                    margin(1.rem)
-                                    height = 3.rem
+                                    maxHeight(980) { display = Display.none }
                                 }
                                 landscape {
-                                    minSize(360) { height = 3.rem }
-                                    minSize(440) { height = 3.5.rem }
-                                    minSize(520) { height = 4.rem }
-                                    minSize(600) { height = 4.5.rem }
-                                    minSize(680) { height = 5.rem }
-                                    minSize(760) { height = 5.5.rem }
-                                    minSize(840) { height = 6.rem }
+                                    maxHeight(768) { display = Display.none }
+                                    maxHeight(980) {
+                                        margin(1.rem)
+                                        height = 2.rem
+                                    }
+                                    maxHeight(1024) { height = 3.rem }
                                 }
-                                landscapeMobile { display = Display.none }
                             }
                         }
 
@@ -233,8 +230,6 @@ private val Sphere = functionalComponent<RProps>("Sphere") {
     }
 
     flexColumn(justifyContent = JustifyContent.center, alignItems = Align.center) {
-        css { flexGrow = 2.0 }
-
         styledDiv {
             ref = largeSphereDiv
             css {

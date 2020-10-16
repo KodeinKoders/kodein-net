@@ -67,8 +67,9 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontWeight = FontWeight.regular
         textAlign = TextAlign.start
 
-        maxSize(980) { fontSize = 1.5.rem  }
-        maxSize(480) { fontSize = 1.25.rem  }
+        maxSize(980) { fontSize = 1.6.rem  }
+        maxSize(768) { fontSize = 1.5.rem  }
+        maxSize(480) { fontSize = 1.3.rem  }
     }
 
     val separator by css {
