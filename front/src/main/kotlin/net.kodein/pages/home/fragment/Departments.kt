@@ -13,7 +13,7 @@ import styled.*
 val Departments = functionalComponent<RProps>("Departments") {
     flexRow {
         css {
-            maxWidth(768) {
+            maxWidth(889) {
                 display = Display.block
                 flexDirection = FlexDirection.column
             }
@@ -56,8 +56,8 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
             flex(flexGrow = 1.0, flexBasis = FlexBasis.zero)
             padding(5.rem, 3.rem)
 
-            minWidth(769) { height = dptHeight - 5.em * 2 }
-            maxWidth(768) {
+            minWidth(890) { height = dptHeight - 5.em * 2 }
+            maxWidth(889) {
                 padding(2.rem)
             }
 
@@ -94,7 +94,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                     +kodein.body
                     padding(0.5.rem, 1.rem)
                     height = 15.rem
-                    maxWidth(768) { height = 5.rem }
+                    maxWidth(889) { height = 5.rem }
                 }
                 props.children()
             }
@@ -110,7 +110,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
 
             styledSvg {
                 css {
-                    maxWidth(768) { display = Display.none }
+                    maxWidth(889) { display = Display.none }
 
                     height = dptHeight
                     filter = "drop-shadow(.8rem 0 1.5rem ${Color.kodein.kaumon.withAlpha(0.5)})"
@@ -138,7 +138,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                     height = dptHeight / 10
                     width = 100.pct
 
-                    minWidth(769) { display = Display.none }
+                    minWidth(890) { display = Display.none }
                     landscapeMobile { height = dptHeight / 8 }
                     filter = "drop-shadow(0 0.8rem 1rem  ${Color.kodein.kaumon.withAlpha(0.5)})"
                     put("clip-path", "polygon(0 30%, 100% 30%, 100% 35%, 100% 500%, 0 500%)")

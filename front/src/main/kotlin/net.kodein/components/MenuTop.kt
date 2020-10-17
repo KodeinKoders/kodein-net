@@ -47,6 +47,9 @@ val MenuTop = functionalComponent<RProps>("MenuTop") {
                 backgroundColor = Color.kodein.dark
                 padding(0.75.rem, 3.rem)
                 fontSize = .8.rem
+
+                maxWidth(768) { padding(0.75.rem, 2.rem) }
+                maxWidth(480) { padding(0.75.rem, 1.rem) }
             }
 
             // Logo
@@ -189,9 +192,9 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
             if (props.isMobile) {
                 backgroundColor = Color.kodein.kaumon
                 "a" {
-                    fontSize = 1.5.rem
+//                    fontSize = 1.1.rem
                     flexDirection = FlexDirection.column
-                    margin(.5.em)
+                    margin(.75.em)
                 }
             }
 
