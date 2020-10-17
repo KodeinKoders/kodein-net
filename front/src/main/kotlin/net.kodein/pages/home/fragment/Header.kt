@@ -211,6 +211,10 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
         css {
             paddingTop = 4.pct
             paddingBottom = 6.pct
+            portrait {
+                paddingTop = 8.pct
+                paddingBottom = 12.pct
+            }
             portraitMobile(800) {
                 paddingTop = 0.pct
                 paddingBottom = 0.pct
