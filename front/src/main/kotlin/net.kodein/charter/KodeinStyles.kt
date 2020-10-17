@@ -30,8 +30,8 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         textAlign = TextAlign.center
 
         maxSize(980) { fontSize = 3.rem  }
-        maxSize(768) { fontSize = 2.5.rem  }
-        maxSize(480) { fontSize = 2.rem  }
+        maxSize(775) { fontSize = 2.5.rem  }
+        maxSize(570) { fontSize = 2.rem  }
     }
 
     val display2 by css {
@@ -43,8 +43,8 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         textAlign = TextAlign.center
 
         maxSize(980) { fontSize = 2.5.rem  }
-        maxSize(768) { fontSize = 2.25.rem  }
-        maxSize(480) { fontSize = 1.75.rem  }
+        maxSize(775) { fontSize = 2.25.rem  }
+        maxSize(570) { fontSize = 1.75.rem  }
     }
 
     val display1 by css {
@@ -55,8 +55,8 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontWeight = FontWeight.regular
 
         maxSize(980) { fontSize = 1.75.rem  }
-        maxSize(768) { fontSize = 1.5.rem  }
-        maxSize(480) { fontSize = 1.25.rem  }
+        maxSize(775) { fontSize = 1.5.rem  }
+        maxSize(570) { fontSize = 1.25.rem  }
     }
 
     val chapo by css {
@@ -68,8 +68,8 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         textAlign = TextAlign.start
 
         maxSize(980) { fontSize = 1.6.rem  }
-        maxSize(768) { fontSize = 1.4.rem  }
-        maxSize(480) { fontSize = 1.2.rem  }
+        maxSize(775) { fontSize = 1.4.rem  }
+        maxSize(570) { fontSize = 1.2.rem  }
     }
 
     val intertitre by css {

@@ -285,7 +285,7 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 flexGrow = 1.0
                 width = 3.rem
                 paddingLeft = 4.rem
-                maxWidth(420) { paddingLeft = 2.rem }
+                maxWidth(680) { paddingLeft = 2.rem }
             }
 
             styledSpan {
