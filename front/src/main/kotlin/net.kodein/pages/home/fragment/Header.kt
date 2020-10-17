@@ -9,6 +9,7 @@ import net.kodein.charter.kodein
 import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLImageElement
+import org.w3c.dom.events.Event
 import org.w3c.dom.events.EventListener
 import org.w3c.dom.events.MouseEvent
 import react.*
@@ -21,133 +22,170 @@ interface HeaderProps : RProps {
     var onScrollClick: () -> Unit
 }
 
+private data class Coords(val x: Int, val y: Int, val width: Int, val height: Int) {
+    val xRight get() = x + width
+    val yBottom get() = y + height
+}
+
+private data class Elements(
+        val container: Coords,
+        val bigText: Coords,
+        val smallText: Coords,
+        val separator: Coords,
+        val scrollIndicator: Coords,
+)
+
+private fun Elements.rightCenterSpace() = Coords(
+        x = bigText.xRight,
+        y = 32,
+        width = container.width - bigText.xRight - 32,
+        height = container.height - 2 * 32
+)
+
+private fun Elements.rightBottomSpace() = Coords(
+        x = smallText.xRight,
+        y = smallText.y,
+        width = container.width - smallText.xRight - 32,
+        height = scrollIndicator.y - smallText.y - 16
+)
+
+private fun Elements.centerBottomSpace() = Coords(
+        x = separator.xRight + 8,
+        y = separator.y - 4,
+        width = container.width - separator.xRight - 8 - 32,
+        height = scrollIndicator.y - separator.y + 4 - 4
+)
+
+private val respirationAmplitude = 0.1
+
+private fun Coords.sphereDiameter(): Int {
+    if (width + (width * respirationAmplitude * 2) <= height) {
+        return width
+    } else {
+        return (height / (1 + respirationAmplitude * 2)).toInt()
+    }
+}
+
+
 val Header = functionalComponent<HeaderProps>("Header") { props ->
-    flexColumn {
+
+    val containerRef = useRef<HTMLDivElement?>(null)
+    val bigTextRef = useRef<HTMLDivElement?>(null)
+    val smallTextRef = useRef<HTMLDivElement?>(null)
+    val separatorRef = useRef<HTMLDivElement?>(null)
+    val scrollIndicatorRef = useRef<HTMLDivElement?>(null)
+
+    var elements by useState<Elements?>(null)
+    var sphere by useState<Pair<Coords, Int>?>(null)
+
+    useEffectWithCleanup(emptyList()) {
+        var previousElements = elements
+        val onResize: (Event?) -> Unit = {
+            val newElements = Elements(
+                    container = Coords(
+                            x = 0,
+                            y = 0,
+                            width = containerRef.current!!.clientWidth,
+                            height = containerRef.current!!.clientHeight
+                    ),
+                    bigText = bigTextRef.current!!.recursiveOffset(upTo = containerRef.current!!).let { (x, y) ->
+                        Coords(
+                                x = x,
+                                y = y,
+                                width = bigTextRef.current!!.clientWidth,
+                                height = bigTextRef.current!!.clientHeight
+                        )
+                    },
+                    smallText = smallTextRef.current!!.recursiveOffset(upTo = containerRef.current!!).let { (x, y) ->
+                        Coords(
+                                x = x,
+                                y = y,
+                                width = smallTextRef.current!!.clientWidth,
+                                height = smallTextRef.current!!.clientHeight
+                        )
+                    },
+                    separator = separatorRef.current!!.recursiveOffset(upTo = containerRef.current!!).let { (x, y) ->
+                        Coords(
+                                x = x,
+                                y = y,
+                                width = separatorRef.current!!.clientWidth,
+                                height = separatorRef.current!!.clientHeight
+                        )
+                    },
+                    scrollIndicator = scrollIndicatorRef.current!!.recursiveOffset(upTo = containerRef.current!!).let { (x, y) ->
+                        Coords(
+                                x = x,
+                                y = y,
+                                width = scrollIndicatorRef.current!!.clientWidth,
+                                height = scrollIndicatorRef.current!!.clientHeight
+                        )
+                    }
+            )
+            if (newElements != previousElements) {
+                previousElements = newElements
+                elements = newElements
+            }
+        }
+
+        val intervalHandle = window.setInterval({ onResize(null) }, 250)
+        window.addEventListener("resize", onResize)
+        ({
+            window.clearInterval(intervalHandle)
+            window.removeEventListener("resize", onResize)
+        })
+    }
+
+    flexColumn(justifyContent = JustifyContent.center, alignItems = Align.flexStart) {
+        ref = containerRef
         css {
             width = 100.pct
             height = 100.pct
             backgroundColor = Color.kodein.dark
-            landscapeMobile { minHeight = 280.px }
+            position = Position.relative
         }
 
-        flexRow {
-            css {
-                flexGrow = 1.0
-                landscape { flexDirection = FlexDirection.row }
-                portrait {
-                    flexGrow = 2.0
-                    flexDirection = FlexDirection.column
-                    paddingTop = 3.rem
-                }
+        child(HeaderText) {
+            attrs.onScrollClick = props.onScrollClick
+            attrs.bigTextRef = bigTextRef
+            attrs.smallTextRef = smallTextRef
+            attrs.separatorRef = separatorRef
+        }
+
+        // Uncomment this to see all possible sphere spaces
+ /*
+        elements?.let { e ->
+            child(SphereContainer) {
+                attrs.coords = e.rightCenterSpace()
+                attrs.backgroundColor = Color.cornflowerBlue.withAlpha(0.5)
+                attrs.showLargeSphere = true
             }
-
-            flexColumn(justifyContent = JustifyContent.center) {
-                css {
-                    portrait { flexGrow = 0.0 }
-                }
-                styledH1 {
-                    css {
-                        +kodein.display3
-                        specific {
-                            fontWeight = FontWeight.hairline
-                            textAlign = TextAlign.start
-                        }
-                        color = Color.kodein.kaumon
-                        portrait { textAlign = TextAlign.center }
-                        margin(1.rem, 2.rem)
-                    }
-                    +"Everywhere "
-                    styledSpan {
-                        css {
-                            whiteSpace = WhiteSpace.nowrap
-                        }
-                        +"Kotlin goes,"
-                    }
-                    br {}
-                    +"you should find"
-                    br {}
-                    +"the experts "
-                    styledSpan {
-                        css {
-                            whiteSpace = WhiteSpace.nowrap
-                        }
-                        +"you need!"
-                    }
-                }
-
-                styledP {
-                    css {
-                        +kodein.chapo
-                        textAlign = TextAlign.start
-                        color = Color.purple
-                        margin(1.rem, 2.rem)
-                        portrait { textAlign = TextAlign.center }
-                    }
-                    +"We are Kodein Koders, a tech company"
-                    br {}
-                    +"that is driven by our ideas for multiplatform"
-                    br {}
-                    +"and our passion for craftsmanship."
-                }
-
-                flexRow {
-                    flexColumn(alignItems = Align.center) {
-                        css {
-                            flexGrow = 0.0
-                            width = 3.rem
-                            marginLeft = 4.rem
-                            portrait { margin(0.5.rem, LinearDimension.auto) }
-                            landscapeMobile { marginLeft = 2.rem }
-                        }
-
-                        styledSpan {
-                            css {
-                                +kodein.separator
-                                display = Display.block
-                                width = 0.05.rem
-                                backgroundColor = Color.kodein.korail
-
-                                portrait {
-                                    margin(1.rem)
-                                    height = 3.rem
-                                }
-                                landscape {
-                                    minSize(360) { height = 3.rem }
-                                    minSize(440) { height = 3.5.rem }
-                                    minSize(520) { height = 4.rem }
-                                    minSize(600) { height = 4.5.rem }
-                                    minSize(680) { height = 5.rem }
-                                    minSize(760) { height = 5.5.rem }
-                                    minSize(840) { height = 6.rem }
-                                }
-                                landscapeMobile { display = Display.none }
-                            }
-                        }
-
-                        styledImg(src = "imgs/logo-kaumon.svg") {
-                            css {
-                                width = 1.5.rem
-                                height = 1.5.rem
-                                padding(0.5.rem)
-                                margin(1.rem)
-                                border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
-                                cursor = Cursor.pointer
-                            }
-                            attrs.onClickFunction = {
-                                props.onScrollClick()
-                            }
-                        }
-                    }
-                }
+            child(SphereContainer) {
+                attrs.coords = e.rightBottomSpace()
+                attrs.backgroundColor = Color.forestGreen.withAlpha(0.5)
+                attrs.showLargeSphere = true
             }
+            child(SphereContainer) {
+                attrs.coords = e.centerBottomSpace()
+                attrs.backgroundColor = Color.indianRed.withAlpha(0.5)
+                attrs.showLargeSphere = true
+            }
+        }
+ */
 
-            child(Sphere)
+        elements?.let { e ->
+            val space = listOf(e.rightCenterSpace(), e.rightBottomSpace(), e.centerBottomSpace()).maxByOrNull { it.sphereDiameter() } !!
+            child(SphereContainer) {
+                attrs.coords = space
+            }
         }
 
         flexRow(JustifyContent.center) {
+            ref = scrollIndicatorRef
             css {
-                paddingBottom = 2.rem
-                maxHeight(380) { display = Display.none }
+                position = Position.absolute
+                width = 6.rem
+                left = 50.pct - 3.rem
+                bottom = 2.rem
             }
 
             child(ScrollIndicator, props)
@@ -155,18 +193,182 @@ val Header = functionalComponent<HeaderProps>("Header") { props ->
     }
 }
 
+private interface HeaderTextProps : HeaderProps {
+    var bigTextRef: RMutableRef<HTMLDivElement?>
+    var smallTextRef: RMutableRef<HTMLDivElement?>
+    var separatorRef: RMutableRef<HTMLDivElement?>
+}
+
+private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { props ->
+    flexColumn(justifyContent = JustifyContent.center, alignItems = Align.flexStart) {
+        css {
+            maxHeight = 56.rem
+            marginBottom = 6.rem
+            portrait {
+                maxHeight = 65.rem
+                marginBottom = 9.rem
+            }
+            landscapeMobile {
+                marginBottom = 3.rem
+            }
+            flexGrow = 1.0
+//            backgroundColor = Color.dodgerBlue
+        }
+        styledH1 {
+            ref = props.bigTextRef
+            css {
+                +kodein.display3
+                specific {
+                    fontWeight = FontWeight.hairline
+                    textAlign = TextAlign.start
+                }
+                color = Color.kodein.kaumon
+                padding(1.rem, 2.rem)
+            }
+            +"Everywhere "
+            styledSpan {
+                css {
+                    whiteSpace = WhiteSpace.nowrap
+                }
+                +"Kotlin goes,"
+            }
+            br {}
+            +"you should find"
+            br {}
+            +"the experts "
+            styledSpan {
+                css {
+                    whiteSpace = WhiteSpace.nowrap
+                }
+                +"you need!"
+            }
+        }
+
+        styledP {
+            ref = props.smallTextRef
+            css {
+                +kodein.chapo
+                textAlign = TextAlign.start
+                color = Color.purple
+                padding(1.rem, 2.rem)
+            }
+            +"We are Kodein Koders, a tech company"
+            br {}
+            +"that is driven by our ideas for multiplatform"
+            br {}
+            +"and our passion for craftsmanship."
+        }
+
+        flexColumn(alignItems = Align.center) {
+            ref = props.separatorRef
+            css {
+                flexGrow = 1.0
+                width = 3.rem
+                paddingLeft = 4.rem
+            }
+
+            styledSpan {
+                css {
+                    margin(3.rem, LinearDimension.auto)
+                    landscapeMobile {
+                        margin(1.5.rem, LinearDimension.auto)
+                    }
+                    flexGrow = 1.0
+                    display = Display.block
+                    width = 0.05.rem
+                    backgroundColor = Color.kodein.korail
+                }
+            }
+
+            styledImg(src = "imgs/logo-kaumon.svg") {
+                css {
+                    width = 1.5.rem
+                    height = 1.5.rem
+                    padding(0.5.rem)
+                    margin(1.rem, 1.rem, 3.rem, 1.rem)
+                    border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
+                    cursor = Cursor.pointer
+                }
+                attrs.onClickFunction = {
+                    props.onScrollClick()
+                }
+            }
+        }
+    }
+
+}
+
 private fun Double.format(): String = ((this * 1000.0).roundToLong().toDouble() / 1000.0).toString()
 
 private fun gradient(angle: Double): String = "linear-gradient(${angle.format()}rad, ${Color.kodein.kyzantium} 40%, ${Color.kodein.kuivre} 80%)"
 
-private val Sphere = functionalComponent<RProps>("Sphere") {
+private interface SphereContainerProps : RProps {
+    var coords: Coords
+    var backgroundColor: Color?
+    var showLargeSphere: Boolean?
+}
+
+private val respirationInterval = 5000
+
+private val SphereContainer = functionalComponent<SphereContainerProps>("SphereContainer") { props ->
+    var respirationDelta by useState(respirationAmplitude)
+
+    useEffectWithCleanup(emptyList()) {
+        var r = respirationDelta
+        val respiration = {
+            r *= -1
+            respirationDelta = r
+        }
+        val handle = window.setInterval({ respiration() }, respirationInterval)
+        window.setTimeout({ respiration() }, 100)
+        ({ window.clearInterval(handle) })
+    }
+
+    styledDiv {
+        css {
+            position = Position.absolute
+            if (props.backgroundColor != null) backgroundColor = props.backgroundColor!!
+            left = props.coords.x.px
+            top = props.coords.y.px
+            width = props.coords.width.px
+            height = props.coords.height.px
+        }
+
+        val diameter = props.coords.sphereDiameter()
+
+        styledDiv {
+            css {
+                position = Position.absolute
+                left = 50.pct - (diameter / 2).px
+                top = 50.pct - (diameter / 2).px + (diameter * respirationDelta).px
+                width = diameter.px
+                height = diameter.px
+                transition(::top, respirationInterval.ms, Timing.easeInOut)
+            }
+            child(Sphere) {
+                attrs.largeSphereDiameter = diameter
+                attrs.smallSphereCoef = if (diameter < 220) 0.8 else 0.7
+                attrs.showLargeSphere = props.showLargeSphere
+            }
+        }
+
+    }
+}
+
+private interface SphereProps : RProps {
+    var largeSphereDiameter: Int
+    var smallSphereCoef: Double?
+    var showLargeSphere: Boolean?
+}
+
+private val Sphere = functionalComponent<SphereProps>("Sphere") { props ->
     val largeSphereDiv = useRef<HTMLDivElement?>(null)
     val smallSphereDiv = useRef<HTMLDivElement?>(null)
 
-    val amplitude = 16.0
-    val smallSphereRadius = .8
+    val largeSphereRadiusPx = props.largeSphereDiameter / 2
+    val smallSphereRadiusCoef = props.smallSphereCoef ?: 0.7
 
-    useEffectWithCleanup {
+    useEffectWithCleanup(emptyList()) {
         // Mathematics courtesy of William Grossman.
         // This is a small sphere, inside a large sphere.
         // Considering a geometric reference whose origin (0, 0) is the center of the large sphere,
@@ -197,13 +399,13 @@ private val Sphere = functionalComponent<RProps>("Sphere") {
             val mouseVectorLen = sqrt(mouseVectorX.pow(2) + mouseVectorY.pow(2))
 
             val ratio = mouseVectorLen / 512.0
-            val distance = (1 - smallSphereRadius) * (1 - 1 / (exp(2 * ratio))) //ratio, 1.0)
+            val distance = (1 - smallSphereRadiusCoef) * (1 - 1 / (exp(2 * ratio))) //ratio, 1.0)
 
             val smallSphereY = distance / sqrt((mouseVectorX.pow(2) / mouseVectorY.pow(2)) + 1) * sign(mouseVectorY)
             val smallSphereX = sqrt(distance.pow(2) - smallSphereY.pow(2)) * sign(mouseVectorX)
 
-            smallSphereDiv.current!!.style.left = "${(1 + (smallSphereX - smallSphereRadius)) * amplitude}rem"
-            smallSphereDiv.current!!.style.top = "${(1 + (smallSphereY - smallSphereRadius)) * amplitude}rem"
+            smallSphereDiv.current!!.style.left = "${(1 + (smallSphereX - smallSphereRadiusCoef)) * largeSphereRadiusPx}px"
+            smallSphereDiv.current!!.style.top = "${(1 + (smallSphereY - smallSphereRadiusCoef)) * largeSphereRadiusPx}px"
 
             val angle = acos((mouseVectorY / mouseVectorLen) * -1.0) * sign(mouseVectorX)
             smallSphereDiv.current!!.style.background = gradient(angle)
@@ -214,44 +416,27 @@ private val Sphere = functionalComponent<RProps>("Sphere") {
         ({ document.removeEventListener("mousemove", mousemove) })
     }
 
-    val respirationInterval = 5000
-    useEffectWithCleanup {
-        var margin = -4
-        fun invert() {
-            margin *= -1
-            largeSphereDiv.current!!.style.marginTop = "${margin}rem"
+    styledDiv {
+        ref = largeSphereDiv
+        css {
+            position = Position.relative
+            width = (2 * largeSphereRadiusPx).px
+            height = (2 * largeSphereRadiusPx).px
+            borderRadius = 100.pct
+            if (props.showLargeSphere == true) backgroundColor = Color.aliceBlue.withAlpha(0.6)
         }
-        val handle = window.setInterval(::invert, respirationInterval)
-        window.setTimeout(::invert, 1)
-        ({ window.clearInterval(handle) })
-    }
-
-    flexColumn(justifyContent = JustifyContent.center, alignItems = Align.center) {
-        css { flexGrow = 2.0 }
-
-        styledDiv {
-            ref = largeSphereDiv
+        styledSpan {
+            ref = smallSphereDiv
             css {
-                position = Position.relative
-                width = (2 * amplitude).rem
-                height = (2 * amplitude).rem
+                position = Position.absolute
+                top = ((1 - smallSphereRadiusCoef) * largeSphereRadiusPx).px
+                left = ((1 - smallSphereRadiusCoef) * largeSphereRadiusPx).px
+                transition(::top, 2.s, timing = Timing.easeOut)
+                transition(::left, 2.s, timing = Timing.easeOut)
+                width = ((2 * smallSphereRadiusCoef) * largeSphereRadiusPx).px
+                height = ((2 * smallSphereRadiusCoef) * largeSphereRadiusPx).px
                 borderRadius = 100.pct
-                marginTop = (-5).rem
-                transition(::marginTop, respirationInterval.ms, Timing.easeInOut)
-            }
-            styledSpan {
-                ref = smallSphereDiv
-                css {
-                    position = Position.absolute
-                    top = ((1 - smallSphereRadius) * amplitude).rem
-                    left = ((1 - smallSphereRadius) * amplitude).rem
-                    transition(::top, 2.s, timing = Timing.easeOut)
-                    transition(::left, 2.s, timing = Timing.easeOut)
-                    width = ((2 * smallSphereRadius) * amplitude).rem
-                    height = ((2 * smallSphereRadius) * amplitude).rem
-                    borderRadius = 100.pct
-                    background = gradient(-0.18)
-                }
+                background = gradient(-0.18)
             }
         }
     }
@@ -296,7 +481,7 @@ private val ScrollIndicator = functionalComponent<HeaderProps>("ScrollIndicator"
         }
     }
 
-    useEffectWithCleanup {
+    useEffectWithCleanup(emptyList()) {
         val scroll = EventListener {
             isTop = window.scrollY < 1.0
         }

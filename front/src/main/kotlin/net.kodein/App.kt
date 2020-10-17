@@ -70,6 +70,4 @@ fun renderApp() {
     render(element) {
         child(page.component()) { page.props(attrs) }
     }
-
-    console.log("SUCCESS")
 }

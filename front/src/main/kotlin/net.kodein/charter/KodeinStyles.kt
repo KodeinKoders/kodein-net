@@ -56,11 +56,6 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         textAlign = TextAlign.start
     }
 
-    val separator by css {
-        height = 7.rem
-        margin(3.rem, auto)
-    }
-
     val intertitre by css {
         fontSize = 1.5.rem
         letterSpacing = 0.025.em

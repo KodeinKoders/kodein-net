@@ -16,9 +16,10 @@ import styled.styledDiv
 import styled.styledTag
 
 
-fun HTMLElement.recursiveOffset(): Pair<Int, Int> {
+fun HTMLElement.recursiveOffset(upTo: HTMLElement? = null): Pair<Int, Int> {
+    if (this == upTo) return 0 to 0
     val parent = offsetParent as? HTMLElement ?: return offsetLeft to offsetTop
-    return parent.recursiveOffset().let { (it.first + offsetLeft) to (it.second + offsetTop) }
+    return parent.recursiveOffset(upTo).let { (it.first + offsetLeft) to (it.second + offsetTop) }
 }
 
 inline fun RBuilder.flexColumn(justifyContent: JustifyContent? = null, alignItems: Align? = null, block: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
