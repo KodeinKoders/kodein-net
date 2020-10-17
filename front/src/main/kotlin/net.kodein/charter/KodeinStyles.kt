@@ -68,8 +68,8 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         textAlign = TextAlign.start
 
         maxSize(980) { fontSize = 1.6.rem  }
-        maxSize(768) { fontSize = 1.5.rem  }
-        maxSize(480) { fontSize = 1.3.rem  }
+        maxSize(768) { fontSize = 1.4.rem  }
+        maxSize(480) { fontSize = 1.2.rem  }
     }
 
     val intertitre by css {

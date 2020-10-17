@@ -4,8 +4,9 @@ import kotlinx.css.*
 
 // CSS utils
 fun CSSBuilder.landscape(block: RuleSet): Rule = media("(orientation: landscape)", block)
-fun CSSBuilder.landscapeMobile(block: RuleSet): Rule = media("(orientation: landscape) and (max-width: 980px)", block)
+fun CSSBuilder.landscapeMobile(maxWidth: Int = 980, block: RuleSet): Rule = media("(orientation: landscape) and (max-width: ${maxWidth}px)", block)
 fun CSSBuilder.portrait(block: RuleSet): Rule = media("(orientation: portrait)", block)
+fun CSSBuilder.portraitMobile(maxHeight: Int = 900, block: RuleSet): Rule = media("(orientation: portrait) and (max-height: ${maxHeight}px)", block)
 fun CSSBuilder.rangeWidth(min: Int, max: Int, block: RuleSet): Rule = media("(min-width: ${min}px) and (max-width: ${max}px)", block)
 fun CSSBuilder.rangeHeight(min: Int, max: Int, block: RuleSet): Rule = media("(min-height: ${min}px) and (max-height: ${max}px)", block)
 fun CSSBuilder.maxWidth(max: Int, block: RuleSet): Rule = media("(max-width: ${max}px)", block)

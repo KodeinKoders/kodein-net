@@ -5,6 +5,7 @@ import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
 import kotlinx.html.js.onClickFunction
+import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
 import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
@@ -14,6 +15,7 @@ import org.w3c.dom.events.EventListener
 import org.w3c.dom.events.MouseEvent
 import react.*
 import react.dom.br
+import react.dom.span
 import styled.*
 import kotlin.math.*
 
@@ -185,7 +187,12 @@ val Header = functionalComponent<HeaderProps>("Header") { props ->
                 position = Position.absolute
                 width = 6.rem
                 left = 50.pct - 3.rem
-                bottom = 2.rem
+                bottom = 2.em
+                +kodein.body
+                portraitMobile {
+                    specific { fontSize = 0.8.rem }
+                    bottom = 1.em
+                }
             }
 
             child(ScrollIndicator, props)
@@ -202,17 +209,21 @@ private interface HeaderTextProps : HeaderProps {
 private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { props ->
     flexColumn(justifyContent = JustifyContent.center, alignItems = Align.flexStart) {
         css {
-            maxHeight = 56.rem
-            marginBottom = 6.rem
-            portrait {
-                maxHeight = 65.rem
-                marginBottom = 9.rem
+            paddingTop = 4.pct
+            paddingBottom = 6.pct
+            portraitMobile(800) {
+                paddingTop = 0.pct
+                paddingBottom = 0.pct
             }
-            landscapeMobile {
-                marginBottom = 3.rem
+            paddingLeft = 4.pct
+            maxWidth(900) {
+                paddingLeft = 0.pct
             }
             flexGrow = 1.0
-//            backgroundColor = Color.dodgerBlue
+
+            "span.nowrap" {
+                whiteSpace = WhiteSpace.nowrap
+            }
         }
         styledH1 {
             ref = props.bigTextRef
@@ -224,24 +235,15 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 }
                 color = Color.kodein.kaumon
                 padding(1.rem, 2.rem)
+                portraitMobile(800) { padding(1.rem, 1.rem, 0.5.rem, 1.rem) }
             }
             +"Everywhere "
-            styledSpan {
-                css {
-                    whiteSpace = WhiteSpace.nowrap
-                }
-                +"Kotlin goes,"
-            }
+            span("nowrap") { +"Kotlin goes," }
             br {}
             +"you should find"
             br {}
             +"the experts "
-            styledSpan {
-                css {
-                    whiteSpace = WhiteSpace.nowrap
-                }
-                +"you need!"
-            }
+            span("nowrap") { +"you need!" }
         }
 
         styledP {
@@ -251,12 +253,26 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 textAlign = TextAlign.start
                 color = Color.purple
                 padding(1.rem, 2.rem)
+                portraitMobile(800) { padding(0.5.rem, 1.rem) }
+                "br.mobile" {
+                    display = Display.none
+                    maxWidth(420) { display = Display.inherit }
+                }
+                "br.desktop" {
+                    display = Display.inherit
+                    maxWidth(420) { display = Display.none }
+                }
             }
-            +"We are Kodein Koders, a tech company"
+            +"We are Kodein Koders, "
+            br("mobile") {}
+            +"a tech company "
+            br("desktop") {}
+            +"driven by "
+            br("mobile") {}
+            +"our ideas for multiplatform "
             br {}
-            +"that is driven by our ideas for multiplatform"
-            br {}
-            +"and our passion for craftsmanship."
+            +"and our passion "
+            span("nowrap") { +"for craftsmanship." }
         }
 
         flexColumn(alignItems = Align.center) {
@@ -265,13 +281,14 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 flexGrow = 1.0
                 width = 3.rem
                 paddingLeft = 4.rem
+                maxWidth(420) { paddingLeft = 2.rem }
             }
 
             styledSpan {
                 css {
                     margin(3.rem, LinearDimension.auto)
-                    landscapeMobile {
-                        margin(1.5.rem, LinearDimension.auto)
+                    portraitMobile(800) {
+                        margin(1.rem, LinearDimension.auto)
                     }
                     flexGrow = 1.0
                     display = Display.block
@@ -286,6 +303,9 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                     height = 1.5.rem
                     padding(0.5.rem)
                     margin(1.rem, 1.rem, 3.rem, 1.rem)
+                    portraitMobile(800) {
+                        marginTop = 0.75.rem
+                    }
                     border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
                     cursor = Cursor.pointer
                 }
@@ -501,13 +521,13 @@ private val ScrollIndicator = functionalComponent<HeaderProps>("ScrollIndicator"
 
         styledDiv {
             css {
-                height = 3.rem
-                marginBottom = .5.rem
+                height = 3.em
+                marginBottom = .5.em
             }
             styledImg(src = "imgs/mouse-korail.svg") {
                 ref = img
                 css {
-                    height = 2.rem
+                    height = 2.em
                     opacity = 1.0
                     transition(::opacity, .5.s)
                     transition(::paddingTop, 1.s)
@@ -516,7 +536,6 @@ private val ScrollIndicator = functionalComponent<HeaderProps>("ScrollIndicator"
         }
         styledP {
             css {
-                +kodein.body
                 color = Color.kodein.korail
             }
             +"SCROLL"
