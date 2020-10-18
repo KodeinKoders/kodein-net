@@ -5,6 +5,7 @@ import org.w3c.dom.events.Event
 import react.*
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
+import kotlin.reflect.typeOf
 
 //// https://github.com/JetBrains/kotlin-wrappers/issues/125
 //internal operator fun <P> FunctionalComponent<P>.getValue(thisRef: Any?, property: KProperty<*>): FunctionalComponent<P> {
@@ -36,13 +37,17 @@ internal class StateDelegate<T>(state: Pair<T, RSetState<T>>) : ReadWritePropert
 private val mobileQuery = "(orientation: portrait) and (max-height: 980px), (orientation: landscape) and (max-width: 980px)"
 
 fun useIsMobile(): Boolean {
-    var isMobile: Boolean by useState { window.matchMedia(mobileQuery).matches }
+    var isMobile: Boolean by useState {
+        if (jsTypeOf(window) == "undefined") false
+        else window.matchMedia(mobileQuery).matches
+    }
 
     useEffectWithCleanup(emptyList()) {
-        val onResize: (Event) -> Unit = {
+        val onResize: (Event?) -> Unit = {
             isMobile = window.matchMedia(mobileQuery).matches
         }
         window.addEventListener("resize", onResize)
+        onResize(null)
         ({ window.removeEventListener("resize", onResize) })
     }
 
