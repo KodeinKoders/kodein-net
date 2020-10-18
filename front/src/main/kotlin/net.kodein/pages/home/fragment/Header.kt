@@ -193,6 +193,13 @@ val Header = functionalComponent<HeaderProps>("Header") { props ->
                     specific { fontSize = 0.8.rem }
                     bottom = 1.em
                 }
+                landscapeMobile {
+                    specific { fontSize = 0.8.rem }
+                    bottom = 1.em
+                }
+                maxHeight(320) {
+                    marginLeft = 3.rem
+                }
             }
 
             child(ScrollIndicator, props)
@@ -219,6 +226,10 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 paddingTop = 0.pct
                 paddingBottom = 0.pct
             }
+            landscapeMobile {
+                paddingTop = 0.pct
+                paddingBottom = 0.pct
+            }
             paddingLeft = 4.pct
             maxWidth(900) {
                 paddingLeft = 0.pct
@@ -240,6 +251,7 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 color = Color.kodein.kaumon
                 padding(1.rem, 2.rem)
                 portraitMobile(800) { padding(1.rem, 1.rem, 0.5.rem, 1.rem) }
+                landscapeMobile { padding(1.rem, 1.rem, 0.5.rem, 1.rem) }
             }
             +"Everywhere "
             span("nowrap") { +"Kotlin goes," }
@@ -258,6 +270,7 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 color = Color.purple
                 padding(1.rem, 2.rem)
                 portraitMobile(800) { padding(0.5.rem, 1.rem) }
+                landscapeMobile { padding(0.5.rem, 1.rem) }
                 "br.mobile" {
                     display = Display.none
                     maxWidth(420) { display = Display.inherit }
@@ -290,14 +303,14 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
 
             styledSpan {
                 css {
-                    margin(3.rem, LinearDimension.auto)
-                    portraitMobile(800) {
-                        margin(1.rem, LinearDimension.auto)
-                    }
                     flexGrow = 1.0
                     display = Display.block
                     width = 0.05.rem
+                    margin(3.rem, LinearDimension.auto)
                     backgroundColor = Color.kodein.korail
+                    portraitMobile(800) { margin(1.rem, LinearDimension.auto) }
+                    landscapeMobile { margin(1.rem, LinearDimension.auto) }
+                    maxHeight(365) { display = Display.none }
                 }
             }
 
@@ -307,8 +320,10 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                     height = 1.5.rem
                     padding(0.5.rem)
                     margin(1.rem, 1.rem, 3.rem, 1.rem)
-                    portraitMobile(800) {
-                        marginTop = 0.75.rem
+                    portraitMobile(800) { marginTop = 0.75.rem }
+                    landscapeMobile { marginTop = 0.75.rem }
+                    maxHeight(320) {
+                        marginBottom = 1.rem
                     }
                     border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
                     cursor = Cursor.pointer
@@ -470,20 +485,21 @@ private val ScrollIndicator = functionalComponent<HeaderProps>("ScrollIndicator"
     var isTop by useState(true)
     var isVisible by useState(false)
     val img = useRef<HTMLImageElement?>(null)
+    val isMobile = useIsMobile()
 
-    useEffectWithCleanup(listOf(isVisible)) {
+    useEffectWithCleanup(listOf(isVisible, isMobile)) {
         if (!isVisible) { return@useEffectWithCleanup ({}) }
 
         fun execute() {
             img.current?.style?.opacity = "1.0"
             window.setTimeout({
-                img.current?.style?.paddingTop = "1rem"
+                img.current?.style?.paddingTop = if (isMobile) "0rem" else "1rem"
             }, 500)
             window.setTimeout({
                 img.current?.style?.opacity = "0.0"
             }, 1500)
             window.setTimeout({
-                img.current?.style?.paddingTop = "0rem"
+                img.current?.style?.paddingTop = if (isMobile) "1rem" else "0rem"
             }, 2500)
         }
 
@@ -528,10 +544,11 @@ private val ScrollIndicator = functionalComponent<HeaderProps>("ScrollIndicator"
                 height = 3.em
                 marginBottom = .5.em
             }
-            styledImg(src = "imgs/mouse-korail.svg") {
+            styledImg(src = "imgs/pointer-${if (isMobile) "hand" else "mouse"}-korail.svg") {
                 ref = img
                 css {
                     height = 2.em
+                    paddingTop = if (isMobile) 1.rem else 0.rem
                     opacity = 1.0
                     transition(::opacity, .5.s)
                     transition(::paddingTop, 1.s)

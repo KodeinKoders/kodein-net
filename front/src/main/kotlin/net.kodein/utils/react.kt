@@ -1,8 +1,8 @@
 package net.kodein.utils
 
-import react.FunctionalComponent
-import react.RMutableRef
-import react.RSetState
+import kotlinx.browser.window
+import org.w3c.dom.events.Event
+import react.*
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -30,4 +30,21 @@ internal class StateDelegate<T>(state: Pair<T, RSetState<T>>) : ReadWritePropert
         set(value)
     }
 
+}
+
+
+private val mobileQuery = "(orientation: portrait) and (max-height: 980px), (orientation: landscape) and (max-width: 980px)"
+
+fun useIsMobile(): Boolean {
+    var isMobile: Boolean by useState { window.matchMedia(mobileQuery).matches }
+
+    useEffectWithCleanup(emptyList()) {
+        val onResize: (Event) -> Unit = {
+            isMobile = window.matchMedia(mobileQuery).matches
+        }
+        window.addEventListener("resize", onResize)
+        ({ window.removeEventListener("resize", onResize) })
+    }
+
+    return isMobile
 }
