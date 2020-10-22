@@ -51,7 +51,7 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
     flexColumn {
         ref = menuContainer
         css {
-            if (isTop) {
+            if (isTop || isMobileMenuOpen) {
                 backgroundColor = props.backgroundColor ?: Color.transparent
                 paddingTop = 1.5.rem
             } else {
@@ -60,7 +60,7 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
                 boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
             }
 
-            transition(::padding, duration = .5.s, timing = Timing.linear)
+            transition(::padding, duration = .2.s, timing = Timing.linear)
             transition(::background, duration = .5.s)
             position = Position.sticky
             left = 0.px
