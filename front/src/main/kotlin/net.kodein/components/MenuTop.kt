@@ -1,5 +1,6 @@
 package net.kodein.components
 
+import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
 import net.kodein.charter.kodein
@@ -13,10 +14,16 @@ import styled.styledA
 import styled.styledDiv
 import styled.styledSpan
 
+interface MenuTopProps : RProps {
+    var animated: Boolean
+    var backgroundColor : Color?
+}
 
-val MenuTop = functionalComponent<RProps>("MenuTop") {
+val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
     val menuContainer = useRef<HTMLDivElement?>(null)
     val menuButton = useRef<HTMLDivElement?>(null)
+
+    var isTop by useState(props.animated)
 
     var isMobileMenuOpen by useState(false)
     var menuContainerHeight by useState(0.0)
@@ -29,22 +36,41 @@ val MenuTop = functionalComponent<RProps>("MenuTop") {
         ({ menuButton.current!!.removeEventListener("mouseup", openCloseMenu) })
     }
 
+    if (props.animated) {
+        useEffectWithCleanup {
+            val scroll = EventListener {
+                val top = menuContainer.current!!.parentElement?.getBoundingClientRect()?.top
+                isTop = top == 0.0
+            }
+            window.addEventListener("scroll", scroll)
+            ({ window.removeEventListener("scroll", scroll) })
+        }
+    }
     useEffect { menuContainerHeight = menuContainer.current!!.getBoundingClientRect().height }
 
     flexColumn {
         ref = menuContainer
         css {
+            if (isTop) {
+                backgroundColor = props.backgroundColor ?: Color.transparent
+                paddingTop = 1.5.rem
+            } else {
+                backgroundColor = Color.kodein.dark
+                paddingTop = 0.rem
+                boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
+            }
+
+            transition(::padding, duration = .5.s, timing = Timing.linear)
+            transition(::background, duration = .5.s)
             position = Position.sticky
             left = 0.px
             top = 0.px
             right = 0.px
             zIndex = 1000
-            boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
         }
 
         flexRow {
             css {
-                backgroundColor = Color.kodein.dark
                 padding(0.75.rem, 3.rem)
                 fontSize = .8.rem
 
@@ -88,22 +114,21 @@ val MenuTop = functionalComponent<RProps>("MenuTop") {
                             margin(2.px)
                             backgroundColor = Color.kodein.orange
                             borderRadius = 3.px
-                            transition(::transform, duration = .1.s, Timing.materialAcceleration)
-                            transition(::background, duration = .1.s, Timing.easeInOut)
-                            transition(::opacity, duration = .1.s, Timing.easeInOut)
+                            transition(::transform, duration = .3.s, Timing.materialAcceleration)
+                            transition(::opacity, duration = .3.s, Timing.easeInOut)
                         }
 
                         "span.first" {
                             transform {
-                                rotate(45.deg)
-                                translate(4.px, 5.px)
+                                translate(0.px, 7.px)
+                                rotate((-45).deg)
                             }
                         }
                         "span.middle" { opacity = 0 }
                         "span.last" {
                             transform {
-                                rotate((-45).deg)
-                                translate(6.px, (-5).px)
+                                translate(0.px, (-7).px)
+                                rotate(45.deg)
                             }
                         }
                     }
@@ -121,12 +146,10 @@ val MenuTop = functionalComponent<RProps>("MenuTop") {
             }
         }
 
-        child(Separator) {
-            attrs.height = 0.3.em
-        }
+        child(Separator) { attrs.height = if (isTop) 0.rem else 0.3.em }
     }
 
-    flexRow(JustifyContent.center, Align.center) {
+    /*flexRow(JustifyContent.center, Align.center) {
         css {
             minWidth(1025) { display = Display.none }
 
@@ -155,7 +178,7 @@ val MenuTop = functionalComponent<RProps>("MenuTop") {
         child(MenuNavigation) {
             attrs.isMobile = true
         }
-    }
+    }*/
 }
 
 //
@@ -192,7 +215,6 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
             if (props.isMobile) {
                 backgroundColor = Color.kodein.kaumon
                 "a" {
-//                    fontSize = 1.1.rem
                     flexDirection = FlexDirection.column
                     margin(.75.em)
                 }
