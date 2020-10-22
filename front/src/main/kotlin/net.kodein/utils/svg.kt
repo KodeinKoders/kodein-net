@@ -24,23 +24,23 @@ class SvgPath {
 
     private val commands = ArrayList<String>()
 
-    fun moveTo(x: Int, y: Int) { commands.add("M $x $y") }
-    fun moveOf(dx: Int, dy: Int) { commands.add("m $dx $dy") }
+    fun moveTo(x: Int, y: Int) { commands.add("M$x,$y") }
+    fun moveOf(dx: Int, dy: Int) { commands.add("m$dx,$dy") }
 
-    fun lineTo(x: Int, y: Int) { commands.add("L $x $y") }
-    fun lineOf(dx: Int, dy: Int) { commands.add("l $dx $dy") }
+    fun lineTo(x: Int, y: Int) { commands.add("L$x,$y") }
+    fun lineOf(dx: Int, dy: Int) { commands.add("l$dx,$dy") }
 
-    fun horizontalLineTo(x: Int) { commands.add("H $x") }
-    fun horizontalLineOf(dx: Int) { commands.add("h $dx") }
+    fun horizontalLineTo(x: Int) { commands.add("H$x") }
+    fun horizontalLineOf(dx: Int) { commands.add("h$dx") }
 
-    fun verticalLineTo(y: Int) { commands.add("V $y") }
-    fun verticalLineOf(dy: Int) { commands.add("V $dy") }
+    fun verticalLineTo(y: Int) { commands.add("V$y") }
+    fun verticalLineOf(dy: Int) { commands.add("V$dy") }
 
     fun closePath() { commands.add("Z") }
 
     companion object {
         fun build(block: SvgPath.() -> Unit): String =
-                SvgPath().apply(block).commands.joinToString(", ")
+                SvgPath().apply(block).commands.joinToString(" ")
     }
 
 }
