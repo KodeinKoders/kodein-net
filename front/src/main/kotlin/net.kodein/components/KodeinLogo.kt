@@ -34,6 +34,7 @@ val KodeinLogo = functionalComponent<KodeinLogoProps>("KodeinLogo") { props ->
             fontSize = if (props.subtitle == null) 1.75.em else 1.4.em
             transition("marginRight", duration = 0.15.s)
 //            maxWidth(768) { marginRight = 0.em }
+            zIndex = 1001
         }
         styledImg(alt = "Kodein logo", src = "imgs/logo-${props.logo}.svg") {
             css {

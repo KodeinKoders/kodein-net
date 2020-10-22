@@ -66,7 +66,7 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
             left = 0.px
             top = 0.px
             right = 0.px
-            zIndex = 1000
+            zIndex = 999
         }
 
         flexRow {
@@ -101,6 +101,7 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
             flexRow(JustifyContent.flexEnd, Align.center) {
                 css {
                     flexGrow = 1.0
+                    zIndex = 1001
                     minWidth(1025) { display = Display.none }
                 }
 
@@ -147,38 +148,36 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
         }
 
         child(Separator) { attrs.height = if (isTop) 0.rem else 0.3.em }
-    }
 
-    /*flexRow(JustifyContent.center, Align.center) {
-        css {
-            minWidth(1025) { display = Display.none }
+        flexRow(JustifyContent.center, Align.center) {
+            css {
+                backgroundColor = Color.kodein.kaumon
+                position = Position.fixed
+                left = 100.pct
+                top = 0.px
+                right = 0.px
+                height = 100.pct
+                width = 100.pct
+                zIndex = 1000
 
-            position = Position.sticky
-            left = 0.px
-            top = menuContainerHeight.px
-            right = 0.px
-            zIndex = 999
-            boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
+                minWidth(1025) { display = Display.none }
 
-            transition(::height, duration = .5.s, Timing.linear)
-            transition(::visibility, duration = 0.s)
-            transition(::opacity, duration = .5.s, Timing.easeInOut)
+                boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
 
-            if (isMobileMenuOpen) {
-                display = Display.flex
-                opacity = 1
-                visibility = Visibility.visible
-            } else {
-                display = Display.none
-                opacity = 0
-                visibility = Visibility.hidden
+                transition(::left, duration = .3.s, Timing.linear)
+
+                if (isMobileMenuOpen) {
+                    left = 0.pct
+                } else {
+                    left = 100.pct
+                }
+            }
+
+            child(MenuNavigation) {
+                attrs.isMobile = true
             }
         }
-
-        child(MenuNavigation) {
-            attrs.isMobile = true
-        }
-    }*/
+    }
 }
 
 //
@@ -191,7 +190,7 @@ interface MenuProps : RProps {
 
 val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
     val foregroundColor = if (props.isMobile)  Color.kodein.kinzolin else  Color.kodein.orange
-    val justify = if (props.isMobile) JustifyContent.center else JustifyContent.flexEnd
+    val justify = if (props.isMobile) JustifyContent.flexStart else JustifyContent.flexEnd
 
     flexRow {
         css {
@@ -217,6 +216,7 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
                 "a" {
                     flexDirection = FlexDirection.column
                     margin(.75.em)
+                    borderBottom(0.1.rem, BorderStyle.solid, Color.kodein.kinzolin)
                 }
             }
 
@@ -224,19 +224,12 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
         }
 
         a(href = "") { +"SERVICES" }
-        if (props.isMobile) menuSeparator()
         a(href = "") { +"KOTLIN" }
-        if (props.isMobile) menuSeparator()
         a(href = "") { +"TRAINING" }
-        if (props.isMobile) menuSeparator()
         a(href = "") { +"OSS" }
-        if (props.isMobile) menuSeparator()
         a(href = "") { +"TEAM" }
-        if (props.isMobile) menuSeparator()
         a(href = "") { +"BLOG" }
-        if (props.isMobile) menuSeparator()
         a(href = "") { +"CONTACT" }
-        if (props.isMobile) menuSeparator()
         styledA(href = "") {
             css {
                 if (!props.isMobile) {
