@@ -4,6 +4,7 @@ import kotlinext.js.jsObject
 import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
+import kotlinx.html.classes
 import kotlinx.html.id
 import net.kodein.charter.kodein
 import net.kodein.utils.*
@@ -113,15 +114,12 @@ val HumanList = functionalComponent<RProps>("HumanList") {
 
         val count = 4
 
-        flexRow {
-            ref = div
+        styledDiv {
             css {
-                width = 20.rem * humans.size * 3
-                padding(vertical = 2.em)
                 animation(
-                        duration = (humans.size * 8).s,
-                        timing = Timing.linear,
-                        iterationCount = IterationCount.infinite
+                    duration = (humans.size * 16).s,
+                    timing = Timing.linear,
+                    iterationCount = IterationCount.infinite
                 ) {
                     from {
                         transform { translateX(0.rem) }
@@ -130,11 +128,37 @@ val HumanList = functionalComponent<RProps>("HumanList") {
                         transform { translateX((humans.size * -20).rem) }
                     }
                 }
+                put("animation-play-state", "running")
+                hover {
+                    put("animation-play-state", "paused")
+                }
             }
+            flexRow {
+                ref = div
+                css {
+                    width = 20.rem * humans.size * 4
+                    maxWidth(800) {
+                        width = 40.pct * humans.size * 4
+                    }
+                    padding(vertical = 2.em)
+                    animation(
+                        duration = (humans.size * 16).s,
+                        timing = Timing.linear,
+                        iterationCount = IterationCount.infinite
+                    ) {
+                        from {
+                            transform { translateX(0.rem) }
+                        }
+                        to {
+                            transform { translateX((humans.size * -20).rem) }
+                        }
+                    }
+                }
 
-            repeat(3) {
-                humans.forEach { human ->
-                    child(Human, human)
+                repeat(4) {
+                    humans.forEach { human ->
+                        child(Human, human)
+                    }
                 }
             }
         }
@@ -179,42 +203,73 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                 put("clip-path", "inherit")
             }
             width = 20.rem
+            maxWidth(800) { width = 40.pct }
             height = 32.rem
+            position = Position.relative
+
+            hover {
+                ".profile-pic" {
+                    width = 11.rem
+                    height = 11.rem
+                    left = 50.pct - 5.5.rem
+                    top = 10.rem - 5.5.rem
+                    borderRadius = 4.rem
+                }
+                ".background-pic" {
+                    width = 20.rem + 6.rem
+                    height = 10.rem + 6.rem
+                    marginLeft = (-3).rem
+                    marginTop = (-3).rem
+                }
+            }
         }
 
         styledDiv {
             css {
                 backgroundColor = Color.kodein.dark
                 overflow = Overflow.hidden
-                width = 20.rem
+                width = 100.pct
                 height = 10.rem
             }
             styledImg(src = "imgs/humans/${props.picture}") {
+                attrs.classes += "background-pic"
                 css {
                     width = 20.rem + 3.rem
                     height = 10.rem + 3.rem
-                    marginTop = (-1.5).rem
                     marginLeft = (-1.5).rem
+                    marginTop = (-1.5).rem
                     objectFit = ObjectFit.cover
                     filter = "blur(1rem)"
                     opacity = 0.4
+                    transition(::width, 0.6.s)
+                    transition(::height, 0.6.s)
+                    transition(::marginLeft, 0.6.s)
+                    transition(::marginTop, 0.6.s)
                 }
             }
         }
-        styledImg(src = "imgs/humans/${props.picture}") {
+        styledImg(src = "imgs/humans/${props.picture}", alt = props.name) {
+            attrs.classes += "profile-pic"
             css {
+                position = Position.absolute
+                left = 50.pct - 5.rem
+                top = 10.rem - 5.rem
                 width = 10.rem
                 height = 10.rem
                 objectFit = ObjectFit.cover
-                borderRadius = 12.rem
-                marginTop = (-5).rem
+                borderRadius = 5.rem
                 zIndex = 1
+                transition(::width, 0.6.s)
+                transition(::height, 0.6.s)
+                transition(::left, 0.6.s)
+                transition(::top, 0.6.s)
+                transition(::borderRadius, 0.6.s)
             }
         }
         styledH3 {
             css {
                 +kodein.intertitre
-                marginTop = 2.5.rem
+                marginTop = 7.5.rem
                 width = 18.rem
                 textAlign = TextAlign.center
             }

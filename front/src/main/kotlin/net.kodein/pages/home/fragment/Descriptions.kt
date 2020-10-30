@@ -92,7 +92,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
                     val l = if (props.even) 0 else 9
                     val r = if (!props.even) 100 else 91
                     put("clip-path", "polygon($l% 0%, $l% 50%, $l% 100%, $r% 100%, $r% 50%, $r% 0%)")
-                    transition("clip-path", 0.3.s, Timing.easeOut)
+                    transition("clip-path", 0.8.s, Timing.easeOut)
                 }
 
                 hover {
@@ -155,6 +155,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
                     css {
                         +kodein.intertitre
                         flexGrow = 1.0
+                        margin(1.rem, 0.rem)
                     }
                     +props.title
                 }

@@ -56,7 +56,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                         background = "linear-gradient(180deg, transparent, ${Color.kodein.dark})"
                         position = Position.absolute
                         top = 0.rem
-                        left = 0.rem
+                        left = 1.rem
                     }
                 }
             }
