@@ -126,7 +126,7 @@ val MenuContent = functionalComponent<MenuContentProps>("MenuContent") { props -
         }
 
         // Logo
-        styledA(href = "/") {
+        styledA(href = "index.html") {
             css {
                 display = Display.flex
                 flexDirection = FlexDirection.column
