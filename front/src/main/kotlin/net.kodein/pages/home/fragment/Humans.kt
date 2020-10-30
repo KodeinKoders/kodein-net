@@ -33,9 +33,6 @@ val Humans = functionalComponent<RProps>("Humans") {
                 }
                 color = Color.kodein.orange
                 paddingLeft = 5.rem
-                maxWidth(768) {
-                    paddingLeft = 3.rem
-                }
             }
             +"Humans trust us!"
         }
@@ -47,9 +44,6 @@ val Humans = functionalComponent<RProps>("Humans") {
                 color = Color.kodein.orange
                 textAlign = TextAlign.start
                 paddingLeft = 5.rem
-                maxWidth(768) {
-                    paddingLeft = 3.rem
-                }
             }
             +"Are you next?"
         }
@@ -137,9 +131,6 @@ val HumanList = functionalComponent<RProps>("HumanList") {
                 ref = div
                 css {
                     width = 20.rem * humans.size * 4
-                    maxWidth(800) {
-                        width = 40.pct * humans.size * 4
-                    }
                     padding(vertical = 2.em)
                     animation(
                         duration = (humans.size * 16).s,
@@ -203,7 +194,6 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                 put("clip-path", "inherit")
             }
             width = 20.rem
-            maxWidth(800) { width = 40.pct }
             height = 32.rem
             position = Position.relative
 

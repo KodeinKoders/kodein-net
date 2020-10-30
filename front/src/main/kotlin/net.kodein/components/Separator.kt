@@ -12,6 +12,7 @@ import styled.styledDiv
 
 interface SeparatorProps : RProps {
     var height: LinearDimension?
+    var css: (CSSBuilder.() -> Unit)?
 }
 
 val Separator = functionalComponent<SeparatorProps>("Separator") { props ->
@@ -19,7 +20,7 @@ val Separator = functionalComponent<SeparatorProps>("Separator") { props ->
         css {
             background = "linear-gradient(90deg, ${Color.kodein.orange}, ${Color.kodein.purple})"
             height = props.height ?: 0.6.rem
-            transition(::height, duration = .3.s, Timing.linear)
+            props.css?.invoke(this)
         }
     }
 }

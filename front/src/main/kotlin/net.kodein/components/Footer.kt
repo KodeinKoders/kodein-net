@@ -87,7 +87,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                         flexDirection = FlexDirection.column
                     }
 
-                    "p" {
+                    "div" {
                         width = 10.rem
                         maxWidth(768) {
                             width = 100.pct
@@ -113,7 +113,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                     }
                 }
 
-                p {
+                div {
                     b { +"Un gros footer" }
                     ul {
                         li { a(href = "nowhere") { +"Un gros footer" } }
@@ -123,7 +123,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                     }
                 }
 
-                p {
+                div {
                     b { +"Keep contact" }
                     ul {
                         li { a(href = "nowhere") { +"E-mail" } }
@@ -132,7 +132,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                     }
                 }
 
-                p {
+                div {
                     b { +"Lisez ça" }
                     ul {
                         li { a(href = "nowhere") { +"Un gros footer" } }
@@ -142,7 +142,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                     }
                 }
 
-                p {
+                div {
                     b { +"Des trucs" }
                     ul {
                         li { a(href = "nowhere") { +"Sans déconner ?" } }

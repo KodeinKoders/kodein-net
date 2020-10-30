@@ -63,8 +63,6 @@ fun renderApp() {
     val id = element.attributes["data-page"]?.value ?: error("Page element has no data-page attribute")
     val page = appPages.find { it.id == id } ?: error("Could not find page $id")
 
-    console.log(page)
-
     render(element) {
         child(page.component()) { page.props(attrs) }
     }
