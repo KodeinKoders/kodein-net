@@ -13,39 +13,40 @@ import kotlin.random.Random
 
 
 interface LayerSeparatorProps : RProps {
-    var i0Color: Color
-    var i1Color: Color
-    var i2Color: Color
-    var i3Color: Color
+    var position: Position
+    var colors: List<Color>
 }
 
-fun RBuilder.layerSeparator(i0: Color, i1: Color, i2: Color, i3: Color) {
+fun RBuilder.layerSeparatorAbsolute(vararg colors: Color) {
+    styledDiv {
+        css {
+            position = Position.absolute
+            width = 100.pct
+            marginTop = (-1).px
+        }
+
+        child(LayerSeparator) {
+            attrs.colors = colors.toList()
+        }
+    }
+
+}
+
+fun RBuilder.layerSeparator(position: Position, vararg colors: Color) {
     child(LayerSeparator) {
-        attrs.i0Color = i0
-        attrs.i1Color = i1
-        attrs.i2Color = i2
-        attrs.i3Color = i3
+        attrs.position = position
+        attrs.colors = colors.toList()
     }
 }
 
 val LayerSeparator = functionalComponent<LayerSeparatorProps>("LayerSeparator") { props ->
 
-    data class Params(
-        val i0: Pair<Int, Int>,
-        val i1: Pair<Int, Int>,
-        val i2: Pair<Int, Int>,
-        val i3: Pair<Int, Int>,
+    data class LayerParams(
+        val color: Color,
+        val coords: Pair<Int, Int>
     )
 
     val params by useState {
-        // Original parameters
-//        Params(
-//            i0 = 5 to 63,
-//            i1 = 66 to 25,
-//            i2 = 70 to 50,
-//            bottomRight = 35
-//        )
-
         fun nextLayer(base: Pair<Int, Int>): Pair<Int, Int> {
             val l1 = Random.nextInt(base.first + 10, base.first + 20 + 1)
             return if (l1 <= 90 && Random.nextBoolean()) {
@@ -58,54 +59,34 @@ val LayerSeparator = functionalComponent<LayerSeparatorProps>("LayerSeparator") 
 
         val i0 = Random.nextInt(40, 70) to 5
         var base = i0
-        val i1 = nextLayer(base)
-        base = max(base.first, i1.first) to max(base.second, i1.second)
-        val i2 = nextLayer(base)
-        base = max(base.first, i2.first) to max(base.second, i2.second)
-        val i3 = nextLayer(base)
+        val layers = props.colors.drop(1).map {
+            val i = nextLayer(base)
+            base = max(base.first, i.first) to max(base.second, i.second)
+            LayerParams(it, i)
+        }
 
-        Params(i0, i1, i2, i3)
+        listOf(LayerParams(props.colors.first(), i0)) + layers
     }
 
     styledDiv {
         css {
+            val modulor = props.colors.size + 1
             width = 100.pct
-            height = 10.rem
-            position = Position.relative
-            maxWidth(1024) { height = 8.rem }
-            maxWidth(516) { height = 6.rem }
+            height = min(10.0, modulor * 2.5).rem
+            marginTop = (-1).px
+            position = props.position
+            maxWidth(1024) { height = min(8, modulor  * 2).rem }
+            maxWidth(516) { height = min(6.0,modulor  * 1.5).rem }
         }
 
-        layer(props.i0Color, 10) {
-            moveTo(0, 0)
-            verticalLineTo(params.i0.first)
-            lineTo(100, params.i0.second)
-            verticalLineTo(0)
-            closePath()
-        }
-
-        layer(props.i1Color, 9) {
-            moveTo(0, 2)
-            verticalLineTo(params.i1.first)
-            lineTo(100, params.i1.second)
-            verticalLineTo(2)
-            closePath()
-        }
-
-        layer(props.i2Color, 8) {
-            moveTo(0, 4)
-            verticalLineTo(params.i2.first)
-            lineTo(100, params.i2.second)
-            verticalLineTo(4)
-            closePath()
-        }
-
-        layer(props.i3Color, 7) {
-            moveTo(0, 6)
-            verticalLineTo(params.i3.first)
-            lineTo(100, params.i3.second)
-            verticalLineTo(6)
-            closePath()
+        params.forEachIndexed { index, layerParams ->
+            layer(layerParams.color, 100 - index) {
+                moveTo(0, index * 2)
+                verticalLineTo(layerParams.coords.first)
+                lineTo(100, layerParams.coords.second)
+                verticalLineTo(index * 2)
+                closePath()
+            }
         }
     }
 
@@ -120,8 +101,8 @@ private fun RBuilder.layer(color: Color, z: Int, builder: SvgPathBuilder) {
             width = 100.pct
             height = 100.pct
             zIndex = z
-            filter = "drop-shadow(0 .25rem 0.15rem ${Color.kodein.dark.withAlpha(0.2)})"
             clipPath = "polygon(0% 0%, 0% 200%, 100% 200%, 100% 0%)"
+            +kodein.dropShadow
         }
 
         attrs {
