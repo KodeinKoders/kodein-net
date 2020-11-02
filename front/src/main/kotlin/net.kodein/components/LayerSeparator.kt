@@ -70,13 +70,12 @@ val LayerSeparator = functionalComponent<LayerSeparatorProps>("LayerSeparator") 
 
     styledDiv {
         css {
-            val modulor = props.colors.size + 1
             width = 100.pct
-            height = min(10.0, modulor * 2.5).rem
+            height = min(10, props.colors.size * 3).rem
             marginTop = (-1).px
             position = props.position
-            maxWidth(1024) { height = min(8, modulor  * 2).rem }
-            maxWidth(516) { height = min(6.0,modulor  * 1.5).rem }
+            maxWidth(1024) { height = min(8.0, props.colors.size  * 2.5).rem }
+            maxWidth(516) { height = min(6,props.colors.size  * 2).rem }
         }
 
         params.forEachIndexed { index, layerParams ->
@@ -89,7 +88,6 @@ val LayerSeparator = functionalComponent<LayerSeparatorProps>("LayerSeparator") 
             }
         }
     }
-
 }
 
 private fun RBuilder.layer(color: Color, z: Int, builder: SvgPathBuilder) {
