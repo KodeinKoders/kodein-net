@@ -124,6 +124,10 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
             }
         }
     }
+
+    val dropShadow by css {
+        filter = "drop-shadow(0 .25rem 0.15rem ${Color.kodein.dark.withAlpha(0.2)})"
+    }
 }
 
 val CSSBuilder.kodein get() = KodeinStyles
