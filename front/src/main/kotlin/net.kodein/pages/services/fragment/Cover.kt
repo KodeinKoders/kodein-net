@@ -2,17 +2,17 @@ package net.kodein.pages.services.fragment
 
 import kotlinx.css.*
 import kotlinx.css.LinearDimension.Companion.auto
-import kotlinx.css.properties.TextDecoration
-import kotlinx.css.properties.TextDecorationLine
 import kotlinx.css.properties.borderBottom
 import net.kodein.charter.kodein
 import net.kodein.utils.*
 import react.RProps
 import react.dom.b
 import react.dom.br
-import react.dom.p
 import react.functionalComponent
-import styled.*
+import styled.css
+import styled.styledH1
+import styled.styledP
+import styled.styledSpan
 
 
 val Cover = functionalComponent<RProps>("Cover") {

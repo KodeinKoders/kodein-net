@@ -55,7 +55,7 @@ val Home = functionalComponent<RProps>("Home") {
 
     child(Humans)
 
-    layerSeparator(Color.white, Color.kodein.orange, Color.kodein.kaumon, Color.kodein.kinzolin)
+    layerSeparator(Position.relative, Color.white, Color.kodein.orange, Color.kodein.kaumon, Color.kodein.kinzolin)
 
     child(ContactUs)
 

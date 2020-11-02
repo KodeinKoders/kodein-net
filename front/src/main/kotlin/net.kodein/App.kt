@@ -55,7 +55,7 @@ data class Page<P : RProps>(
 
 val appPages = listOf(
         Page("index", { Home }),
-        Page("services", { Services} ),
+        Page("services", { Services } ),
 )
 
 fun renderApp() {
