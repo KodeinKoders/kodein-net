@@ -5,10 +5,7 @@ import kotlinx.css.backgroundColor
 import kotlinx.css.height
 import kotlinx.css.rem
 import net.kodein.charter.kodein
-import net.kodein.components.ContactUs
-import net.kodein.components.Cover
-import net.kodein.components.Footer
-import net.kodein.components.MenuTop
+import net.kodein.components.*
 import net.kodein.pages.services.fragment.Descriptions
 import react.RProps
 import react.child
@@ -33,7 +30,7 @@ val Services = functionalComponent<RProps>("Services") {
 
         child(Cover) {
             attrs {
-                backgroundColor = Color.kodein.dark
+                colors = CoverPalette(backgroundColor = Color.kodein.dark)
                 overTitle = "Our services"
                 title = {
                     +"Bringing your business"

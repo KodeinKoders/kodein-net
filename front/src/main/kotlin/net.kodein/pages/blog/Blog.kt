@@ -6,6 +6,7 @@ import kotlinx.css.height
 import kotlinx.css.rem
 import net.kodein.charter.kodein
 import net.kodein.components.Cover
+import net.kodein.components.CoverPalette
 import net.kodein.components.MenuTop
 import react.RProps
 import react.child
@@ -30,7 +31,7 @@ val Blog = functionalComponent<RProps> {
 
     child(Cover) {
         attrs {
-            backgroundColor = Color.kodein.kyzantium
+            colors = CoverPalette(backgroundColor = Color.kodein.kyzantium)
             overTitle = "Some read"
             title = {
                 +"We are technology lovers,"
