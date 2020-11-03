@@ -15,16 +15,12 @@ import styled.styledDiv
 import styled.styledImg
 
 val Training = functionalComponent<RProps>("Training") {
-        styledDiv {
-            css {
-                height = 1.5.rem
+        child(MenuTop) {
+            attrs{
+                animated = true
+                topMargin = 1.5.rem
                 backgroundColor = Color.kodein.cute
             }
-        }
-
-        child(MenuTop) {
-            attrs.animated = true
-            attrs.backgroundColor = Color.kodein.cute
         }
 
         child(Cover) {

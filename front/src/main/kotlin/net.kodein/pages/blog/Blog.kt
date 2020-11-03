@@ -24,7 +24,10 @@ val Blog = functionalComponent<RProps> {
 
     child(Cover) {
         attrs {
-            colors = CoverPalette(backgroundColor = Color.kodein.kyzantium)
+            colors = CoverPalette(
+                backgroundColor = Color.kodein.kyzantium,
+                layers = listOf(Color.kodein.kinzolin, Color.kodein.kuivre)
+            )
             overTitle = "Some read"
             title = {
                 +"We are technology lovers,"
