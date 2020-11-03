@@ -1,13 +1,11 @@
-package net.kodein.pages.services.fragment
+package net.kodein.components
 
 import kotlinx.css.*
-import kotlinx.css.LinearDimension.Companion.auto
 import kotlinx.css.properties.borderBottom
 import net.kodein.charter.kodein
 import net.kodein.utils.*
+import react.RBuilder
 import react.RProps
-import react.dom.b
-import react.dom.br
 import react.functionalComponent
 import styled.css
 import styled.styledH1
@@ -15,10 +13,16 @@ import styled.styledP
 import styled.styledSpan
 
 
-val Cover = functionalComponent<RProps>("Cover") {
+interface CoverProps : RProps {
+    var backgroundColor: Color
+    var overTitle: String
+    var title: RBuilder.() -> Unit
+}
+
+val Cover = functionalComponent<CoverProps>("Cover") { props ->
     flexColumn {
         css {
-            backgroundColor = Color.kodein.dark
+            backgroundColor = props.backgroundColor
         }
 
         styledP {
@@ -35,7 +39,7 @@ val Cover = functionalComponent<RProps>("Cover") {
                 }
                 borderBottom(0.05.rem, BorderStyle.solid, Color.kodein.korail)
             }
-            +"Our services"
+            +props.overTitle
         }
 
         styledH1 {
@@ -55,13 +59,7 @@ val Cover = functionalComponent<RProps>("Cover") {
                 color = Color.kodein.kaumon
                 margin(1.rem, 2.rem)
             }
-            +"Bringing your business"
-            br {}
-            +"to the next level,"
-            br {}
-            +"with strong and robust"
-            br {}
-            +"multi-platform applications"
+            props.title(this)
         }
 
         styledSpan {
@@ -71,13 +69,13 @@ val Cover = functionalComponent<RProps>("Cover") {
                 height = 5.rem
                 opacity = .7
                 backgroundColor = Color.kodein.korail
-                margin(1.rem, auto)
+                margin(1.rem, LinearDimension.auto)
                 maxSize(768) {
                     height = 3.rem
-                    margin(0.rem, auto)
+                    margin(0.rem, LinearDimension.auto)
                 }
                 landscapeMobile {
-                    margin(1.rem, auto)
+                    margin(1.rem, LinearDimension.auto)
                 }
             }
         }
@@ -100,15 +98,7 @@ val Cover = functionalComponent<RProps>("Cover") {
                 }
             }
 
-            b { +"KODEIN" }
-            +"""Koders is a tech company that is driven by
-                |our passion for Kotlin. 
-                |This technology allows us to develop applications 
-                |and share code between systems; backend (based on Spring / Ktor) 
-                |or frontend (iOS / Android / Web / Desktop). 
-                |We are able to guide you to modernize your applications 
-                |or reinforce your existing teams to help you reach your goals, 
-                |with Kotlin, everywhere you need.""".trimMargin()
+            props.children()
         }
     }
 }

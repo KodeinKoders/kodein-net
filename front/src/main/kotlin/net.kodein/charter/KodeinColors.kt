@@ -17,6 +17,16 @@ object KodeinColors {
 
     inline fun nameOf(color: KodeinColors.() -> Color) = byValue.getValue(color.invoke(this))
 
+    /*
+                    Dark
+         Kyzanthium      Krouille
+         Kinzolin        Kuivre
+         Purple          Orange
+         Kamethiste      Korail
+         Klycine         Kaumon
+                    Cute
+     */
+
     // Primary
     val orange by Color("#E8441F")
     val purple by Color("#921F81")
