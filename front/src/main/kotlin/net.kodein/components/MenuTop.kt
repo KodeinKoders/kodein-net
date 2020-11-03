@@ -298,7 +298,7 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
             span("text") { +"SERVICES" }
             span("underline") {}
         }
-        a(href = "") {
+        a(href = "training.html") {
             span("text") { +"TRAINING" }
             span("underline") {}
         }

@@ -9,6 +9,7 @@ import net.kodein.charter.kodein
 import net.kodein.pages.blog.Blog
 import net.kodein.pages.home.Home
 import net.kodein.pages.services.Services
+import net.kodein.pages.training.Training
 import net.kodein.utils.maxSize
 import net.kodein.utils.minSize
 import org.w3c.dom.get
@@ -57,6 +58,7 @@ data class Page<P : RProps>(
 val appPages = listOf(
         Page("index", { Home }),
         Page("services", { Services } ),
+        Page("training", { Training } ),
         Page("blog", { Blog } ),
 )
 

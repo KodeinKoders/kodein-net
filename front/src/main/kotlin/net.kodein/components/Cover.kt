@@ -12,9 +12,15 @@ import styled.styledH1
 import styled.styledP
 import styled.styledSpan
 
+data class CoverPalette(
+    val backgroundColor: Color,
+    val primary: Color = Color.kodein.korail,
+    val secondary: Color = Color.kodein.kaumon,
+    val layers: List<Color> = listOf(Color.kodein.kyzantium, Color.kodein.orange)
+)
 
 interface CoverProps : RProps {
-    var backgroundColor: Color
+    var colors: CoverPalette
     var overTitle: String
     var title: RBuilder.() -> Unit
 }
@@ -22,7 +28,7 @@ interface CoverProps : RProps {
 val Cover = functionalComponent<CoverProps>("Cover") { props ->
     flexColumn {
         css {
-            backgroundColor = props.backgroundColor
+            backgroundColor = props.colors.backgroundColor
         }
 
         styledP {
@@ -30,7 +36,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                 +kodein.display1
                 alignSelf = Align.center
                 textAlign = TextAlign.center
-                color = Color.kodein.korail
+                color = props.colors.primary
                 paddingTop = 6.rem
                 marginBottom = 2.rem
                 maxSize(768) {
@@ -56,7 +62,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                         fontSize = 1.6.rem
                     }
                 }
-                color = Color.kodein.kaumon
+                color = props.colors.secondary
                 margin(1.rem, 2.rem)
             }
             props.title(this)
@@ -68,7 +74,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                 width = 0.05.rem
                 height = 5.rem
                 opacity = .7
-                backgroundColor = Color.kodein.korail
+                backgroundColor = props.colors.primary
                 margin(1.rem, LinearDimension.auto)
                 maxSize(768) {
                     height = 3.rem
@@ -87,7 +93,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                     fontWeight = FontWeight.light
                     textAlign = TextAlign.center
                 }
-                color = Color.kodein.korail
+                color = props.colors.primary
                 width = 65.pct
                 padding(2.rem)
                 alignSelf = Align.center
@@ -101,4 +107,5 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
             props.children()
         }
     }
+    layerSeparator(Position.absolute, props.colors.backgroundColor, *props.colors.layers.toTypedArray())
 }
