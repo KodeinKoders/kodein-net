@@ -6,6 +6,7 @@ import kotlinx.css.properties.TextDecoration
 import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
 import net.kodein.charter.kodein
+import net.kodein.pages.blog.Blog
 import net.kodein.pages.home.Home
 import net.kodein.pages.services.Services
 import net.kodein.utils.maxSize
@@ -56,6 +57,7 @@ data class Page<P : RProps>(
 val appPages = listOf(
         Page("index", { Home }),
         Page("services", { Services } ),
+        Page("blog", { Blog } ),
 )
 
 fun renderApp() {
