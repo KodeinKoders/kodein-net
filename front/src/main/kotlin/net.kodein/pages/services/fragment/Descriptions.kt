@@ -108,20 +108,24 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
         flexColumn {
             css {
                 flexGrow = 70.0
-                minHeight = 20.rem
                 flexBasis = FlexBasis.zero
-                margin(auto)
-                padding(10.rem, 2.rem, 2.rem, 2.rem)
+                margin(auto, 2.rem)
+
+                if(props.first) padding(8.rem, 4.rem, 4.rem, 4.rem)
+                else padding(4.rem)
 
                 maxWidth(980) {
-                    margin(none)
+                    if(props.first) padding(8.rem, 0.rem, 4.rem, 0.rem)
+                    else padding(4.rem, 0.rem)
                 }
             }
 
             styledP {
                 css {
                     +kodein.display1
-                    fontWeight = FontWeight.light
+                    specific {
+                        fontWeight = FontWeight.light
+                    }
                     alignSelf = Align.center
                     textAlign = TextAlign.center
                     color = Color.kodein.orange
@@ -140,7 +144,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
                     }
                     color = Color.kodein.kyzantium
                     alignSelf = Align.center
-                    maxWidth = 50.rem
+                    maxWidth = 60.rem
                 }
 
                 props.children()
