@@ -27,7 +27,7 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
                 +kodein.dropShadow
             }
 
-            layerSeparator(Position.absolute, Color.kodein.dark, Color.kodein.kyzantium, Color.kodein.orange, Color.kodein.cute)
+            layerSeparator(Position.absolute, Color.kodein.dark, Color.kodein.kyzantium, Color.kodein.orange)
 
             child(Description) {
                 attrs.first = true
@@ -46,7 +46,7 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
             css {
                 zIndex = 19
                 display = Display.none
-                marginTop = (-2).rem
+                marginTop = (-4).rem
                 +kodein.dropShadow
 
                 maxWidth(980) {
@@ -55,17 +55,17 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
             }
 
             child(Illustration)
-            layerSeparator(Position.absolute, Color.kodein.orange, Color.kodein.kinzolin)
+            layerSeparator(Position.absolute, Color.kodein.korail, Color.kodein.kinzolin)
         }
 
         styledDiv {
             css {
                 zIndex = 18
-                marginTop = (-2).rem
+                marginTop = (-4).rem
                 +kodein.dropShadow
             }
 
-            layerSeparator(Position.absolute, Color.kodein.korail, Color.kodein.purple)
+            layerSeparator(Position.absolute, Color.kodein.korail, Color.kodein.kinzolin)
 
             child(Description) {
                 attrs.title = "Project Development"
@@ -84,9 +84,9 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
         styledDiv {
             css {
                 zIndex = 17
-                marginTop = (-2).rem
+                marginTop = (-4).rem
             }
-            layerSeparator(Position.relative, Color.kodein.orange, Color.kodein.kyzantium)
+            layerSeparator(Position.relative, Color.kodein.orange, Color.kodein.kinzolin)
         }
     }
 }
@@ -100,7 +100,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
         css {
             width = 100.pct
             backgroundColor = if (props.first) Color.kodein.kaumon else Color.kodein.cute
-            put("clip-path", "polygon(0% 5%, 100% 0%, 100% calc(100% - 2rem), 0% 100%)")
+            put("clip-path", "polygon(0% 5%, 100% 0%, 100% calc(100% - 4rem), 0% 100%)")
         }
 
         if (!props.first) child(Illustration) { attrs.last = true }
@@ -207,7 +207,7 @@ private val Illustration = functionalComponent<ServiceIllustrationProps>("Illust
                     display = Display.none
                 else {
                     flexGrow = 1.0
-                    put("clip-path", "polygon(0% 0%, 100% 0%, 100% calc(100% - 2rem), 0% 100%)")
+                    put("clip-path", "polygon(0% 0%, 100% 0%, 100% calc(100% - 4rem), 0% 100%)")
                 }
             }
 

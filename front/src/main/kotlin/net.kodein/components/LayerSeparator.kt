@@ -71,11 +71,11 @@ val LayerSeparator = functionalComponent<LayerSeparatorProps>("LayerSeparator") 
     styledDiv {
         css {
             width = 100.pct
-            height = min(10, props.colors.size * 3).rem
+            height = 10.rem
             marginTop = (-1).px
             position = props.position
-            maxWidth(1024) { height = min(8.0, props.colors.size  * 2.5).rem }
-            maxWidth(516) { height = min(6,props.colors.size  * 2).rem }
+            maxWidth(1024) { height = 8.rem }
+            maxWidth(516) { height = 6.rem }
         }
 
         params.forEachIndexed { index, layerParams ->
