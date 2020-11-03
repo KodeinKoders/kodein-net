@@ -17,6 +17,7 @@ import styled.styledSpan
 
 interface MenuTopProps : RProps {
     var animated: Boolean
+    var topMargin: LinearDimension?
     var backgroundColor : Color?
 }
 
@@ -44,6 +45,16 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
             }
             window.addEventListener("scroll", scroll)
             ({ window.removeEventListener("scroll", scroll) })
+        }
+    }
+
+    props.topMargin?.let { size ->
+        styledDiv {
+            css {
+                height = 1.5.rem
+                backgroundColor = if (isTop || isMobileMenuOpen) props.backgroundColor ?: Color.transparent else Color.kodein.dark
+                transition(::background, duration = .5.s)
+            }
         }
     }
 

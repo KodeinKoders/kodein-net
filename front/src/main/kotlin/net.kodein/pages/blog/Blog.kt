@@ -1,31 +1,24 @@
 package net.kodein.pages.blog
 
 import kotlinx.css.Color
-import kotlinx.css.backgroundColor
-import kotlinx.css.height
 import kotlinx.css.rem
 import net.kodein.charter.kodein
 import net.kodein.components.Cover
 import net.kodein.components.MenuTop
+import net.kodein.pages.blog.fragment.ElementList
 import react.RProps
 import react.child
 import react.dom.br
 import react.functionalComponent
-import styled.css
-import styled.styledDiv
 
 
 val Blog = functionalComponent<RProps> {
-    styledDiv {
-        css {
-            height = 1.5.rem
+    child(MenuTop) {
+        attrs {
+            animated = true
+            topMargin = 1.5.rem
             backgroundColor = Color.kodein.kyzantium
         }
-    }
-
-    child(MenuTop) {
-        attrs.animated = true
-        attrs.backgroundColor = Color.kodein.kyzantium
     }
 
     child(Cover) {
@@ -43,7 +36,10 @@ val Blog = functionalComponent<RProps> {
                 |our passion for multiplatform development. 
                 |When we acquire new experience, discover new cool stuff,
                 |create new piece of tech, or simply want to share our passion,
-                |we write an article or shoot a video.""".trimMargin()
+                |we write an article or shoot a video.
+                |Have a look!""".trimMargin()
     }
+
+    child(ElementList)
 
 }
