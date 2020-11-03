@@ -27,8 +27,6 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
                 +kodein.dropShadow
             }
 
-            layerSeparator(Position.absolute, Color.kodein.dark, Color.kodein.kyzantium, Color.kodein.orange)
-
             child(Description) {
                 attrs.first = true
                 attrs.title = "Consultancy"

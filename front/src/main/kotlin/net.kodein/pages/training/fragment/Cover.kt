@@ -1,12 +1,14 @@
-package net.kodein.components
+package net.kodein.pages.training.fragment
 
 import kotlinx.css.*
+import kotlinx.css.LinearDimension.Companion.auto
 import kotlinx.css.properties.borderBottom
 import net.kodein.charter.kodein
 import net.kodein.components.layerSeparator
 import net.kodein.utils.*
-import react.RBuilder
 import react.RProps
+import react.dom.b
+import react.dom.br
 import react.functionalComponent
 import styled.css
 import styled.styledH1
@@ -14,16 +16,10 @@ import styled.styledP
 import styled.styledSpan
 
 
-interface CoverProps : RProps {
-    var backgroundColor: Color
-    var overTitle: String
-    var title: RBuilder.() -> Unit
-}
-
-val Cover = functionalComponent<CoverProps>("Cover") { props ->
+val Cover = functionalComponent<RProps>("Cover") {
     flexColumn {
         css {
-            backgroundColor = props.backgroundColor
+            backgroundColor = Color.kodein.cute
         }
 
         styledP {
@@ -31,16 +27,16 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                 +kodein.display1
                 alignSelf = Align.center
                 textAlign = TextAlign.center
-                color = Color.kodein.korail
+                color = Color.kodein.orange
                 paddingTop = 6.rem
                 marginBottom = 2.rem
                 maxSize(768) {
                     paddingTop = 2.rem
                     marginBottom = 1.rem
                 }
-                borderBottom(0.05.rem, BorderStyle.solid, Color.kodein.korail)
+                borderBottom(0.05.rem, BorderStyle.solid, Color.kodein.orange)
             }
-            +props.overTitle
+            +"Let's share knowledge!"
         }
 
         styledH1 {
@@ -57,10 +53,12 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                         fontSize = 1.6.rem
                     }
                 }
-                color = Color.kodein.kaumon
+                color = Color.kodein.kyzantium
                 margin(1.rem, 2.rem)
             }
-            props.title(this)
+            +"Yes we are"
+            br {}
+            +""" "JetBrains Certified Trainer" """
         }
 
         styledSpan {
@@ -69,14 +67,14 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                 width = 0.05.rem
                 height = 5.rem
                 opacity = .7
-                backgroundColor = Color.kodein.korail
-                margin(1.rem, LinearDimension.auto)
+                backgroundColor = Color.kodein.orange
+                margin(1.rem, auto)
                 maxSize(768) {
                     height = 3.rem
-                    margin(0.rem, LinearDimension.auto)
+                    margin(0.rem, auto)
                 }
                 landscapeMobile {
-                    margin(1.rem, LinearDimension.auto)
+                    margin(1.rem, auto)
                 }
             }
         }
@@ -88,19 +86,25 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                     fontWeight = FontWeight.light
                     textAlign = TextAlign.center
                 }
-                color = Color.kodein.korail
-                width = 65.pct
+                color = Color.kodein.orange
+                maxWidth = 40.rem
                 padding(2.rem)
                 alignSelf = Align.center
 
+                maxSize(1024) {
+                    padding(1.rem)
+                }
                 maxSize(768) {
-                    width = 85.pct
                     padding(1.rem)
                 }
             }
 
-            props.children()
+            +"""Our Kotlin expertise goes way beyond its first objective, 
+                |for the JVM world. We have the ability to give training and workshops 
+                |for companies and world events, as we already did for  Kotlin/Everywhere Paris 
+                |and KotlinConf'19. We can provide training upon the different level of Kotlin.""".trimMargin()
         }
     }
-    layerSeparator(Position.absolute, Color.kodein.dark, Color.kodein.kyzantium, Color.kodein.orange)
+
+    layerSeparator(Position.absolute, Color.kodein.cute, Color.kodein.korail, Color.kodein.kaumon, Color.kodein.korail)
 }
