@@ -64,47 +64,53 @@ val ContentRow = functionalComponent<ContentRowProps>("ContentRow") { props ->
     val indexPosition by useState { (props.indexPosition ?: 1) * 2 } // 2 is the number of stacked items in the component
 
     flexColumn {
-        css {
-            props.additionalStyle?.invoke(this)
-        }
-        flexRow {
-            css {
-                zIndex = 90 - indexPosition
-                width = 100.pct
-                backgroundColor = props.backgroundColor
-                put("clip-path", "polygon(0% 2rem, 100% 0%, 100% calc(100% - 4rem), 0% 100%)")
-            }
+        css { props.additionalStyle?.invoke(this) }
 
-            when (props.illustration?.position) {
-                Illus.Position.CENTER ->
-                    child(ContentRowIllustration) {
-                        attrs.illustration = props.illustration!!
-                    }
-                else -> {
-                    if(illusGoesLeft) child(ContentRowIllustration) { attrs.illustration = props.illustration!! }
+       styledDiv {
+           css {
+               zIndex = 90 - indexPosition
+               +kodein.dropShadow
+           }
 
-                    styledDiv {
-                        css {
-                            flexGrow = if (props.illustration != null) 70.0 else 1.0
-                            flexBasis = FlexBasis.zero
-                            margin(LinearDimension.auto, 2.rem)
+            flexRow {
+                css {
+                    width = 100.pct
+                    backgroundColor = props.backgroundColor
+                    put("clip-path", "polygon(0% 2rem, 100% 0%, 100% calc(100% - 4rem), 0% 100%)")
+                }
 
-                            maxWidth(1280) {
-                                margin(8.rem, 2.rem)
+                when (props.illustration?.position) {
+                    Illus.Position.CENTER ->
+                        child(ContentRowIllustration) {
+                            attrs.illustration = props.illustration!!
+                        }
+                    else -> {
+                        if (illusGoesLeft) child(ContentRowIllustration) { attrs.illustration = props.illustration!! }
+
+                        styledDiv {
+                            css {
+                                flexGrow = if (props.illustration != null) 70.0 else 1.0
+                                flexBasis = FlexBasis.zero
+                                margin(LinearDimension.auto, 2.rem)
+
+                                maxWidth(1280) {
+                                    margin(8.rem, 2.rem)
+                                }
                             }
+
+                            props.children()
                         }
 
-                        props.children()
+                        if (illusGoesRight) child(ContentRowIllustration) { attrs.illustration = props.illustration!! }
                     }
-
-                    if(illusGoesRight) child(ContentRowIllustration) { attrs.illustration = props.illustration!! }
                 }
             }
         }
 
         if (props.bottomLayers.isNotEmpty()) {
-            flexRow {
+            styledDiv {
                 css {
+                    width = 100.pct
                     zIndex = 89 - indexPosition
                     marginTop = (-4).rem
                 }
