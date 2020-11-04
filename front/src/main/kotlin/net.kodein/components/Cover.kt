@@ -23,12 +23,14 @@ interface CoverProps : RProps {
     var colors  : CoverPalette
     var overTitle: String
     var title: RBuilder.() -> Unit
+    var css: RuleSet?
 }
 
 val Cover = functionalComponent<CoverProps>("Cover") { props ->
     flexColumn {
         css {
             backgroundColor = props.colors.backgroundColor
+            props.css?.invoke(this)
         }
 
         styledP {

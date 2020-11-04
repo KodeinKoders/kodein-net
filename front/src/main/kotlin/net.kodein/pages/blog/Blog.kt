@@ -1,13 +1,13 @@
 package net.kodein.pages.blog
 
-import kotlinx.css.Color
-import kotlinx.css.height
-import kotlinx.css.rem
+import kotlinx.css.*
+import kotlinx.css.properties.*
 import net.kodein.charter.kodein
 import net.kodein.components.*
 import net.kodein.pages.blog.fragment.EntryList
 import react.RProps
 import react.child
+import react.dom.a
 import react.dom.br
 import react.functionalComponent
 import styled.styledDiv
@@ -51,18 +51,33 @@ val Blog = functionalComponent<RProps> {
             colors = CoverPalette(
                 backgroundColor = Color.kodein.dark,
                 secondary = Color.kodein.orange,
-//                layers = listOf(Color.kodein.orange, Color.kodein.kinzolin, Color.kodein.kaumon)
                 layers = listOf(Color.kodein.orange, Color.kodein.kaumon, Color.kodein.kinzolin)
             )
+            css = {
+                "a" {
+                    display = Display.inlineBlock
+
+//                    textDecoration(TextDecorationLine.underline)
+                    borderBottom(0.15.rem, BorderStyle.solid, Color.currentColor)
+                    lineHeight = 0.85.em.lh
+                    put("text-shadow", "0.03em 0.03em ${Color.kodein.dark}, 0.03em -0.03em ${Color.kodein.dark}, -0.03em 0.03em ${Color.kodein.dark}, -0.03em -0.03em ${Color.kodein.dark}")
+                }
+            }
             overTitle = "Want more?"
             title = {
-                +"Check our Medium."
+                +"Check our "
+                a(href = "https://medium.com/kodein-koders", target = "_blank") { +"Medium page" }
+                +"."
             }
         }
 
         +"Keep us close through our social media accounts."
         br {}
-        +"Follow us on Twitter & LinkedIn."
+        +"Follow us on "
+        a(href = "https://twitter.com/KodeinKoders", target = "_blank") { +"Twitter" }
+        +" & "
+        a(href = "https://www.linkedin.com/company/kodein", target = "_blank") { +"Linkedin" }
+        +"!"
     }
 
     styledDiv { css.height = 10.rem }

@@ -76,6 +76,7 @@ val KodeinLogo = functionalComponent<KodeinLogoProps>("KodeinLogo") { props ->
                         marginTop = (-0.25).em
 
                         maxWidth(440) { fontSize = 0.6.em }
+                        maxWidth(350) { fontSize = 0.54.em }
                     }
                     +subtitle
                 }
