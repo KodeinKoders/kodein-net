@@ -8,6 +8,7 @@ import kotlinx.css.properties.transition
 import net.kodein.charter.kodein
 import net.kodein.pages.blog.Blog
 import net.kodein.pages.home.Home
+import net.kodein.pages.oss.Oss
 import net.kodein.pages.services.Services
 import net.kodein.pages.training.Training
 import net.kodein.utils.maxSize
@@ -50,16 +51,17 @@ val appGlobalStyle: CSSBuilder.() -> Unit = {
 }
 
 data class Page<P : RProps>(
-        val id: String,
-        val component: () -> FunctionalComponent<P>,
-        val props: P.() -> Unit = {}
+    val id: String,
+    val component: () -> FunctionalComponent<P>,
+    val props: P.() -> Unit = {}
 )
 
 val appPages = listOf(
-        Page("index", { Home }),
-        Page("services", { Services } ),
-        Page("training", { Training } ),
-        Page("blog", { Blog } ),
+    Page("index", { Home }),
+    Page("services", { Services } ),
+    Page("training", { Training } ),
+    Page("oss", { Oss } ),
+    Page("blog", { Blog } ),
 )
 
 fun renderApp() {

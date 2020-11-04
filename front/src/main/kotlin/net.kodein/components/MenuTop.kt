@@ -1,5 +1,6 @@
 package net.kodein.components
 
+import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
@@ -7,6 +8,7 @@ import net.kodein.charter.kodein
 import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.events.EventListener
+import org.w3c.dom.get
 import react.*
 import react.dom.a
 import react.dom.span
@@ -281,6 +283,14 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
                         opacity = 1.0
                     }
                 }
+
+                "&.current" {
+                    "span.underline" {
+                        marginLeft = 0.pct
+                        width = 100.pct
+                        opacity = 1.0
+                    }
+                }
             }
 
             if (props.isMobile) {
@@ -294,27 +304,29 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
             }
         }
 
-        a(href = "services.html") {
+        val currentPage = document.getElementById("page")?.attributes?.get("data-page")?.value
+
+        a(href = "services.html", classes = if (currentPage == "services") "current" else null) {
             span("text") { +"SERVICES" }
             span("underline") {}
         }
-        a(href = "training.html") {
+        a(href = "training.html", classes = if (currentPage == "training") "current" else null) {
             span("text") { +"TRAINING" }
             span("underline") {}
         }
-        a(href = "") {
+        a(href = "oss.html", classes = if (currentPage == "oss") "current" else null) {
             span("text") { +"OSS" }
             span("underline") {}
         }
-        a(href = "") {
+        a(href = "", classes = if (currentPage == "team") "current" else null) {
             span("text") { +"TEAM" }
             span("underline") {}
         }
-        a(href = "blog.html") {
+        a(href = "blog.html", classes = if (currentPage == "blog") "current" else null) {
             span("text") { +"BLOG" }
             span("underline") {}
         }
-        a(href = "") {
+        a(href = "", classes = if (currentPage == "contact") "current" else null) {
             span("text") { +"CONTACT" }
             span("underline") {}
         }

@@ -53,16 +53,6 @@ val Blog = functionalComponent<RProps> {
                 secondary = Color.kodein.orange,
                 layers = listOf(Color.kodein.orange, Color.kodein.kaumon, Color.kodein.kinzolin)
             )
-            css = {
-                "a" {
-                    display = Display.inlineBlock
-
-//                    textDecoration(TextDecorationLine.underline)
-                    borderBottom(0.15.rem, BorderStyle.solid, Color.currentColor)
-                    lineHeight = 0.85.em.lh
-                    put("text-shadow", "0.03em 0.03em ${Color.kodein.dark}, 0.03em -0.03em ${Color.kodein.dark}, -0.03em 0.03em ${Color.kodein.dark}, -0.03em -0.03em ${Color.kodein.dark}")
-                }
-            }
             overTitle = "Want more?"
             title = {
                 +"Check our "

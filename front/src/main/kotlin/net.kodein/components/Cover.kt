@@ -2,6 +2,7 @@ package net.kodein.components
 
 import kotlinx.css.*
 import kotlinx.css.properties.borderBottom
+import kotlinx.css.properties.lh
 import net.kodein.charter.kodein
 import net.kodein.utils.*
 import react.RBuilder
@@ -23,14 +24,19 @@ interface CoverProps : RProps {
     var colors  : CoverPalette
     var overTitle: String
     var title: RBuilder.() -> Unit
-    var css: RuleSet?
 }
 
 val Cover = functionalComponent<CoverProps>("Cover") { props ->
     flexColumn {
         css {
             backgroundColor = props.colors.backgroundColor
-            props.css?.invoke(this)
+            "a" {
+                display = Display.inlineBlock
+
+                borderBottom(0.15.rem, BorderStyle.solid, Color.currentColor)
+                lineHeight = 0.85.em.lh
+                put("text-shadow", "0.03em 0.03em ${Color.kodein.dark}, 0.03em -0.03em ${Color.kodein.dark}, -0.03em 0.03em ${Color.kodein.dark}, -0.03em -0.03em ${Color.kodein.dark}")
+            }
         }
 
         styledP {
