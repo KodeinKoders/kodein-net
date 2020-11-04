@@ -17,25 +17,12 @@ interface LayerSeparatorProps : RProps {
     var colors: List<Color>
 }
 
-fun RBuilder.layerSeparatorAbsolute(vararg colors: Color) {
-    styledDiv {
-        css {
-            position = Position.absolute
-            width = 100.pct
-            marginTop = (-1).px
-        }
-
-        child(LayerSeparator) {
-            attrs.colors = colors.toList()
-        }
-    }
-
-}
-
 fun RBuilder.layerSeparator(position: Position, vararg colors: Color) {
     child(LayerSeparator) {
-        attrs.position = position
-        attrs.colors = colors.toList()
+        attrs {
+            this.position = position
+            this.colors = colors.toList()
+        }
     }
 }
 
