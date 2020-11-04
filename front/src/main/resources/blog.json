@@ -12,6 +12,7 @@
   {
     "title": "Using C in Kotlin - mDevCamp 2020",
     "image": "https://img.youtube.com/vi/WlNzx6GEpkM/0.jpg",
+    "imageScale": 1.35,
     "url": "https://www.youtube.com/watch?v=WlNzx6GEpkM"
   },
   {
@@ -42,11 +43,13 @@
   {
     "title": "Cloud moderne en Kotlin! - Talking.Kt",
     "image": "https://img.youtube.com/vi/sAn6OQEHoeI/0.jpg",
+    "imageScale": 1.35,
     "url": "https://www.youtube.com/watch?v=sAn6OQEHoeI"
   },
   {
     "title": "Embedded NoSQL Data Persistence, Everywhere - KotlinConf",
     "image": "https://img.youtube.com/vi/2mpzbFxUkAE/0.jpg",
+    "imageScale": 1.35,
     "url": "https://www.youtube.com/watch?v=2mpzbFxUkAE"
   }
 ]

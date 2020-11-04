@@ -20,7 +20,7 @@ data class CoverPalette(
 )
 
 interface CoverProps : RProps {
-    var colors: CoverPalette
+    var colors  : CoverPalette
     var overTitle: String
     var title: RBuilder.() -> Unit
 }

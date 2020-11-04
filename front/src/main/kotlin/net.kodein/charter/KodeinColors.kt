@@ -19,11 +19,11 @@ object KodeinColors {
 
     /*
                     Dark
-         Kyzanthium      Krouille
-         Kinzolin        Kuivre
-         Purple          Orange
-         Kamethiste      Korail
-         Klycine         Kaumon
+         kyzantium       krouille
+         kinzolin        kuivre
+      purple                orange
+         kamethiste      korail
+         klycine         kaumon
                     Cute
      */
 

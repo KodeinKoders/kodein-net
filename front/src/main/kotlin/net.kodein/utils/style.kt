@@ -16,6 +16,9 @@ fun CSSBuilder.minHeight(min: Int, block: RuleSet): Rule = media("(min-height: $
 fun CSSBuilder.maxSize(max: Int, block: RuleSet): Rule = media("(max-width: ${max}px), (max-height: ${max}px)", block)
 fun CSSBuilder.minSize(min: Int, block: RuleSet): Rule = media("(min-height: ${min}px), (min-width: ${min}px)", block)
 
+fun CSSBuilder.minWidth(max: LinearDimension, block: RuleSet): Rule = media("(min-width: $max)", block)
+
+
 val FontWeight.Companion.hairline get() = w100
 val FontWeight.Companion.ultraLight get() = w200
 val FontWeight.Companion.light get() = w300

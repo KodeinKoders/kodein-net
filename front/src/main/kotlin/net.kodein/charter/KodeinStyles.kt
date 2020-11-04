@@ -4,6 +4,8 @@ import kotlinx.css.*
 import kotlinx.css.LinearDimension.Companion.auto
 import kotlinx.css.properties.boxShadow
 import kotlinx.css.properties.lh
+import kotlinx.css.properties.s
+import kotlinx.css.properties.transition
 import net.kodein.utils.*
 import styled.StyleSheet
 
@@ -113,7 +115,11 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
 
         img {
             opacity = 0.8
+            transition(::opacity, 0.5.s)
         }
+
+        transition(::backgroundColor, 0.5.s)
+        transition(::color, 0.5.s)
 
         hover {
             backgroundColor = Color.kodein.kuivre

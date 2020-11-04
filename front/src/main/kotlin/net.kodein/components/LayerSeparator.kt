@@ -76,6 +76,7 @@ val LayerSeparator = functionalComponent<LayerSeparatorProps>("LayerSeparator") 
             position = props.position
             maxWidth(1024) { height = 8.rem }
             maxWidth(516) { height = 6.rem }
+            pointerEvents = PointerEvents.none
         }
 
         params.forEachIndexed { index, layerParams ->

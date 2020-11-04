@@ -1,16 +1,16 @@
 package net.kodein.pages.blog
 
 import kotlinx.css.Color
+import kotlinx.css.height
 import kotlinx.css.rem
 import net.kodein.charter.kodein
-import net.kodein.components.Cover
-import net.kodein.components.CoverPalette
-import net.kodein.components.MenuTop
-import net.kodein.pages.blog.fragment.ElementList
+import net.kodein.components.*
+import net.kodein.pages.blog.fragment.EntryList
 import react.RProps
 import react.child
 import react.dom.br
 import react.functionalComponent
+import styled.styledDiv
 
 
 val Blog = functionalComponent<RProps> {
@@ -44,6 +44,31 @@ val Blog = functionalComponent<RProps> {
                 |Have a look!""".trimMargin()
     }
 
-    child(ElementList)
+    child(EntryList)
+
+    child(Cover) {
+        attrs {
+            colors = CoverPalette(
+                backgroundColor = Color.kodein.dark,
+                secondary = Color.kodein.orange,
+//                layers = listOf(Color.kodein.orange, Color.kodein.kinzolin, Color.kodein.kaumon)
+                layers = listOf(Color.kodein.orange, Color.kodein.kaumon, Color.kodein.kinzolin)
+            )
+            overTitle = "Want more?"
+            title = {
+                +"Check our Medium."
+            }
+        }
+
+        +"Keep us close through our social media accounts."
+        br {}
+        +"Follow us on Twitter & LinkedIn."
+    }
+
+    styledDiv { css.height = 10.rem }
+
+    child(ContactUs)
+
+    child(Footer)
 
 }
