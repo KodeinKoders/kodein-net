@@ -1,0 +1,55 @@
+[
+  {
+    "title": "Announcing a painless Kotlin/Multiplatform NoSQL embedded database",
+    "image": "https://miro.medium.com/max/1000/1*8X7-lbtcijsnHPVgzqfLHQ.png",
+    "url": "https://medium.com/kodein-koders/announcing-a-painless-kotlin-multiplatform-nosql-embedded-database-30fed677549c"
+  },
+  {
+    "title": "Dependency Injection on Kotlin/Multiplatform — Part 3: iOS and Android",
+    "image": "https://miro.medium.com/max/700/0*qjp37mMOBXdIdH-2",
+    "url": "https://medium.com/kodein-koders/dependency-injection-on-kotlin-multiplatform-part-3-ios-and-android-da77879da1bb"
+  },
+  {
+    "title": "Using C in Kotlin - mDevCamp 2020",
+    "image": "https://img.youtube.com/vi/WlNzx6GEpkM/0.jpg",
+    "imageScale": 1.35,
+    "url": "https://www.youtube.com/watch?v=WlNzx6GEpkM"
+  },
+  {
+    "title": "Dependency Injection on Kotlin/Multiplatform — Part 2 : Test and build",
+    "image": "https://miro.medium.com/max/700/0*Za_X2oTz9afo2b3s",
+    "url": "https://medium.com/kodein-koders/dependency-injection-on-kotlin-multiplatform-part-2-test-and-build-b2e155c0824b"
+  },
+  {
+    "title": "Native dependency in Kotlin/Multiplatform — part 2: JNI for JVM & Android",
+    "image": "https://miro.medium.com/max/700/0*-KXLOTRy0uqQjqNr",
+    "url": "https://medium.com/kodein-koders/native-dependency-in-kotlin-multiplatform-part-2-jni-for-jvm-android-c7a2a44898ad"
+  },
+  {
+    "title": "Dependency Injection on Kotlin/Multiplatform — Part 1: Factorize your code",
+    "image": "https://miro.medium.com/max/700/0*67kDRQPVt2vpt4ID",
+    "url": "https://medium.com/kodein-koders/dependency-injection-on-kotlin-multiplatform-part-1-factorize-your-code-f299dd2a5d04"
+  },
+  {
+    "title": "Native dependency in Kotlin/Multiplatform — part 1 : architecture",
+    "image": "https://miro.medium.com/max/1000/0*TjGx4uYdW0VhtGs-",
+    "url": "https://medium.com/kodein-koders/native-dependency-in-kotlin-multiplatform-part-1-architecture-7fb9ded56bf1"
+  },
+  {
+    "title": "Kodein-DI v7.0 is out!",
+    "image": "https://miro.medium.com/max/700/1*XwGtGza4woDwXj3VBlVx1A.png",
+    "url": "https://medium.com/kodein-koders/kodein-di-v7-0-is-out-c1b388ce80d"
+  },
+  {
+    "title": "Cloud moderne en Kotlin! - Talking.Kt",
+    "image": "https://img.youtube.com/vi/sAn6OQEHoeI/0.jpg",
+    "imageScale": 1.35,
+    "url": "https://www.youtube.com/watch?v=sAn6OQEHoeI"
+  },
+  {
+    "title": "Embedded NoSQL Data Persistence, Everywhere - KotlinConf",
+    "image": "https://img.youtube.com/vi/2mpzbFxUkAE/0.jpg",
+    "imageScale": 1.35,
+    "url": "https://www.youtube.com/watch?v=2mpzbFxUkAE"
+  }
+]
