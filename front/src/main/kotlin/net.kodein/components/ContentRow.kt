@@ -91,10 +91,10 @@ val ContentRow = functionalComponent<ContentRowProps>("ContentRow") { props ->
                             css {
                                 flexGrow = if (props.illustration != null) 70.0 else 1.0
                                 flexBasis = FlexBasis.zero
-                                margin(LinearDimension.auto, 2.rem)
+                                padding(8.rem, 2.rem)
 
-                                maxWidth(1280) {
-                                    margin(8.rem, 2.rem)
+                                minWidth(1024) {
+                                    margin(LinearDimension.auto)
                                 }
                             }
 

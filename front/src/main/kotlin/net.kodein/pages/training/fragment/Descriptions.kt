@@ -1,20 +1,16 @@
 package net.kodein.pages.training.fragment
 
-import kotlinx.browser.window
 import kotlinx.css.*
-import kotlinx.css.LinearDimension.Companion.auto
-import kotlinx.html.classes
 import net.kodein.charter.kodein
 import net.kodein.components.contentRow
 import net.kodein.components.imageRow
-import net.kodein.components.layerSeparator
-import net.kodein.utils.*
-import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.events.Event
-import react.*
+import net.kodein.utils.Illus
+import net.kodein.utils.flexColumn
+import net.kodein.utils.light
+import net.kodein.utils.maxWidth
+import react.RProps
+import react.functionalComponent
 import styled.css
-import styled.styledDiv
-import styled.styledImg
 import styled.styledP
 
 val Description = functionalComponent<RProps>("Description") {

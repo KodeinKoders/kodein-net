@@ -3,7 +3,9 @@ package net.kodein.pages.training.fragment
 import kotlinx.css.*
 import kotlinx.css.LinearDimension.Companion.auto
 import net.kodein.charter.kodein
+import net.kodein.components.contentRow
 import net.kodein.components.layerSeparator
+import net.kodein.utils.Illus
 import net.kodein.utils.flexColumn
 import net.kodein.utils.flexRow
 import net.kodein.utils.light
@@ -14,55 +16,57 @@ import styled.styledDiv
 import styled.styledP
 
 val Trainings = functionalComponent<RProps>("Trainings") {
-    flexColumn {
-        styledDiv {
-            css {
-                zIndex = 15
-                +kodein.dropShadow
-            }
 
-            flexRow {
+    contentRow(
+        backgroundColor = Color.kodein.dark, indexPosition = 3, // see [Description] that stops at index 2
+        bottomLayers = listOf(Color.kodein.orange, Color.kodein.kaumon),
+        additionalStyle = { marginBottom = 8.rem }
+    ) {
+        flexColumn {
+            styledP {
                 css {
-                    width = 100.pct
-                    backgroundColor = Color.kodein.dark
-                    put("clip-path", "polygon(0% 5%, 100% 0%, 100% calc(100% - 4rem), 0% 100%)")
+                    +kodein.chapo
+                    specific {
+                        fontWeight = FontWeight.light
+                        textAlign = TextAlign.center
+                    }
+                    color = Color.kodein.korail
+                    alignSelf = Align.center
+                    maxWidth = 60.rem
                 }
 
-                flexColumn {
-                    css {
-                        margin(auto)
-                        padding(8.rem, 4.rem)
+                +"// TODO"
+            }
 
-//                        maxWidth(980) {
-//                            padding(8.rem, 0.rem, 4.rem, 0.rem)
-//                        }
+            styledP {
+                css {
+                    +kodein.intertitre
+                    specific {
+                        fontWeight = FontWeight.light
+                        textAlign = TextAlign.center
                     }
-
-                    styledP {
-                        css {
-                            +kodein.chapo
-                            specific {
-                                fontWeight = FontWeight.light
-                                textAlign = TextAlign.center
-                            }
-                            color = Color.kodein.kaumon
-                            alignSelf = Align.center
-                            maxWidth = 60.rem
-                        }
-
-                        +"// TODO"
-                    }
+                    color = Color.kodein.kaumon
+                    alignSelf = Align.center
+                    maxWidth = 60.rem
                 }
-            }
-        }
 
-        styledDiv {
-            css {
-                zIndex = 14
-                marginTop = (-4).rem
+                +"// TODO"
             }
 
-            layerSeparator(Position.absolute, Color.kodein.orange, Color.kodein.kaumon)
+            styledP {
+                css {
+                    +kodein.body
+                    specific {
+                        fontWeight = FontWeight.light
+                        textAlign = TextAlign.center
+                    }
+                    color = Color.kodein.korail
+                    alignSelf = Align.center
+                    maxWidth = 60.rem
+                }
+
+                +"// TODO"
+            }
         }
     }
 }
