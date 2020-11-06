@@ -62,16 +62,16 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
     }
 
     val chapo by css {
-        fontSize = 1.8.rem
+        fontSize = 2.rem
         lineHeight = 1.25.em.lh
         letterSpacing = 0.05.em
         fontFamily = picon
         fontWeight = FontWeight.regular
         textAlign = TextAlign.start
 
-        maxSize(980) { fontSize = 1.6.rem  }
-        maxSize(775) { fontSize = 1.4.rem  }
-        maxSize(570) { fontSize = 1.2.rem  }
+        maxSize(980) { fontSize = 1.8.rem  }
+        maxSize(775) { fontSize = 1.6.rem  }
+        maxSize(570) { fontSize = 1.4.rem  }
     }
 
     val intertitre by css {

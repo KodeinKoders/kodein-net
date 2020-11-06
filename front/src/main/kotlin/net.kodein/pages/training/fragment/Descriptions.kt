@@ -33,10 +33,6 @@ val Description = functionalComponent<RProps>("Description") {
             styledP {
                 css {
                     +kodein.chapo
-                    specific {
-                        fontWeight = FontWeight.light
-                        textAlign = TextAlign.center
-                    }
                     color = Color.kodein.korail
                     alignSelf = Align.center
                     maxWidth = 60.rem
@@ -48,10 +44,6 @@ val Description = functionalComponent<RProps>("Description") {
             styledP {
                 css {
                     +kodein.intertitre
-                    specific {
-                        fontWeight = FontWeight.light
-                        textAlign = TextAlign.center
-                    }
                     color = Color.kodein.kaumon
                     alignSelf = Align.center
                     maxWidth = 60.rem
@@ -63,10 +55,6 @@ val Description = functionalComponent<RProps>("Description") {
             styledP {
                 css {
                     +kodein.body
-                    specific {
-                        fontWeight = FontWeight.light
-                        textAlign = TextAlign.center
-                    }
                     color = Color.kodein.korail
                     alignSelf = Align.center
                     maxWidth = 60.rem

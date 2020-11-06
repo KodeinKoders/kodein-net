@@ -1,5 +1,6 @@
 package net.kodein.components
 
+import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
@@ -241,19 +242,15 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
     val foregroundColor = if (props.isMobile)  Color.kodein.kinzolin else  Color.kodein.orange
     val justify = if (props.isMobile) JustifyContent.flexStart else JustifyContent.flexEnd
 
-    val menuDiv = useRef<HTMLDivElement?>(null)
     var currentPage by useState("home")
 
     useEffect {
-        val ownerDocument = menuDiv.current!!.ownerDocument!!
-        val element = ownerDocument.getElementById("page")
+        val element = document.getElementById("page")
         val page = element?.attributes?.get("data-page")?.value
-
         page?.let { currentPage = it }
     }
 
     flexRow(alignItems = Align.stretch) {
-        ref = menuDiv
         css {
             color = foregroundColor
             fontWeight = FontWeight.w700
