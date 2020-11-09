@@ -73,7 +73,7 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
                     minWidth = LinearDimension.fitContent
                     paddingRight = 1.rem
 
-                    transition(::opacity, duration = .2.s, Timing.linear)
+                    transition(::opacity, duration = .5.s, Timing.linear)
                     opacity = if (isOpen) 1 else 0
                 }
 
@@ -88,7 +88,7 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
             css {
                 overflow = Overflow.hidden
 
-                transition(::opacity, duration = .3.s, Timing.linear)
+                transition(::opacity, duration = .5.s, Timing.linear)
 
                 if (isOpen) {
                     maxHeight = 50.rem
@@ -145,6 +145,7 @@ private val Chevron = functionalComponent<ChevronProps>("Chevron") { props ->
                 width = 51.pct
                 backgroundColor = Color.kodein.klycine.withAlpha(0.75)
                 transform { skew(0.deg, (30).deg); }
+                transition("transform", duration = 0.5.s)
             }
             "span.chevron:after" {
                 content = QuotedString("")
@@ -155,6 +156,7 @@ private val Chevron = functionalComponent<ChevronProps>("Chevron") { props ->
                 width = 50.pct
                 backgroundColor = Color.kodein.klycine.withAlpha(0.75)
                 transform { skew(0.deg, (-30).deg); }
+                transition("transform", 0.5.s)
             }
             "span.chevron.up:before" {
                 transform { skew(0.deg, (-30).deg); }
