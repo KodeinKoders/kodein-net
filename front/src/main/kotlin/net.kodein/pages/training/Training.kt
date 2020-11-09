@@ -36,14 +36,11 @@ val Training = functionalComponent<RProps>("Training") {
                     br {}
                     +""" "JetBrains Certified Trainer" """
                     br {}
-                    styledImg(src = "imgs/logo-kaumon.svg") {
+                    styledImg(src = "imgs/badge-orange.svg") {
                         css {
-                            width = 2.rem
-                            height = 2.rem
-                            padding(0.5.rem)
+                            width = 10.rem
+                            height = 10.rem
                             marginTop = 1.rem
-                            border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
-                            cursor = Cursor.pointer
                         }
                     }
                 }
