@@ -1,8 +1,10 @@
 package net.kodein.pages.oss.fragment
 
+import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
 import kotlinx.html.DIV
+import kotlinx.html.classes
 import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
 import net.kodein.utils.*
@@ -43,6 +45,7 @@ private fun RBuilder.pie(diameter: LinearDimension, delta: LinearDimension, insi
 private interface SliceProps : RProps {
     var ratio: Double
     var pos: Int
+    var selected: Boolean
     var onEnter: () -> Unit
 }
 
@@ -60,6 +63,7 @@ private val Slice = functionalComponent<SliceProps> { props ->
     }
 
     styledDiv {
+        attrs.classes += "slice"
         ref = div
         css {
             position = Position.absolute
@@ -70,7 +74,7 @@ private val Slice = functionalComponent<SliceProps> { props ->
             textAlign = TextAlign.center
             cursor = Cursor.pointer
             transition(::backgroundColor, 1.s)
-            hover { backgroundColor = Color.kodein.kyzantium }
+            if (props.selected) specific(3) { backgroundColor = Color.kodein.kyzantium }
 
             if (props.ratio < 1.0) {
                 val angle = 2 * PI * props.ratio
@@ -107,6 +111,17 @@ private val Slice = functionalComponent<SliceProps> { props ->
     }
 }
 
+private fun RBuilder.slice(ratio: Double, pos: Int, selected: Boolean, onEnter: () -> Unit, inside: RBuilder.() -> Unit) {
+    child(Slice) {
+        attrs.ratio = ratio
+        attrs.pos = pos
+        attrs.selected = selected
+        attrs.onEnter = onEnter
+
+        inside()
+    }
+}
+
 private fun RBuilder.simpleText(txt: String, reverse: Boolean = false) {
     styledSpan {
         css {
@@ -117,16 +132,6 @@ private fun RBuilder.simpleText(txt: String, reverse: Boolean = false) {
         +txt
     }
 
-}
-
-private fun RBuilder.slice(ratio: Double, pos: Int, onEnter: () -> Unit, inside: RBuilder.() -> Unit) {
-    child(Slice) {
-        attrs.ratio = ratio
-        attrs.pos = pos
-        attrs.onEnter = onEnter
-
-        inside()
-    }
 }
 
 private fun RBuilder.line(ratio: Double) {
@@ -313,7 +318,50 @@ private val texts = mapOf(
 
 
 val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
-    var selected by useState<String?>(null)
+    val order by useState { texts.keys.shuffled() }
+
+    var selected by useState(order[0])
+    val bigPie = useRef<HTMLDivElement?>(null)
+    var tick by useState(0)
+
+    useEffectWithCleanup(emptyList()) {
+        var handle: Int? = null
+
+        var t = 0
+        val onInterval = {
+            t += 1
+            tick = t
+//            val index = order.indexOf(selected)
+//            selected = order[(index + 1) % order.size]
+        }
+
+        val onEnter: (Event?) -> Unit = {
+            handle?.let { window.clearInterval(it) }
+            handle = null
+        }
+
+        val onLeave: (Event?) -> Unit = {
+            handle?.let { window.clearInterval(it) }
+            handle = window.setInterval(onInterval, 4200)
+        }
+
+        bigPie.current!!.addEventListener("mouseenter", onEnter)
+        bigPie.current!!.addEventListener("mouseleave", onLeave)
+
+        onLeave(null)
+
+        ({
+            handle?.let { window.clearInterval(it) }
+            bigPie.current!!.removeEventListener("mouseenter", onEnter)
+            bigPie.current!!.removeEventListener("mouseleave", onLeave)
+        })
+    }
+
+    useEffect(listOf(tick)) {
+        if (tick == 0) return@useEffect
+        val index = order.indexOf(selected)
+        selected = order[(index + 1) % order.size]
+    }
 
     flexColumn {
         css {
@@ -371,22 +419,24 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
             }
 
             styledDiv {
+                ref = bigPie
                 css {
                     position = Position.relative
                     width = 34.rem
                     height = 34.rem
+                    put("clip-path", "circle()")
                 }
 
                 pie(34.rem, 0.rem) {
                     css {
-                        backgroundColor = Color.kodein.cute
+                        "div.slice" { backgroundColor = Color.kodein.cute }
                         color = Color.kodein.orange
                     }
 
-                    slice(1.0 / 3.0, 0, { selected = "web" }) { simpleText("Web") }
-                    slice(1.0 / 3.0, 1, { selected = "ios" }) { simpleText("iOS", reverse = true) }
-                    slice(1.0 / 6.0, 4, { selected = "desktop" }) { simpleText("Desktop") }
-                    slice(1.0 / 6.0, 5, { selected = "android" }) { simpleText("Android") }
+                    slice(1.0 / 3.0, 0, selected == "web", { selected = "web" }) { simpleText("Web") }
+                    slice(1.0 / 3.0, 1, selected == "ios", { selected = "ios" }) { simpleText("iOS", reverse = true) }
+                    slice(1.0 / 6.0, 4, selected == "desktop", { selected = "desktop" }) { simpleText("Desktop") }
+                    slice(1.0 / 6.0, 5, selected == "android", { selected = "android" }) { simpleText("Android") }
 
                     line(0.0)
                     line(1.0 / 3.0)
@@ -396,13 +446,13 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
 
                 pie(27.rem, 3.5.rem) {
                     css {
-                        backgroundColor = Color.kodein.kaumon
+                        "div.slice" { backgroundColor = Color.kodein.kaumon }
                         color = Color.kodein.orange
                     }
 
-                    slice(1.0 / 3.0, 0, { selected = "kotlin-js" }) { simpleText("Kotlin/JS") }
-                    slice(1.0 / 3.0, 1, { selected = "kotlin-native" }) { simpleText("Kotlin/Native", reverse = true) }
-                    slice(1.0 / 3.0, 2, { selected = "kotlin-jvm" }) { simpleText("Kotlin/JVM") }
+                    slice(1.0 / 3.0, 0, selected == "kotlin-js", { selected = "kotlin-js" }) { simpleText("Kotlin/JS") }
+                    slice(1.0 / 3.0, 1, selected == "kotlin-native", { selected = "kotlin-native" }) { simpleText("Kotlin/Native", reverse = true) }
+                    slice(1.0 / 3.0, 2, selected == "kotlin-jvm", { selected = "kotlin-jvm" }) { simpleText("Kotlin/JVM") }
 
                     line(0.0)
                     line(1.0 / 3.0)
@@ -411,20 +461,20 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
 
                 pie(20.rem, 7.rem) {
                     css {
-                        backgroundColor = Color.kodein.korail
+                        "div.slice" { backgroundColor = Color.kodein.korail }
                         color = Color.kodein.cute
                     }
 
-                    slice(1.0, 0, { selected = "kotlinx" }) { simpleText("Kotlin[X]") }
+                    slice(1.0, 0, selected == "kotlinx", { selected = "kotlinx" }) { simpleText("Kotlin[X]") }
                 }
 
                 pie(13.rem, 10.5.rem) {
                     css {
-                        backgroundColor = Color.kodein.orange
+                        "div.slice" { backgroundColor = Color.kodein.orange }
                         color = Color.kodein.cute
                     }
 
-                    slice(1.0, 0, { selected = "kodein" }) {
+                    slice(1.0, 0, selected == "kodein", { selected = "kodein" }) {
                         flexColumn(JustifyContent.center, Align.center) {
                             css {
                                 width = 100.pct
