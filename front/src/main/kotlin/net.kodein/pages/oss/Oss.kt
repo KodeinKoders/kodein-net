@@ -1,20 +1,21 @@
 package net.kodein.pages.oss
 
-import kotlinx.css.Color
-import kotlinx.css.Position
-import kotlinx.css.height
-import kotlinx.css.rem
+import kotlinx.css.*
 import net.kodein.charter.kodein
 import net.kodein.components.*
 import net.kodein.pages.oss.fragment.FrameworkLayers
 import net.kodein.pages.oss.fragment.FrameworkOnion
+import net.kodein.utils.Illus
+import net.kodein.utils.flexColumn
 import react.RProps
 import react.child
 import react.dom.a
 import react.dom.b
 import react.dom.br
 import react.functionalComponent
+import styled.css
 import styled.styledDiv
+import styled.styledP
 
 
 val Oss = functionalComponent<RProps> {
@@ -48,9 +49,20 @@ val Oss = functionalComponent<RProps> {
             |We are always looking for new ways to contribute to the multiplatform narrative!""".trimMargin()
     }
 
-    child(FrameworkLayers)
+    contentRow(
+        backgroundColor = Color.kodein.kyzantium,
+        illustration = Illus(Illus.Title.OSS, Illus.Position.RIGHT, Illus.Alignment.CENTER),
+        bottomLayers = listOf(Color.kodein.kuivre),
+        additionalStyle = {
+          backgroundColor = Color.kodein.kyzantium
+        },
+        noPadding = true
+    ) {
+        child(FrameworkLayers)
+    }
+//    child(FrameworkLayers)
 
-    layerSeparator(Position.absolute, Color.kodein.kyzantium, Color.kodein.purple)
+//    layerSeparator(Position.absolute, Color.kodein.kyzantium, Color.kodein.purple)
 
     child(FrameworkOnion)
 

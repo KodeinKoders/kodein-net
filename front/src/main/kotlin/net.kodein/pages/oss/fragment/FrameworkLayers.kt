@@ -16,7 +16,7 @@ import styled.*
 val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
     flexColumn {
         css {
-            paddingTop = 10.rem
+            paddingTop = 7.rem
             backgroundColor = Color.kodein.kaumon
         }
 
@@ -168,7 +168,7 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                 +KodeinStyles.body
                 backgroundColor = Color.kodein.kyzantium
                 color = Color.kodein.purple
-                padding(1.em, 2.5.em)
+                padding(1.em, 2.em, 3.em, 2.5.em)
                 boxShadowInset(Color.kodein.kyzantium.darken(30), offsetY = 0.8.rem, blurRadius = 0.5.rem, spreadRadius = (-0.6).rem)
             }
             +"Low-level Android, iOS & Web"
