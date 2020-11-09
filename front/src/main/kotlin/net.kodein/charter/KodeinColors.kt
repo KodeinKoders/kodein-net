@@ -27,7 +27,7 @@ object KodeinColors {
                     Cute
      */
 
-    // Primary
+    // Primarykyzantium
     val orange by Color("#E8441F")
     val purple by Color("#921F81")
 

@@ -1,7 +1,6 @@
 package net.kodein.pages.blog
 
 import kotlinx.css.*
-import kotlinx.css.properties.*
 import net.kodein.charter.kodein
 import net.kodein.components.*
 import net.kodein.pages.blog.fragment.EntryList
@@ -50,7 +49,7 @@ val Blog = functionalComponent<RProps> {
         attrs {
             colors = CoverPalette(
                 backgroundColor = Color.kodein.dark,
-                secondary = Color.kodein.orange,
+                title = Color.kodein.orange,
                 layers = listOf(Color.kodein.orange, Color.kodein.kaumon, Color.kodein.kinzolin)
             )
             overTitle = "Want more?"

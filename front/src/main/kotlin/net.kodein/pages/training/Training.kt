@@ -11,7 +11,6 @@ import react.child
 import react.dom.br
 import react.functionalComponent
 import styled.css
-import styled.styledDiv
 import styled.styledImg
 
 val Training = functionalComponent<RProps>("Training") {
@@ -27,8 +26,8 @@ val Training = functionalComponent<RProps>("Training") {
             attrs {
                 colors = CoverPalette(
                     backgroundColor = Color.kodein.cute,
-                    primary = Color.kodein.korail,
-                    secondary = Color.kodein.kyzantium,
+                    text = Color.kodein.korail,
+                    title = Color.kodein.kyzantium,
                     layers = listOf(Color.kodein.korail, Color.kodein.kaumon, Color.kodein.korail)
                 )
                 overTitle = "Let's share knowledge!"

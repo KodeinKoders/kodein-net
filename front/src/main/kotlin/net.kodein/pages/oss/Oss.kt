@@ -1,17 +1,19 @@
 package net.kodein.pages.oss
 
-import kotlinx.css.*
-import kotlinx.css.properties.borderBottom
-import kotlinx.css.properties.lh
+import kotlinx.css.Color
+import kotlinx.css.Position
+import kotlinx.css.height
+import kotlinx.css.rem
 import net.kodein.charter.kodein
 import net.kodein.components.*
+import net.kodein.pages.oss.fragment.FrameworkLayers
+import net.kodein.pages.oss.fragment.FrameworkOnion
 import react.RProps
 import react.child
 import react.dom.a
 import react.dom.b
 import react.dom.br
 import react.functionalComponent
-import styled.css
 import styled.styledDiv
 
 
@@ -28,6 +30,9 @@ val Oss = functionalComponent<RProps> {
         attrs {
             colors = CoverPalette(
                 backgroundColor = Color.kodein.kyzantium,
+                text = Color.kodein.kaumon,
+                title = Color.kodein.orange,
+                overTitle = Color.kodein.korail,
                 layers = listOf(Color.kodein.krouille, Color.kodein.orange)
             )
             overTitle = "Kodein Framework"
@@ -43,18 +48,17 @@ val Oss = functionalComponent<RProps> {
             |We are always looking for new ways to contribute to the multiplatform narrative!""".trimMargin()
     }
 
-    styledDiv {
-        css {
-            height = 30.rem
-            backgroundColor = Color.kodein.kaumon
-        }
-    }
+    child(FrameworkLayers)
+
+    layerSeparator(Position.absolute, Color.kodein.kyzantium, Color.kodein.purple)
+
+    child(FrameworkOnion)
 
     child(Cover) {
         attrs {
             colors = CoverPalette(
                 backgroundColor = Color.kodein.dark,
-                secondary = Color.kodein.orange,
+                title = Color.kodein.orange,
                 layers = listOf(Color.kodein.orange, Color.kodein.kaumon, Color.kodein.kinzolin)
             )
             overTitle = "Want more?"
@@ -67,7 +71,7 @@ val Oss = functionalComponent<RProps> {
 
         +"Ask us anything about the Open Source "
         b { +"KODEIN" }
-        +"Framework on"
+        +"Framework on "
         a(href = "https://stackoverflow.com/tags/kodein", target = "_blank") { +"Stack Overflow" }
         +", "
         a(href = "https://kotlinlang.slack.com/archives/C0BLU9K96", target = "_blank") { +"Slack" }

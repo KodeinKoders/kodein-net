@@ -15,8 +15,9 @@ import styled.styledSpan
 
 data class CoverPalette(
     val backgroundColor: Color,
-    val primary: Color = Color.kodein.korail,
-    val secondary: Color = Color.kodein.kaumon,
+    val text: Color = Color.kodein.korail,
+    val title: Color = Color.kodein.kaumon,
+    val overTitle: Color = text,
     val layers: List<Color> = listOf(Color.kodein.kyzantium, Color.kodein.orange)
 )
 
@@ -36,6 +37,10 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                 borderBottom(0.15.rem, BorderStyle.solid, Color.currentColor)
                 lineHeight = 0.85.em.lh
                 put("text-shadow", "0.03em 0.03em ${Color.kodein.dark}, 0.03em -0.03em ${Color.kodein.dark}, -0.03em 0.03em ${Color.kodein.dark}, -0.03em -0.03em ${Color.kodein.dark}")
+
+                hover {
+                    color = Color.kodein.purple
+                }
             }
         }
 
@@ -44,14 +49,14 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                 +kodein.display1
                 alignSelf = Align.center
                 textAlign = TextAlign.center
-                color = props.colors.primary
+                color = props.colors.overTitle
                 paddingTop = 6.rem
                 marginBottom = 2.rem
                 maxSize(768) {
                     paddingTop = 2.rem
                     marginBottom = 1.rem
                 }
-                borderBottom(0.05.rem, BorderStyle.solid, Color.kodein.korail)
+                borderBottom(0.05.rem, BorderStyle.solid, props.colors.overTitle)
             }
             +props.overTitle
         }
@@ -70,7 +75,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                         fontSize = 1.6.rem
                     }
                 }
-                color = props.colors.secondary
+                color = props.colors.title
                 margin(1.rem, 2.rem)
             }
             props.title(this)
@@ -82,7 +87,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                 width = 0.05.rem
                 height = 5.rem
                 opacity = .7
-                backgroundColor = props.colors.primary
+                backgroundColor = props.colors.text
                 margin(1.rem, LinearDimension.auto)
                 maxSize(768) {
                     height = 3.rem
@@ -101,7 +106,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                     fontWeight = FontWeight.light
                     textAlign = TextAlign.center
                 }
-                color = props.colors.primary
+                color = props.colors.text
                 width = 65.pct
                 padding(2.rem)
                 alignSelf = Align.center
