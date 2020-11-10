@@ -120,10 +120,12 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
 
         transition(::backgroundColor, 0.5.s)
         transition(::color, 0.5.s)
+        transition(::boxShadow, 0.5.s)
 
         hover {
             backgroundColor = Color.kodein.kuivre
             color = Color.kodein.cute
+            boxShadow(Color.kodein.dark.withAlpha(0.31), offsetY = 0.1.rem, blurRadius = 0.42.rem)
 
             img {
                 opacity = 1
