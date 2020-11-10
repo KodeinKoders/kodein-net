@@ -332,7 +332,7 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
             span("text") { +"BLOG" }
             span("underline") {}
         }
-        a(href = "", classes = if (currentPage == "contact") "current" else null) {
+        a(href = "contact.html", classes = if (currentPage == "contact") "current" else null) {
             span("text") { +"CONTACT" }
             span("underline") {}
         }

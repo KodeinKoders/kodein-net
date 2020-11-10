@@ -7,6 +7,7 @@ import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
 import net.kodein.charter.kodein
 import net.kodein.pages.blog.Blog
+import net.kodein.pages.contact.Contact
 import net.kodein.pages.home.Home
 import net.kodein.pages.oss.Oss
 import net.kodein.pages.services.Services
@@ -62,6 +63,7 @@ val appPages = listOf(
     Page("training", { Training } ),
     Page("oss", { Oss } ),
     Page("blog", { Blog } ),
+    Page("contact", { Contact } ),
 )
 
 fun renderApp() {
