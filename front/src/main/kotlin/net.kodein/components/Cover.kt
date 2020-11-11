@@ -105,7 +105,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
             css {
                 +kodein.display1
                 color = props.colors.text
-                width = 65.pct
+                width = 75.pct
                 padding(2.rem)
                 alignSelf = Align.center
 

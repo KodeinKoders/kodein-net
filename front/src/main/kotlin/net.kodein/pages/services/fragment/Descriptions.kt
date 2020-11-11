@@ -74,10 +74,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
     flexColumn {
         styledP {
             css {
-                +kodein.display1
-                specific {
-                    fontWeight = FontWeight.light
-                }
+                +kodein.intertitre
                 alignSelf = Align.center
                 textAlign = TextAlign.center
                 color = Color.kodein.orange
@@ -89,9 +86,8 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
 
         styledP {
             css {
-                +kodein.chapo
+                +kodein.body
                 specific {
-                    fontWeight = FontWeight.light
                     textAlign = TextAlign.center
                 }
                 color = Color.kodein.kyzantium
