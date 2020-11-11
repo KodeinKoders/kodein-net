@@ -83,6 +83,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                 css {
                     color = Color.kodein.purple
                     +kodein.display1
+                    specific { textAlign = TextAlign.start }
                     padding(0.5.rem, 1.rem)
                 }
                 +props.title.toUpperCase()
