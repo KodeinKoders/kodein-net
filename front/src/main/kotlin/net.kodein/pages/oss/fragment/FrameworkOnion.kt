@@ -9,7 +9,6 @@ import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
 import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLParagraphElement
 import org.w3c.dom.events.Event
 import react.*
 import react.dom.*
@@ -18,16 +17,26 @@ import kotlin.math.PI
 import kotlin.math.tan
 
 
-private fun RBuilder.pie(diameter: LinearDimension, delta: LinearDimension, inside: StyledDOMBuilder<DIV>.() -> Unit) {
+private fun RBuilder.pie(delta: Int, inside: StyledDOMBuilder<DIV>.() -> Unit) {
     styledDiv {
         css {
             position = Position.absolute
-            width = diameter
-            height = diameter
-            left = delta
-            top = delta
-            borderRadius = diameter
+
+            width = (100 - delta * 22).pct
+            height = (100 - delta * 22).pct
+            left = (delta * 11).pct
+            top = (delta * 11).pct
+
+            maxWidth(410) {
+                fontSize = 0.9.rem
+            }
+
+            borderRadius = 100.pct
             boxShadow(Color.black.withAlpha(0.2), blurRadius = 0.5.rem)
+
+            "span.simple-text" {
+                padding(vertical = (4.0 * (100.0 / (100 - delta * 22))).pct)
+            }
         }
 
         styledDiv {
@@ -49,7 +58,7 @@ private interface SliceProps : RProps {
     var onEnter: () -> Unit
 }
 
-private val Slice = functionalComponent<SliceProps> { props ->
+private val Slice = functionalComponent<SliceProps>("Slice") { props ->
     val div = useRef<HTMLDivElement?>(null)
 
     useEffectWithCleanup(emptyList()) {
@@ -124,9 +133,10 @@ private fun RBuilder.slice(ratio: Double, pos: Int, selected: Boolean, onEnter: 
 
 private fun RBuilder.simpleText(txt: String, reverse: Boolean = false) {
     styledSpan {
+        attrs.classes += "simple-text"
         css {
             display = Display.inlineBlock
-            padding(top = 1.4.rem, bottom = 1.1.rem)
+//            padding(top = 1.4.rem, bottom = 1.1.rem)
             if (reverse) transform { rotate(180.deg) }
         }
         +txt
@@ -331,8 +341,6 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
         val onInterval = {
             t += 1
             tick = t
-//            val index = order.indexOf(selected)
-//            selected = order[(index + 1) % order.size]
         }
 
         val onEnter: (Event?) -> Unit = {
@@ -365,8 +373,12 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
 
     flexColumn {
         css {
-            paddingTop = 10.rem
-            background = "linear-gradient(180deg, ${Color.kodein.korail} 75%, ${Color.kodein.dark} 100%)"
+            padding(top = 10.rem, bottom = 5.rem)
+            maxWidth(980) { paddingTop = 7.rem }
+            background = "linear-gradient(180deg, ${Color.kodein.korail} 70%, ${Color.kodein.dark} 100%)"
+            maxWidth(1050) {
+                background = "linear-gradient(180deg, ${Color.kodein.korail} 85%, ${Color.kodein.dark} 100%)"
+            }
         }
 
         styledH2 {
@@ -413,21 +425,34 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
             }
         }
 
-        flexRow(JustifyContent.center, Align.flexStart) {
+        styledDiv {
             css {
+                display = Display.flex
+                flexDirection = FlexDirection.row
+                justifyContent = JustifyContent.center
+                alignItems = Align.flexStart
                 margin(vertical = 5.rem)
+                overflow = Overflow.hidden
+                maxWidth(1050) {
+                    flexDirection = FlexDirection.column
+                    alignItems = Align.center
+                    marginTop = 2.5.rem
+                }
             }
 
             styledDiv {
                 ref = bigPie
                 css {
                     position = Position.relative
-                    width = 34.rem
-                    height = 34.rem
+                    width = 95.vw
+                    height = 95.vw
+                    maxWidth = 34.rem
+                    maxHeight = 34.rem
                     put("clip-path", "circle()")
+                    overflow = Overflow.hidden
                 }
 
-                pie(34.rem, 0.rem) {
+                pie(0) {
                     css {
                         "div.slice" { backgroundColor = Color.kodein.cute }
                         color = Color.kodein.orange
@@ -444,7 +469,7 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                     line(5.0 / 6.0)
                 }
 
-                pie(27.rem, 3.5.rem) {
+                pie(1) {
                     css {
                         "div.slice" { backgroundColor = Color.kodein.kaumon }
                         color = Color.kodein.orange
@@ -459,7 +484,7 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                     line(2.0 / 3.0)
                 }
 
-                pie(20.rem, 7.rem) {
+                pie(2) {
                     css {
                         "div.slice" { backgroundColor = Color.kodein.korail }
                         color = Color.kodein.cute
@@ -468,7 +493,7 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                     slice(1.0, 0, selected == "kotlinx", { selected = "kotlinx" }) { simpleText("Kotlin[X]") }
                 }
 
-                pie(13.rem, 10.5.rem) {
+                pie(3) {
                     css {
                         "div.slice" { backgroundColor = Color.kodein.orange }
                         color = Color.kodein.cute
@@ -489,6 +514,12 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                                     css.fontWeight = FontWeight.semiBold
                                     +"KODEIN"
                                 }
+                                styledBr {
+                                    css {
+                                        display = Display.none
+                                        maxWidth(550) { display = Display.unset }
+                                    }
+                                }
                                 +"Framework"
                             }
                         }
@@ -496,31 +527,119 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                 }
             }
 
-            styledDiv {
-                css {
-                    width = 25.rem
-                    paddingLeft = 4.rem
-                    paddingTop = 6.rem
-                }
-
-                styledH3 {
-                    css {
-                        +KodeinStyles.intertitre
-                        paddingBottom = 1.25.rem
-                        color = Color.kodein.dark
+            childFunction<String, SwipableTextProps>(
+                SwipableText,
+                {
+                    attrs {
+                        contentId = selected
+                        css = {
+                            width = 90.pct
+                            height = 32.rem
+                            maxWidth = 25.rem
+                            margin(top = 3.rem, left = 4.rem)
+                            maxWidth(1050) {
+                                margin(top = 2.5.rem, left = 0.rem)
+                            }
+                        }
                     }
-                    if (selected != null) +texts[selected!!]!!.first
                 }
-
-                styledP {
-                    css {
-                        +KodeinStyles.body
-                        color = Color.kodein.kinzolin
+            ) { contentId ->
+                styledDiv {
+                    styledH3 {
+                        css {
+                            +KodeinStyles.intertitre
+                            paddingBottom = 1.25.rem
+                            color = Color.kodein.dark
+                        }
+                        +texts[contentId]!!.first
                     }
 
-                    if (selected != null) +texts[selected!!]!!.second
+                    styledP {
+                        css {
+                            +KodeinStyles.body
+                            color = Color.kodein.kinzolin
+                        }
+
+                        +texts[contentId]!!.second
+                    }
                 }
             }
         }
     }
+}
+
+private interface SwipableTextProps : RProps {
+    var css: RuleSet?
+    var contentId: String
+}
+
+private val SwipableText = functionalComponent<SwipableTextProps>("SwipableText") { props ->
+
+    var oldContentId: String? by useState(null)
+    var contentId: String? by useState(null)
+
+    var showing: Boolean by useState(false)
+    var tick: Int by useState(0)
+
+    useEffect(listOf(props.contentId)) {
+        oldContentId = contentId
+        contentId = props.contentId
+        showing = false
+        tick += 1
+    }
+
+    useEffect(listOf(contentId)) effect@ {
+        if (contentId == null) return@effect
+        window.setTimeout({ showing = true }, 50)
+    }
+
+    styledDiv {
+        css {
+            props.css?.invoke(this)
+            position = Position.relative
+        }
+        contentId?.let { id ->
+            styledDiv {
+                attrs.key = "$id-$tick"
+                css {
+                    zIndex = 2
+                    position = Position.absolute
+                    left = 0.rem
+                    top = 0.rem
+                    width = 100.pct
+                    height = 100.pct
+                    transition(::transform, 0.5.s)
+                    transition(::opacity, 0.5.s)
+                    if (!showing) {
+                        transform { translateX(-2.rem) }
+                        opacity = 0.0
+                    }
+                }
+                props.children(id)
+            }
+        }
+
+        oldContentId?.let { id ->
+            styledDiv {
+                attrs.key = "$id-${tick - 1}"
+                css {
+                    zIndex = 1
+                    pointerEvents = PointerEvents.none
+                    position = Position.absolute
+                    left = 0.rem
+                    top = 0.rem
+                    width = 100.pct
+                    height = 100.pct
+                    transition(::transform, 0.5.s)
+                    transition(::opacity, 0.5.s)
+                    if (showing) {
+                        transform { translateX(2.rem) }
+                        opacity = 0.0
+                    }
+                }
+                props.children(id)
+            }
+        }
+    }
+
 }

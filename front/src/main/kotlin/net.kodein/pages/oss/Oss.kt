@@ -7,6 +7,7 @@ import net.kodein.pages.oss.fragment.FrameworkLayers
 import net.kodein.pages.oss.fragment.FrameworkOnion
 import net.kodein.utils.Illus
 import net.kodein.utils.flexColumn
+import net.kodein.utils.maxWidth
 import react.RProps
 import react.child
 import react.dom.a
@@ -51,6 +52,7 @@ val Oss = functionalComponent<RProps> {
 
     contentRow(
         backgroundColor = Color.kodein.kyzantium,
+        indexPosition = 1,
         illustration = Illus(Illus.Title.OSS, Illus.Position.RIGHT, Illus.Alignment.CENTER),
         bottomLayers = listOf(Color.kodein.kuivre),
         additionalStyle = {
@@ -60,9 +62,16 @@ val Oss = functionalComponent<RProps> {
     ) {
         child(FrameworkLayers)
     }
-//    child(FrameworkLayers)
 
-//    layerSeparator(Position.absolute, Color.kodein.kyzantium, Color.kodein.purple)
+    imageRow(
+        backgroundColor = Color.kodein.kyzantium,
+        indexPosition = 2,
+        illustration = Illus(Illus.Title.OSS, Illus.Position.CENTER, Illus.Alignment.CENTER),
+        bottomLayers = listOf(Color.kodein.purple)
+    ) {
+        display = Display.none
+        maxWidth(980) { display = Display.flex }
+    }
 
     child(FrameworkOnion)
 

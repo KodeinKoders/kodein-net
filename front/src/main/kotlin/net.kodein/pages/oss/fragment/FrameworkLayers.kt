@@ -16,7 +16,7 @@ import styled.*
 val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
     flexColumn {
         css {
-            paddingTop = 7.rem
+            paddingTop = 8.rem
             backgroundColor = Color.kodein.kaumon
         }
 
@@ -35,7 +35,8 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                     }
                 }
                 color = Color.kodein.kinzolin
-                margin(1.rem, 2.rem)
+                padding(1.rem, 2.rem)
+                maxWidth(360) { padding(1.rem, 1.rem) }
             }
             +"The "
             styledB {
@@ -54,13 +55,7 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                 height = 3.rem
                 opacity = .7
                 backgroundColor = Color.kodein.kinzolin
-                margin(1.rem, LinearDimension.auto)
-                maxSize(768) {
-                    margin(0.rem, LinearDimension.auto)
-                }
-                landscapeMobile {
-                    margin(1.rem, LinearDimension.auto)
-                }
+                margin(0.5.rem, LinearDimension.auto, 2.rem, LinearDimension.auto)
             }
         }
 
@@ -69,7 +64,9 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                 +KodeinStyles.body
                 backgroundColor = Color.kodein.purple
                 color = Color.kodein.klycine
-                padding(1.em, 2.5.em)
+                padding(vertical = 1.rem)
+                minWidth(1920) { padding(vertical = 1.75.rem) }
+                minWidth(2500) { padding(vertical = 2.4.rem) }
                 boxShadowInset(Color.kodein.purple.darken(30), offsetY = 0.8.rem, blurRadius = 0.5.rem, spreadRadius = (-0.6).rem)
             }
             +"Platform specific UI"
@@ -80,12 +77,15 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                 +KodeinStyles.body
                 backgroundColor = Color.kodein.korail
                 color = Color.kodein.kyzantium
-                padding(1.em, 2.5.em)
+                padding(vertical = 1.em)
+                minWidth(1920) { padding(vertical = 1.75.rem) }
+                minWidth(2500) { padding(vertical = 2.4.rem) }
                 boxShadowInset(Color.kodein.korail.darken(30), offsetY = 0.8.rem, blurRadius = 0.5.rem, spreadRadius = (-0.6).rem)
             }
             flexRow {
                 css {
-                    "div" {
+                    maxWidth(680) { flexDirection = FlexDirection.column }
+                    "span" {
                         padding(0.5.rem)
                         width = 8.rem
                         display = Display.flex
@@ -96,16 +96,27 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                     "hr" {
                         width = 0.05.rem
                         border = "none"
-                        backgroundColor = Color.kodein.kyzantium
+                        backgroundColor = Color.kodein.orange
                     }
                 }
-                div { +"Dependency Injection" }
-                hr {}
-                div { +"Embedded Database" }
-                hr {}
-                div { +"Logging & Reporting" }
-                hr {}
-                div { +"Presentation Behaviour" }
+                flexRow {
+                    css {
+                        maxWidth(680) { paddingBottom = 1.rem }
+                    }
+                    span { +"Dependency Injection" }
+                    hr {}
+                    span { +"Embedded Database" }
+                }
+                styledHr {
+                    css {
+                        maxWidth(680) { display = Display.none }
+                    }
+                }
+                flexRow {
+                    span { +"Logging & Reporting" }
+                    hr {}
+                    span { +"Presentation Behaviour" }
+                }
             }
             styledSpan {
                 css {
@@ -126,7 +137,9 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                 +KodeinStyles.body
                 backgroundColor = Color.kodein.kinzolin
                 color = Color.kodein.kamethiste
-                padding(1.em, 2.5.em)
+                padding(vertical = 1.rem)
+                minWidth(1920) { padding(vertical = 1.75.rem) }
+                minWidth(2500) { padding(vertical = 2.4.rem) }
                 boxShadowInset(Color.kodein.kinzolin.darken(30), offsetY = 0.8.rem, blurRadius = 0.5.rem, spreadRadius = (-0.6).rem)
             }
             styledSpan {
@@ -139,7 +152,8 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
             }
             flexRow {
                 css {
-                    "div" {
+                    maxWidth(680) { flexDirection = FlexDirection.column }
+                    "span" {
                         padding(0.5.rem)
                         width = 8.rem
                         display = Display.flex
@@ -150,17 +164,29 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                     "hr" {
                         width = 0.05.rem
                         border = "none"
-                        backgroundColor = Color.kodein.kamethiste
+                        backgroundColor = Color.kodein.purple
                     }
                 }
-                div { +"Coroutines" }
-                hr {}
-                div { +"Atomic operations" }
-                hr {}
-                div { +"Serialization" }
-                hr {}
-                div { +"Platform APIs" }
+                flexRow {
+                    css {
+                        maxWidth(680) { paddingBottom = 1.rem }
+                    }
+                    span { +"Coroutines" }
+                    hr {}
+                    span { +"Atomic operations" }
+                }
+                styledHr {
+                    css {
+                        maxWidth(680) { display = Display.none }
+                    }
+                }
+                flexRow {
+                    span { +"Serialization" }
+                    hr {}
+                    span { +"Platform APIs" }
+                }
             }
+
         }
 
         flexRow(JustifyContent.center, Align.center) {
@@ -168,7 +194,9 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                 +KodeinStyles.body
                 backgroundColor = Color.kodein.kyzantium
                 color = Color.kodein.purple
-                padding(1.em, 2.em, 3.em, 2.5.em)
+                padding(top = 1.em, bottom = 3.5.em)
+                minWidth(1920) { padding(top = 1.75.em, bottom = 3.em) }
+                minWidth(2500) { padding(top = 2.4.em, bottom = 2.5.em) }
                 boxShadowInset(Color.kodein.kyzantium.darken(30), offsetY = 0.8.rem, blurRadius = 0.5.rem, spreadRadius = (-0.6).rem)
             }
             +"Low-level Android, iOS & Web"
