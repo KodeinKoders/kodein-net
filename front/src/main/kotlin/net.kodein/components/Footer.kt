@@ -108,6 +108,12 @@ val Footer = functionalComponent<RProps>("Footer") {
 
                             "li" {
                                 color = Color.kodein.kuivre
+
+                                "a" {
+                                    hover {
+                                        color = Color.kodein.purple
+                                    }
+                                }
                             }
                         }
                     }
