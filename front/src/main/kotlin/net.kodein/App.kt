@@ -26,11 +26,11 @@ val appGlobalStyle: CSSBuilder.() -> Unit = {
     }
 
     html {
-//        maxSize(380) { fontSize = 10.px }
-//        maxSize(480) { fontSize = 11.px }
-//        maxSize(768) { fontSize = 14.px }
-//        maxSize(980) { fontSize = 14.px }
-//        maxSize(1024) { fontSize = 15.px }
+        maxSize(380) { fontSize = 10.px }
+        maxSize(480) { fontSize = 12.px }
+        maxSize(768) { fontSize = 13.px }
+        maxSize(980) { fontSize = 14.px }
+        maxSize(1024) { fontSize = 15.px }
         minSize(min = 1920) { fontSize = 17.px }
         minSize(min = 2500) { fontSize = 18.px }
     }

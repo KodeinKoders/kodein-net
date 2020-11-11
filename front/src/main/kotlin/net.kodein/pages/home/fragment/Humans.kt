@@ -40,9 +40,8 @@ val Humans = functionalComponent<RProps>("Humans") {
         styledH3 {
             css {
                 +kodein.display1
-                fontWeight = FontWeight.regular
+                specific { textAlign = TextAlign.start }
                 color = Color.kodein.orange
-                textAlign = TextAlign.start
                 paddingLeft = 5.rem
             }
             +"Are you next?"

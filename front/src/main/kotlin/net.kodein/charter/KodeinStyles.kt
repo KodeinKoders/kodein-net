@@ -30,10 +30,6 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
         textAlign = TextAlign.center
-
-        maxSize(980) { fontSize = 3.rem  }
-        maxSize(775) { fontSize = 2.5.rem  }
-        maxSize(570) { fontSize = 2.rem  }
     }
 
     val display2 by css {
@@ -43,10 +39,6 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
         textAlign = TextAlign.center
-
-        maxSize(980) { fontSize = 2.5.rem  }
-        maxSize(775) { fontSize = 2.25.rem  }
-        maxSize(570) { fontSize = 1.75.rem  }
     }
 
     val display1 by css {
@@ -55,10 +47,7 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         letterSpacing = 0.025.em
         fontFamily = piconExtended
         fontWeight = FontWeight.regular
-
-        maxSize(980) { fontSize = 1.75.rem  }
-        maxSize(775) { fontSize = 1.5.rem  }
-        maxSize(570) { fontSize = 1.25.rem  }
+        textAlign = TextAlign.center
     }
 
     val chapo by css {
@@ -68,10 +57,6 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontFamily = picon
         fontWeight = FontWeight.regular
         textAlign = TextAlign.start
-
-        maxSize(980) { fontSize = 1.8.rem  }
-        maxSize(775) { fontSize = 1.6.rem  }
-        maxSize(570) { fontSize = 1.4.rem  }
     }
 
     val intertitre by css {
@@ -83,7 +68,7 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
     }
 
     val body by css {
-        fontSize = 1.rem
+        fontSize = 20.px
         letterSpacing = 0.025.em
         lineHeight = 1.5.rem.lh
         fontFamily = picon

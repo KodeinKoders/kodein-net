@@ -46,7 +46,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
 
         styledP {
             css {
-                +kodein.display1
+                +kodein.subHead
                 alignSelf = Align.center
                 textAlign = TextAlign.center
                 color = props.colors.overTitle
@@ -101,11 +101,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
 
         styledP {
             css {
-                +kodein.chapo
-                specific {
-                    fontWeight = FontWeight.light
-                    textAlign = TextAlign.center
-                }
+                +kodein.display1
                 color = props.colors.text
                 width = 65.pct
                 padding(2.rem)
