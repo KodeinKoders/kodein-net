@@ -25,6 +25,7 @@ interface AccordionElementProps : RProps{
 val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElement") { props ->
     val accordionHeader = useRef<HTMLDivElement?>(null)
     var isOpen by useState(false)
+    var isHeaderHover by useState(false)
 
     val borderColor = props.borderColor ?: Color.kodein.klycine
     val fontColor = props.fontColor ?: Color.kodein.kaumon
@@ -35,6 +36,17 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
         }
         accordionHeader.current!!.addEventListener("mouseup", openTraining)
         ({ accordionHeader.current!!.removeEventListener("mouseup", openTraining) })
+    }
+
+    useEffectWithCleanup {
+        val mouseover = EventListener { isHeaderHover = true }
+        val mouseout = EventListener { isHeaderHover = false }
+        accordionHeader.current!!.addEventListener("mouseover", mouseover)
+        accordionHeader.current!!.addEventListener("mouseout", mouseout)
+        ({
+            accordionHeader.current!!.removeEventListener("mouseover", mouseover)
+            accordionHeader.current!!.removeEventListener("mouseout", mouseout)
+        })
     }
 
     flexColumn {
@@ -51,14 +63,23 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
                 alignItems = Align.center
                 cursor = Cursor.pointer
                 borderTop(1.px, BorderStyle.solid, borderColor.withAlpha(0.5))
+
+                color = fontColor
+                transition(::color, 0.2.s)
+                hover {
+                    "accordionTitle" {
+                        color = borderColor
+                    }
+                }
             }
 
             styledP {
                 css {
+                    classes.add("accordionTitle")
                     flexGrow = 75.0
                     flexBasis = FlexBasis.zero
                     +kodein.intertitre
-                    color = Color.kodein.kaumon
+                    color = if(isHeaderHover) borderColor else fontColor
                 }
 
                 +props.title
@@ -68,7 +89,6 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
                 css {
                     flexGrow = 20.0
                     flexBasis = FlexBasis.zero
-                    color = fontColor
                     textAlign = TextAlign.end
                     minWidth = LinearDimension.fitContent
                     paddingRight = 1.rem
