@@ -21,6 +21,9 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
         textAlign = TextAlign.center
+
+        maxSize(980) { fontSize = 1.75.rem  }
+        maxSize(775) { fontSize = 1.5.rem  }
     }
 
     val display3 by css {
@@ -30,6 +33,10 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
         textAlign = TextAlign.center
+
+        maxSize(980) { fontSize = 3.rem  }
+        maxSize(775) { fontSize = 2.5.rem  }
+        maxSize(570) { fontSize = 2.rem  }
     }
 
     val display2 by css {
@@ -39,6 +46,10 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
         textAlign = TextAlign.center
+
+        maxSize(980) { fontSize = 2.5.rem  }
+        maxSize(775) { fontSize = 2.25.rem  }
+        maxSize(570) { fontSize = 1.75.rem  }
     }
 
     val display1 by css {
@@ -48,6 +59,9 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontFamily = piconExtended
         fontWeight = FontWeight.regular
         textAlign = TextAlign.center
+
+        maxSize(980) { fontSize = 1.75.rem  }
+        maxSize(775) { fontSize = 1.5.rem  }
     }
 
     val chapo by css {
@@ -57,6 +71,9 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         fontFamily = picon
         fontWeight = FontWeight.regular
         textAlign = TextAlign.start
+
+        maxSize(980) { fontSize = 1.75.rem  }
+        maxSize(775) { fontSize = 1.5.rem  }
     }
 
     val intertitre by css {
@@ -65,18 +82,26 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         lineHeight = 1.8.rem.lh
         fontFamily = piconExtended
         fontWeight = FontWeight.medium
+
+        maxSize(980) { fontSize = 1.4.rem  }
+        maxSize(775) { fontSize = 1.3.rem  }
+        maxSize(570) { fontSize = 1.25.rem  }
     }
 
     val body by css {
-        fontSize = 20.px
+        fontSize = 1.25.rem
         letterSpacing = 0.025.em
         lineHeight = 1.5.rem.lh
         fontFamily = picon
         fontWeight = FontWeight.regular
+
+        maxSize(980) { fontSize = 1.2.rem  }
+        maxSize(775) { fontSize = 1.1.rem  }
+        maxSize(570) { fontSize = 1.rem  }
     }
 
     val link by css {
-        fontSize = 0.825.rem
+        fontSize = 1.rem
         fontWeight = FontWeight.medium
         letterSpacing = 0.025.em
         lineHeight = 1.5.rem.lh

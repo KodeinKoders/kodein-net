@@ -63,19 +63,12 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
             +props.overTitle
         }
 
-        styledH1 {
+        styledP {
             css {
                 +kodein.display3
                 specific {
                     fontWeight = FontWeight.hairline
                     textAlign = TextAlign.center
-
-                    maxSize(480) {
-                        fontSize = 1.8.rem
-                    }
-                    maxSize(400) {
-                        fontSize = 1.6.rem
-                    }
                 }
                 color = props.colors.title
                 margin(1.rem, 2.rem)
