@@ -31,6 +31,8 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
     flexColumn {
         css {
             backgroundColor = props.colors.backgroundColor
+            paddingBottom = 2.5.em
+
             "a" {
                 display = Display.inlineBlock
 
