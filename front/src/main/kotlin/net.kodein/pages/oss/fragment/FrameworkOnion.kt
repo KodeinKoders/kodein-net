@@ -26,10 +26,11 @@ private fun RBuilder.pie(delta: Int, inside: StyledDOMBuilder<DIV>.() -> Unit) {
         css {
             position = Position.absolute
 
-            width = (100 - delta * 22).pct
-            height = (100 - delta * 22).pct
-            left = (delta * 11).pct
-            top = (delta * 11).pct
+            val sw = 21.0
+            width = (100 - delta * sw).pct
+            height = (100 - delta * sw).pct
+            left = (delta * (sw / 2)).pct
+            top = (delta * (sw / 2)).pct
 
             maxWidth(410) {
                 fontSize = 0.9.rem
@@ -39,7 +40,7 @@ private fun RBuilder.pie(delta: Int, inside: StyledDOMBuilder<DIV>.() -> Unit) {
             boxShadow(Color.black.withAlpha(0.2), blurRadius = 0.5.rem)
 
             "span.simple-text" {
-                padding(vertical = (4.0 * (100.0 / (100 - delta * 22))).pct)
+                padding(vertical = (4.0 * (100.0 / (100 - delta * sw))).pct)
             }
         }
 
@@ -402,7 +403,7 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
             padding(top = 10.rem, bottom = 5.rem)
             maxWidth(980) { paddingTop = 7.rem }
             background = "linear-gradient(180deg, ${Color.kodein.korail} 70%, ${Color.kodein.dark} 100%)"
-            maxWidth(1050) {
+            maxWidth(560) {
                 background = "linear-gradient(180deg, ${Color.kodein.korail} 85%, ${Color.kodein.dark} 100%)"
             }
         }
@@ -459,7 +460,7 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                 alignItems = Align.flexStart
                 margin(vertical = 5.rem)
                 overflow = Overflow.hidden
-                maxWidth(1050) {
+                maxWidth(560) {
                     flexDirection = FlexDirection.column
                     alignItems = Align.center
                     marginTop = 2.5.rem
@@ -467,86 +468,100 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
             }
 
             styledDiv {
-                ref = bigPie
                 css {
-                    position = Position.relative
-                    width = 95.vw
-                    height = 95.vw
+                    flexGrow = 1.0
                     maxWidth = 34.rem
-                    maxHeight = 34.rem
-                    put("clip-path", "circle()")
-                    overflow = Overflow.hidden
-                }
-
-                pie(0) {
-                    css {
-                        "div.slice" { backgroundColor = Color.kodein.cute }
-                        color = Color.kodein.orange
+                    margin(horizontal = 1.5.rem)
+                    maxWidth(560) {
+                        width = 90.vw
                     }
 
-                    slice(1.0 / 3.0, 0, selected == "web", selectedSetter("web")) { simpleText("Web") }
-                    slice(1.0 / 3.0, 1, selected == "ios", selectedSetter("ios")) { simpleText("iOS", reverse = true) }
-                    slice(1.0 / 6.0, 4, selected == "desktop", selectedSetter("desktop")) { simpleText("Desktop") }
-                    slice(1.0 / 6.0, 5, selected == "android", selectedSetter("android")) { simpleText("Android") }
-
-                    line(0.0)
-                    line(1.0 / 3.0)
-                    line(2.0 / 3.0)
-                    line(5.0 / 6.0)
                 }
-
-                pie(1) {
+                styledDiv {
+                    ref = bigPie
                     css {
-                        "div.slice" { backgroundColor = Color.kodein.kaumon }
-                        color = Color.kodein.orange
+                        position = Position.relative
+                        width = 100.pct
+                        paddingTop = 100.pct
+                        maxHeight = 34.rem
+                        put("clip-path", "circle()")
+                        overflow = Overflow.hidden
                     }
 
-                    slice(1.0 / 3.0, 0, selected == "kotlin-js", selectedSetter("kotlin-js")) { simpleText("Kotlin/JS") }
-                    slice(1.0 / 3.0, 1, selected == "kotlin-native", selectedSetter("kotlin-native")) { simpleText("Kotlin/Native", reverse = true) }
-                    slice(1.0 / 3.0, 2, selected == "kotlin-jvm", selectedSetter("kotlin-jvm")) { simpleText("Kotlin/JVM") }
+                    pie(0) {
+                        css {
+                            "div.slice" { backgroundColor = Color.kodein.cute }
+                            color = Color.kodein.orange
+                        }
 
-                    line(0.0)
-                    line(1.0 / 3.0)
-                    line(2.0 / 3.0)
-                }
+                        slice(1.0 / 3.0, 0, selected == "web", selectedSetter("web")) { simpleText("Web") }
+                        slice(1.0 / 3.0, 1, selected == "ios", selectedSetter("ios")) { simpleText("iOS", reverse = true) }
+                        slice(1.0 / 6.0, 4, selected == "desktop", selectedSetter("desktop")) { simpleText("Desktop") }
+                        slice(1.0 / 6.0, 5, selected == "android", selectedSetter("android")) { simpleText("Android") }
 
-                pie(2) {
-                    css {
-                        "div.slice" { backgroundColor = Color.kodein.korail }
-                        color = Color.kodein.cute
+                        line(0.0)
+                        line(1.0 / 3.0)
+                        line(2.0 / 3.0)
+                        line(5.0 / 6.0)
                     }
 
-                    slice(1.0, 0, selected == "kotlinx", selectedSetter("kotlinx")) { simpleText("Kotlin[X]") }
-                }
+                    pie(1) {
+                        css {
+                            "div.slice" { backgroundColor = Color.kodein.kaumon }
+                            color = Color.kodein.orange
+                        }
 
-                pie(3) {
-                    css {
-                        "div.slice" { backgroundColor = Color.kodein.orange }
-                        color = Color.kodein.cute
+                        slice(1.0 / 3.0, 0, selected == "kotlin-js", selectedSetter("kotlin-js")) { simpleText("Kotlin/JS") }
+                        slice(1.0 / 3.0, 1, selected == "kotlin-native", selectedSetter("kotlin-native")) { simpleText("Kotlin/Native", reverse = true) }
+                        slice(1.0 / 3.0, 2, selected == "kotlin-jvm", selectedSetter("kotlin-jvm")) { simpleText("Kotlin/JVM") }
+
+                        line(0.0)
+                        line(1.0 / 3.0)
+                        line(2.0 / 3.0)
                     }
 
-                    slice(1.0, 0, selected == "kodein", selectedSetter("kodein")) {
-                        flexColumn(JustifyContent.center, Align.center) {
-                            css {
-                                width = 100.pct
-                                height = 100.pct
-                            }
-                            styledSpan {
+                    pie(2) {
+                        css {
+                            "div.slice" { backgroundColor = Color.kodein.korail }
+                            color = Color.kodein.cute
+                        }
+
+                        slice(1.0, 0, selected == "kotlinx", selectedSetter("kotlinx")) { simpleText("Kotlin[X]") }
+                    }
+
+                    pie(3) {
+                        css {
+                            "div.slice" { backgroundColor = Color.kodein.orange }
+                            color = Color.kodein.cute
+                        }
+
+                        slice(1.0, 0, selected == "kodein", selectedSetter("kodein")) {
+                            flexColumn(JustifyContent.center, Align.center) {
                                 css {
-                                    fontWeight = FontWeight.ultraLight
-                                    fontFamily = KodeinStyles.piconExtended
+                                    width = 100.pct
+                                    height = 100.pct
                                 }
-                                styledB {
-                                    css.fontWeight = FontWeight.semiBold
-                                    +"KODEIN"
-                                }
-                                styledBr {
+                                styledSpan {
                                     css {
-                                        display = Display.none
-                                        maxWidth(550) { display = Display.unset }
+                                        fontWeight = FontWeight.ultraLight
+                                        fontFamily = KodeinStyles.piconExtended
+                                        padding(0.25.rem)
+                                        maxWidth = 100.pct
+                                    }
+                                    styledB {
+                                        css {
+                                            fontWeight = FontWeight.semiBold
+                                            display = Display.inlineBlock
+                                        }
+                                        +"KODEIN"
+                                    }
+                                    styledSpan {
+                                        css {
+                                            display = Display.inlineBlock
+                                        }
+                                        +"Framework"
                                     }
                                 }
-                                +"Framework"
                             }
                         }
                     }
@@ -566,12 +581,13 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                         }
                         this.isRight = isRight
                         css = {
-                            width = 90.pct
                             height = 32.rem
+                            flexGrow = 1.0
                             maxWidth = 25.rem
-                            margin(top = 3.rem, left = 4.rem)
-                            maxWidth(1050) {
-                                margin(top = 2.5.rem, left = 0.rem)
+                            margin(top = 3.rem, left = 2.5.rem, right = 1.5.rem)
+                            maxWidth(800) { margin(top = 2.rem, left = 1.rem, right = 1.rem) }
+                            maxWidth(560) {
+                                width = 100.pct - 2.rem
                             }
                         }
                     }
@@ -720,7 +736,7 @@ private val SwipeableText = functionalComponent<SwipeableTextProps>("SwipeableTe
                 opacity = if (swipeIndicatorVisible) 1.0 else 0.0
                 transition(::opacity, 1.s, Timing.linear)
                 display = Display.none
-                maxWidth(1050) { display = Display.unset }
+                maxWidth(560) { display = Display.unset }
             }
         }
 
