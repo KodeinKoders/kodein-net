@@ -45,7 +45,43 @@ val Trainings = functionalComponent<RProps>("Trainings") {
             child(AccordionElement) {
                 attrs {
                     title = "Kotlin for Android"
-                    sub = duration("1 days")                }
+                    sub = duration("1 days")
+                }
+
+                styledP {
+                    css {
+                        +kodein.chapo
+                        color = Color.kodein.korail
+                    }
+
+                    +"// TODO"
+                }
+                styledP {
+                    css {
+                        +kodein.intertitre
+                        color = Color.kodein.kaumon
+                    }
+
+                    +"// TODO"
+                }
+
+                styledP {
+                    css {
+                        +kodein.body
+                        color = Color.kodein.korail
+                    }
+
+                    +"// TODO"
+                }
+                styledP {
+                    css {
+                        +kodein.body
+                        color = Color.kodein.korail
+                        maxWidth = 60.rem
+                    }
+
+                    +"// TODO"
+                }
             }
 
             child(AccordionElement) {

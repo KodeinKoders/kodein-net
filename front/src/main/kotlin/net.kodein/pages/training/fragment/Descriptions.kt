@@ -25,43 +25,37 @@ val Description = functionalComponent<RProps>("Description") {
     }
 
     contentRow(
-            backgroundColor = Color.kodein.kinzolin, indexPosition = 2,
-    illustration = Illus(Illus.Title.TRAINING, Illus.Position.RIGHT, Illus.Alignment.CENTER),
-    bottomLayers = listOf(Color.kodein.purple)
+        backgroundColor = Color.kodein.kyzantium, indexPosition = 2,
+        illustration = Illus(Illus.Title.TRAINING, Illus.Position.RIGHT, Illus.Alignment.CENTER),
+        bottomLayers = listOf(Color.kodein.purple)
     ) {
-    flexColumn {
-        styledP {
-            css {
-                +kodein.chapo
-                color = Color.kodein.korail
-                alignSelf = Align.center
-                maxWidth = 60.rem
+        flexColumn {
+            styledP {
+                css {
+                    +kodein.chapo
+                    color = Color.kodein.korail
+                }
+
+                +"// TODO"
+            }
+            styledP {
+                css {
+                    +kodein.intertitre
+                    color = Color.kodein.kaumon
+                }
+
+                +"// TODO"
             }
 
-            +"// TODO"
-        }
+            styledP {
+                css {
+                    +kodein.body
+                    color = Color.kodein.korail
+                }
 
-        styledP {
-            css {
-                +kodein.intertitre
-                color = Color.kodein.kaumon
-                alignSelf = Align.center
-                maxWidth = 60.rem
+                +"// TODO"
             }
 
-            +"// TODO"
-        }
-
-        styledP {
-            css {
-                +kodein.body
-                color = Color.kodein.korail
-                alignSelf = Align.center
-                maxWidth = 60.rem
-            }
-
-            +"// TODO"
         }
     }
-}
 }
