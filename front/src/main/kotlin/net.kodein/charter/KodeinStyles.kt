@@ -35,8 +35,8 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
         textAlign = TextAlign.center
 
         maxSize(980) { fontSize = 3.rem  }
-        maxSize(775) { fontSize = 2.5.rem  }
-        maxSize(570) { fontSize = 2.rem  }
+        maxSize(775) { fontSize = 2.75.rem  }
+        maxSize(570) { fontSize = 2.25.rem  }
     }
 
     val display2 by css {
