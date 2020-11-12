@@ -43,7 +43,7 @@ val Contact = functionalComponent<RProps> {
 
     styledDiv { css.height = 10.rem }
 
-    child(ContactUs)
+    child(ContactUs) { attrs.big = true }
 
     child(Footer)
 }

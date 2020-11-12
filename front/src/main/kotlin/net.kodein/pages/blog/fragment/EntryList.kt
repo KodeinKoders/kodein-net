@@ -42,7 +42,7 @@ val EntryList = functionalComponent<RProps>("ElementList") {
     var centerText by useState("Loading...")
 
     useEffect(emptyList()) {
-        window.fetch("blog.json")
+        window.fetch("https://raw.githubusercontent.com/KodeinKoders/next-kodein-net/data/blog.json")
             .then { response ->
                 if (response.ok) {
                     response.json().then {

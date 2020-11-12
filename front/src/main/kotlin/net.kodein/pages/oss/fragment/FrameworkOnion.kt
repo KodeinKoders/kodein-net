@@ -9,11 +9,15 @@ import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
 import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.HTMLImageElement
+import org.w3c.dom.TouchEvent
 import org.w3c.dom.events.Event
 import react.*
 import react.dom.*
 import styled.*
+import kotlin.js.Date
 import kotlin.math.PI
+import kotlin.math.abs
 import kotlin.math.tan
 
 
@@ -22,10 +26,11 @@ private fun RBuilder.pie(delta: Int, inside: StyledDOMBuilder<DIV>.() -> Unit) {
         css {
             position = Position.absolute
 
-            width = (100 - delta * 22).pct
-            height = (100 - delta * 22).pct
-            left = (delta * 11).pct
-            top = (delta * 11).pct
+            val sw = 21.0
+            width = (100 - delta * sw).pct
+            height = (100 - delta * sw).pct
+            left = (delta * (sw / 2)).pct
+            top = (delta * (sw / 2)).pct
 
             maxWidth(410) {
                 fontSize = 0.9.rem
@@ -35,7 +40,7 @@ private fun RBuilder.pie(delta: Int, inside: StyledDOMBuilder<DIV>.() -> Unit) {
             boxShadow(Color.black.withAlpha(0.2), blurRadius = 0.5.rem)
 
             "span.simple-text" {
-                padding(vertical = (4.0 * (100.0 / (100 - delta * 22))).pct)
+                padding(vertical = (4.0 * (100.0 / (100 - delta * sw))).pct)
             }
         }
 
@@ -55,20 +60,29 @@ private interface SliceProps : RProps {
     var ratio: Double
     var pos: Int
     var selected: Boolean
-    var onEnter: () -> Unit
+    var onEnter: (Boolean) -> Unit
 }
 
 private val Slice = functionalComponent<SliceProps>("Slice") { props ->
     val div = useRef<HTMLDivElement?>(null)
 
     useEffectWithCleanup(emptyList()) {
-        val callback: (Event?) -> Unit = {
-            props.onEnter()
+        var touchTime = 0.0
+
+        val onMouseEnter: (Event) -> Unit = {
+            props.onEnter(Date().getTime() - touchTime <= 1000)
+        }
+        val onTouchStart: (Event) -> Unit = {
+            touchTime = Date().getTime()
         }
 
-        div.current!!.addEventListener("mouseenter", callback)
+        div.current!!.addEventListener("mouseenter", onMouseEnter)
+        div.current!!.addEventListener("touchstart", onTouchStart)
 
-        ({ div.current!!.removeEventListener("mouseenter", callback) })
+        ({
+            div.current!!.removeEventListener("mouseenter", onMouseEnter)
+            div.current!!.removeEventListener("touchstart", onTouchStart)
+        })
     }
 
     styledDiv {
@@ -82,6 +96,8 @@ private val Slice = functionalComponent<SliceProps>("Slice") { props ->
             top = 0.rem
             textAlign = TextAlign.center
             cursor = Cursor.pointer
+            userSelect = UserSelect.none
+            put("-webkit-tap-highlight-color", "transparent")
             transition(::backgroundColor, 1.s)
             if (props.selected) specific(3) { backgroundColor = Color.kodein.kyzantium }
 
@@ -120,7 +136,7 @@ private val Slice = functionalComponent<SliceProps>("Slice") { props ->
     }
 }
 
-private fun RBuilder.slice(ratio: Double, pos: Int, selected: Boolean, onEnter: () -> Unit, inside: RBuilder.() -> Unit) {
+private fun RBuilder.slice(ratio: Double, pos: Int, selected: Boolean, onEnter: (Boolean) -> Unit, inside: RBuilder.() -> Unit) {
     child(Slice) {
         attrs.ratio = ratio
         attrs.pos = pos
@@ -328,13 +344,18 @@ private val texts = mapOf(
 
 
 val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
+
     val order by useState { texts.keys.shuffled() }
 
     var selected by useState(order[0])
     val bigPie = useRef<HTMLDivElement?>(null)
     var tick by useState(0)
+    var running by useState(true)
+    var isRight: Boolean by useState(true)
 
-    useEffectWithCleanup(emptyList()) {
+    useEffectWithCleanup(listOf(running)) effect@ {
+        if (!running) return@effect ({})
+
         var handle: Int? = null
 
         var t = 0
@@ -371,12 +392,18 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
         selected = order[(index + 1) % order.size]
     }
 
+    fun selectedSetter(id: String): (Boolean) -> Unit = { isTouch ->
+        selected = id
+        isRight = true
+        running = !isTouch
+    }
+
     flexColumn {
         css {
             padding(top = 10.rem, bottom = 5.rem)
             maxWidth(980) { paddingTop = 7.rem }
             background = "linear-gradient(180deg, ${Color.kodein.korail} 70%, ${Color.kodein.dark} 100%)"
-            maxWidth(1050) {
+            maxWidth(560) {
                 background = "linear-gradient(180deg, ${Color.kodein.korail} 85%, ${Color.kodein.dark} 100%)"
             }
         }
@@ -433,7 +460,7 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                 alignItems = Align.flexStart
                 margin(vertical = 5.rem)
                 overflow = Overflow.hidden
-                maxWidth(1050) {
+                maxWidth(560) {
                     flexDirection = FlexDirection.column
                     alignItems = Align.center
                     marginTop = 2.5.rem
@@ -441,104 +468,126 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
             }
 
             styledDiv {
-                ref = bigPie
                 css {
-                    position = Position.relative
-                    width = 95.vw
-                    height = 95.vw
+                    flexGrow = 1.0
                     maxWidth = 34.rem
-                    maxHeight = 34.rem
-                    put("clip-path", "circle()")
-                    overflow = Overflow.hidden
-                }
-
-                pie(0) {
-                    css {
-                        "div.slice" { backgroundColor = Color.kodein.cute }
-                        color = Color.kodein.orange
+                    margin(horizontal = 1.5.rem)
+                    maxWidth(560) {
+                        width = 90.vw
                     }
 
-                    slice(1.0 / 3.0, 0, selected == "web", { selected = "web" }) { simpleText("Web") }
-                    slice(1.0 / 3.0, 1, selected == "ios", { selected = "ios" }) { simpleText("iOS", reverse = true) }
-                    slice(1.0 / 6.0, 4, selected == "desktop", { selected = "desktop" }) { simpleText("Desktop") }
-                    slice(1.0 / 6.0, 5, selected == "android", { selected = "android" }) { simpleText("Android") }
-
-                    line(0.0)
-                    line(1.0 / 3.0)
-                    line(2.0 / 3.0)
-                    line(5.0 / 6.0)
                 }
-
-                pie(1) {
+                styledDiv {
+                    ref = bigPie
                     css {
-                        "div.slice" { backgroundColor = Color.kodein.kaumon }
-                        color = Color.kodein.orange
+                        position = Position.relative
+                        width = 100.pct
+                        paddingTop = 100.pct
+                        maxHeight = 34.rem
+                        put("clip-path", "circle()")
+                        overflow = Overflow.hidden
                     }
 
-                    slice(1.0 / 3.0, 0, selected == "kotlin-js", { selected = "kotlin-js" }) { simpleText("Kotlin/JS") }
-                    slice(1.0 / 3.0, 1, selected == "kotlin-native", { selected = "kotlin-native" }) { simpleText("Kotlin/Native", reverse = true) }
-                    slice(1.0 / 3.0, 2, selected == "kotlin-jvm", { selected = "kotlin-jvm" }) { simpleText("Kotlin/JVM") }
+                    pie(0) {
+                        css {
+                            "div.slice" { backgroundColor = Color.kodein.cute }
+                            color = Color.kodein.orange
+                        }
 
-                    line(0.0)
-                    line(1.0 / 3.0)
-                    line(2.0 / 3.0)
-                }
+                        slice(1.0 / 3.0, 0, selected == "web", selectedSetter("web")) { simpleText("Web") }
+                        slice(1.0 / 3.0, 1, selected == "ios", selectedSetter("ios")) { simpleText("iOS", reverse = true) }
+                        slice(1.0 / 6.0, 4, selected == "desktop", selectedSetter("desktop")) { simpleText("Desktop") }
+                        slice(1.0 / 6.0, 5, selected == "android", selectedSetter("android")) { simpleText("Android") }
 
-                pie(2) {
-                    css {
-                        "div.slice" { backgroundColor = Color.kodein.korail }
-                        color = Color.kodein.cute
+                        line(0.0)
+                        line(1.0 / 3.0)
+                        line(2.0 / 3.0)
+                        line(5.0 / 6.0)
                     }
 
-                    slice(1.0, 0, selected == "kotlinx", { selected = "kotlinx" }) { simpleText("Kotlin[X]") }
-                }
+                    pie(1) {
+                        css {
+                            "div.slice" { backgroundColor = Color.kodein.kaumon }
+                            color = Color.kodein.orange
+                        }
 
-                pie(3) {
-                    css {
-                        "div.slice" { backgroundColor = Color.kodein.orange }
-                        color = Color.kodein.cute
+                        slice(1.0 / 3.0, 0, selected == "kotlin-js", selectedSetter("kotlin-js")) { simpleText("Kotlin/JS") }
+                        slice(1.0 / 3.0, 1, selected == "kotlin-native", selectedSetter("kotlin-native")) { simpleText("Kotlin/Native", reverse = true) }
+                        slice(1.0 / 3.0, 2, selected == "kotlin-jvm", selectedSetter("kotlin-jvm")) { simpleText("Kotlin/JVM") }
+
+                        line(0.0)
+                        line(1.0 / 3.0)
+                        line(2.0 / 3.0)
                     }
 
-                    slice(1.0, 0, selected == "kodein", { selected = "kodein" }) {
-                        flexColumn(JustifyContent.center, Align.center) {
-                            css {
-                                width = 100.pct
-                                height = 100.pct
-                            }
-                            styledSpan {
+                    pie(2) {
+                        css {
+                            "div.slice" { backgroundColor = Color.kodein.korail }
+                            color = Color.kodein.cute
+                        }
+
+                        slice(1.0, 0, selected == "kotlinx", selectedSetter("kotlinx")) { simpleText("Kotlin[X]") }
+                    }
+
+                    pie(3) {
+                        css {
+                            "div.slice" { backgroundColor = Color.kodein.orange }
+                            color = Color.kodein.cute
+                        }
+
+                        slice(1.0, 0, selected == "kodein", selectedSetter("kodein")) {
+                            flexColumn(JustifyContent.center, Align.center) {
                                 css {
-                                    fontWeight = FontWeight.ultraLight
-                                    fontFamily = KodeinStyles.piconExtended
+                                    width = 100.pct
+                                    height = 100.pct
                                 }
-                                styledB {
-                                    css.fontWeight = FontWeight.semiBold
-                                    +"KODEIN"
-                                }
-                                styledBr {
+                                styledSpan {
                                     css {
-                                        display = Display.none
-                                        maxWidth(550) { display = Display.unset }
+                                        fontWeight = FontWeight.ultraLight
+                                        fontFamily = KodeinStyles.piconExtended
+                                        padding(0.25.rem)
+                                        maxWidth = 100.pct
+                                    }
+                                    styledB {
+                                        css {
+                                            fontWeight = FontWeight.semiBold
+                                            display = Display.inlineBlock
+                                        }
+                                        +"KODEIN"
+                                    }
+                                    styledSpan {
+                                        css {
+                                            display = Display.inlineBlock
+                                        }
+                                        +"Framework"
                                     }
                                 }
-                                +"Framework"
                             }
                         }
                     }
                 }
             }
 
-            childFunction<String, SwipableTextProps>(
-                SwipableText,
+            childFunction<String, SwipeableTextProps>(
+                SwipeableText,
                 {
                     attrs {
                         contentId = selected
+                        onSwipe = { isNext ->
+                            running = false
+                            val index = order.indexOf(selected)
+                            isRight = isNext
+                            selected = order[(index + (if (isNext) 1 else -1 + order.size)) % order.size]
+                        }
+                        this.isRight = isRight
                         css = {
-                            width = 90.pct
                             height = 32.rem
+                            flexGrow = 1.0
                             maxWidth = 25.rem
-                            margin(top = 3.rem, left = 4.rem)
-                            maxWidth(1050) {
-                                margin(top = 2.5.rem, left = 0.rem)
+                            margin(top = 3.rem, left = 2.5.rem, right = 1.5.rem)
+                            maxWidth(800) { margin(top = 2.rem, left = 1.rem, right = 1.rem) }
+                            maxWidth(560) {
+                                width = 100.pct - 2.rem
                             }
                         }
                     }
@@ -568,18 +617,23 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
     }
 }
 
-private interface SwipableTextProps : RProps {
+private interface SwipeableTextProps : RProps {
     var css: RuleSet?
     var contentId: String
+    var onSwipe: (Boolean) -> Unit
+    var isRight: Boolean
 }
 
-private val SwipableText = functionalComponent<SwipableTextProps>("SwipableText") { props ->
+private val SwipeableText = functionalComponent<SwipeableTextProps>("SwipeableText") { props ->
 
     var oldContentId: String? by useState(null)
     var contentId: String? by useState(null)
 
     var showing: Boolean by useState(false)
     var tick: Int by useState(0)
+
+    var swipeIndicatorAnim: Int by useState(-1)
+    var swipeIndicatorVisible by useState(true)
 
     useEffect(listOf(props.contentId)) {
         oldContentId = contentId
@@ -593,11 +647,99 @@ private val SwipableText = functionalComponent<SwipableTextProps>("SwipableText"
         window.setTimeout({ showing = true }, 50)
     }
 
+    val div = useRef<HTMLDivElement?>(null)
+
+    useEffectWithCleanup {
+        var start: Triple<Int, Int, Double>? = null
+        val onTouchStart: (Event) -> Unit = {
+            val touch = (it as TouchEvent).changedTouches.item(0)!!
+            start = Triple(touch.pageX, touch.pageY, Date().getTime())
+        }
+        val onTouchMove: (Event) -> Unit = listener@ {
+            val (startX, startY, _) = start ?: return@listener
+            val touch = (it as TouchEvent).changedTouches.item(0)!!
+            val distX = abs(touch.pageX - startX)
+            val distY = abs(touch.pageY - startY)
+            if ((distX <= 10 && distY <= 10) || distX >= distY) it.preventDefault()
+            else start = null
+        }
+        val onTouchEnd: (Event) -> Unit = listener@ {
+            val (startX, startY, startTime) = start ?: return@listener
+            val touch = (it as TouchEvent).changedTouches.item(0)!!
+            val dist = touch.pageX - startX
+            val elapsed = Date().getTime() - startTime
+            if (elapsed <= 200 && abs(dist) >= 100 && abs(touch.pageY - startY) <= 100) {
+                swipeIndicatorVisible = false
+                if (dist > 0) props.onSwipe(true)
+                else props.onSwipe(false)
+            }
+            it.preventDefault()
+        }
+
+        div.current!!.addEventListener("touchstart", onTouchStart)
+        div.current!!.addEventListener("touchmove", onTouchMove)
+        div.current!!.addEventListener("touchend", onTouchEnd)
+
+        ({
+            div.current!!.removeEventListener("touchstart", onTouchStart)
+            div.current!!.removeEventListener("touchmove", onTouchMove)
+            div.current!!.removeEventListener("touchend", onTouchEnd)
+        })
+    }
+
+    useEffectWithCleanup(emptyList()) {
+        var i = swipeIndicatorAnim
+        val block = {
+            i *= -1
+            swipeIndicatorAnim = i
+        }
+        val handle = window.setInterval(block, 1800)
+        window.setTimeout(block, 20)
+        ({ window.clearInterval(handle) })
+    }
+
+    val img = useRef<HTMLImageElement?>(null)
+    var swipeIndicatorInView by useState(false)
+    useEffectWithCleanup(listOf(swipeIndicatorInView)) effect@ {
+        if (swipeIndicatorInView) return@effect ({})
+        val onScroll: (Event) -> Unit = {
+            if (img.current!!.getBoundingClientRect().top.toInt() in 150..(window.innerHeight - 150)) {
+                swipeIndicatorInView = true
+            }
+        }
+        window.addEventListener("scroll", onScroll)
+        ({ window.removeEventListener("scroll", onScroll) })
+    }
+    useEffectWithCleanup(listOf(swipeIndicatorInView)) effect@ {
+        if (!swipeIndicatorInView) return@effect ({})
+        val handle = window.setTimeout({ swipeIndicatorVisible = false }, 4000)
+        ({ window.clearTimeout(handle) })
+    }
+
     styledDiv {
+        ref = div
         css {
             props.css?.invoke(this)
             position = Position.relative
         }
+        styledImg(src = "imgs/swipe.svg") {
+            ref = img
+            css {
+                position = Position.absolute
+                left = 50.pct - 3.rem
+                top = 1.7.rem
+                width = 3.rem
+                zIndex = 3
+                pointerEvents = PointerEvents.none
+                transform { translateX( (swipeIndicatorAnim * 3).rem ) }
+                transition(::transform, 1.5.s, Timing.easeInOut)
+                opacity = if (swipeIndicatorVisible) 1.0 else 0.0
+                transition(::opacity, 1.s, Timing.linear)
+                display = Display.none
+                maxWidth(560) { display = Display.unset }
+            }
+        }
+
         contentId?.let { id ->
             styledDiv {
                 attrs.key = "$id-$tick"
@@ -611,7 +753,7 @@ private val SwipableText = functionalComponent<SwipableTextProps>("SwipableText"
                     transition(::transform, 0.5.s)
                     transition(::opacity, 0.5.s)
                     if (!showing) {
-                        transform { translateX(-2.rem) }
+                        transform { translateX(if (props.isRight) (-2).rem else 2.rem) }
                         opacity = 0.0
                     }
                 }
@@ -633,7 +775,7 @@ private val SwipableText = functionalComponent<SwipableTextProps>("SwipableText"
                     transition(::transform, 0.5.s)
                     transition(::opacity, 0.5.s)
                     if (showing) {
-                        transform { translateX(2.rem) }
+                        transform { translateX(if (props.isRight) 2.rem else (-2).rem) }
                         opacity = 0.0
                     }
                 }

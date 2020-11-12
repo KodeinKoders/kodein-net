@@ -32,7 +32,11 @@ private sealed class FormStatus {
     data class Sent(val error: String?): FormStatus()
 }
 
-val ContactUs = functionalComponent<RProps>("ContactUs") {
+interface ContactUsProps : RProps {
+    var big: Boolean
+}
+
+val ContactUs = functionalComponent<ContactUsProps>("ContactUs") { props ->
 
     var status: FormStatus by useState(FormStatus.Ready)
 
@@ -67,6 +71,7 @@ val ContactUs = functionalComponent<RProps>("ContactUs") {
                         status = FormStatus.Sent(it)
                     }
                 }
+                attrs.big = props.big
             }
             FormStatus.Sending -> child(ContactMessage) {
                 attrs.isError = false
@@ -104,6 +109,7 @@ val ContactUs = functionalComponent<RProps>("ContactUs") {
 
 interface ContactFormProps : RProps {
     var submit: (from: String, subject: String, message: String) -> Unit
+    var big: Boolean
 }
 
 private val ContactForm = functionalComponent<ContactFormProps>("ContactForm") { props ->
@@ -113,6 +119,7 @@ private val ContactForm = functionalComponent<ContactFormProps>("ContactForm") {
     var bads: List<String> by useState(emptyList())
 
     child(ContactFormView) {
+        attrs.big = props.big
         attrs.from = from
         attrs.setFrom = {
             if (it.isNotEmpty() && "from" in bads && emailRegex.matches(it)) bads -= "from"
@@ -145,6 +152,7 @@ private val ContactForm = functionalComponent<ContactFormProps>("ContactForm") {
 }
 
 interface ContactFormViewProps : RProps {
+    var big: Boolean
     var from: String
     var setFrom: (String) -> Unit
     var subject: String
@@ -158,7 +166,6 @@ interface ContactFormViewProps : RProps {
 private val ContactFormView = functionalComponent<ContactFormViewProps>("ContactFormView") { props ->
     styledDiv {
         css {
-            height = 25.rem
             "p.input" {
                 display = Display.flex
                 flexDirection = FlexDirection.row
@@ -191,7 +198,8 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
 
                 "textarea" {
                     resize = Resize.none
-                    height = 5.25.em // not rem!
+                    console.log(props)
+                    height = (if (props.big) 15.75 else 5.25).em // not rem!
                     lineHeight = 1.75.em.lh
                     marginTop = (-0.25).rem
                 }
