@@ -12,10 +12,7 @@ import org.w3c.dom.get
 import react.*
 import react.dom.a
 import react.dom.span
-import styled.css
-import styled.styledA
-import styled.styledDiv
-import styled.styledSpan
+import styled.*
 
 interface MenuTopProps : RProps {
     var animated: Boolean
@@ -25,6 +22,7 @@ interface MenuTopProps : RProps {
 
 val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
     val menuContainer = useRef<HTMLDivElement?>(null)
+    val mobileMenuContainer = useRef<HTMLDivElement?>(null)
     val mobileMenuButton = useRef<HTMLDivElement?>(null)
 
     var isTop by useState(props.animated)
@@ -35,8 +33,12 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
         val openCloseMenu = EventListener {
             isMobileMenuOpen = !isMobileMenuOpen
         }
-        mobileMenuButton.current!!.addEventListener("mouseup", openCloseMenu)
-        ({ mobileMenuButton.current!!.removeEventListener("mouseup", openCloseMenu) })
+        mobileMenuContainer.current!!.addEventListener("click", openCloseMenu)
+        mobileMenuButton.current!!.addEventListener("click", openCloseMenu)
+        ({
+            mobileMenuContainer.current!!.removeEventListener("click", openCloseMenu)
+            mobileMenuButton.current!!.removeEventListener("click", openCloseMenu)
+        })
     }
 
     if (props.animated) {
@@ -50,11 +52,11 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
         }
     }
 
-    props.topMargin?.let { size ->
+    props.topMargin?.let { _ ->
         styledDiv {
             css {
                 height = 1.5.rem
-                backgroundColor = if (isTop || isMobileMenuOpen) props.backgroundColor ?: Color.transparent else Color.kodein.dark
+                backgroundColor = if (isTop) props.backgroundColor ?: Color.transparent else Color.kodein.dark
                 transition(::background, duration = .5.s)
             }
         }
@@ -63,7 +65,7 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
     flexColumn {
         ref = menuContainer
         css {
-            if (isTop || isMobileMenuOpen) {
+            if (isTop) {
                 backgroundColor = props.backgroundColor ?: Color.transparent
             } else {
                 backgroundColor = Color.kodein.dark
@@ -91,9 +93,8 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
             }
         }
 
-        flexRow(JustifyContent.center, Align.center) {
+        flexRow {
             css {
-                backgroundColor = Color.kodein.kaumon
                 position = Position.fixed
                 left = 100.pct
                 top = 0.px
@@ -104,19 +105,43 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
 
                 minWidth(1025) { display = Display.none }
 
-                boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
-
                 transition(::left, duration = .3.s, Timing.linear)
-
-                if (isMobileMenuOpen) {
-                    left = 0.pct
+                left = if (isMobileMenuOpen) {
+                    0.pct
                 } else {
-                    left = 100.pct
+                    100.pct
                 }
             }
 
-            child(MenuNavigation) {
-                attrs.isMobile = true
+            styledDiv {
+                ref = mobileMenuContainer
+                css {
+                    left = 0.pct
+                    height = 100.pct
+                    width = 100.pct
+                    backgroundColor = Color.kodein.cute
+                    transition(::opacity, duration = .3.s, Timing.easeInOut)
+                    opacity = if (isMobileMenuOpen) 0.1 else 0
+                }
+            }
+
+            flexRow(JustifyContent.center, Align.center) {
+                css {
+                    backgroundColor = Color.kodein.dark
+                    position = Position.absolute
+                    right = 0.pct
+                    height = 100.pct
+                    width = 100.pct
+
+                    media("(min-height: 768px) and (min-width: 768px)") {
+                        width = 50.pct
+                    }
+
+                    boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
+                }
+                child(MenuNavigation) {
+                    attrs.isMobile = true
+                }
             }
         }
     }
@@ -188,7 +213,7 @@ val MenuContent = functionalComponent<MenuContentProps>("MenuContent") { props -
         flexRow(JustifyContent.flexEnd, Align.center) {
             css {
                 flexGrow = 1.0
-                zIndex = 1001
+                zIndex = 1002
                 minWidth(1025) { display = Display.none }
             }
 
@@ -207,9 +232,11 @@ val MenuContent = functionalComponent<MenuContentProps>("MenuContent") { props -
                         borderRadius = 3.px
                         transition(::transform, duration = .3.s, Timing.materialAcceleration)
                         transition(::opacity, duration = .3.s, Timing.easeInOut)
+                        transition(::color, duration = .3.s, Timing.easeInOut)
                     }
 
                     "span.first" {
+                        backgroundColor = Color.kodein.purple
                         transform {
                             translate(0.px, 7.px)
                             rotate((-45).deg)
@@ -217,6 +244,7 @@ val MenuContent = functionalComponent<MenuContentProps>("MenuContent") { props -
                     }
                     "span.middle" { opacity = 0 }
                     "span.last" {
+                        backgroundColor = Color.kodein.purple
                         transform {
                             translate(0.px, (-7).px)
                             rotate(45.deg)
@@ -239,7 +267,7 @@ interface MenuProps : RProps {
 }
 
 val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
-    val foregroundColor = if (props.isMobile)  Color.kodein.kinzolin else  Color.kodein.orange
+    val foregroundColor = if (props.isMobile)  Color.kodein.kamethiste else  Color.kodein.orange
     val justify = if (props.isMobile) JustifyContent.flexStart else JustifyContent.flexEnd
 
     var currentPage by useState("home")
@@ -302,40 +330,54 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
             }
 
             if (props.isMobile) {
-                backgroundColor = Color.kodein.kaumon
+                backgroundColor = Color.kodein.dark
+                color = Color.kodein.kamethiste
+                padding(horizontal = 2.rem)
+
                 "a" {
+                    fontSize = 1.5.rem
                     flexDirection = FlexDirection.column
-                    margin(horizontal = 0.75.em)
-                    padding(top = 1.6.rem, bottom = 0.4.rem)
-                    borderBottom(0.1.rem, BorderStyle.solid, Color.kodein.kinzolin)
+                    padding(horizontal = 0.em)
+                    "span.text" {
+                        padding(horizontal = 0.rem)
+                        padding(top = .6.rem, bottom = .4.rem)
+                    }
                 }
             }
         }
 
+        fun String.asMenu() = if (props.isMobile) this.capitalize() else this.toUpperCase()
+
         a(href = "services.html", classes = if (currentPage == "services") "current" else null) {
-            span("text") { +"SERVICES" }
+            span("text") { +"services".asMenu() }
             span("underline") {}
         }
+        if (props.isMobile) menuSeparator()
         a(href = "training.html", classes = if (currentPage == "training") "current" else null) {
-            span("text") { +"TRAINING" }
+            span("text") { +"training".asMenu() }
             span("underline") {}
         }
+        if (props.isMobile) menuSeparator()
         a(href = "oss.html", classes = if (currentPage == "oss") "current" else null) {
             span("text") { +"OSS" }
             span("underline") {}
         }
+        if (props.isMobile) menuSeparator()
         a(href = "", classes = if (currentPage == "team") "current" else null) {
-            span("text") { +"TEAM" }
+            span("text") { +"team".asMenu() }
             span("underline") {}
         }
+        if (props.isMobile) menuSeparator()
         a(href = "blog.html", classes = if (currentPage == "blog") "current" else null) {
-            span("text") { +"BLOG" }
+            span("text") { +"blog".asMenu() }
             span("underline") {}
         }
+        if (props.isMobile) menuSeparator()
         a(href = "contact.html", classes = if (currentPage == "contact") "current" else null) {
-            span("text") { +"CONTACT" }
+            span("text") { +"contact".asMenu() }
             span("underline") {}
         }
+        if (props.isMobile) menuSeparator()
         styledA(href = "") {
             css {
                 if (!props.isMobile) {
@@ -356,9 +398,47 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
                         padding(.3.rem, .6.rem)
                         transition(::backgroundColor, 0.5.s)
                         transition(::color, 0.5.s)
+                    } else {
+                        padding( vertical = .5.rem, horizontal = 0.rem)
                     }
                 }
-                +"GUYS: WE'RE HIRING!"
+                +"we're hiring!".asMenu()
+            }
+        }
+    }
+
+    if (props.isMobile) {
+        flexRow {
+            css {
+                position = Position.absolute
+                left = 1.rem
+                bottom = 1.rem
+            }
+
+            styledImg(alt = "Kodein logo", src = "imgs/logo-purple.svg") {
+                css {
+                    display = Display.block
+                    height = 1.4.em
+                    padding(right = 0.5.em)
+                }
+            }
+            styledDiv {
+                styledH1 {
+                    css {
+                        fontSize = 1.2.em
+                        fontWeight = FontWeight.w700
+                        color = Color.kodein.purple
+                    }
+
+                    +"KODEIN"
+
+                    styledSpan {
+                        css {
+                            fontWeight = FontWeight.w300
+                        }
+                        +"Koders"
+                    }
+                }
             }
         }
     }
@@ -367,9 +447,8 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
 private fun RBuilder.menuSeparator() {
     styledDiv {
         css {
-            width = 95.pct
-            opacity = .5
-            backgroundColor = Color.kodein.kamethiste
+            width = 100.pct
+            backgroundColor = Color.kodein.kinzolin
             height = 0.05.rem
         }
     }

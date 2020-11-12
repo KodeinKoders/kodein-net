@@ -29,11 +29,8 @@ val KodeinLogo = functionalComponent<KodeinLogoProps>("KodeinLogo") { props ->
             alignItems = Align.center
             justifyContent = JustifyContent.flexStart
             color = props.color
-//            marginRight = 10.em
             fontSize = if (props.subtitle == null) 1.75.em else 1.4.em
             transition("marginRight", duration = 0.15.s)
-//            maxWidth(768) { marginRight = 0.em }
-            zIndex = 1001
         }
         styledImg(alt = "Kodein logo", src = "imgs/logo-${props.logo}.svg") {
             css {
