@@ -49,6 +49,10 @@ val appGlobalStyle: CSSBuilder.() -> Unit = {
         }
 
     }
+
+    "noscroll" {
+        overflow = Overflow.hidden
+    }
 }
 
 data class Page<P : RProps>(

@@ -4,15 +4,20 @@ import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
+import kotlinx.dom.addClass
+import kotlinx.dom.removeClass
 import net.kodein.charter.kodein
 import net.kodein.utils.*
-import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.*
+import org.w3c.dom.ScrollBehavior
+import org.w3c.dom.events.Event
 import org.w3c.dom.events.EventListener
-import org.w3c.dom.get
 import react.*
 import react.dom.a
 import react.dom.span
 import styled.*
+import kotlin.math.max
+import kotlin.math.min
 
 interface MenuTopProps : RProps {
     var animated: Boolean
@@ -29,17 +34,42 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
 
     var isMobileMenuOpen by useState(false)
 
-    useEffectWithCleanup {
+    useEffectWithCleanup(listOf(isMobileMenuOpen)) {
         val openCloseMenu = EventListener {
             isMobileMenuOpen = !isMobileMenuOpen
+
+            if (!isMobileMenuOpen) {
+                document.body!!.style.setPropertyValue("overflow", "hidden")
+            } else {
+                document.body!!.style.removeProperty("overflow")
+            }
         }
-        mobileMenuContainer.current!!.addEventListener("click", openCloseMenu)
-        mobileMenuButton.current!!.addEventListener("click", openCloseMenu)
+        val scrollToMenu = EventListener {
+            val menuTop = menuContainer.current!!.getBoundingClientRect().top.toInt()
+            if (menuTop > 0) {
+                val (_, offsetTop) = menuContainer.current!!.recursiveOffset()
+                window.scrollTo(ScrollToOptions(top = (offsetTop).toDouble(), behavior = ScrollBehavior.SMOOTH))
+            }
+        }
+
+        mobileMenuContainer.current!!.addEventListener("mousedown", openCloseMenu)
+        mobileMenuButton.current!!.addEventListener("mouseup", openCloseMenu)
+        mobileMenuButton.current!!.addEventListener("mouseup", scrollToMenu)
+
         ({
-            mobileMenuContainer.current!!.removeEventListener("click", openCloseMenu)
-            mobileMenuButton.current!!.removeEventListener("click", openCloseMenu)
+            mobileMenuContainer.current!!.removeEventListener("mousedown", openCloseMenu)
+            mobileMenuButton.current!!.removeEventListener("mouseup", openCloseMenu)
+            mobileMenuButton.current!!.removeEventListener("mouseup", scrollToMenu)
         })
     }
+
+//    useEffect(listOf(isMobileMenuOpen)) {
+//        if (!isMobileMenuOpen) {
+//            println("free scroll!")
+//        } else {
+//            println("block scroll!")
+//        }
+//    }
 
     if (props.animated) {
         useEffectWithCleanup {
@@ -119,8 +149,9 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
                     left = 0.pct
                     height = 100.pct
                     width = 100.pct
-                    backgroundColor = Color.kodein.cute
-                    transition(::opacity, duration = .3.s, Timing.easeInOut)
+                    backgroundColor = Color.kodein.dark
+                    transition(::opacity, duration = .3.s, Timing.easeIn)
+                    transition(::opacity, duration = .1.s, Timing.easeOut)
                     opacity = if (isMobileMenuOpen) 0.1 else 0
                 }
             }
@@ -153,6 +184,18 @@ interface MenuContentProps : RProps{
 }
 
 val MenuContent = functionalComponent<MenuContentProps>("MenuContent") { props ->
+
+    var isMobile by useState(false)
+
+    useEffectWithCleanup {
+        val onResize: (Event?) -> Unit = {
+            isMobile  = document.body!!.clientWidth < 768 || document.body!!.clientHeight < 768
+        }
+        window.addEventListener("resize", onResize)
+        onResize(null)
+        ({ window.removeEventListener("resize", onResize) })
+    }
+
     flexRow {
         css {
             padding(0.75.rem, 2.5.rem, 0.75.rem, 3.rem)
@@ -191,10 +234,10 @@ val MenuContent = functionalComponent<MenuContentProps>("MenuContent") { props -
             }
             child(KodeinLogo) {
                 attrs {
-                    logo = "orange-fat"
+                    logo = if(props.isMobileMenuOpen && isMobile) "purple-fat" else  "orange-fat"
                     bold = "KODEIN"
                     light = "Koders"
-                    color = Color.kodein.orange
+                    color = if(props.isMobileMenuOpen && isMobile) Color.kodein.purple else  Color.kodein.orange
                 }
             }
             span("underline") {}
@@ -213,7 +256,7 @@ val MenuContent = functionalComponent<MenuContentProps>("MenuContent") { props -
         flexRow(JustifyContent.flexEnd, Align.center) {
             css {
                 flexGrow = 1.0
-                zIndex = 1002
+                zIndex = 1001
                 minWidth(1025) { display = Display.none }
             }
 
@@ -407,41 +450,41 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
         }
     }
 
-    if (props.isMobile) {
-        flexRow {
-            css {
-                position = Position.absolute
-                left = 1.rem
-                bottom = 1.rem
-            }
-
-            styledImg(alt = "Kodein logo", src = "imgs/logo-purple.svg") {
-                css {
-                    display = Display.block
-                    height = 1.4.em
-                    padding(right = 0.5.em)
-                }
-            }
-            styledDiv {
-                styledH1 {
-                    css {
-                        fontSize = 1.2.em
-                        fontWeight = FontWeight.w700
-                        color = Color.kodein.purple
-                    }
-
-                    +"KODEIN"
-
-                    styledSpan {
-                        css {
-                            fontWeight = FontWeight.w300
-                        }
-                        +"Koders"
-                    }
-                }
-            }
-        }
-    }
+//    if (props.isMobile) {
+//        styledA(href = "index.html") {
+//            css {
+//                position = Position.absolute
+//                left = 1.rem
+//                bottom = 1.rem
+//            }
+//
+//            styledImg(alt = "Kodein logo", src = "imgs/logo-purple.svg") {
+//                css {
+//                    display = Display.block
+//                    height = 1.4.em
+//                    padding(right = 0.5.em)
+//                }
+//            }
+//            styledDiv {
+//                styledH1 {
+//                    css {
+//                        fontSize = 1.2.em
+//                        fontWeight = FontWeight.w700
+//                        color = Color.kodein.purple
+//                    }
+//
+//                    +"KODEIN"
+//
+//                    styledSpan {
+//                        css {
+//                            fontWeight = FontWeight.w300
+//                        }
+//                        +"Koders"
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 
 private fun RBuilder.menuSeparator() {
