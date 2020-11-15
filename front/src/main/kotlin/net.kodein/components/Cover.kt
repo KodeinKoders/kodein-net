@@ -8,10 +8,7 @@ import net.kodein.utils.*
 import react.RBuilder
 import react.RProps
 import react.functionalComponent
-import styled.css
-import styled.styledH1
-import styled.styledP
-import styled.styledSpan
+import styled.*
 
 data class CoverPalette(
     val backgroundColor: Color,
@@ -25,6 +22,7 @@ interface CoverProps : RProps {
     var colors  : CoverPalette
     var overTitle: String
     var title: RBuilder.() -> Unit
+    var overrideContentRuleSet: RuleSet?
 }
 
 val Cover = functionalComponent<CoverProps>("Cover") { props ->
@@ -94,7 +92,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
             }
         }
 
-        styledP {
+        styledDiv {
             css {
                 +kodein.display1
                 color = props.colors.text
@@ -106,6 +104,8 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                     width = 85.pct
                     padding(1.rem)
                 }
+
+                props.overrideContentRuleSet?.invoke(this)
             }
 
             props.children()

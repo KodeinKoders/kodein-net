@@ -63,14 +63,6 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
         })
     }
 
-//    useEffect(listOf(isMobileMenuOpen)) {
-//        if (!isMobileMenuOpen) {
-//            println("free scroll!")
-//        } else {
-//            println("block scroll!")
-//        }
-//    }
-
     if (props.animated) {
         useEffectWithCleanup {
             val scroll = EventListener {
@@ -146,7 +138,7 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
             styledDiv {
                 ref = mobileMenuContainer
                 css {
-                    left = 0.pct
+                    right = 0.pct
                     height = 100.pct
                     width = 100.pct
                     backgroundColor = Color.kodein.dark
@@ -406,7 +398,7 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
             span("underline") {}
         }
         if (props.isMobile) menuSeparator()
-        a(href = "", classes = if (currentPage == "team") "current" else null) {
+        a(href = "team.html", classes = if (currentPage == "team") "current" else null) {
             span("text") { +"team".asMenu() }
             span("underline") {}
         }

@@ -100,7 +100,10 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
                 props.sub?.invoke(this)
             }
 
-            child(Chevron) { attrs.isUp = isOpen }
+            child(Chevron) {
+                attrs.isUp = isOpen
+                attrs.color = borderColor
+            }
         }
 
         // Content
@@ -134,6 +137,7 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
 
 private interface ChevronProps : RProps {
     var isUp: Boolean
+    var color: Color
 }
 private val Chevron = functionalComponent<ChevronProps>("Chevron") { props ->
     styledDiv {
@@ -158,7 +162,7 @@ private val Chevron = functionalComponent<ChevronProps>("Chevron") { props ->
                 left = 0.px
                 height = 100.pct
                 width = 51.pct
-                backgroundColor = Color.kodein.klycine.withAlpha(0.75)
+                backgroundColor = props.color.withAlpha(0.75)
                 transform { skew(0.deg, (30).deg); }
                 transition("transform", duration = 0.5.s)
             }
@@ -169,7 +173,7 @@ private val Chevron = functionalComponent<ChevronProps>("Chevron") { props ->
                 right = 0.px
                 height = 100.pct
                 width = 50.pct
-                backgroundColor = Color.kodein.klycine.withAlpha(0.75)
+                backgroundColor = props.color.withAlpha(0.75)
                 transform { skew(0.deg, (-30).deg); }
                 transition("transform", 0.5.s)
             }
