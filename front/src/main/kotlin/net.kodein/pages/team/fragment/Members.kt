@@ -1,15 +1,15 @@
 package net.kodein.pages.team.fragment
 
+import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
 import net.kodein.charter.kodein
 import net.kodein.components.ContactUsProps
 import net.kodein.utils.*
-import react.RBuilder
-import react.RProps
-import react.child
+import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.events.Event
+import react.*
 import react.dom.a
-import react.functionalComponent
 import styled.*
 
 val Members = functionalComponent<ContactUsProps>("Members") { props ->
@@ -80,25 +80,49 @@ interface MemberProps : RProps {
     var socialMediaList: List<SocialMedia>
 }
 private val Member = functionalComponent<MemberProps>("Member") { props ->
-    styledImg(src = "imgs/team/${props.photo}.jpg") {
-        css {
-            width = 100.pct
-            objectFit = ObjectFit.cover
-            objectPosition = "top"
-            minHeight = 20.rem
-            maxHeight = 40.rem
+    val div = useRef<HTMLDivElement?>(null)
 
-            maxSizeStrict(980) { height = 20.rem }
+    var image: String? by useState(null)
+
+    useEffectWithCleanup(emptyList()) {
+        val onResize: ((Event?) -> Unit) = {
+            val divWidth = div.current!!.clientWidth
+            val imgWidth = illustrationWidths.firstOrNull { it >= (divWidth * 1.2) } ?: illustrationWidths.last()
+            image = "${props.photo}_${imgWidth}"
         }
+        window.addEventListener("resize", onResize)
+        onResize(null)
+        ({ window.removeEventListener("resize", onResize) })
     }
 
     flexColumn {
-        css {
-            +kodein.body
-            padding(vertical = 2.rem)
-            maxSize(980) { padding(horizontal = 1.rem) }
+        ref = div
+
+        picture {
+            source("image/webp", "imgs/team/$image.webp" to null)
+            source("image/jpeg", "imgs/team/$image.jpg" to null)
+
+            styledImg(alt = image, src = "imgs/team/$image.jpg") {
+                css {
+                    width = 100.pct
+                    objectFit = ObjectFit.cover
+                    objectPosition = "top"
+                    minHeight = 20.rem
+                    maxHeight = 40.rem
+
+                    maxSizeStrict(980) { height = 20.rem }
+                }
+            }
+
         }
+
         flexRow(justifyContent = JustifyContent.start, alignItems = Align.center) {
+            css {
+                +kodein.body
+                padding(vertical = 2.rem)
+                maxSize(980) { padding(horizontal = 1.rem) }
+            }
+
             styledP {
                 css {
                     color = Color.kodein.dark
