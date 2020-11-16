@@ -113,34 +113,36 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
                     maxSizeStrict(980) { height = 20.rem }
                 }
             }
-
         }
 
-        flexRow(justifyContent = JustifyContent.start, alignItems = Align.center) {
+        flexColumn {
             css {
                 +kodein.body
                 padding(vertical = 2.rem)
                 maxSize(980) { padding(horizontal = 1.rem) }
             }
 
-            styledP {
-                css {
-                    color = Color.kodein.dark
-                    fontWeight = FontWeight.semiBold
+            flexRow(justifyContent = JustifyContent.start, alignItems = Align.center) {
+                styledP {
+                    css {
+                        color = Color.kodein.dark
+                        fontWeight = FontWeight.semiBold
+                    }
+                    +props.name
                 }
-                +props.name
-            }
-            styledDiv {
-                css {
-                    width = 1.rem
-                    backgroundColor = Color.kodein.dark
-                    height = 0.15.rem
-                    margin(horizontal = .5.rem)
+                styledDiv {
+                    css {
+                        width = 1.rem
+                        backgroundColor = Color.kodein.dark
+                        height = 0.15.rem
+                        margin(horizontal = .5.rem)
+                    }
                 }
-            }
-            styledP {
-                css { color = Color.kodein.korail }
-                +props.position
+                styledP {
+                    css { color = Color.kodein.korail }
+                    +props.position
+                }
+
             }
 
             styledP {
@@ -163,7 +165,7 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
                         +"Nerd on "
                         props.socialMediaList.forEachIndexed { index, media ->
                             a(href = "${media.url.removeSuffix("/")}/${media.handler}", target = "_blank") {
-                                    +media.service.capitalize()
+                                +media.service.capitalize()
                             }
                             if (index < props.socialMediaList.lastIndex) +", "
                         }
