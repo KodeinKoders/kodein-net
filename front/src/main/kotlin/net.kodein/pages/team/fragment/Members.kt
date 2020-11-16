@@ -32,22 +32,12 @@ val Members = functionalComponent<ContactUsProps>("Members") { props ->
         flexColumn {
             css {
                 width = 50.pct
-
-                maxWidth(768) {
-                width = 100.pct
-                }
+                maxWidth(768) { width = 100.pct }
             }
-            styledDiv {
-                css {
-                    width = 100.pct
-                    height = 10.rem
-                    backgroundColor = Color.kodein.kaumon
-                }
-            }
-
             child(Member) {
                 attrs {
                     name = "Salomon Brys"
+                    photo = "salomon"
                     position = "Founder"
                     bio = "bio"
                     socialMediaList = listOf(
@@ -62,21 +52,13 @@ val Members = functionalComponent<ContactUsProps>("Members") { props ->
         flexColumn {
             css {
                 width = 50.pct
-                maxWidth(768) {
-                    width = 100.pct
-                }
-            }
-            styledDiv {
-                css {
-                    width = 100.pct
-                    height = 10.rem
-                    backgroundColor = Color.kodein.kamethiste
-                }
+                maxWidth(768) { width = 100.pct }
             }
 
             child(Member) {
                 attrs {
                     name = "Romain Boisselle"
+                    photo = "romain"
                     position = "Founder"
                     bio = "bio"
                     socialMediaList = listOf(
@@ -92,11 +74,24 @@ val Members = functionalComponent<ContactUsProps>("Members") { props ->
 
 interface MemberProps : RProps {
     var name: String
+    var photo: String
     var position: String
     var bio: String
     var socialMediaList: List<SocialMedia>
 }
 private val Member = functionalComponent<MemberProps>("Member") { props ->
+    styledImg(src = "imgs/team/${props.photo}.jpg") {
+        css {
+            width = 100.pct
+            objectFit = ObjectFit.cover
+            objectPosition = "top"
+            minHeight = 20.rem
+            maxHeight = 40.rem
+
+            maxSizeStrict(980) { height = 20.rem }
+        }
+    }
+
     flexColumn {
         css {
             +kodein.body
