@@ -3,6 +3,7 @@ package net.kodein.pages.team.fragment
 import kotlinx.css.Color
 import kotlinx.css.Display
 import kotlinx.css.display
+import kotlinx.html.id
 import net.kodein.charter.kodein
 import net.kodein.components.AccordionElement
 import net.kodein.components.ContactUsProps
@@ -11,6 +12,7 @@ import net.kodein.components.imageRow
 import net.kodein.utils.Illus
 import net.kodein.utils.maxWidth
 import react.child
+import react.dom.div
 import react.functionalComponent
 
 
@@ -24,6 +26,8 @@ val Jobs = functionalComponent<ContactUsProps>("Members") { props ->
         display = Display.none
         maxWidth(980) { display = Display.flex }
     }
+
+    div { attrs.id = "jobs" }
 
     contentRow(
         backgroundColor = Color.kodein.kyzantium, indexPosition = 2,

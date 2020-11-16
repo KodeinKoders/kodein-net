@@ -412,7 +412,7 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
             span("underline") {}
         }
         if (props.isMobile) menuSeparator()
-        styledA(href = "") {
+        styledA(href = "team.html#jobs") {
             css {
                 if (!props.isMobile) {
                     hover {
