@@ -10,7 +10,9 @@ import react.RProps
 import react.child
 import react.dom.br
 import react.functionalComponent
+import styled.css
 import styled.styledDiv
+import styled.styledP
 
 
 val Team = functionalComponent<RProps> {
@@ -36,13 +38,27 @@ val Team = functionalComponent<RProps> {
             }
             overrideContentRuleSet = {
                 width = 100.pct
-                maxSize(768) { width = 100.pct }
+                padding(horizontal = 0.rem)
+                padding(vertical = 2.rem)
+                maxSize(768) {
+                    width = 100.pct
+                    padding(horizontal = 0.rem)
+                    padding(vertical = 1.rem)
+                }
             }
         }
 
-        +"""...and humans, after all!""".trimMargin()
-        br {}
-        +"""Viens on se fera un petit Qake à l'ancienne! :)""".trimMargin()
+        styledP {
+            css {
+                width = 75.pct
+                margin(LinearDimension.auto)
+                maxSize(768) { width = 85.pct }
+            }
+
+            +"""...and humans, after all!""".trimMargin()
+            br {}
+           +"""Viens on se fera un petit Qake à l'ancienne! :)""".trimMargin()
+        }
 
         styledDiv { css.height = 5.rem }
 
