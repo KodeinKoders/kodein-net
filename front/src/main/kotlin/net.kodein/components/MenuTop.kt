@@ -155,11 +155,10 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
                     height = 100.pct
                     width = 100.pct
 
-                    media("(min-height: 768px) and (min-width: 768px)") {
-                        width = 50.pct
-                    }
-
                     boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
+
+                    minSizeStrict(768) { width = 50.pct }
+                    maxHeight(480) { alignItems = Align.flexEnd }
                 }
                 child(MenuNavigation) {
                     attrs.isMobile = true
@@ -376,6 +375,7 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
                         padding(horizontal = 0.rem)
                         padding(top = .6.rem, bottom = .4.rem)
                     }
+                    maxSize(570) { fontSize = 1.rem }
                 }
             }
         }
@@ -440,42 +440,6 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
             }
         }
     }
-
-//    if (props.isMobile) {
-//        styledA(href = "index.html") {
-//            css {
-//                position = Position.absolute
-//                left = 1.rem
-//                bottom = 1.rem
-//            }
-//
-//            styledImg(alt = "Kodein logo", src = "imgs/logo-purple.svg") {
-//                css {
-//                    display = Display.block
-//                    height = 1.4.em
-//                    padding(right = 0.5.em)
-//                }
-//            }
-//            styledDiv {
-//                styledH1 {
-//                    css {
-//                        fontSize = 1.2.em
-//                        fontWeight = FontWeight.w700
-//                        color = Color.kodein.purple
-//                    }
-//
-//                    +"KODEIN"
-//
-//                    styledSpan {
-//                        css {
-//                            fontWeight = FontWeight.w300
-//                        }
-//                        +"Koders"
-//                    }
-//                }
-//            }
-//        }
-//    }
 }
 
 private fun RBuilder.menuSeparator() {

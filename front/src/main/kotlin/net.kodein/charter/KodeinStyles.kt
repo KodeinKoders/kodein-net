@@ -24,6 +24,7 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
 
         maxSize(980) { fontSize = 1.75.rem  }
         maxSize(775) { fontSize = 1.5.rem  }
+        maxSize(570) { fontSize = 1.25.rem  }
     }
 
     val display3 by css {
@@ -62,6 +63,7 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
 
         maxSize(980) { fontSize = 1.75.rem  }
         maxSize(775) { fontSize = 1.5.rem  }
+        maxSize(570) { fontSize = 1.25.rem  }
     }
 
     val chapo by css {
@@ -74,6 +76,7 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
 
         maxSize(980) { fontSize = 1.75.rem  }
         maxSize(775) { fontSize = 1.5.rem  }
+        maxSize(570) { fontSize = 1.25.rem  }
     }
 
     val intertitre by css {
@@ -85,7 +88,7 @@ object KodeinStyles : StyleSheet("KodeinStyles", isStatic = true) {
 
         maxSize(980) { fontSize = 1.4.rem  }
         maxSize(775) { fontSize = 1.3.rem  }
-        maxSize(570) { fontSize = 1.25.rem  }
+        maxSize(570) { fontSize = 1.2.rem  }
     }
 
     val body by css {
