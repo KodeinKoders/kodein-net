@@ -96,7 +96,7 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
         css {
             +kodein.body
             padding(vertical = 2.rem)
-            maxSize(980) { padding(horizontal = .5.rem) }
+            maxSize(980) { padding(horizontal = 1.rem) }
         }
         flexRow(justifyContent = JustifyContent.start, alignItems = Align.center) {
             styledP {

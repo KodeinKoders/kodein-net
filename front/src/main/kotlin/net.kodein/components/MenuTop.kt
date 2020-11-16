@@ -34,14 +34,8 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
 
     var isMobileMenuOpen by useState(false)
 
-    useEffectWithCleanup(listOf(isMobileMenuOpen)) {
+    useEffectWithCleanup {
         val openCloseMenu = EventListener { isMobileMenuOpen = !isMobileMenuOpen }
-
-        if (!isMobileMenuOpen) {
-            document.body!!.style.overflowY = "auto"
-        } else {
-            document.body!!.style.overflowY = "hidden"
-        }
 
         val scrollToMenu = EventListener {
             val menuTop = menuContainer.current!!.getBoundingClientRect().top.toInt()
@@ -60,6 +54,10 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
             mobileMenuButton.current!!.removeEventListener("mouseup", openCloseMenu)
             mobileMenuButton.current!!.removeEventListener("mouseup", scrollToMenu)
         })
+    }
+
+    useEffect(listOf(isMobileMenuOpen)) {
+        document.body!!.style.overflowY = if (!isMobileMenuOpen) { "auto" } else { "hidden" }
     }
 
     if (props.animated) {
