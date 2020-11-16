@@ -158,7 +158,7 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
                     boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
 
                     minSizeStrict(768) { width = 50.pct }
-                    maxHeight(480) { alignItems = Align.flexEnd }
+                    maxHeight(370) { alignItems = Align.flexEnd }
                 }
                 child(MenuNavigation) {
                     attrs.isMobile = true

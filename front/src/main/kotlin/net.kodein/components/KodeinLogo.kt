@@ -4,6 +4,8 @@ import kotlinx.css.*
 import kotlinx.css.properties.lh
 import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
+import net.kodein.utils.maxHeight
+import net.kodein.utils.maxSize
 import net.kodein.utils.maxWidth
 import react.RProps
 import react.functionalComponent
@@ -39,12 +41,16 @@ val KodeinLogo = functionalComponent<KodeinLogoProps>("KodeinLogo") { props ->
                 padding(right = 1.em)
                 maxWidth(350) { padding(right = 0.5.em) }
                 height = props.logoHeight ?: 1.8.em
+                maxSize(480) {
+                    height = props.logoHeight ?: 1.4.em
+                }
             }
         }
         styledDiv {
             styledH1 {
                 css {
                     fontSize = 1.4.em
+                    maxSize(480) { fontSize = 1.25.em }
                     fontWeight = FontWeight.w700
                     if (props.subtitle == null) {
                         lineHeight = 1.em.lh
@@ -73,8 +79,8 @@ val KodeinLogo = functionalComponent<KodeinLogoProps>("KodeinLogo") { props ->
                         fontSize = 0.8.em
                         marginTop = (-0.25).em
 
-                        maxWidth(440) { fontSize = 0.6.em }
-                        maxWidth(350) { fontSize = 0.54.em }
+                        maxSize(440) { fontSize = 0.6.em }
+                        maxSize(350) { fontSize = 0.54.em }
                     }
                     +subtitle
                 }
