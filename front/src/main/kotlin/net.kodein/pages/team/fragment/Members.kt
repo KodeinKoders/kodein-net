@@ -142,31 +142,31 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
                 css { color = Color.kodein.korail }
                 +props.position
             }
-        }
 
-        styledP {
-            css {
-                color = Color.kodein.dark
-                textAlign = TextAlign.start
-                margin(top = .5.rem, bottom = 2.rem)
-            }
-            +props.bio
-        }
-
-        flexRow {
             styledP {
                 css {
-                    +kodein.link
                     color = Color.kodein.dark
-                    fontWeight = FontWeight.semiBold
+                    textAlign = TextAlign.start
+                    margin(top = .5.rem, bottom = 2.rem)
                 }
-                if (props.socialMediaList.isNotEmpty()) {
-                    +"Nerd on "
-                    props.socialMediaList.forEachIndexed { index, media ->
-                        a(href = "${media.url.removeSuffix("/")}/${media.handler}", target = "_blank") {
-                                +media.service.capitalize()
+                +props.bio
+            }
+
+            flexRow {
+                styledP {
+                    css {
+                        +kodein.link
+                        color = Color.kodein.dark
+                        fontWeight = FontWeight.semiBold
+                    }
+                    if (props.socialMediaList.isNotEmpty()) {
+                        +"Nerd on "
+                        props.socialMediaList.forEachIndexed { index, media ->
+                            a(href = "${media.url.removeSuffix("/")}/${media.handler}", target = "_blank") {
+                                    +media.service.capitalize()
+                            }
+                            if (index < props.socialMediaList.lastIndex) +", "
                         }
-                        if (index < props.socialMediaList.lastIndex) +", "
                     }
                 }
             }
