@@ -4,8 +4,6 @@ import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
-import kotlinx.dom.addClass
-import kotlinx.dom.removeClass
 import net.kodein.charter.kodein
 import net.kodein.utils.*
 import org.w3c.dom.*
@@ -15,9 +13,11 @@ import org.w3c.dom.events.EventListener
 import react.*
 import react.dom.a
 import react.dom.span
-import styled.*
-import kotlin.math.max
-import kotlin.math.min
+import styled.css
+import styled.styledA
+import styled.styledDiv
+import styled.styledSpan
+
 
 interface MenuTopProps : RProps {
     var animated: Boolean
@@ -45,12 +45,16 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
             }
         }
 
-        mobileMenuContainer.current!!.addEventListener("mousedown", openCloseMenu)
+        val shadowCloseMenu = EventListener {
+            if (it.target == mobileMenuContainer.current) isMobileMenuOpen = false
+        }
+
+        mobileMenuContainer.current!!.addEventListener("mousedown", shadowCloseMenu)
         mobileMenuButton.current!!.addEventListener("mouseup", openCloseMenu)
         mobileMenuButton.current!!.addEventListener("mouseup", scrollToMenu)
 
         ({
-            mobileMenuContainer.current!!.removeEventListener("mousedown", openCloseMenu)
+            mobileMenuContainer.current!!.removeEventListener("mousedown", shadowCloseMenu)
             mobileMenuButton.current!!.removeEventListener("mouseup", openCloseMenu)
             mobileMenuButton.current!!.removeEventListener("mouseup", scrollToMenu)
         })
@@ -112,37 +116,22 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
             }
         }
 
-        flexRow {
+        styledDiv {
+            ref = mobileMenuContainer
             css {
+                minWidth(1025) { display = Display.none }
                 position = Position.fixed
-                left = 100.pct
                 top = 0.px
                 right = 0.px
                 height = 100.pct
                 width = 100.pct
                 zIndex = 1000
-
-                minWidth(1025) { display = Display.none }
-
-                transition(::left, duration = .3.s, Timing.linear)
-                left = if (isMobileMenuOpen) {
-                    0.pct
-                } else {
-                    100.pct
+                backgroundColor = Color.kodein.dark.withAlpha(0.25)
+                if (!isMobileMenuOpen) {
+                    opacity = 0.0
+                    pointerEvents = PointerEvents.none
                 }
-            }
-
-            styledDiv {
-                ref = mobileMenuContainer
-                css {
-                    right = 0.pct
-                    height = 100.pct
-                    width = 100.pct
-                    backgroundColor = Color.kodein.dark
-                    transition(::opacity, duration = .3.s, Timing.easeIn)
-                    transition(::opacity, duration = .1.s, Timing.easeOut)
-                    opacity = if (isMobileMenuOpen) 0.1 else 0
-                }
+                transition(::opacity, .5.s)
             }
 
             flexRow(JustifyContent.center, Align.center) {
@@ -151,11 +140,18 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
                     position = Position.absolute
                     right = 0.pct
                     height = 100.pct
-                    width = 100.pct
+                    width = 50.pct
+                    minWidth = 28.rem
+
+                    if (!isMobileMenuOpen) transform { translateX(20.rem) }
+                    transition(::transform, 0.5.s)
 
                     boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
 
-                    minSizeStrict(768) { width = 50.pct }
+                    maxWidth(420) {
+                        width = 100.pct
+                        minWidth = LinearDimension.auto
+                    }
                     maxHeight(370) { alignItems = Align.flexEnd }
                 }
                 child(MenuNavigation) {
@@ -177,7 +173,7 @@ val MenuContent = functionalComponent<MenuContentProps>("MenuContent") { props -
 
     useEffectWithCleanup {
         val onResize: (Event?) -> Unit = {
-            isMobile  = document.body!!.clientWidth < 768 || document.body!!.clientHeight < 768
+            isMobile  = document.body!!.clientWidth <= 1024
         }
         window.addEventListener("resize", onResize)
         onResize(null)
@@ -288,9 +284,8 @@ val MenuContent = functionalComponent<MenuContentProps>("MenuContent") { props -
                 span(if (props.isMobileMenuOpen) "last" else null) {}
             }
         }
-    }}
-
-//
+    }
+}
 
 
 interface MenuProps : RProps {
@@ -371,9 +366,12 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
                     padding(horizontal = 0.em)
                     "span.text" {
                         padding(horizontal = 0.rem)
-                        padding(top = .6.rem, bottom = .4.rem)
+                        padding(top = .9.rem, bottom = .6.rem)
+                        maxHeight(679) {
+                            padding(top = .6.rem, bottom = .4.rem)
+                        }
                     }
-                    maxSize(570) { fontSize = 1.rem }
+                    maxHeight(480) { fontSize = 1.2.rem }
                 }
             }
         }
