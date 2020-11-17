@@ -148,7 +148,7 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
 
                     boxShadow(Color.black.withAlpha(0.25), 0.rem, 0.2.rem, blurRadius = 1.5.rem)
 
-                    maxWidth(420) {
+                    maxWidth(580) {
                         width = 100.pct
                         minWidth = LinearDimension.auto
                     }
