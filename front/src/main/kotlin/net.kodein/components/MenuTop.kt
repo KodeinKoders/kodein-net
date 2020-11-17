@@ -248,6 +248,7 @@ val MenuContent = functionalComponent<MenuContentProps>("MenuContent") { props -
                 ref = props.mobileMenuButton
                 css {
                     cursor = Cursor.pointer
+                    put("-webkit-tap-highlight-color", "transparent")
                     padding(0.55.rem)
 
                     "span" {
