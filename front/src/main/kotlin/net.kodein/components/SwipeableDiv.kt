@@ -52,8 +52,8 @@ val SwipeableDiv = functionalComponent<SwipeableDivProps>("SwipeableDiv") { prop
                 swipeIndicatorVisible = false
                 if (dist > 0) props.onSwipe(true)
                 else props.onSwipe(false)
+                it.preventDefault()
             }
-            it.preventDefault()
         }
 
         div.current!!.addEventListener("touchstart", onTouchStart)
