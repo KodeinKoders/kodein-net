@@ -44,11 +44,6 @@ val appGlobalStyle: CSSBuilder.() -> Unit = {
         textDecoration = TextDecoration.none
         color = Color.inherit
         transition(::color, 0.2.s)
-
-        hover {
-            color = Color.kodein.purple
-        }
-
     }
 
     "noscroll" {

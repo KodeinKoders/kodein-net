@@ -5,16 +5,13 @@ import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
 import kotlinx.html.classes
-import kotlinx.html.id
 import net.kodein.charter.kodein
+import net.kodein.components.SwipeableDiv
 import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
 import react.*
 import react.dom.a
-import react.dom.br
-import react.dom.key
 import styled.*
-import kotlin.time.seconds
 
 
 val Humans = functionalComponent<RProps>("Humans") {
@@ -33,6 +30,8 @@ val Humans = functionalComponent<RProps>("Humans") {
                 }
                 color = Color.kodein.orange
                 paddingLeft = 5.rem
+                maxWidth(440) { paddingLeft = 2.rem }
+                maxWidth(360) { paddingLeft = 0.75.rem }
             }
             +"Humans trust us!"
         }
@@ -43,66 +42,67 @@ val Humans = functionalComponent<RProps>("Humans") {
                 specific { textAlign = TextAlign.start }
                 color = Color.kodein.orange
                 paddingLeft = 5.rem
+                maxWidth(440) { paddingLeft = 2.rem }
+                maxWidth(360) { paddingLeft = 0.75.rem }
             }
             +"Are you next?"
         }
 
-        child(HumanList)
+        child(HumanSlider)
+        child(HumanStack)
 
     }
 }
 
 val humans = listOf(
         HumanProps(
-                name = "Fabrice Drouin",
-                picture = "fabrice-drouin.jpeg",
-                job = "Founder & CTO",
-                company = "ACINQ",
-                url = "https://www.linkedin.com/in/fabrice-drouin-95ab8012",
-                twitter = "acinq_co"
+            personName = "Fabrice Drouin",
+            personPicture = "fabrice-drouin.jpeg",
+            personJob = "Founder & CTO",
+            personUrl = "https://www.linkedin.com/in/fabrice-drouin-95ab8012",
+            companyName = "ACINQ",
+            companyLogo = "acinq.svg",
+            companyUrl = "https://acinq.co"
         ),
         HumanProps(
-                name = "Thalia Cruz Castañares",
-                picture = "thalia-cruz.jpg",
-                job = "Android team manager",
-                company = "Softbank Robotics",
-                url = "https://www.linkedin.com/in/thal%C3%ADa-cruz-casta%C3%B1ares-a1257a3a",
-                twitter = "sbreurope"
+            personName = "Thalia Cruz Castañares",
+            personPicture = "thalia-cruz.jpg",
+            personJob = "Android team manager",
+            personUrl = "https://www.linkedin.com/in/thal%C3%ADa-cruz-casta%C3%B1ares-a1257a3a",
+            companyName = "Softbank Robotics",
+            companyLogo = "softbank.svg",
+            companyUrl = "https://www.softbankrobotics.com"
         ),
         HumanProps(
-                name = "Jochen Buhler",
-                picture = "jochen-buhler.jpg",
-                job = "Software Engineer",
-                company = "Bosch",
-                url = "https://www.xing.com/profile/Jochen_Buehler8",
-                twitter = "boschglobal"
+            personName = "Jochen Buhler",
+            personPicture = "jochen-buhler.jpg",
+            personJob = "Software Engineer",
+            personUrl = "https://www.xing.com/profile/Jochen_Buehler8",
+            companyName = "Bosch",
+            companyLogo = "bosch.svg",
+            companyUrl = "https://www.bosch.fr"
         ),
         HumanProps(
-                name = "Rémi B. Loizeau",
-                picture = "remi-bouvet.jpg",
-                job = "Crayola en chef",
-                company = "Methodic.Design",
-                url = "https://www.linkedin.com/in/r%C3%A9mi-bouvet-loizeau-914536155",
-                twitter = "remi_b_loizeau"
-        ),
-        HumanProps(
-                name = "Cedric Ravalec",
-                picture = "cedric-ravalec.jpeg",
-                job = "Embedded & IoT Business Line Manager",
-                company = "Smile",
-                url = "https://www.linkedin.com/in/ravalec",
-                twitter = "groupesmile"
+            personName = "Cedric Ravalec",
+            personPicture = "cedric-ravalec.jpeg",
+            personJob = "Embedded & IoT Business Line Manager",
+            companyName = "Smile",
+            companyLogo = "smile.png",
+            personUrl = "https://www.linkedin.com/in/ravalec",
+            companyUrl = "https://www.smile.eu"
         )
 ).shuffled()
 
 @OptIn(ExperimentalStdlibApi::class)
-val HumanList = functionalComponent<RProps>("HumanList") {
+val HumanSlider = functionalComponent<RProps>("HumanList") {
     val div = useRef<HTMLDivElement?>(null)
 
     styledDiv {
         css {
             overflow = Overflow.hidden
             width = 100.pct
+            maxWidth(750) { display = Display.none }
+            padding(top = 2.rem)
         }
 
         val count = 4
@@ -130,7 +130,6 @@ val HumanList = functionalComponent<RProps>("HumanList") {
                 ref = div
                 css {
                     width = 20.rem * humans.size * 4
-                    padding(vertical = 2.em)
                     animation(
                         duration = (humans.size * 16).s,
                         timing = Timing.linear,
@@ -155,29 +154,110 @@ val HumanList = functionalComponent<RProps>("HumanList") {
     }
 }
 
+val HumanStack = functionalComponent<RProps>("HumanList") {
+
+    var index by useState(Int.MAX_VALUE / 2)
+
+    useEffectWithCleanup(listOf(index)) {
+        var i = index
+        val handle = window.setTimeout({ index = ++i }, 6000)
+        ({ window.clearTimeout(handle) })
+    }
+
+    child(SwipeableDiv) {
+        attrs {
+            containerCss = {
+                display = Display.none
+                maxWidth(750) { display = Display.block }
+                width = 100.pct
+                height = 36.rem
+                overflow = Overflow.hidden
+                paddingBottom = 2.5.rem
+            }
+            onSwipe = {
+                index += if (it) 1 else -1
+            }
+        }
+
+        val count = 6
+
+        for (i in (count - 1) downTo -1) {
+            styledDiv {
+                key = "human-${index + i}"
+                css {
+                    width = 20.rem
+                    height = 32.rem
+                    position = Position.absolute
+                    left = 50.pct - 10.rem
+                    top = 4.rem
+                    put("transform-origin", "top center")
+                    when {
+                        i > 0 -> transform {
+                            translateY((-(0.5 * i)).rem)
+                            scale(1.0 - i * (0.2 / count))
+                        }
+                        i == 0 -> {}
+                        i < 0 -> {
+                            transform { translateX(8.rem) }
+                            opacity = 0.0
+                            pointerEvents = PointerEvents.none
+                        }
+                    }
+                    transition(::transform, 0.5.s)
+                    transition(::opacity, 0.5.s)
+                }
+
+                styledDiv {
+                    css {
+                        position = Position.absolute
+                        left = 0.pct
+                        top = 0.pct
+                        width = 100.pct
+                        height = 100.pct
+                        backgroundColor = Color.white
+                    }
+                }
+
+                styledDiv {
+                    css {
+                        backgroundColor = Color.white
+                        if (i >= 0) opacity = 1.0 - (1.0 / (count - 1)) * i
+                        transition(::opacity, 0.5.s)
+                    }
+                    child(Human, humans[(index + i) % humans.size])
+                }
+            }
+        }
+
+    }
+}
+
 interface HumanProps: RProps {
-    var name: String
-    var picture: String
-    var job: String
-    var company: String
-    var url: String
-    var twitter: String
+    var personName: String
+    var personPicture: String
+    var personJob: String
+    var personUrl: String
+    var companyName: String
+    var companyLogo: String
+    var companyUrl: String
 
     companion object {
         operator fun invoke(
-                name: String,
-                picture: String,
-                job: String,
-                company: String,
-                url: String,
-                twitter: String
+            personName: String,
+            personPicture: String,
+            personJob: String,
+            companyName: String,
+            companyLogo: String,
+            personUrl: String,
+            companyUrl: String
         ) = jsObject<HumanProps> {
-            this.name = name
-            this.picture = picture
-            this.job = job
-            this.company = company
-            this.url = url
-            this.twitter = twitter
+            this.personName = personName
+            this.personPicture = personPicture
+            this.personJob = personJob
+            this.companyName = companyName
+            this.companyLogo = companyLogo
+            this.personUrl = personUrl
+            this.companyUrl = companyUrl
         }
     }
 }
@@ -195,6 +275,7 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
             width = 20.rem
             height = 32.rem
             position = Position.relative
+            backgroundColor = Color.white
 
             hover {
                 ".profile-pic" {
@@ -210,6 +291,15 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                     marginLeft = (-3).rem
                     marginTop = (-3).rem
                 }
+                "img.logo" {
+                    opacity = 1.0
+                }
+            }
+
+            "* a" {
+                hover {
+                    color = Color.kodein.purple
+                }
             }
         }
 
@@ -220,7 +310,7 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                 width = 100.pct
                 height = 10.rem
             }
-            styledImg(src = "imgs/humans/${props.picture}") {
+            styledImg(src = "imgs/humans/${props.personPicture}") {
                 attrs.classes += "background-pic"
                 css {
                     width = 20.rem + 3.rem
@@ -237,7 +327,7 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                 }
             }
         }
-        styledImg(src = "imgs/humans/${props.picture}", alt = props.name) {
+        styledImg(src = "imgs/humans/${props.personPicture}", alt = props.personName) {
             attrs.classes += "profile-pic"
             css {
                 position = Position.absolute
@@ -258,12 +348,12 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
         styledH3 {
             css {
                 +kodein.intertitre
-                marginTop = 7.5.rem
+                marginTop = 7.rem
                 width = 18.rem
                 textAlign = TextAlign.center
             }
-            a(href = props.url, target="_blank") {
-                +props.name
+            a(href = props.personUrl, target="_blank") {
+                +props.personName
             }
         }
         styledP {
@@ -274,14 +364,25 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                 color = Color.kodein.orange
                 textAlign = TextAlign.center
             }
-            +"${props.job} "
+            +"${props.personJob} "
             styledSpan {
                 css.whiteSpace = WhiteSpace.nowrap
-                +"at ${props.company}"
+                +"at ${props.companyName}"
             }
-            br {}
-            a(href = "https://twitter.com/${props.twitter}") {
-                +"@${props.twitter}"
+        }
+        a(href = props.companyUrl) {
+            styledImg(src = "imgs/logos/${props.companyLogo}") {
+                attrs.classes += "logo"
+                css {
+                    width = 8.em
+                    height = 4.em
+                    objectFit = ObjectFit.contain
+                    position = Position.absolute
+                    bottom = 2.5.em
+                    left  = 50.pct - 4.em
+                    transition(::opacity, 0.6.s)
+                    opacity = 0.4
+                }
             }
         }
     }

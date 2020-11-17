@@ -53,6 +53,6 @@ tasks["gitPublishCopy"].dependsOn(":front:ssr:browserDistribution")
 
 tasks["gitPublishCommit"].doFirst {
     if (!grgit.status().isClean) {
-        error("Refusing to commit new pages on a non-clean repo. Please commit first.")
+        error("Refusing to commit new pages on a non-clean repo. Please commit first.\n${grgit.status()}")
     }
 }

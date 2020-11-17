@@ -7,17 +7,15 @@ import kotlinx.html.DIV
 import kotlinx.html.classes
 import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
+import net.kodein.components.SwipeableDiv
 import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
-import org.w3c.dom.HTMLImageElement
-import org.w3c.dom.TouchEvent
 import org.w3c.dom.events.Event
 import react.*
 import react.dom.*
 import styled.*
 import kotlin.js.Date
 import kotlin.math.PI
-import kotlin.math.abs
 import kotlin.math.tan
 
 
@@ -632,9 +630,6 @@ private val SwipeableText = functionalComponent<SwipeableTextProps>("SwipeableTe
     var showing: Boolean by useState(false)
     var tick: Int by useState(0)
 
-    var swipeIndicatorAnim: Int by useState(-1)
-    var swipeIndicatorVisible by useState(true)
-
     useEffect(listOf(props.contentId)) {
         oldContentId = contentId
         contentId = props.contentId
@@ -647,97 +642,14 @@ private val SwipeableText = functionalComponent<SwipeableTextProps>("SwipeableTe
         window.setTimeout({ showing = true }, 50)
     }
 
-    val div = useRef<HTMLDivElement?>(null)
-
-    useEffectWithCleanup {
-        var start: Triple<Int, Int, Double>? = null
-        val onTouchStart: (Event) -> Unit = {
-            val touch = (it as TouchEvent).changedTouches.item(0)!!
-            start = Triple(touch.pageX, touch.pageY, Date().getTime())
-        }
-        val onTouchMove: (Event) -> Unit = listener@ {
-            val (startX, startY, _) = start ?: return@listener
-            val touch = (it as TouchEvent).changedTouches.item(0)!!
-            val distX = abs(touch.pageX - startX)
-            val distY = abs(touch.pageY - startY)
-            if ((distX <= 10 && distY <= 10) || distX >= distY) it.preventDefault()
-            else start = null
-        }
-        val onTouchEnd: (Event) -> Unit = listener@ {
-            val (startX, startY, startTime) = start ?: return@listener
-            val touch = (it as TouchEvent).changedTouches.item(0)!!
-            val dist = touch.pageX - startX
-            val elapsed = Date().getTime() - startTime
-            if (elapsed <= 200 && abs(dist) >= 100 && abs(touch.pageY - startY) <= 100) {
-                swipeIndicatorVisible = false
-                if (dist > 0) props.onSwipe(true)
-                else props.onSwipe(false)
-            }
-            it.preventDefault()
-        }
-
-        div.current!!.addEventListener("touchstart", onTouchStart)
-        div.current!!.addEventListener("touchmove", onTouchMove)
-        div.current!!.addEventListener("touchend", onTouchEnd)
-
-        ({
-            div.current!!.removeEventListener("touchstart", onTouchStart)
-            div.current!!.removeEventListener("touchmove", onTouchMove)
-            div.current!!.removeEventListener("touchend", onTouchEnd)
-        })
-    }
-
-    useEffectWithCleanup(emptyList()) {
-        var i = swipeIndicatorAnim
-        val block = {
-            i *= -1
-            swipeIndicatorAnim = i
-        }
-        val handle = window.setInterval(block, 1800)
-        window.setTimeout(block, 20)
-        ({ window.clearInterval(handle) })
-    }
-
-    val img = useRef<HTMLImageElement?>(null)
-    var swipeIndicatorInView by useState(false)
-    useEffectWithCleanup(listOf(swipeIndicatorInView)) effect@ {
-        if (swipeIndicatorInView) return@effect ({})
-        val onScroll: (Event) -> Unit = {
-            if (img.current!!.getBoundingClientRect().top.toInt() in 150..(window.innerHeight - 150)) {
-                swipeIndicatorInView = true
-            }
-        }
-        window.addEventListener("scroll", onScroll)
-        ({ window.removeEventListener("scroll", onScroll) })
-    }
-    useEffectWithCleanup(listOf(swipeIndicatorInView)) effect@ {
-        if (!swipeIndicatorInView) return@effect ({})
-        val handle = window.setTimeout({ swipeIndicatorVisible = false }, 4000)
-        ({ window.clearTimeout(handle) })
-    }
-
-    styledDiv {
-        ref = div
-        css {
-            props.css?.invoke(this)
-            position = Position.relative
-        }
-        styledImg(src = "imgs/swipe.svg") {
-            ref = img
-            css {
-                position = Position.absolute
-                left = 50.pct - 3.rem
-                top = 1.7.rem
-                width = 3.rem
-                zIndex = 3
-                pointerEvents = PointerEvents.none
-                transform { translateX( (swipeIndicatorAnim * 3).rem ) }
-                transition(::transform, 1.5.s, Timing.easeInOut)
-                opacity = if (swipeIndicatorVisible) 1.0 else 0.0
-                transition(::opacity, 1.s, Timing.linear)
+    child(SwipeableDiv) {
+        attrs {
+            containerCss = props.css
+            indicatorCss = {
                 display = Display.none
                 maxWidth(560) { display = Display.unset }
             }
+            onSwipe = props.onSwipe
         }
 
         contentId?.let { id ->
