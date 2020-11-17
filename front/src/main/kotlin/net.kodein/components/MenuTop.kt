@@ -64,6 +64,12 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
         document.body!!.style.overflowY = if (!isMobileMenuOpen) { "auto" } else { "hidden" }
     }
 
+    useEffectWithCleanup {
+        val onTouchmove = EventListener { it.preventDefault() }
+        menuContainer.current!!.addEventListener("touchmove", onTouchmove)
+        ({ menuContainer.current!!.removeEventListener("touchmove", onTouchmove) })
+    }
+
     if (props.animated) {
         useEffectWithCleanup {
             val scroll = EventListener {
