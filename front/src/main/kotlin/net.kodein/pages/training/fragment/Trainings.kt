@@ -19,7 +19,6 @@ val Trainings = functionalComponent<RProps>("Trainings") {
     contentRow(
         backgroundColor = Color.kodein.dark, indexPosition = 3, // see [Description] that stops at index 2
         bottomLayers = listOf(Color.kodein.orange, Color.kodein.kaumon),
-        additionalStyle = { marginBottom = 8.rem }
     ) {
         flexColumn {
             css {

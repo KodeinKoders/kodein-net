@@ -1,6 +1,7 @@
 package net.kodein.pages.services
 
 import kotlinx.css.Color
+import kotlinx.css.height
 import kotlinx.css.rem
 import net.kodein.charter.kodein
 import net.kodein.components.*
@@ -10,6 +11,7 @@ import react.child
 import react.dom.b
 import react.dom.br
 import react.functionalComponent
+import styled.styledDiv
 
 val Services = functionalComponent<RProps>("Services") {
         child(MenuTop) {
@@ -47,6 +49,8 @@ val Services = functionalComponent<RProps>("Services") {
         }
 
         child(Descriptions)
+
+        styledDiv { css.height = 10.rem }
 
         child(ContactUs)
 

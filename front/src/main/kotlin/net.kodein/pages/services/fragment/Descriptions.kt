@@ -51,7 +51,6 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
         backgroundColor = Color.kodein.cute, indexPosition = 3,
         illustration = Illus(Title.SERVICES, Illus.Position.LEFT, Illus.Alignment.RIGHT),
         bottomLayers = listOf(Color.kodein.orange, Color.kodein.kinzolin),
-        additionalStyle = { marginBottom = 8.rem }
     ) {
         child(Description) {
             attrs.title = "Project Development"

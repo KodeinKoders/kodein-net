@@ -11,6 +11,7 @@ import react.child
 import react.dom.br
 import react.functionalComponent
 import styled.css
+import styled.styledDiv
 import styled.styledImg
 
 val Training = functionalComponent<RProps>("Training") {
@@ -55,6 +56,8 @@ val Training = functionalComponent<RProps>("Training") {
         child(Description)
 
         child(Trainings)
+
+        styledDiv { css.height = 10.rem }
 
         child(ContactUs)
 

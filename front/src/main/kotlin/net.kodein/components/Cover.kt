@@ -69,7 +69,9 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                     textAlign = TextAlign.center
                 }
                 color = props.colors.title
-                margin(1.rem, 2.rem)
+                margin(1.rem, 1.rem)
+
+                maxSize(980, 570) { +kodein.display2  }
             }
             props.title(this)
         }
@@ -102,7 +104,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
 
                 maxSize(768) {
                     width = 85.pct
-                    padding(1.rem)
+                    padding(1.rem, 0.rem)
                 }
 
                 props.overrideContentRuleSet?.invoke(this)
