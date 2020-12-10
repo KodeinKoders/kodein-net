@@ -442,6 +442,30 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
                 +"we're hiring!".asMenu()
             }
         }
+
+        flexRow(alignItems = Align.center) {
+            css {
+                marginBottom = 0.3.rem
+                marginLeft = 2.rem
+                marginRight = 0.5.rem
+            }
+            styledSpan {
+                css {
+                    opacity = 0.5
+                }
+                +"EN"
+            }
+            styledSpan {
+                css { margin(horizontal = 0.3.rem) }
+                +"/"
+            }
+            styledSpan {
+                css {
+                    opacity = 1
+                }
+                +"FR"
+            }
+        }
     }
 }
 
