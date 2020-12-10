@@ -9,9 +9,13 @@ import net.kodein.charter.kodein
 import net.kodein.components.SwipeableDiv
 import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
+import org.w3c.dom.events.Event
 import react.*
 import react.dom.a
+import react.dom.br
+import react.dom.p
 import styled.*
+import kotlin.math.ceil
 
 
 val Humans = functionalComponent<RProps>("Humans") {
@@ -97,6 +101,19 @@ val humans = listOf(
 val HumanSlider = functionalComponent<RProps>("HumanList") {
     val div = useRef<HTMLDivElement?>(null)
 
+    var repeatCount by useState { 0 }
+
+    useEffectWithCleanup(emptyList()) {
+        val batchWidth = (20 * 16) * humans.size // 1rem = 16px
+        val onResize: ((Event?) -> Unit) = {
+            val count = (window.innerWidth.toDouble() / batchWidth.toDouble())
+            repeatCount = ceil(count).toInt() + 1
+        }
+        window.addEventListener("resize", onResize)
+        onResize(null)
+        ({ window.removeEventListener("resize", onResize) })
+    }
+
     styledDiv {
         css {
             overflow = Overflow.hidden
@@ -104,8 +121,6 @@ val HumanSlider = functionalComponent<RProps>("HumanList") {
             maxWidth(750) { display = Display.none }
             padding(top = 2.rem)
         }
-
-        val count = 4
 
         styledDiv {
             css {
@@ -129,7 +144,7 @@ val HumanSlider = functionalComponent<RProps>("HumanList") {
             flexRow {
                 ref = div
                 css {
-                    width = 20.rem * humans.size * 4
+                    width = 20.rem * humans.size * repeatCount
                     animation(
                         duration = (humans.size * 16).s,
                         timing = Timing.linear,
@@ -144,7 +159,7 @@ val HumanSlider = functionalComponent<RProps>("HumanList") {
                     }
                 }
 
-                repeat(4) {
+                repeat(repeatCount) {
                     humans.forEach { human ->
                         child(Human, human)
                     }
@@ -292,7 +307,8 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                     marginTop = (-3).rem
                 }
                 "img.logo" {
-                    opacity = 1.0
+                    opacity = 0.75
+                    filter = "grayscale(0%)"
                 }
             }
 
@@ -352,7 +368,7 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                 width = 18.rem
                 textAlign = TextAlign.center
             }
-            a(href = props.personUrl, target="_blank") {
+            a(href = props.personUrl, target = "_blank") {
                 +props.personName
             }
         }
@@ -370,7 +386,7 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                 +"at ${props.companyName}"
             }
         }
-        a(href = props.companyUrl) {
+        a(href = props.companyUrl, target = "_blank") {
             styledImg(src = "imgs/logos/${props.companyLogo}") {
                 attrs.classes += "logo"
                 css {
@@ -381,6 +397,8 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                     bottom = 2.5.em
                     left  = 50.pct - 4.em
                     transition(::opacity, 0.6.s)
+                    transition(::filter, 0.6.s)
+                    filter = "grayscale(85%)"
                     opacity = 0.4
                 }
             }

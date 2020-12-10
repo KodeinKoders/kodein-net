@@ -28,7 +28,7 @@ kotlin {
     }
 }
 
-val auth = (project.property("com.github.http.auth") as? String)?.split(":")
+val auth = (project.findProperty("com.github.http.auth") as? String)?.split(":")
 if (auth != null) {
     System.setProperty("org.ajoberstar.grgit.auth.username", auth[0])
     System.setProperty("org.ajoberstar.grgit.auth.password", auth[1])
