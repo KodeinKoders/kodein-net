@@ -56,6 +56,7 @@ val KodeinLogo = functionalComponent<KodeinLogoProps>("KodeinLogo") { props ->
                         lineHeight = 1.em.lh
                         paddingTop = 0.25.em
                     }
+                    lineHeight = 1.em.lh
                     props.titleColor?.let {
                         color = it
                     }
