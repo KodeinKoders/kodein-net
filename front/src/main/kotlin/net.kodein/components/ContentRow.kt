@@ -66,6 +66,8 @@ val ContentRow = functionalComponent<ContentRowProps>("ContentRow") { props ->
     val illusGoesRight by useState { props.illustration?.position == Illus.Position.RIGHT }
     val indexPosition by useState { (props.indexPosition ?: 1) * 2 } // 2 is the number of stacked items in the component
 
+    val bottomLayers by useState { LayerParam.generate(listOf(Color.transparent) + props.bottomLayers) }
+
     flexColumn {
         css { props.additionalStyle?.invoke(this) }
 
@@ -79,7 +81,9 @@ val ContentRow = functionalComponent<ContentRowProps>("ContentRow") { props ->
                 css {
                     width = 100.pct
                     backgroundColor = props.backgroundColor
-                    put("clip-path", "polygon(0% 2rem, 100% 0%, 100% calc(100% - 4rem), 0% 100%)")
+//                    put("clip-path", "polygon(0% 2rem, 100% 0%, 100% calc(100% - 4rem), 0% 100%)")
+                    val r = 100.pct - ((bottomLayers[0].coords.first - bottomLayers[0].coords.second) / 10.0).rem
+                    put("clip-path", "polygon(0% 0%, 100% 0%, 100% $r, 0% 100%)")
                 }
 
                 when (props.illustration?.position) {
@@ -114,9 +118,10 @@ val ContentRow = functionalComponent<ContentRowProps>("ContentRow") { props ->
                 css {
                     width = 100.pct
                     zIndex = 89 - indexPosition
-                    marginTop = (-4).rem
+//                    zIndex = 99 - indexPosition
+                    marginTop = (-(bottomLayers[0].coords.first / 10.0)).rem
                 }
-                layerSeparator(Position.absolute, *props.bottomLayers.toTypedArray())
+                layerSeparator(Position.absolute, bottomLayers)
             }
         }
 
