@@ -118,8 +118,6 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                     put("clip-path", "polygon(0% 0%, 0% 100%, 500% 100%, 500% 0%)")
                 }
 
-                val s: SVG = attrs
-
                 attrs.viewBox(0, 0, 6, 100)
 
                 draw {
@@ -144,8 +142,6 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                     filter = "drop-shadow(0 0.8rem 1rem  ${Color.kodein.kaumon.withAlpha(0.5)})"
                     put("clip-path", "polygon(0 30%, 100% 30%, 100% 35%, 100% 500%, 0 500%)")
                 }
-
-                val s: SVG = attrs
 
                 attrs.viewBox(0, 0, 300, 12)
 

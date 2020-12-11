@@ -78,7 +78,6 @@ val Header = functionalComponent<HeaderProps>("Header") { props ->
     val scrollIndicatorRef = useRef<HTMLDivElement?>(null)
 
     var elements by useState<Elements?>(null)
-    var sphere by useState<Pair<Coords, Int>?>(null)
 
     useEffectWithCleanup(emptyList()) {
         var previousElements = elements

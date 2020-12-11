@@ -12,7 +12,7 @@ import react.*
 import react.dom.a
 import styled.*
 
-val Members = functionalComponent<ContactUsProps>("Members") { props ->
+val Members = functionalComponent<ContactUsProps>("Members") {
     flexRow {
         css {
             "a" {

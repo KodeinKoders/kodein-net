@@ -16,7 +16,7 @@ import react.dom.div
 import react.functionalComponent
 
 
-val Jobs = functionalComponent<ContactUsProps>("Members") { props ->
+val Jobs = functionalComponent<ContactUsProps>("Members") {
 
     imageRow(
         backgroundColor = Color.kodein.kinzolin, indexPosition = 1,

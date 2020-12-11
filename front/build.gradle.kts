@@ -7,8 +7,9 @@ plugins {
 kotlin {
     js {
         browser {
-            webpackTask { outputFileName = "kodein-net.js" }
-            runTask { outputFileName = "kodein-net.js" }
+            commonWebpackConfig {
+                outputFileName = "kodein-net.js"
+            }
         }
         nodejs()
         useCommonJs()
@@ -17,7 +18,7 @@ kotlin {
             val reactVersion = "17.0.0"
             val reactRouterVersion = "5.2.0"
             val styledVersion = "5.2.0"
-            val kotlinWrapperVersion = "pre.129-kotlin-1.4.10"
+            val kotlinWrapperVersion = "pre.130-kotlin-1.4.21"
 
             api("org.jetbrains:kotlin-react-dom:$reactVersion-$kotlinWrapperVersion")
             api("org.jetbrains:kotlin-react-router-dom:$reactRouterVersion-$kotlinWrapperVersion")

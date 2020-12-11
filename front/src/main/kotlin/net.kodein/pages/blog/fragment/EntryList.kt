@@ -37,7 +37,6 @@ val EntryList = functionalComponent<RProps>("ElementList") {
     var entryHeight by useState(0.0)
 
     var animHeight by useState(true)
-    var heightTransitionTime: Time? by useState(null)
 
     var centerText by useState("Loading...")
 
