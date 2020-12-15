@@ -7,13 +7,15 @@ import kotlinx.css.properties.*
 import kotlinx.html.classes
 import net.kodein.charter.kodein
 import net.kodein.components.SwipeableDiv
-import net.kodein.utils.*
+import net.kodein.utils.flexColumn
+import net.kodein.utils.flexRow
+import net.kodein.utils.hairline
+import net.kodein.utils.maxWidth
+import net.kodein.withBasePath
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.events.Event
 import react.*
 import react.dom.a
-import react.dom.br
-import react.dom.p
 import styled.*
 import kotlin.math.ceil
 
@@ -319,87 +321,89 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
             }
         }
 
-        styledDiv {
-            css {
-                backgroundColor = Color.kodein.dark
-                overflow = Overflow.hidden
-                width = 100.pct
-                height = 10.rem
-            }
-            styledImg(src = "imgs/humans/${props.personPicture}") {
-                attrs.classes += "background-pic"
+        withBasePath { path ->
+            styledDiv {
                 css {
-                    width = 20.rem + 3.rem
-                    height = 10.rem + 3.rem
-                    marginLeft = (-1.5).rem
-                    marginTop = (-1.5).rem
-                    objectFit = ObjectFit.cover
-                    filter = "blur(1rem)"
-                    opacity = 0.4
-                    transition(::width, 0.6.s)
-                    transition(::height, 0.6.s)
-                    transition(::marginLeft, 0.6.s)
-                    transition(::marginTop, 0.6.s)
+                    backgroundColor = Color.kodein.dark
+                    overflow = Overflow.hidden
+                    width = 100.pct
+                    height = 10.rem
+                }
+                styledImg(src = "$path/imgs/humans/${props.personPicture}") {
+                    attrs.classes += "background-pic"
+                    css {
+                        width = 20.rem + 3.rem
+                        height = 10.rem + 3.rem
+                        marginLeft = (-1.5).rem
+                        marginTop = (-1.5).rem
+                        objectFit = ObjectFit.cover
+                        filter = "blur(1rem)"
+                        opacity = 0.4
+                        transition(::width, 0.6.s)
+                        transition(::height, 0.6.s)
+                        transition(::marginLeft, 0.6.s)
+                        transition(::marginTop, 0.6.s)
+                    }
                 }
             }
-        }
-        styledImg(src = "imgs/humans/${props.personPicture}", alt = props.personName) {
-            attrs.classes += "profile-pic"
-            css {
-                position = Position.absolute
-                left = 50.pct - 5.rem
-                top = 10.rem - 5.rem
-                width = 10.rem
-                height = 10.rem
-                objectFit = ObjectFit.cover
-                borderRadius = 5.rem
-                zIndex = 1
-                transition(::width, 0.6.s)
-                transition(::height, 0.6.s)
-                transition(::left, 0.6.s)
-                transition(::top, 0.6.s)
-                transition(::borderRadius, 0.6.s)
-            }
-        }
-        styledH3 {
-            css {
-                +kodein.intertitre
-                marginTop = 7.rem
-                width = 18.rem
-                textAlign = TextAlign.center
-            }
-            a(href = props.personUrl, target = "_blank") {
-                +props.personName
-            }
-        }
-        styledP {
-            css {
-                +kodein.body
-                width = 18.rem
-                marginTop = 0.5.rem
-                color = Color.kodein.orange
-                textAlign = TextAlign.center
-            }
-            +"${props.personJob} "
-            styledSpan {
-                css.whiteSpace = WhiteSpace.nowrap
-                +"at ${props.companyName}"
-            }
-        }
-        a(href = props.companyUrl, target = "_blank") {
-            styledImg(src = "imgs/logos/${props.companyLogo}") {
-                attrs.classes += "logo"
+            styledImg(src = "$path/imgs/humans/${props.personPicture}", alt = props.personName) {
+                attrs.classes += "profile-pic"
                 css {
-                    width = 8.em
-                    height = 4.em
-                    objectFit = ObjectFit.contain
                     position = Position.absolute
-                    bottom = 2.5.em
-                    left  = 50.pct - 4.em
-                    transition(::opacity, 0.6.s)
-                    transition(::filter, 0.6.s)
-                    filter = "grayscale(85%)"
-                    opacity = 0.4
+                    left = 50.pct - 5.rem
+                    top = 10.rem - 5.rem
+                    width = 10.rem
+                    height = 10.rem
+                    objectFit = ObjectFit.cover
+                    borderRadius = 5.rem
+                    zIndex = 1
+                    transition(::width, 0.6.s)
+                    transition(::height, 0.6.s)
+                    transition(::left, 0.6.s)
+                    transition(::top, 0.6.s)
+                    transition(::borderRadius, 0.6.s)
+                }
+            }
+            styledH3 {
+                css {
+                    +kodein.intertitre
+                    marginTop = 7.rem
+                    width = 18.rem
+                    textAlign = TextAlign.center
+                }
+                a(href = props.personUrl, target = "_blank") {
+                    +props.personName
+                }
+            }
+            styledP {
+                css {
+                    +kodein.body
+                    width = 18.rem
+                    marginTop = 0.5.rem
+                    color = Color.kodein.orange
+                    textAlign = TextAlign.center
+                }
+                +"${props.personJob} "
+                styledSpan {
+                    css.whiteSpace = WhiteSpace.nowrap
+                    +"at ${props.companyName}"
+                }
+            }
+            a(href = props.companyUrl, target = "_blank") {
+                styledImg(src = "$path/imgs/logos/${props.companyLogo}") {
+                    attrs.classes += "logo"
+                    css {
+                        width = 8.em
+                        height = 4.em
+                        objectFit = ObjectFit.contain
+                        position = Position.absolute
+                        bottom = 2.5.em
+                        left  = 50.pct - 4.em
+                        transition(::opacity, 0.6.s)
+                        transition(::filter, 0.6.s)
+                        filter = "grayscale(85%)"
+                        opacity = 0.4
+                    }
                 }
             }
         }

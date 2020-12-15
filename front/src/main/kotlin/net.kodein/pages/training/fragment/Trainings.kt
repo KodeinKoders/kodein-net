@@ -1,11 +1,11 @@
 package net.kodein.pages.training.fragment
 
 import kotlinx.css.*
-import kotlinx.css.properties.border
 import net.kodein.charter.kodein
 import net.kodein.components.AccordionElement
 import net.kodein.components.contentRow
 import net.kodein.utils.flexColumn
+import net.kodein.withBasePath
 import react.RBuilder
 import react.RProps
 import react.child
@@ -102,11 +102,13 @@ val Trainings = functionalComponent<RProps>("Trainings") {
 }
 
 private fun duration(duration: String): RBuilder.() -> Unit = {
-    styledImg(src = "imgs/stopwatch-kaumon.svg") {
-        css {
-            width = 1.rem
-            height = 1.rem
-            paddingRight = .5.rem
+    withBasePath { path ->
+        styledImg(src = "$path/imgs/stopwatch-kaumon.svg") {
+            css {
+                width = 1.rem
+                height = 1.rem
+                paddingRight = .5.rem
+            }
         }
     }
     +duration

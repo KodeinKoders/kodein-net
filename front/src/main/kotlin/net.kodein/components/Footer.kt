@@ -9,6 +9,7 @@ import net.kodein.utils.flexColumn
 import net.kodein.utils.flexRow
 import net.kodein.utils.maxSize
 import net.kodein.utils.maxWidth
+import net.kodein.withBasePath
 import react.RProps
 import react.child
 import react.dom.*
@@ -180,14 +181,16 @@ val Footer = functionalComponent<RProps>("Footer") {
                         }
                     }
 
-                    styledImg(src = "imgs/logo-kaumon.svg") {
-                        css {
-                            width = 1.5.rem
-                            height = 1.5.rem
-                            padding(0.5.rem)
-                            marginRight = 1.rem
-                            border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
-                            cursor = Cursor.pointer
+                    withBasePath { path ->
+                        styledImg(src = "$path/imgs/logo-kaumon.svg") {
+                            css {
+                                width = 1.5.rem
+                                height = 1.5.rem
+                                padding(0.5.rem)
+                                marginRight = 1.rem
+                                border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
+                                cursor = Cursor.pointer
+                            }
                         }
                     }
 

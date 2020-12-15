@@ -2,15 +2,18 @@ package net.kodein.pages.team.fragment
 
 import kotlinx.browser.window
 import kotlinx.css.*
-import kotlinx.css.properties.*
 import net.kodein.charter.kodein
 import net.kodein.components.ContactUsProps
 import net.kodein.utils.*
+import net.kodein.withBasePath
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.events.Event
 import react.*
 import react.dom.a
-import styled.*
+import styled.css
+import styled.styledDiv
+import styled.styledImg
+import styled.styledP
 
 val Members = functionalComponent<ContactUsProps>("Members") {
     flexRow {
@@ -98,19 +101,21 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
     flexColumn {
         ref = div
 
-        picture {
-            source("image/webp", "imgs/team/$image.webp" to null)
-            source("image/jpeg", "imgs/team/$image.jpg" to null)
+        withBasePath { path ->
+            picture {
+                source("image/webp", "$path/imgs/team/$image.webp" to null)
+                source("image/jpeg", "$path/imgs/team/$image.jpg" to null)
 
-            styledImg(alt = image, src = "imgs/team/$image.jpg") {
-                css {
-                    width = 100.pct
-                    objectFit = ObjectFit.cover
-                    objectPosition = "top"
-                    minHeight = 20.rem
-                    maxHeight = 40.rem
+                styledImg(alt = image, src = "$path/imgs/team/$image.jpg") {
+                    css {
+                        width = 100.pct
+                        objectFit = ObjectFit.cover
+                        objectPosition = "top"
+                        minHeight = 20.rem
+                        maxHeight = 40.rem
 
-                    maxSizeStrict(980) { height = 20.rem }
+                        maxSizeStrict(980) { height = 20.rem }
+                    }
                 }
             }
         }

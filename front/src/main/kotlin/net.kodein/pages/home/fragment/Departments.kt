@@ -1,14 +1,17 @@
 package net.kodein.pages.home.fragment
 
 import kotlinx.css.*
-import kotlinx.html.SVG
 import net.kodein.charter.kodein
 import net.kodein.utils.*
+import net.kodein.withBasePath
 import react.RProps
 import react.child
 import react.dom.a
 import react.functionalComponent
-import styled.*
+import styled.css
+import styled.styledDiv
+import styled.styledImg
+import styled.styledSvg
 
 val Departments = functionalComponent<RProps>("Departments") {
     flexRow {
@@ -68,39 +71,41 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
             }
         }
 
-            styledImg(alt="${props.title} icon", src="imgs/ic_${props.icon}.svg") {
-            attrs {
-                width = "48"
-                height = "38"
-            }
+        withBasePath { path ->
+            styledImg(alt="${props.title} icon", src="$path/imgs/ic_${props.icon}.svg") {
+                attrs {
+                    width = "48"
+                    height = "38"
+                }
                 css {
                     width = 3.em
                     padding(0.rem, 0.rem, 1.rem, 3.rem)
                 }
             }
+        }
 
-            styledDiv {
-                css {
-                    color = Color.kodein.purple
-                    +kodein.display1
-                    specific { textAlign = TextAlign.start }
-                    padding(0.5.rem, 1.rem)
-                }
-                +props.title.toUpperCase()
+        styledDiv {
+            css {
+                color = Color.kodein.purple
+                +kodein.display1
+                specific { textAlign = TextAlign.start }
+                padding(0.5.rem, 1.rem)
             }
+            +props.title.toUpperCase()
+        }
 
-            styledDiv {
-                css {
-                    color = Color.kodein.orange
-                    +kodein.body
-                    padding(0.5.rem, 1.rem)
-                    height = 15.rem
-                    maxWidth(889) { height = 5.rem }
-                }
-                props.children()
+        styledDiv {
+            css {
+                color = Color.kodein.orange
+                +kodein.body
+                padding(0.5.rem, 1.rem)
+                height = 15.rem
+                maxWidth(889) { height = 5.rem }
             }
+            props.children()
+        }
 
-            a { +"READ MORE" }
+        a { +"READ MORE" }
     }
 
     if(props.isLastItem != true) {

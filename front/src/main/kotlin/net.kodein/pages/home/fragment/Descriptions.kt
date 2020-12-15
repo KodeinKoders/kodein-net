@@ -8,6 +8,7 @@ import kotlinx.css.properties.transition
 import kotlinx.html.classes
 import net.kodein.charter.kodein
 import net.kodein.utils.*
+import net.kodein.withBasePath
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.events.Event
 import react.*
@@ -231,15 +232,17 @@ private val Illustration = functionalComponent<IllustrationProps>("Illustration"
         }
 
         if (image != null) {
-            picture {
-                source("image/webp", "imgs/illus/$image.webp" to null)
-                source("image/jpeg", "imgs/illus/$image.jpg" to null)
+            withBasePath { path ->
+                picture {
+                    source("image/webp", "$path/imgs/illus/$image.webp" to null)
+                    source("image/jpeg", "$path/imgs/illus/$image.jpg" to null)
 
-                styledImg(alt = image, src = "imgs/illus/$image.jpg") {
-                    css {
-                        width = 100.pct
-                        height = 100.pct
-                        objectFit = ObjectFit.cover
+                    styledImg(alt = image, src = "$path/imgs/illus/$image.jpg") {
+                        css {
+                            width = 100.pct
+                            height = 100.pct
+                            objectFit = ObjectFit.cover
+                        }
                     }
                 }
             }

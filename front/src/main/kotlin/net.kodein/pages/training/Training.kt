@@ -1,11 +1,11 @@
 package net.kodein.pages.training
 
 import kotlinx.css.*
-import kotlinx.css.properties.border
 import net.kodein.charter.kodein
 import net.kodein.components.*
 import net.kodein.pages.training.fragment.Description
 import net.kodein.pages.training.fragment.Trainings
+import net.kodein.withBasePath
 import react.RProps
 import react.child
 import react.dom.br
@@ -37,11 +37,13 @@ val Training = functionalComponent<RProps>("Training") {
                     br {}
                     +""" "JetBrains Certified Trainer" """
                     br {}
-                    styledImg(src = "imgs/badge-orange.svg") {
-                        css {
-                            width = 10.rem
-                            height = 10.rem
-                            marginTop = 1.rem
+                    withBasePath { path ->
+                        styledImg(src = "$path/imgs/badge-orange.svg") {
+                            css {
+                                width = 10.rem
+                                height = 10.rem
+                                marginTop = 1.rem
+                            }
                         }
                     }
                 }

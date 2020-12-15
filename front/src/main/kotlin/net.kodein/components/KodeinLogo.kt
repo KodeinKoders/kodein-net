@@ -4,9 +4,9 @@ import kotlinx.css.*
 import kotlinx.css.properties.lh
 import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
-import net.kodein.utils.maxHeight
 import net.kodein.utils.maxSize
 import net.kodein.utils.maxWidth
+import net.kodein.withBasePath
 import react.RProps
 import react.functionalComponent
 import styled.*
@@ -35,14 +35,16 @@ val KodeinLogo = functionalComponent<KodeinLogoProps>("KodeinLogo") { props ->
             transition("marginRight", duration = 0.15.s)
             zIndex = 1001
         }
-        styledImg(alt = "Kodein logo", src = "imgs/logo-${props.logo}.svg") {
-            css {
-                display = Display.block
-                padding(right = 1.em)
-                maxWidth(350) { padding(right = 0.5.em) }
-                height = props.logoHeight ?: 1.8.em
-                maxSize(480) {
-                    height = props.logoHeight ?: 1.4.em
+        withBasePath { path ->
+            styledImg(alt = "Kodein logo", src = "$path/imgs/logo-${props.logo}.svg") {
+                css {
+                    display = Display.block
+                    padding(right = 1.em)
+                    maxWidth(350) { padding(right = 0.5.em) }
+                    height = props.logoHeight ?: 1.8.em
+                    maxSize(480) {
+                        height = props.logoHeight ?: 1.4.em
+                    }
                 }
             }
         }

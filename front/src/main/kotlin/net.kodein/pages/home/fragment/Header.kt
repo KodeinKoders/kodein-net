@@ -5,9 +5,10 @@ import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
 import kotlinx.html.js.onClickFunction
-import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
+import net.kodein.text
 import net.kodein.utils.*
+import net.kodein.withBasePath
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLImageElement
 import org.w3c.dom.events.Event
@@ -252,13 +253,16 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 portraitMobile(800) { padding(1.rem, 1.rem, 0.5.rem, 1.rem) }
                 landscapeMobile { padding(1.rem, 1.rem, 0.5.rem, 1.rem) }
             }
-            +"Everywhere "
-            span("nowrap") { +"Kotlin goes," }
-            br {}
-            +"you should find"
-            br {}
-            +"the experts "
-            span("nowrap") { +"you need!" }
+
+            text { home.everywhere }
+
+//            +"Everywhere "
+//            span("nowrap") { +"Kotlin goes," }
+//            br {}
+//            +"you should find"
+//            br {}
+//            +"the experts "
+//            span("nowrap") { +"you need!" }
         }
 
         styledP {
@@ -313,22 +317,24 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 }
             }
 
-            styledImg(src = "imgs/logo-kaumon.svg") {
-                css {
-                    width = 1.5.rem
-                    height = 1.5.rem
-                    padding(0.5.rem)
-                    margin(1.rem, 1.rem, 3.rem, 1.rem)
-                    portraitMobile(800) { marginTop = 0.75.rem }
-                    landscapeMobile { marginTop = 0.75.rem }
-                    maxHeight(320) {
-                        marginBottom = 1.rem
+            withBasePath { path ->
+                styledImg(src = "$path/imgs/logo-kaumon.svg") {
+                    css {
+                        width = 1.5.rem
+                        height = 1.5.rem
+                        padding(0.5.rem)
+                        margin(1.rem, 1.rem, 3.rem, 1.rem)
+                        portraitMobile(800) { marginTop = 0.75.rem }
+                        landscapeMobile { marginTop = 0.75.rem }
+                        maxHeight(320) {
+                            marginBottom = 1.rem
+                        }
+                        border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
+                        cursor = Cursor.pointer
                     }
-                    border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
-                    cursor = Cursor.pointer
-                }
-                attrs.onClickFunction = {
-                    props.onScrollClick()
+                    attrs.onClickFunction = {
+                        props.onScrollClick()
+                    }
                 }
             }
         }
@@ -543,14 +549,16 @@ private val ScrollIndicator = functionalComponent<HeaderProps>("ScrollIndicator"
                 height = 3.em
                 marginBottom = .5.em
             }
-            styledImg(src = "imgs/pointer-${if (isMobile) "hand" else "mouse"}-korail.svg") {
-                ref = img
-                css {
-                    height = 2.em
-                    paddingTop = if (isMobile) 1.rem else 0.rem
-                    opacity = 1.0
-                    transition(::opacity, .5.s)
-                    transition(::paddingTop, 1.s)
+            withBasePath { path ->
+                styledImg(src = "$path/imgs/pointer-${if (isMobile) "hand" else "mouse"}-korail.svg") {
+                    ref = img
+                    css {
+                        height = 2.em
+                        paddingTop = if (isMobile) 1.rem else 0.rem
+                        opacity = 1.0
+                        transition(::opacity, .5.s)
+                        transition(::paddingTop, 1.s)
+                    }
                 }
             }
         }

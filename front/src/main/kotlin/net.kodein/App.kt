@@ -5,7 +5,9 @@ import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
 import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
-import net.kodein.charter.kodein
+import net.kodein.lang.Strings
+import net.kodein.lang.en.English
+import net.kodein.lang.fr.French
 import net.kodein.pages.blog.Blog
 import net.kodein.pages.contact.Contact
 import net.kodein.pages.home.Home
@@ -51,28 +53,16 @@ val appGlobalStyle: CSSBuilder.() -> Unit = {
     }
 }
 
-data class Page<P : RProps>(
-    val id: String,
-    val component: () -> FunctionalComponent<P>,
-    val props: P.() -> Unit = {}
-)
-
-val appPages = listOf(
-    Page("index", { Home }),
-    Page("services", { Services } ),
-    Page("training", { Training } ),
-    Page("oss", { Oss } ),
-    Page("team", { Team } ),
-    Page("blog", { Blog } ),
-    Page("contact", { Contact } ),
-)
-
 fun renderApp() {
     val element = document.getElementById("page") ?: error("Could not find page element")
-    val id = element.attributes["data-page"]?.value ?: error("Page element has no data-page attribute")
-    val page = appPages.find { it.id == id } ?: error("Could not find page $id")
+    val pageId = element.attributes["data-page"]?.value ?: error("Page element has no data-page attribute")
+    val langId = element.attributes["data-lang"]?.value ?: error("Page element has no data-lang attribute")
+    val page = appPages.find { it.id == pageId } ?: error("Could not find page $pageId")
+    val lang = appLanguages.find { it.id == langId } ?: error("Could not find language $langId")
 
     render(element) {
-        child(page.component()) { page.props(attrs) }
+        pageDataContext.Provider(PageData(pageId, lang)) {
+            child(page.component())
+        }
     }
 }

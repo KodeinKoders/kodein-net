@@ -4,6 +4,7 @@ import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
+import net.kodein.*
 import net.kodein.charter.kodein
 import net.kodein.utils.*
 import org.w3c.dom.*
@@ -303,14 +304,6 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
     val foregroundColor = if (props.isMobile)  Color.kodein.kamethiste else  Color.kodein.orange
     val justify = if (props.isMobile) JustifyContent.flexStart else JustifyContent.flexEnd
 
-    var currentPage by useState("home")
-
-    useEffect {
-        val element = document.getElementById("page")
-        val page = element?.attributes?.get("data-page")?.value
-        page?.let { currentPage = it }
-    }
-
     flexRow(alignItems = Align.stretch) {
         css {
             color = foregroundColor
@@ -385,34 +378,36 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
 
         fun String.asMenu() = if (props.isMobile) this.capitalize() else this.toUpperCase()
 
-        a(href = "services.html", classes = if (currentPage == "services") "current" else null) {
-            span("text") { +"services".asMenu() }
-            span("underline") {}
-        }
-        if (props.isMobile) menuSeparator()
-        a(href = "training.html", classes = if (currentPage == "training") "current" else null) {
-            span("text") { +"training".asMenu() }
-            span("underline") {}
-        }
-        if (props.isMobile) menuSeparator()
-        a(href = "oss.html", classes = if (currentPage == "oss") "current" else null) {
-            span("text") { +"OSS" }
-            span("underline") {}
-        }
-        if (props.isMobile) menuSeparator()
-        a(href = "team.html", classes = if (currentPage == "team") "current" else null) {
-            span("text") { +"team".asMenu() }
-            span("underline") {}
-        }
-        if (props.isMobile) menuSeparator()
-        a(href = "blog.html", classes = if (currentPage == "blog") "current" else null) {
-            span("text") { +"blog".asMenu() }
-            span("underline") {}
-        }
-        if (props.isMobile) menuSeparator()
-        a(href = "contact.html", classes = if (currentPage == "contact") "current" else null) {
-            span("text") { +"contact".asMenu() }
-            span("underline") {}
+        withPageId { pageId ->
+            a(href = "services.html", classes = if (pageId == "services") "current" else null) {
+                span("text") { +"services".asMenu() }
+                span("underline") {}
+            }
+            if (props.isMobile) menuSeparator()
+            a(href = "training.html", classes = if (pageId == "training") "current" else null) {
+                span("text") { +"training".asMenu() }
+                span("underline") {}
+            }
+            if (props.isMobile) menuSeparator()
+            a(href = "oss.html", classes = if (pageId == "oss") "current" else null) {
+                span("text") { +"OSS" }
+                span("underline") {}
+            }
+            if (props.isMobile) menuSeparator()
+            a(href = "team.html", classes = if (pageId == "team") "current" else null) {
+                span("text") { +"team".asMenu() }
+                span("underline") {}
+            }
+            if (props.isMobile) menuSeparator()
+            a(href = "blog.html", classes = if (pageId == "blog") "current" else null) {
+                span("text") { +"blog".asMenu() }
+                span("underline") {}
+            }
+            if (props.isMobile) menuSeparator()
+            a(href = "contact.html", classes = if (pageId == "contact") "current" else null) {
+                span("text") { +"contact".asMenu() }
+                span("underline") {}
+            }
         }
         if (props.isMobile) menuSeparator()
         styledA(href = "team.html#jobs") {
@@ -443,27 +438,38 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
             }
         }
 
-        flexRow(alignItems = Align.center) {
-            css {
-                marginBottom = 0.3.rem
-                marginLeft = 2.rem
-                marginRight = 0.5.rem
-            }
-            styledSpan {
+        pageDataContext.Consumer { data ->
+            flexRow(alignItems = Align.center) {
                 css {
-                    opacity = 0.5
+                    marginBottom = 0.3.rem
+                    marginLeft = 2.rem
+                    marginRight = 0.5.rem
                 }
-                +"EN"
-            }
-            styledSpan {
-                css { margin(horizontal = 0.3.rem) }
-                +"/"
-            }
-            styledSpan {
-                css {
-                    opacity = 1
+                appLanguages.forEachIndexed { index, language ->
+                    if (index != 0) {
+                        styledSpan {
+                            css { margin(horizontal = 0.3.rem) }
+                            +"/"
+                        }
+                    }
+
+                    if (language.id == data.language.id) {
+                        styledSpan {
+                            css {
+                                opacity = 0.5
+                            }
+                            +language.id.toUpperCase()
+                        }
+                    } else {
+                        val url = if (language.path != null) "${language.path}/${data.pageId}.html" else "${data.pageId}.html"
+                        styledA("${data.language.basePath}/$url") {
+                            css {
+                                specific { padding(0.em) }
+                            }
+                            +language.id.toUpperCase()
+                        }
+                    }
                 }
-                +"FR"
             }
         }
     }

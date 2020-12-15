@@ -12,6 +12,7 @@ import net.kodein.charter.KodeinColors
 import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
 import net.kodein.utils.*
+import net.kodein.withBasePath
 import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.HTMLTextAreaElement
 import org.w3c.dom.url.URLSearchParams
@@ -142,7 +143,6 @@ private val ContactForm = functionalComponent<ContactFormProps>("ContactForm") {
             if (subject.isEmpty()) newBads.add("subject")
             if (message.isEmpty()) newBads.add("message")
             bads = newBads
-            println(newBads)
             if (newBads.isNotEmpty()) return@send
 
             props.submit(from, subject, message)
@@ -198,7 +198,6 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
 
                 "textarea" {
                     resize = Resize.none
-                    console.log(props)
                     height = (if (props.big) 15.75 else 5.25).em // not rem!
                     lineHeight = 1.75.em.lh
                     marginTop = (-0.25).rem
@@ -249,10 +248,12 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
                     +kodein.button
                     marginTop = 3.rem
                 }
-                styledImg(src = "imgs/send-cute.svg") {
-                    css {
-                        height = 1.em // not rem!
-                        marginRight = 0.4.em // not rem!
+                withBasePath { path ->
+                    styledImg(src = "$path/imgs/send-cute.svg") {
+                        css {
+                            height = 1.em // not rem!
+                            marginRight = 0.4.em // not rem!
+                        }
                     }
                 }
                 attrs.onClickFunction = {

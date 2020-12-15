@@ -3,6 +3,7 @@ package net.kodein.components
 import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
+import net.kodein.withBasePath
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLImageElement
 import org.w3c.dom.TouchEvent
@@ -102,20 +103,22 @@ val SwipeableDiv = functionalComponent<SwipeableDivProps>("SwipeableDiv") { prop
             position = Position.relative
         }
 
-        styledImg(src = "imgs/swipe.svg") {
-            ref = img
-            css {
-                props.indicatorCss?.invoke(this)
-                position = Position.absolute
-                left = 50.pct - 3.rem
-                top = 1.7.rem
-                width = 3.rem
-                zIndex = 100
-                pointerEvents = PointerEvents.none
-                transform { translateX( (swipeIndicatorAnim * 3).rem ) }
-                transition(::transform, 1.5.s, Timing.easeInOut)
-                opacity = if (swipeIndicatorVisible) 1.0 else 0.0
-                transition(::opacity, 1.s, Timing.linear)
+        withBasePath { path ->
+            styledImg(src = "$path/imgs/swipe.svg") {
+                ref = img
+                css {
+                    props.indicatorCss?.invoke(this)
+                    position = Position.absolute
+                    left = 50.pct - 3.rem
+                    top = 1.7.rem
+                    width = 3.rem
+                    zIndex = 100
+                    pointerEvents = PointerEvents.none
+                    transform { translateX( (swipeIndicatorAnim * 3).rem ) }
+                    transition(::transform, 1.5.s, Timing.easeInOut)
+                    opacity = if (swipeIndicatorVisible) 1.0 else 0.0
+                    transition(::opacity, 1.s, Timing.linear)
+                }
             }
         }
 
