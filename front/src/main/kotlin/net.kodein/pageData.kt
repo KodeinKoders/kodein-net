@@ -3,6 +3,7 @@ package net.kodein
 import net.kodein.lang.Strings
 import react.RBuilder
 import react.createContext
+import react.useContext
 
 
 data class PageData(
@@ -17,6 +18,10 @@ inline fun RBuilder.text(crossinline method: Strings.() -> TextHandler) {
         val content = data.language.strings.method()
         content()
     }
+}
+
+inline fun <reified T> RBuilder.text(crossinline method: Strings.() -> T) : T {
+    return useContext(pageDataContext).language.strings.method()
 }
 
 val Language.basePath get() = if (path != null) ".." else "."

@@ -1,9 +1,12 @@
 package net.kodein.pages.blog
 
 import kotlinx.css.*
+import net.kodein.TextHandler
 import net.kodein.charter.kodein
 import net.kodein.components.*
+import net.kodein.components.strings.CoverStrings
 import net.kodein.pages.blog.fragment.EntryList
+import net.kodein.text
 import react.RProps
 import react.child
 import react.dom.a
@@ -27,20 +30,26 @@ val Blog = functionalComponent<RProps> {
                 backgroundColor = Color.kodein.kyzantium,
                 layers = listOf(Color.kodein.kinzolin, Color.kodein.kuivre)
             )
-            overTitle = "Some read"
-            title = {
-                +"We are technology lovers,"
-                br {}
-                +"passionates & experts."
+            // TODO refactor this
+            content = text<CoverStrings> {
+                object : CoverStrings {
+                    override val overTitle: TextHandler = { +"Some read" }
+                    override val title: TextHandler = {
+                        +"We are technology lovers,"
+                        br {}
+                        +"passionates & experts."
+                    }
+                    override val chapo: TextHandler = {
+                        +"""Sharing is caring, which is why it is our mission to spread 
+                        |our passion for multiplatform development. 
+                        |When we acquire new experience, discover new cool stuff,
+                        |create new piece of tech, or simply want to share our passion,
+                        |we write an article or shoot a video.
+                        |Have a look!""".trimMargin()
+                    }
+                }
             }
         }
-
-        +"""Sharing is caring, which is why it is our mission to spread 
-                |our passion for multiplatform development. 
-                |When we acquire new experience, discover new cool stuff,
-                |create new piece of tech, or simply want to share our passion,
-                |we write an article or shoot a video.
-                |Have a look!""".trimMargin()
     }
 
     child(EntryList)
@@ -52,21 +61,27 @@ val Blog = functionalComponent<RProps> {
                 title = Color.kodein.orange,
                 layers = listOf(Color.kodein.orange, Color.kodein.kaumon, Color.kodein.kinzolin)
             )
-            overTitle = "Want more?"
-            title = {
-                +"Check our "
-                a(href = "https://medium.com/kodein-koders", target = "_blank") { +"Medium page" }
-                +"."
+            // TODO refactor this
+            content = text<CoverStrings> {
+                object : CoverStrings {
+                    override val overTitle: TextHandler = { +"Want more?" }
+                    override val title: TextHandler = {
+                        +"Check our "
+                        a(href = "https://medium.com/kodein-koders", target = "_blank") { +"Medium page" }
+                        +"."
+                    }
+                    override val chapo: TextHandler = {
+                        +"Keep us close through our social media accounts."
+                        br {}
+                        +"Follow us on "
+                        a(href = "https://twitter.com/KodeinKoders", target = "_blank") { +"Twitter" }
+                        +" & "
+                        a(href = "https://www.linkedin.com/company/kodein", target = "_blank") { +"Linkedin" }
+                        +"!"
+                    }
+                }
             }
         }
-
-        +"Keep us close through our social media accounts."
-        br {}
-        +"Follow us on "
-        a(href = "https://twitter.com/KodeinKoders", target = "_blank") { +"Twitter" }
-        +" & "
-        a(href = "https://www.linkedin.com/company/kodein", target = "_blank") { +"Linkedin" }
-        +"!"
     }
 
     styledDiv { css.height = 10.rem }

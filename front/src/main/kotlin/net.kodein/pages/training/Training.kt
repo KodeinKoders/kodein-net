@@ -1,10 +1,13 @@
 package net.kodein.pages.training
 
 import kotlinx.css.*
+import net.kodein.TextHandler
 import net.kodein.charter.kodein
 import net.kodein.components.*
+import net.kodein.components.strings.CoverStrings
 import net.kodein.pages.training.fragment.Description
 import net.kodein.pages.training.fragment.Trainings
+import net.kodein.text
 import net.kodein.withBasePath
 import react.RProps
 import react.child
@@ -31,28 +34,34 @@ val Training = functionalComponent<RProps>("Training") {
                     title = Color.kodein.kyzantium,
                     layers = listOf(Color.kodein.korail, Color.kodein.kaumon, Color.kodein.korail)
                 )
-                overTitle = "Let's share knowledge!"
-                title = {
-                    +"Yes we are"
-                    br {}
-                    +""" "JetBrains Certified Trainer" """
-                    br {}
-                    withBasePath { path ->
-                        styledImg(src = "$path/imgs/badge-orange.svg") {
-                            css {
-                                width = 10.rem
-                                height = 10.rem
-                                marginTop = 1.rem
+                // TODO refactor this
+                content = text<CoverStrings> {
+                    object : CoverStrings {
+                        override val overTitle: TextHandler = { +"Let's share knowledge!" }
+                        override val title: TextHandler = {
+                            +"Yes we are"
+                            br {}
+                            +""" "JetBrains Certified Trainer" """
+                            br {}
+                            withBasePath { path ->
+                                styledImg(src = "$path/imgs/badge-orange.svg") {
+                                    css {
+                                        width = 10.rem
+                                        height = 10.rem
+                                        marginTop = 1.rem
+                                    }
+                                }
                             }
+                        }
+                        override val chapo: TextHandler = {
+                            +"""Our Kotlin expertise goes way beyond its first objective, 
+                                |for the JVM world. We have the ability to give training and workshops 
+                                |for companies and world events, as we already did for  Kotlin/Everywhere Paris 
+                                |and KotlinConf'19. We can provide training upon the different level of Kotlin.""".trimMargin()
                         }
                     }
                 }
             }
-
-            +"""Our Kotlin expertise goes way beyond its first objective, 
-                    |for the JVM world. We have the ability to give training and workshops 
-                    |for companies and world events, as we already did for  Kotlin/Everywhere Paris 
-                    |and KotlinConf'19. We can provide training upon the different level of Kotlin.""".trimMargin()
         }
 
         child(Description)

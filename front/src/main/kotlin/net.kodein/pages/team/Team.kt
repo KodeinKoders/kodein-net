@@ -1,10 +1,13 @@
 package net.kodein.pages.team
 
 import kotlinx.css.*
+import net.kodein.TextHandler
 import net.kodein.charter.kodein
 import net.kodein.components.*
+import net.kodein.components.strings.CoverStrings
 import net.kodein.pages.team.fragment.Jobs
 import net.kodein.pages.team.fragment.Members
+import net.kodein.text
 import net.kodein.utils.maxSize
 import react.RProps
 import react.child
@@ -32,9 +35,28 @@ val Team = functionalComponent<RProps> {
                 overTitle = Color.kodein.korail,
                 text = Color.kodein.orange
             )
-            overTitle = "Our team"
-            title = {
-                +"We are Kotlin experts..."
+            // TODO refactor this
+            content = text<CoverStrings> {
+                object : CoverStrings {
+                    override val overTitle: TextHandler = { +"our team" }
+                    override val title: TextHandler = { +"We are Kotlin experts..." }
+                    override val chapo: TextHandler = {
+                        styledP {
+                            css {
+                                width = 75.pct
+                                margin(LinearDimension.auto)
+                                maxSize(768) { width = 85.pct }
+                            }
+
+                            +"""...and humans, after all!""".trimMargin()
+                            br {}
+                            +"""Viens on se fera un petit Qake à l'ancienne! :)""".trimMargin()
+                        }
+
+                        styledDiv { css.height = 5.rem }
+
+                    }
+                }
             }
             overrideContentRuleSet = {
                 width = 100.pct
@@ -47,20 +69,6 @@ val Team = functionalComponent<RProps> {
                 }
             }
         }
-
-        styledP {
-            css {
-                width = 75.pct
-                margin(LinearDimension.auto)
-                maxSize(768) { width = 85.pct }
-            }
-
-            +"""...and humans, after all!""".trimMargin()
-            br {}
-           +"""Viens on se fera un petit Qake à l'ancienne! :)""".trimMargin()
-        }
-
-        styledDiv { css.height = 5.rem }
 
         child(Members)
     }

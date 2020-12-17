@@ -4,11 +4,17 @@ import kotlinx.css.*
 import kotlinx.css.properties.borderBottom
 import kotlinx.css.properties.lh
 import net.kodein.charter.kodein
-import net.kodein.utils.*
-import react.RBuilder
+import net.kodein.components.strings.CoverStrings
+import net.kodein.utils.flexColumn
+import net.kodein.utils.hairline
+import net.kodein.utils.landscapeMobile
+import net.kodein.utils.maxSize
 import react.RProps
 import react.functionalComponent
-import styled.*
+import styled.css
+import styled.styledDiv
+import styled.styledP
+import styled.styledSpan
 
 data class CoverPalette(
     val backgroundColor: Color,
@@ -20,8 +26,7 @@ data class CoverPalette(
 
 interface CoverProps : RProps {
     var colors  : CoverPalette
-    var overTitle: String
-    var title: RBuilder.() -> Unit
+    var content: CoverStrings
     var overrideContentRuleSet: RuleSet?
 }
 
@@ -58,7 +63,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                 }
                 borderBottom(0.05.rem, BorderStyle.solid, props.colors.overTitle)
             }
-            +props.overTitle
+            props.content.overTitle(this)
         }
 
         styledP {
@@ -73,7 +78,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
 
                 maxSize(980, 570) { +kodein.display2  }
             }
-            props.title(this)
+            props.content.title(this)
         }
 
         styledSpan {
@@ -110,7 +115,7 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                 props.overrideContentRuleSet?.invoke(this)
             }
 
-            props.children()
+            props.content.chapo(this)
         }
     }
     layerSeparator(Position.absolute, props.colors.backgroundColor, *props.colors.layers.toTypedArray())
