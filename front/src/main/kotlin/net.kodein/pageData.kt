@@ -20,7 +20,7 @@ inline fun RBuilder.text(crossinline method: Strings.() -> TextHandler) {
     }
 }
 
-inline fun <reified T> RBuilder.text(crossinline method: Strings.() -> T) : T {
+inline fun <reified T> useText(crossinline method: Strings.() -> T) : T {
     return useContext(pageDataContext).language.strings.method()
 }
 

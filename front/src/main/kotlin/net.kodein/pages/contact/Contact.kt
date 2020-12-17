@@ -9,6 +9,7 @@ import net.kodein.components.*
 import net.kodein.components.strings.CoverStrings
 import net.kodein.pageDataContext
 import net.kodein.text
+import net.kodein.useText
 import react.RProps
 import react.child
 import react.dom.br
@@ -18,6 +19,22 @@ import styled.styledDiv
 
 
 val Contact = functionalComponent<RProps> {
+    val coverStrings = useText<CoverStrings> {
+        object : CoverStrings {
+            override val overTitle: TextHandler = { +"contact us!" }
+            override val title: TextHandler = {
+                +"Check our nice"
+                br {}
+                +"but dummy contact form."
+            }
+            override val chapo: TextHandler = {
+                +"""Keep us close through our social media accounts.""".trimMargin()
+                br {}
+                +"""Follow us on Twitter & LinkedIn""".trimMargin()
+            }
+        }
+    }
+
     child(MenuTop) {
         attrs {
             animated = true
@@ -33,21 +50,7 @@ val Contact = functionalComponent<RProps> {
                 title = Color.kodein.kinzolin,
                 layers = listOf(Color.kodein.orange, Color.kodein.kinzolin, Color.kodein.krouille)
             )
-            content = text<CoverStrings> {
-                object : CoverStrings {
-                    override val overTitle: TextHandler = { +"contact us!" }
-                    override val title: TextHandler = {
-                        +"Check our nice"
-                        br {}
-                        +"but dummy contact form."
-                    }
-                    override val chapo: TextHandler = {
-                        +"""Keep us close through our social media accounts.""".trimMargin()
-                        br {}
-                        +"""Follow us on Twitter & LinkedIn""".trimMargin()
-                    }
-                }
-            }
+            content = coverStrings
         }
     }
 
