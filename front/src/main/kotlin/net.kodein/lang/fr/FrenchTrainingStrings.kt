@@ -16,11 +16,11 @@ import styled.styledImg
 object FrenchTrainingStrings : TrainingStrings {
 
     override val cover: CoverStrings = object : CoverStrings {
-        override val overTitle: TextHandler = { +"Let's share knowledge!" }
+        override val overTitle: TextHandler = { +"Partageons le savoir!" }
         override val title: TextHandler = {
-            +"We are"
+            +"Nous sommes"
             br {}
-            +"JetBrains Certified Trainers"
+            +"Formateurs Certifiés JetBrains"
             br {}
             withBasePath { path ->
                 styledImg(src = "$path/imgs/badge-orange.svg") {
@@ -33,10 +33,10 @@ object FrenchTrainingStrings : TrainingStrings {
             }
         }
         override val chapo: TextHandler = {
-            +"""|Our Kotlin expertise goes way beyond its first objective, 
-                |for the JVM world. We have the ability to give training and workshops 
-                |for companies and world events, as we already did for  Kotlin/Everywhere Paris 
-                |and KotlinConf'19. We can provide training upon the different level of Kotlin.""".trimMargin()
+            +"""|Notre expertise Kotlin s'étend au delà de son objectif premier : l'environement JVM.
+                |Nous proposons des formations et workshops pour entreprises et évenements à travers le monde,
+                |comme les conférences Kotlin/Everywhere Paris et KotlinConf'19.
+                |Nous fournissons des formations sur les diffèrents niveaux & cibles de Kotlin.""".trimMargin()
         }
     }
 

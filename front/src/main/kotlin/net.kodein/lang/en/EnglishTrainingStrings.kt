@@ -33,10 +33,10 @@ object EnglishTrainingStrings : TrainingStrings {
             }
         }
         override val chapo: TextHandler = {
-            +"""|Our Kotlin expertise goes way beyond its first objective, 
-                |for the JVM world. We have the ability to give training and workshops 
-                |for companies and world events, as we already did for  Kotlin/Everywhere Paris 
-                |and KotlinConf'19. We can provide training upon the different level of Kotlin.""".trimMargin()
+            +"""|Our Kotlin expertise goes way beyond its first objective: the JVM environment.
+                |We offer training and workshops for companies and world events,
+                |such as the Kotlin/Everywhere Paris and KotlinConf'19 conferences.
+                |We provide training addressing the different levels & targets of Kotlin.""".trimMargin()
         }
     }
 
