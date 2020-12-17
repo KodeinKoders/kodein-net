@@ -303,6 +303,7 @@ interface MenuProps : RProps {
 val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
     val foregroundColor = if (props.isMobile)  Color.kodein.kamethiste else  Color.kodein.orange
     val justify = if (props.isMobile) JustifyContent.flexStart else JustifyContent.flexEnd
+    val strings = useText().menu
 
     flexRow(alignItems = Align.stretch) {
         css {
@@ -380,32 +381,32 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
 
         withPageId { pageId ->
             a(href = "services.html", classes = if (pageId == "services") "current" else null) {
-                span("text") { +"services".asMenu() }
+                span("text") { +strings.services.asMenu() }
                 span("underline") {}
             }
             if (props.isMobile) menuSeparator()
             a(href = "training.html", classes = if (pageId == "training") "current" else null) {
-                span("text") { +"training".asMenu() }
+                span("text") { +strings.training.asMenu() }
                 span("underline") {}
             }
             if (props.isMobile) menuSeparator()
             a(href = "oss.html", classes = if (pageId == "oss") "current" else null) {
-                span("text") { +"OSS" }
+                span("text") { +strings.oss }
                 span("underline") {}
             }
             if (props.isMobile) menuSeparator()
             a(href = "team.html", classes = if (pageId == "team") "current" else null) {
-                span("text") { +"team".asMenu() }
+                span("text") { +strings.team.asMenu() }
                 span("underline") {}
             }
             if (props.isMobile) menuSeparator()
             a(href = "blog.html", classes = if (pageId == "blog") "current" else null) {
-                span("text") { +"blog".asMenu() }
+                span("text") { +strings.blog.asMenu() }
                 span("underline") {}
             }
             if (props.isMobile) menuSeparator()
             a(href = "contact.html", classes = if (pageId == "contact") "current" else null) {
-                span("text") { +"contact".asMenu() }
+                span("text") { +strings.contact.asMenu() }
                 span("underline") {}
             }
         }
@@ -434,7 +435,7 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
                         padding( vertical = .5.rem, horizontal = 0.rem)
                     }
                 }
-                +"we're hiring!".asMenu()
+                +strings.hiring.asMenu()
             }
         }
 

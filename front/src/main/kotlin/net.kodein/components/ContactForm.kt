@@ -11,6 +11,7 @@ import kotlinx.html.js.onClickFunction
 import net.kodein.charter.KodeinColors
 import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
+import net.kodein.useText
 import net.kodein.utils.*
 import net.kodein.withBasePath
 import org.w3c.dom.HTMLInputElement
@@ -38,7 +39,7 @@ interface ContactUsProps : RProps {
 }
 
 val ContactUs = functionalComponent<ContactUsProps>("ContactUs") { props ->
-
+    val strings = useText().contact.form
     var status: FormStatus by useState(FormStatus.Ready)
 
     styledDiv {
@@ -61,7 +62,7 @@ val ContactUs = functionalComponent<ContactUsProps>("ContactUs") { props ->
                 color = Color.kodein.orange
             }
 
-            +"Contact us"
+            +strings.title
         }
 
         when (val s = status) {
@@ -76,31 +77,19 @@ val ContactUs = functionalComponent<ContactUsProps>("ContactUs") { props ->
             }
             FormStatus.Sending -> child(ContactMessage) {
                 attrs.isError = false
-                +"Sending..."
+                +strings.sending
             }
             is FormStatus.Sent -> child(ContactMessage) {
                 attrs.isError = s.error != null
                 if (s.error != null) {
-                    +"You're message could not be sent :("
-                    br {}
-                    +"Reach us out at "
-                    styledA(href = "mailto:contact@kodein.net") {
-                        css.color = Color.kodein.purple
-                        +"contact@kodein.net"
-                    }
-                    +"!"
-                    br {}
-                    br {}
+                    strings.messageNotSent(this)
                     styledSpan {
                         css.fontSize = 1.rem
                         +s.error
                     }
-
                 }
                 else {
-                    +"Thanks for reaching out!"
-                    br {}
-                    +"We'll be in touch soon."
+                    strings.messageSent(this)
                 }
             }
         }
@@ -164,6 +153,8 @@ interface ContactFormViewProps : RProps {
 }
 
 private val ContactFormView = functionalComponent<ContactFormViewProps>("ContactFormView") { props ->
+    val strings = useText().contact.form
+
     styledDiv {
         css {
             "p.input" {
@@ -208,10 +199,10 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
         p("input") {
             styledSpan {
                 if ("from" in props.bads) css.specific(3) { color = Color.red }
-                +"From:"
+                +strings.from.first
             }
             input(InputType.email, name = "email") {
-                attrs.placeholder = "Your e-mail*"
+                attrs.placeholder = strings.from.second
                 attrs.onChangeFunction = { props.setFrom((it.target as HTMLInputElement).value) }
             }
         }
@@ -219,10 +210,10 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
         p("input") {
             styledSpan {
                 if ("subject" in props.bads) css.specific(3) { color = Color.red }
-                +"Object:"
+                +strings.subject.first
             }
             input(InputType.text, name = "object") {
-                attrs.placeholder = "What's on your mind?*"
+                attrs.placeholder = strings.subject.second
                 attrs.onChangeFunction = {
                     attrs.onChangeFunction = { props.setSubject((it.target as HTMLInputElement).value) }
                 }
@@ -232,10 +223,10 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
         p("input") {
             styledSpan {
                 if ("message" in props.bads) css.specific(3) { color = Color.red }
-                +"Message:"
+                +strings.message.first
             }
             textArea {
-                attrs.placeholder = "Tell us a little more about your needs*"
+                attrs.placeholder = strings.message.second
                 attrs.onChangeFunction = { props.setMessage((it.target as HTMLTextAreaElement).value) }
             }
         }
@@ -259,7 +250,7 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
                 attrs.onClickFunction = {
                     props.submit()
                 }
-                +"SEND"
+                +strings.send
             }
 
             if (props.bads.isNotEmpty()) {
@@ -269,7 +260,7 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
                         color = Color.red
                         paddingLeft = 2.em
                     }
-                    +"Invalid form"
+                    +strings.invalidForm
                 }
             }
         }
