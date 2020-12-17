@@ -7,8 +7,6 @@ import net.kodein.components.*
 import net.kodein.components.strings.CoverStrings
 import net.kodein.pages.oss.fragment.FrameworkLayers
 import net.kodein.pages.oss.fragment.FrameworkOnion
-import net.kodein.text
-import net.kodein.useText
 import net.kodein.utils.Illus
 import net.kodein.utils.maxWidth
 import react.RProps
@@ -23,41 +21,38 @@ import styled.styledDiv
 val Oss = functionalComponent<RProps> {
 
     // TODO refactor this
-    val coverStrings = useText<CoverStrings> {
-        object : CoverStrings {
-            override val overTitle: TextHandler = { +"Kodein Framework" }
-            override val title: TextHandler = {
-                +"Discover our powerful"
-                br {}
-                +"Open Source Software."
-            }
-            override val chapo: TextHandler = {
-                +"""Since the dawn of Kotlin/Multiplatform, we have been contributing many tools to the ecosystem.
-                            |In fact, Kodein Koders released the very first Open Source Kotlin/Multiplatform community library.
-                            |We are always looking for new ways to contribute to the multiplatform narrative!""".trimMargin()
-            }
+    val coverStrings = object : CoverStrings {
+        override val overTitle: TextHandler = { +"Kodein Framework" }
+        override val title: TextHandler = {
+            +"Discover our powerful"
+            br {}
+            +"Open Source Software."
+        }
+        override val chapo: TextHandler = {
+            +"""Since the dawn of Kotlin/Multiplatform, we have been contributing many tools to the ecosystem.
+                        |In fact, Kodein Koders released the very first Open Source Kotlin/Multiplatform community library.
+                        |We are always looking for new ways to contribute to the multiplatform narrative!""".trimMargin()
         }
     }
+
     // TODO refactor this
-    val wantMoreStrings = useText<CoverStrings> {
-        object : CoverStrings {
-            override val overTitle: TextHandler = { +"Want more?" }
-            override val title: TextHandler = {
-                +"Check our "
-                a(href = "https://github.com/Kodein-Framework", target = "_blank") { +"Github" }
-                +"."
-            }
-            override val chapo: TextHandler = {
-                +"Ask us anything about the Open Source "
-                b { +"KODEIN" }
-                +"Framework on "
-                a(href = "https://stackoverflow.com/tags/kodein", target = "_blank") { +"Stack Overflow" }
-                +", "
-                a(href = "https://kotlinlang.slack.com/archives/C0BLU9K96", target = "_blank") { +"Slack" }
-                +" or "
-                a(href = "https://twitter.com/KodeinKoders", target = "_blank") { +"Twitter" }
-                +"!"
-            }
+    val wantMoreStrings = object : CoverStrings {
+        override val overTitle: TextHandler = { +"Want more?" }
+        override val title: TextHandler = {
+            +"Check our "
+            a(href = "https://github.com/Kodein-Framework", target = "_blank") { +"Github" }
+            +"."
+        }
+        override val chapo: TextHandler = {
+            +"Ask us anything about the Open Source "
+            b { +"KODEIN" }
+            +"Framework on "
+            a(href = "https://stackoverflow.com/tags/kodein", target = "_blank") { +"Stack Overflow" }
+            +", "
+            a(href = "https://kotlinlang.slack.com/archives/C0BLU9K96", target = "_blank") { +"Slack" }
+            +" or "
+            a(href = "https://twitter.com/KodeinKoders", target = "_blank") { +"Twitter" }
+            +"!"
         }
     }
 

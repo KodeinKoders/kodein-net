@@ -1,51 +1,20 @@
 package net.kodein.pages.training
 
-import kotlinx.css.*
-import net.kodein.TextHandler
+import kotlinx.css.Color
+import kotlinx.css.height
+import kotlinx.css.rem
 import net.kodein.charter.kodein
 import net.kodein.components.*
-import net.kodein.components.strings.CoverStrings
 import net.kodein.pages.training.fragment.Description
 import net.kodein.pages.training.fragment.Trainings
-import net.kodein.text
 import net.kodein.useText
-import net.kodein.withBasePath
 import react.RProps
 import react.child
-import react.dom.br
 import react.functionalComponent
-import styled.css
 import styled.styledDiv
-import styled.styledImg
 
 val Training = functionalComponent<RProps>("Training") {
-    // TODO refactor this
-    val coverStrings = useText<CoverStrings> {
-        object : CoverStrings {
-            override val overTitle: TextHandler = { +"Let's share knowledge!" }
-            override val title: TextHandler = {
-                +"Yes we are"
-                br {}
-                +""" "JetBrains Certified Trainer" """
-                br {}
-                withBasePath { path ->
-                    styledImg(src = "$path/imgs/badge-orange.svg") {
-                        css {
-                            width = 10.rem
-                            height = 10.rem
-                            marginTop = 1.rem
-                        }
-                    }
-                }
-            }
-            override val chapo: TextHandler = {
-                +"""Our Kotlin expertise goes way beyond its first objective, 
-                                |for the JVM world. We have the ability to give training and workshops 
-                                |for companies and world events, as we already did for  Kotlin/Everywhere Paris 
-                                |and KotlinConf'19. We can provide training upon the different level of Kotlin.""".trimMargin()
-            }
-        }
-    }
+    val strings = useText().training
 
     child(MenuTop) {
             attrs{
@@ -63,7 +32,7 @@ val Training = functionalComponent<RProps>("Training") {
                     title = Color.kodein.kyzantium,
                     layers = listOf(Color.kodein.korail, Color.kodein.kaumon, Color.kodein.korail)
                 )
-                content = coverStrings
+                content = strings.cover
             }
         }
 

@@ -6,7 +6,7 @@ import kotlinx.css.*
 import kotlinx.css.properties.*
 import kotlinx.html.js.onClickFunction
 import net.kodein.charter.kodein
-import net.kodein.text
+import net.kodein.useText
 import net.kodein.utils.*
 import net.kodein.withBasePath
 import org.w3c.dom.HTMLDivElement
@@ -214,6 +214,8 @@ private interface HeaderTextProps : HeaderProps {
 }
 
 private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { props ->
+    val strings = useText().home
+
     flexColumn(justifyContent = JustifyContent.center, alignItems = Align.flexStart) {
         css {
             paddingTop = 4.pct
@@ -254,7 +256,7 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 landscapeMobile { padding(1.rem, 1.rem, 0.5.rem, 1.rem) }
             }
 
-            text { home.everywhere }
+            strings.everywhere(this)
 
 //            +"Everywhere "
 //            span("nowrap") { +"Kotlin goes," }

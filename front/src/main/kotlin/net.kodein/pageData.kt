@@ -13,15 +13,8 @@ data class PageData(
 
 val pageDataContext = createContext<PageData>()
 
-inline fun RBuilder.text(crossinline method: Strings.() -> TextHandler) {
-    pageDataContext.Consumer { data ->
-        val content = data.language.strings.method()
-        content()
-    }
-}
-
-inline fun <reified T> useText(crossinline method: Strings.() -> T) : T {
-    return useContext(pageDataContext).language.strings.method()
+fun useText() : Strings {
+    return useContext(pageDataContext).language.strings
 }
 
 val Language.basePath get() = if (path != null) ".." else "."

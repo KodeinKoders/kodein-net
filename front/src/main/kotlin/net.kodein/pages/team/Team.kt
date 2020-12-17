@@ -7,8 +7,6 @@ import net.kodein.components.*
 import net.kodein.components.strings.CoverStrings
 import net.kodein.pages.team.fragment.Jobs
 import net.kodein.pages.team.fragment.Members
-import net.kodein.text
-import net.kodein.useText
 import net.kodein.utils.maxSize
 import react.RProps
 import react.child
@@ -21,26 +19,24 @@ import styled.styledP
 
 val Team = functionalComponent<RProps> {
     // TODO refactor this
-    val coverStrings = useText<CoverStrings> {
-        object : CoverStrings {
-            override val overTitle: TextHandler = { +"our team" }
-            override val title: TextHandler = { +"We are Kotlin experts..." }
-            override val chapo: TextHandler = {
-                styledP {
-                    css {
-                        width = 75.pct
-                        margin(LinearDimension.auto)
-                        maxSize(768) { width = 85.pct }
-                    }
-
-                    +"""...and humans, after all!""".trimMargin()
-                    br {}
-                    +"""Viens on se fera un petit Qake à l'ancienne! :)""".trimMargin()
+    val coverStrings = object : CoverStrings {
+        override val overTitle: TextHandler = { +"our team" }
+        override val title: TextHandler = { +"We are Kotlin experts..." }
+        override val chapo: TextHandler = {
+            styledP {
+                css {
+                    width = 75.pct
+                    margin(LinearDimension.auto)
+                    maxSize(768) { width = 85.pct }
                 }
 
-                styledDiv { css.height = 5.rem }
-
+                +"""...and humans, after all!""".trimMargin()
+                br {}
+                +"""Viens on se fera un petit Qake à l'ancienne! :)""".trimMargin()
             }
+
+            styledDiv { css.height = 5.rem }
+
         }
     }
 
