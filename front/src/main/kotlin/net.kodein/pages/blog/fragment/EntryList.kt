@@ -7,6 +7,7 @@ import kotlinx.css.properties.*
 import kotlinx.html.classes
 import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
+import net.kodein.useText
 import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
@@ -27,6 +28,7 @@ private external class Entry : RProps {
 const val revealDurationByRow = 600
 
 val EntryList = functionalComponent<RProps>("ElementList") {
+    val strings = useText().blog
 
     val div = useRef<HTMLDivElement?>(null)
 
@@ -50,12 +52,12 @@ val EntryList = functionalComponent<RProps>("ElementList") {
                     }
                 } else {
                     console.log(response)
-                    centerText = "There was an error loading the feed :("
+                    centerText = strings.errorLoadingFeed
                 }
             }
             .catch {
                 it.printStackTrace()
-                centerText = "There was an error loading the feed :("
+                centerText = strings.errorLoadingFeed
             }
     }
 
