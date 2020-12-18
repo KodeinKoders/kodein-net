@@ -9,19 +9,26 @@ import react.dom.span
 
 object EnglishBlogStrings : BlogStrings {
     override val cover: CoverStrings = object : CoverStrings {
-        override val overTitle: TextHandler = { +"read & watch" }
+        override val overTitle: TextHandler = { +"sharing is caring" }
         override val title: TextHandler = {
             +"We are technology lovers,"
             br {}
             +"passionates & experts."
         }
         override val chapo: TextHandler = {
-            +"""Sharing is caring, which is why it is our mission to spread 
-                    |our passion for multiplatform development. 
-                    |When we acquire new experience, discover new cool stuff,
-                    |create new piece of tech, or simply want to share our passion,
-                    |we write an article or shoot a video.
-                    |Have a look!""".trimMargin()
+            +"Our mission is to spread our passion for multiplatform development. "
+
+            br {}
+            br {}
+
+            +"""When we acquire new experience, discover new cool stuff,
+                |create new piece of tech, or simply want to share our passion,
+                |we write an article """.trimMargin()
+            span("nowrap") { +"or shoot a video." }
+
+            br {}
+
+            +"Have a look!"
         }
     }
 

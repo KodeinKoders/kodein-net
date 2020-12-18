@@ -28,23 +28,8 @@ object EnglishContactStrings : ContactStrings {
             +"Or just have a chat, "
             span("nowrap") { +"we are here to listen :-)" }
 
-            styledSpan {
-                css {
-                    display = Display.block
-                    width = 5.rem
-                    height = 0.05.rem
-                    opacity = .5
-                    backgroundColor = Color.kodein.korail
-                    margin(2.rem, LinearDimension.auto)
-                    maxSize(768) {
-                        width = 3.rem
-                        margin(1.rem, LinearDimension.auto)
-                    }
-                    landscapeMobile {
-                        margin(2.rem, LinearDimension.auto)
-                    }
-                }
-            }
+            br {}
+            br {}
 
             +"Also, stay close through "
             span("nowrap") { +"our social media accounts." }

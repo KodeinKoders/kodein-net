@@ -9,19 +9,25 @@ import react.dom.span
 
 object FrenchBlogStrings : BlogStrings {
     override val cover: CoverStrings = object : CoverStrings {
-        override val overTitle: TextHandler = { +"lisez & regardez" }
+        override val overTitle: TextHandler = { +"plaisirs partagés" }
         override val title: TextHandler = {
-            +"Nous aimons la technologie,"
+            +"Des experts passionnés,"
             br {}
-            +"et nous voulons le partager avec vous."
+            +"au service de la technologie."
         }
         override val chapo: TextHandler = {
-            +"""Nous sommes des experts passionnés. 
-                |Notre mission est de propager notre passion pour le développement multi-plateforme.
-                |Lorsque nous acquierons de nouvelles expériences, découvrons de nouveaux horizons,
-                |créons une librairie, ou simplement que nous voulons partager notre passion,
-                |nous écrivons un article ou tournons une vidéo.
-                |Jetez-y un oeil!""".trimMargin()
+            +"Notre mission est de partager notre passion pour le développement multi-plateforme."
+
+            br {}
+            br {}
+
+            +"""Lorsque nous acquierons de nouvelles expériences, découvrons de nouveaux horizons,
+                |ou créons des outils, nous écrivons un article """.trimMargin()
+            span("nowrap") { +" ou tournons une vidéo." }
+
+            br {}
+
+            +"Jetez-y un oeil!"
         }
     }
 

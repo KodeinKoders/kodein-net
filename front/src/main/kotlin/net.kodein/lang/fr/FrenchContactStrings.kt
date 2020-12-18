@@ -30,23 +30,8 @@ object FrenchContactStrings : ContactStrings {
             +"nous sommes ici "
             span("nowrap") { +"pour vous écouter :-)" }
 
-            styledSpan {
-                css {
-                    display = Display.block
-                    width = 5.rem
-                    height = 0.05.rem
-                    opacity = .5
-                    backgroundColor = Color.kodein.korail
-                    margin(2.rem, LinearDimension.auto)
-                    maxSize(768) {
-                        width = 3.rem
-                        margin(1.rem, LinearDimension.auto)
-                    }
-                    landscapeMobile {
-                        margin(2.rem, LinearDimension.auto)
-                    }
-                }
-            }
+            br {}
+            br {}
 
             +"Vous pouvez également suivre notre actualité "
             span("nowrap") { +"via les réseaux sociaux." }
