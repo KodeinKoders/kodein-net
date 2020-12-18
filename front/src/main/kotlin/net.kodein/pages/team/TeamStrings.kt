@@ -11,7 +11,7 @@ interface TeamStrings {
     val cover: CoverStrings
     val salomon: MemberStrings
     val romain: MemberStrings
-    val verdOn: String
+    val nerdOn: String
     val jobs: List<JobDescription>
 }
 

@@ -63,8 +63,9 @@ interface MemberProps : RProps {
     var member: MemberStrings
 }
 private val Member = functionalComponent<MemberProps>("Member") { props ->
-    val div = useRef<HTMLDivElement?>(null)
+    val strings = useText().team
 
+    val div = useRef<HTMLDivElement?>(null)
     var image: String? by useState(null)
 
     useEffectWithCleanup(emptyList()) {
@@ -146,7 +147,7 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
                         fontWeight = FontWeight.semiBold
                     }
                     if (props.member.socialMediaList.isNotEmpty()) {
-                        +"Nerd on "
+                        +strings.nerdOn
                         props.member.socialMediaList.forEachIndexed { index, media ->
                             a(href = "${media.url.removeSuffix("/")}/${media.handler}", target = "_blank") {
                                 +media.service.capitalize()

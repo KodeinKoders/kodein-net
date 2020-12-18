@@ -20,7 +20,7 @@ object FrenchTeamStrings : TeamStrings {
         position = "Fondateur",
         bio = { +"bio fr" }
     )
-    override val verdOn: String = "Suivez le sur"
+    override val nerdOn: String = "Retrouvez moi sur "
     override val jobs: List<JobDescription> = listOf(JobDescription("Développeur Kotlin"){
         // TODO change this! copy / paste from Touchlab!
         +"""Nous recherchons des développeurs mobile, avec une expérience sur Kotlin & Android, 
