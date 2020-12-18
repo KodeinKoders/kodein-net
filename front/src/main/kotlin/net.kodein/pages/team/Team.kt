@@ -69,7 +69,6 @@ val Team = functionalComponent<RProps> {
             }
         }
 
-        coverStrings.chapo(this)
         child(Members)
     }
 

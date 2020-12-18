@@ -56,8 +56,6 @@ val Services = functionalComponent<RProps>("Services") {
                 colors = CoverPalette(backgroundColor = Color.kodein.dark)
                 content = coverStrings
             }
-
-            coverStrings.chapo(this)
         }
 
         child(Descriptions)

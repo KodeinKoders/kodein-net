@@ -35,8 +35,6 @@ val Blog = functionalComponent<RProps> {
             )
             content = strings.cover
         }
-
-        strings.cover.chapo(this)
     }
 
     child(EntryList)
@@ -50,8 +48,6 @@ val Blog = functionalComponent<RProps> {
             )
             content = strings.wantMore
         }
-
-        strings.wantMore.chapo(this)
     }
 
     styledDiv { css.height = 10.rem }
