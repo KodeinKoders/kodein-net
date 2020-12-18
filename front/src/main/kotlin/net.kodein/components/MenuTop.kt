@@ -442,22 +442,39 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
         pageDataContext.Consumer { data ->
             flexRow(alignItems = Align.center) {
                 css {
-                    marginBottom = 0.3.rem
-                    marginLeft = 2.rem
-                    marginRight = 0.5.rem
+                    if (props.isMobile) {
+                        position = Position.absolute
+                        left = 1.rem
+                        bottom = 1.rem
+                    } else {
+                        marginBottom = 0.3.rem
+                        marginLeft = 2.rem
+                        marginRight = 0.5.rem
+                    }
                 }
                 appLanguages.forEachIndexed { index, language ->
                     if (index != 0) {
-                        styledSpan {
-                            css { margin(horizontal = 0.3.rem) }
+                        styledA {
+                            css {
+                                specific {
+                                    cursor = Cursor.text
+                                    textDecoration = TextDecoration.none
+                                    if (props.isMobile) margin(horizontal = 0.3.rem)
+                                }
+                            }
                             +"/"
                         }
                     }
 
                     if (language.id == data.language.id) {
-                        styledSpan {
+                        styledA {
                             css {
                                 opacity = 0.5
+                                specific {
+                                    padding(0.em)
+                                    cursor = Cursor.text
+                                    textDecoration = TextDecoration.none
+                                }
                             }
                             +language.id.toUpperCase()
                         }
