@@ -5,6 +5,7 @@ import net.kodein.components.strings.CoverStrings
 import net.kodein.pages.blog.BlogStrings
 import react.dom.a
 import react.dom.br
+import react.dom.span
 
 object EnglishBlogStrings : BlogStrings {
     override val cover: CoverStrings = object : CoverStrings {
@@ -32,13 +33,16 @@ object EnglishBlogStrings : BlogStrings {
             +"."
         }
         override val chapo: TextHandler = {
-            +"""Stay close through our social media accounts."""
+            +"""Stay close through our """
+            span("nowrap") { +"social media accounts." }
             br {}
             +"""Follow us on """
-            a(href = "https://twitter.com/KodeinKoders") { +"Twitter" }
-            +" & "
-            a(href = "https://www.linkedin.com/company/kodein") { +"LinkedIn" }
-            +"!"
+            span("nowrap") {
+                a(href = "https://twitter.com/KodeinKoders") { +"Twitter" }
+                +" & "
+                a(href = "https://www.linkedin.com/company/kodein") { +"LinkedIn" }
+                +"!"
+            }
         }
     }
 
