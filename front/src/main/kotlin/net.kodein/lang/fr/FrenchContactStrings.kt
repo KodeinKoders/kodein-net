@@ -49,7 +49,7 @@ object FrenchContactStrings : ContactStrings {
     override val form: ContactFormStrings = object : ContactFormStrings {
         override val title: String = "Contactez-nous"
         override val from: Pair<String, String> = "De:" to "Votre adresse e-mail.*"
-        override val subject: Pair<String, String> = "Objet:" to "De quoi voulez-vous nous parler?*"
+        override val subject: Pair<String, String> = "Objet:" to "De quoi voulez-vous nous parler ?*"
         override val message: Pair<String, String> = "Message:" to "Donnez-nous un peu plus de contexte sur vos besoins.*"
         override val send: String = "ENVOYER"
         override val sending: String = "En cours d'envoi..."
