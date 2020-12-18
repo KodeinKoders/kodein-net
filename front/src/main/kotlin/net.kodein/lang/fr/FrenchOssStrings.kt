@@ -49,6 +49,77 @@ object FrenchOssStrings : OssStrings {
     override val layerKX_Platform: String = "APIs des plateformes"
     override val layerLow: TextHandler = { +"Android, iOS & Web bas niveau" }
 
+    override val onionTitle: TextHandler = {
+        +"Le "
+        styledB {
+            css.fontWeight = FontWeight.semiBold
+            +"KODEIN"
+        }
+        +"Framework"
+        br {}
+        +"facilite les applications multiplatformes."
+    }
+    override val onionLayerAndroid: TextHandler = {
+        +"""
+            Kotlin est le langage de développent officiel pour Android depuis 2019.
+            Kotlin/Multiplatform et le Kodein Framework s'intègrent nativement dans Android.
+            Les apps Multiplatform Android ne sont en réalité que des apps Android, avec une UI et une intégration native.
+        """
+    }
+    override val onionLayerDesktop: TextHandler = {
+        +"""
+            Si vous avez besoin de la puissance d'un ordinateur, Kotlin et Kodein sont là pour vous.
+            Tous les outils Open Source Kodein que nous développons sont également compatible avec les JVMs "desktop" (Linux, MacOS, Windows).
+        """
+    }
+    override val onionLayerIos: TextHandler = {
+        +"""
+            Le language Kotlin est non seulement proche de Swift (le language iOS natif), il s'y intègre aisément.
+            Le Kodein Framework fournis des outils faciles à utiliser aussi bien dans une librairie Multiplatformes, que dans le contexte d'une app iOS.
+            Les apps Multiplatform iOS ne sont en réalité que des apps iOS, avec une UI et une intégration native.
+        """
+    }
+    override val onionLayerJs: TextHandler = {
+        +"""
+            Javascript fut la deuxième platforme majeure ciblée par Kotlin (dès la version 1.1).
+            L'équipe Kotlin fournis un ensemble d'outils permettant de partager facilement du code métier avec JavaScript.
+        """
+    }
+    override val onionLayerJvm: TextHandler = {
+        +"""
+            La "Java Virtual Machine" est la cible historique du premier compilateur Kotlin.
+            Grâce à la JVM, Kotlin assure non seulement la compatibilité avec Android et les JVMs "desktop" ou serveur;
+            mais profite également de plus d'une dixiaine d'années d'opimisation, de recherche en sécuritè, et d'amélioration de stabilité.
+        """
+    }
+    override val onionLayerKodein: TextHandler = {
+        +"""
+            le Kodein Framework fournis un ensemble de composants haut niveau vous permettant de vous concentrer sur le métier de votre application.
+            Il représente notre opinion, ainsi que des années de bonnes pratiques en développement applicatif mobile, web, et logiciel.
+            Entièrement Open Source, il est utilisé dans de nombreuses applications Kotlin par une communauté grandissante.
+        """
+    }
+    override val onionLayerKotlin: TextHandler = {
+        +"""
+            Le language Kotlin est la "lingua franca" du développement multiplatformes.
+            KotlinX de Jetbrains propose de nombreuses librairies multiplatformes nécéssaires au développement bas niveau, comme la concurence, l'atomicité, la serialisation, etc.
+            Le Kodein Framework réutilise autant que possible ces primitives, s'integrant ainsi nativement dans l'écosystème Kotlin/Multiplatform.
+        """
+    }
+    override val onionLayerNative: TextHandler = {
+        +"""
+            Kotlin/Native est le compilateur Kotlin qui produit des exécutables natifs pour de multiples cibles (iOS etant l'une d'entre elles).
+            Bien qu'étant une toute nouvelle technologie, de nombreuses grandes entreprises utilisent déjà Kotlin/Native pour compiler du code métier commun.
+        """
+    }
+    override val onionLayerWeb: TextHandler = {
+        +"""
+            le web est une platforme souvent négligée, à tort.
+            Cibler le web signifie cibler des millions d'utilisateurs ayant accès au web mais non à un smartphone moderne.
+            Cela permet également au contenu de votre app d'être indexé par les moteurs de recherche.
+        """
+    }
+
     override val wantMore: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"Plus de contenus ?" }
         override val title: TextHandler = {

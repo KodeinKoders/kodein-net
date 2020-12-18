@@ -20,5 +20,16 @@ interface OssStrings {
     val layerKX_Platform: String
     val layerLow: TextHandler
 
+    val onionTitle: TextHandler
+    val onionLayerAndroid: TextHandler
+    val onionLayerDesktop: TextHandler
+    val onionLayerIos: TextHandler
+    val onionLayerJs: TextHandler
+    val onionLayerJvm: TextHandler
+    val onionLayerKodein: TextHandler
+    val onionLayerKotlin: TextHandler
+    val onionLayerNative: TextHandler
+    val onionLayerWeb: TextHandler
+
     val wantMore: CoverStrings
 }

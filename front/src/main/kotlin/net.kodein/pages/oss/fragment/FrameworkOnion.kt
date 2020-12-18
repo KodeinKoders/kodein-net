@@ -8,6 +8,7 @@ import kotlinx.html.classes
 import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
 import net.kodein.components.SwipeableDiv
+import net.kodein.useText
 import net.kodein.utils.*
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.events.Event
@@ -174,174 +175,20 @@ private fun RBuilder.line(ratio: Double) {
 }
 
 
-private val texts = mapOf(
-    "android" to (
-            "Android" to
-                    """
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Donec sed ex sit amet magna dictum consectetur sed sed ipsum.
-                        Suspendisse ultrices ante imperdiet scelerisque mattis.
-                        In eu nisl id velit imperdiet tincidunt at et ex.
-                        Phasellus ut purus consequat, fringilla urna ac, fringilla justo.
-                        Suspendisse blandit est ut accumsan pulvinar.
-                        Sed suscipit leo non neque placerat, a rhoncus dolor maximus.
-                        Aliquam ut tristique magna.
-                        Suspendisse vehicula orci ut lorem condimentum pellentesque.     
-                    """.trimIndent()
-            ),
-
-    "desktop" to (
-            "Desktop" to
-                    """
-                        Sed dui tellus, eleifend et nulla quis, imperdiet varius velit.
-                        Donec malesuada diam vitae tortor ornare malesuada.
-                        Vivamus ligula justo, sagittis id arcu a, tempus convallis magna.
-                        In ac eleifend lectus.
-                        Aliquam finibus orci sit amet leo venenatis consectetur.
-                        Aliquam nec turpis nibh.
-                        Aliquam porttitor interdum hendrerit.
-                        Donec tristique nisl at nunc suscipit, sed gravida magna sollicitudin.
-                        Sed a ligula feugiat, mollis odio sed, vestibulum nisl.
-                        Quisque a odio quis neque scelerisque sodales.
-                        Duis semper et urna id maximus.
-                        Donec nulla dui, maximus sed pharetra vel, sagittis sed tortor.
-                        Nullam nec tellus sit amet purus semper pretium.
-                        Vivamus sit amet sapien vel tortor vestibulum rutrum vel a nibh.
-                        Proin sed nibh sed purus pretium molestie vel euismod nunc.
-                    """.trimIndent()
-            ),
-
-    "ios" to (
-            "iOS" to
-                    """
-                        Sed eget nisl a quam elementum consectetur.
-                        Aenean sed porttitor nisl.
-                        Etiam tempor suscipit nibh.
-                        Ut ultrices eget odio ac eleifend.
-                        Ut pharetra lobortis magna id ultricies.
-                        Aliquam vitae nisi placerat, pulvinar dui non, congue metus.
-                        Sed id magna vestibulum, posuere sapien euismod, tempus mi.
-                    """.trimIndent()
-            ),
-
-    "kotlin-native" to (
-            "Kotlin/Native" to
-                    """
-                        Donec nec lectus dui.
-                        Nullam eu pharetra tellus, sit amet rhoncus odio.
-                        Duis a felis rutrum, varius eros in, tincidunt magna.
-                        Quisque eu varius est, eget varius ex.
-                        Nulla placerat eu enim sed semper.
-                        Praesent commodo rutrum erat, pretium dictum diam tempus vel.
-                        Quisque sit amet porta libero.
-                        Suspendisse placerat vitae tortor id tempor.
-                        Mauris non interdum odio.
-                        Cras a porta dolor.
-                        Aliquam erat volutpat.
-                        Proin at urna varius, tincidunt tortor ut, ornare turpis.
-                        Proin id arcu nisl.
-                        Maecenas elit urna, scelerisque eu neque vel, auctor varius risus.
-                    """.trimIndent()
-            ),
-
-    "kotlin-js" to (
-            "Kotlin/JS" to
-                    """
-                        Suspendisse pharetra lacus sed est feugiat dictum id condimentum quam.
-                        Ut pulvinar ac enim ut ultricies.
-                        Nam maximus lacinia condimentum.
-                        Nunc tincidunt velit vitae justo ultricies tincidunt.
-                        Aenean lacus nisi, commodo eu fermentum non, tincidunt sollicitudin mauris.
-                        Praesent vel feugiat neque.
-                        Morbi ornare aliquam dignissim.
-                        Quisque ut metus arcu.
-                        Pellentesque nec erat mollis, lacinia elit non, aliquam mi.
-                        Nam egestas pharetra ante ullamcorper rutrum.
-                        Sed ex lectus, feugiat eget nulla quis, consequat pretium nisi.
-                    """.trimIndent()
-            ),
-
-    "kotlin-jvm" to (
-            "Kotlin/JVM" to
-                    """
-                        Morbi a diam nec massa tempor pretium.
-                        Suspendisse feugiat turpis ante, id maximus ex consectetur non.
-                        Maecenas posuere sem odio.
-                        Nulla facilisi.
-                        Donec sit amet orci ac dui imperdiet aliquet.
-                        Nullam lectus libero, sollicitudin nec felis id, tincidunt posuere nisl.
-                        In bibendum ex nec pulvinar vestibulum.
-                        In facilisis lorem aliquet purus porta, sed pulvinar massa varius.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Fusce sit amet leo magna.
-                        Sed lacinia lacus quis quam laoreet, quis egestas nisl suscipit.
-                        In ac suscipit est.
-                        Integer mattis, dui aliquet porttitor maximus, ipsum est faucibus ante, vitae imperdiet magna quam vel neque.
-                        Vivamus bibendum augue a mi venenatis fermentum id id purus.
-                        Vestibulum egestas elit ac dolor facilisis, vestibulum fermentum eros suscipit.
-                    """.trimIndent()
-            ),
-
-    "kotlinx" to (
-            "Kotlin & KotlinX" to
-                    """
-                        Ut libero magna, facilisis nec pulvinar eu, interdum a diam.
-                        Donec aliquam leo sit amet purus posuere, nec accumsan felis efficitur.
-                        Nunc bibendum convallis suscipit.
-                        Sed libero massa, pellentesque sit amet erat quis, auctor bibendum dui.
-                        Integer ultricies ultrices felis, laoreet posuere elit tempor at.
-                        Morbi blandit cursus sapien ut efficitur.
-                        Vivamus sollicitudin ultrices neque, egestas gravida nisi malesuada et.
-                        Mauris id velit porta, semper enim ut, semper urna.
-                        Ut rhoncus congue metus a malesuada.
-                        Nam vitae leo lectus.
-                        Nunc aliquam velit enim, non placerat dui gravida nec.
-                    """.trimIndent()
-            ),
-
-    "kodein" to (
-            "Kodein framework" to
-                    """
-                        Donec at ex tincidunt, iaculis nibh id, tincidunt nibh.
-                        Mauris cursus ac arcu eu rutrum.
-                        Morbi in dolor at augue vehicula aliquam eget id nunc.
-                        Nunc tincidunt, urna ut porttitor commodo, ante elit volutpat metus, quis elementum mauris dui id est.
-                        Proin at congue orci.
-                        Mauris venenatis consectetur enim non dignissim.
-                        Nunc sodales, dolor ultrices convallis fermentum, lorem dui consectetur ipsum, at lobortis neque orci at odio.
-                        Donec vitae scelerisque orci.
-                        Aliquam sed lorem elit.
-                        Aliquam erat volutpat.
-                        Duis nec arcu ac orci imperdiet dapibus et et eros.
-                        Cras ut libero nibh.
-                    """.trimIndent()
-            ),
-
-    "web" to (
-            "Web" to
-                    """
-                        In id orci mollis, dignissim purus sit amet, placerat neque.
-                        Fusce iaculis mi nibh, et posuere mauris elementum non.
-                        Donec porta feugiat enim.
-                        Curabitur eu libero sit amet diam tristique efficitur eget id lectus.
-                        Nam libero nibh, fringilla sit amet orci non, tincidunt tempor mi.
-                        Fusce iaculis neque quis magna tincidunt, nec sollicitudin nunc suscipit.
-                        Suspendisse laoreet vel risus in facilisis.
-                        Mauris faucibus massa a mauris congue, sit amet iaculis tortor dignissim.
-                        Nunc molestie posuere rutrum.
-                        Phasellus ut felis nec felis consequat venenatis.
-                        Sed non porttitor turpis.
-                        Integer sagittis sagittis justo.
-                        Curabitur non velit tortor.
-                        Integer tempor diam nisl, nec fringilla metus dictum rhoncus.
-                        Nulla in viverra sem, in tincidunt odio.
-                        Pellentesque sagittis augue erat, vitae faucibus mi pharetra ut.
-                    """.trimIndent()
-            ),
-)
-
-
 val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
+    val strings = useText().oss
+
+    val texts = mapOf(
+        "android" to ("Android" to strings.onionLayerAndroid),
+        "desktop" to ("Desktop" to strings.onionLayerDesktop),
+        "ios" to ("iOS" to strings.onionLayerIos),
+        "js" to ("Kotlin/JS" to strings.onionLayerJs),
+        "jvm" to ("Kotlin/JVM" to strings.onionLayerJvm),
+        "native" to ("Kotlin/Native" to strings.onionLayerNative),
+        "kodein" to ("Kodein framework" to strings.onionLayerKodein),
+        "kotlin" to ("Kotlin & KotlinX" to strings.onionLayerKotlin),
+        "web" to ("Web" to strings.onionLayerWeb)
+    )
 
     val order by useState { texts.keys.shuffled() }
 
@@ -423,14 +270,8 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                 color = Color.kodein.cute
                 margin(1.rem, 2.rem)
             }
-            +"The "
-            styledB {
-                css.fontWeight = FontWeight.semiBold
-                +"KODEIN"
-            }
-            +"Framework"
-            br {}
-            +"empowers multiplatform applications."
+
+            strings.onionTitle(this)
         }
 
         styledSpan {
@@ -509,9 +350,9 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                             color = Color.kodein.orange
                         }
 
-                        slice(1.0 / 3.0, 0, selected == "kotlin-js", selectedSetter("kotlin-js")) { simpleText("Kotlin/JS") }
-                        slice(1.0 / 3.0, 1, selected == "kotlin-native", selectedSetter("kotlin-native")) { simpleText("Kotlin/Native", reverse = true) }
-                        slice(1.0 / 3.0, 2, selected == "kotlin-jvm", selectedSetter("kotlin-jvm")) { simpleText("Kotlin/JVM") }
+                        slice(1.0 / 3.0, 0, selected == "js", selectedSetter("js")) { simpleText("Kotlin/JS") }
+                        slice(1.0 / 3.0, 1, selected == "native", selectedSetter("native")) { simpleText("Kotlin/Native", reverse = true) }
+                        slice(1.0 / 3.0, 2, selected == "jvm", selectedSetter("jvm")) { simpleText("Kotlin/JVM") }
 
                         line(0.0)
                         line(1.0 / 3.0)
@@ -524,7 +365,7 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                             color = Color.kodein.cute
                         }
 
-                        slice(1.0, 0, selected == "kotlinx", selectedSetter("kotlinx")) { simpleText("Kotlin[X]") }
+                        slice(1.0, 0, selected == "kotlin", selectedSetter("kotlin")) { simpleText("Kotlin[X]") }
                     }
 
                     pie(3) {
@@ -579,7 +420,7 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                         }
                         this.isRight = isRight
                         css = {
-                            height = 32.rem
+                            height = 20.rem
                             flexGrow = 1.0
                             maxWidth = 25.rem
                             margin(top = 3.rem, left = 2.5.rem, right = 1.5.rem)
@@ -607,7 +448,7 @@ val FrameworkOnion = functionalComponent<RProps>("FrameworkLayers") {
                             color = Color.kodein.kinzolin
                         }
 
-                        +texts[contentId]!!.second
+                        texts[contentId]!!.second(this)
                     }
                 }
             }
