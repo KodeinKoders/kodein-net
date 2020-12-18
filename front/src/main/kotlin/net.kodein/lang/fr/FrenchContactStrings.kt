@@ -19,13 +19,13 @@ import styled.styledSpan
 object FrenchContactStrings : ContactStrings {
 
     override val cover: CoverStrings = object : CoverStrings {
-        override val overTitle: TextHandler = { +"restons en contact!" }
+        override val overTitle: TextHandler = { +"restons en contact" }
         override val title: TextHandler = {
             +"Parlez-nous de "
-            span("nowrap") { +"vos projets." }
+            span("nowrap") { +"vos projets !" }
         }
         override val chapo: TextHandler = {
-            +"Ou lancez une discussion,"
+            +"...ou lancez une discussion,"
             br {}
             +"nous sommes ici "
             span("nowrap") { +"pour vous écouter :-)" }
@@ -41,36 +41,36 @@ object FrenchContactStrings : ContactStrings {
                 a(href = "https://twitter.com/KodeinKoders") { +"Twitter" }
                 +" & "
                 a(href = "https://www.linkedin.com/company/kodein") { +"LinkedIn" }
-                +"!"
+                +" !"
             }
         }
     }
 
     override val form: ContactFormStrings = object : ContactFormStrings {
         override val title: String = "Contactez-nous"
-        override val from: Pair<String, String> = "De:" to "Votre adresse e-mail*"
+        override val from: Pair<String, String> = "De:" to "Votre adresse e-mail.*"
         override val subject: Pair<String, String> = "Objet:" to "De quoi voulez-vous nous parler?*"
         override val message: Pair<String, String> = "Message:" to "Donnez-nous un peu plus de contexte sur vos besoins.*"
         override val send: String = "ENVOYER"
         override val sending: String = "En cours d'envoi..."
         override val messageSent: TextHandler = {
-            +"Merci pour votre message!"
+            +"Merci pour votre message !"
             br {}
             +"Nous reviendrons vers vous rapidement."
         }
         override val messageNotSent: TextHandler = {
-            +"Votre message n'a pas pu être envoyé :("
+            +"Votre message n'a pas pu être envoyé :-("
             br {}
-            +"Vous pouvez toujours nous contacter via "
+            +"Contactez nous via "
             styledA(href = "mailto:contact@kodein.net") {
                 css.color = Color.kodein.purple
                 +"contact@kodein.net"
             }
-            +"!"
+            +" !"
             br {}
             br {}
         }
-        override val invalidForm: String = "Formulaire incorrect"
+        override val invalidForm: String = "Formulaire incorrect."
     }
 
 }
