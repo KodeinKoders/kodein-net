@@ -81,7 +81,6 @@ val ContentRow = functionalComponent<ContentRowProps>("ContentRow") { props ->
                 css {
                     width = 100.pct
                     backgroundColor = props.backgroundColor
-//                    put("clip-path", "polygon(0% 2rem, 100% 0%, 100% calc(100% - 4rem), 0% 100%)")
                     val r = 100.pct - ((bottomLayers[0].coords.first - bottomLayers[0].coords.second) / 10.0).rem
                     put("clip-path", "polygon(0% 0%, 100% 0%, 100% $r, 0% 100%)")
                 }
@@ -99,7 +98,8 @@ val ContentRow = functionalComponent<ContentRowProps>("ContentRow") { props ->
                                 flexGrow = if (props.illustration != null) 70.0 else 1.0
                                 flexBasis = FlexBasis.zero
                                 if (props.noPadding != true) {
-                                    padding(8.rem, 2.rem)
+                                    padding(10.rem, 2.rem, 6.rem, 2.rem)
+                                    maxWidth(980) { padding(8.rem, 2.rem, 6.rem, 2.rem) }
                                     minWidth(1024) { margin(LinearDimension.auto) }
                                 }
                             }
@@ -161,7 +161,6 @@ private val ContentRowIllustration = functionalComponent<ContentRowIllustrationP
                 }
                 else -> {
                     flexGrow = 1.0
-//                    put("clip-path", "polygon(0% 4rem, 100% 0%, 100% calc(100% - 4rem), 0% 100%)")
                 }
             }
 
@@ -188,7 +187,6 @@ private val ContentRowIllustration = functionalComponent<ContentRowIllustrationP
                     display = Display.none
                 else {
                     flexGrow = 1.0
-//                    put("clip-path", "polygon(0% 4rem, 100% 0%, 100% calc(100% - 4rem), 0% 100%)")
                 }
             }
 

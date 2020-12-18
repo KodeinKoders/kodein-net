@@ -126,7 +126,7 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
                 css {
                     +kodein.body
                     color = fontColor
-                    padding(2.rem)
+                    padding(1.rem, 2.rem, 3.rem, 2.rem)
                 }
 
                 props.children()
