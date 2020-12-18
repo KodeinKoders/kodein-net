@@ -5,6 +5,7 @@ import kotlinx.css.properties.*
 import net.kodein.charter.kodein
 import net.kodein.utils.flexColumn
 import net.kodein.utils.flexRow
+import net.kodein.utils.maxWidth
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.events.EventListener
 import react.*
@@ -71,15 +72,22 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
                         color = borderColor
                     }
                 }
+
+                maxWidth(480) {
+                    height = 6.rem
+                }
             }
 
             styledP {
                 css {
                     classes.add("accordionTitle")
-                    flexGrow = 75.0
-                    flexBasis = FlexBasis.zero
+                    flexGrow = 8.0
                     +kodein.intertitre
                     color = if(isHeaderHover) borderColor else fontColor
+
+                    maxWidth(480) {
+                        specific { fontSize = 1.rem }
+                    }
                 }
 
                 +props.title
@@ -87,14 +95,17 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
 
             styledDiv {
                 css {
-                    flexGrow = 20.0
-                    flexBasis = FlexBasis.zero
+                    flexGrow = 1.0
                     textAlign = TextAlign.end
                     minWidth = LinearDimension.fitContent
                     paddingRight = 1.rem
 
                     transition(::opacity, duration = .5.s, Timing.linear)
                     opacity = if (isOpen) 1 else 0
+
+                    maxWidth(480) {
+                        display = Display.none
+                    }
                 }
 
                 props.sub?.invoke(this)
@@ -143,8 +154,7 @@ private val Chevron = functionalComponent<ChevronProps>("Chevron") { props ->
     styledDiv {
         css {
             display = Display.flex
-            flexGrow = 5.0
-            flexBasis = FlexBasis.zero
+            flexGrow = 1.0
             minWidth = 2.rem
             paddingRight = .5.rem
 
