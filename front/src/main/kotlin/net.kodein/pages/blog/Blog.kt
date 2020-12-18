@@ -35,6 +35,8 @@ val Blog = functionalComponent<RProps> {
             )
             content = strings.cover
         }
+
+        strings.cover.chapo(this)
     }
 
     child(EntryList)
