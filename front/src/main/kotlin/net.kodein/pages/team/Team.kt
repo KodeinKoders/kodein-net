@@ -7,6 +7,7 @@ import net.kodein.components.*
 import net.kodein.components.strings.CoverStrings
 import net.kodein.pages.team.fragment.Jobs
 import net.kodein.pages.team.fragment.Members
+import net.kodein.useText
 import net.kodein.utils.maxSize
 import react.RProps
 import react.child
@@ -18,27 +19,7 @@ import styled.styledP
 
 
 val Team = functionalComponent<RProps> {
-    // TODO refactor this
-    val coverStrings = object : CoverStrings {
-        override val overTitle: TextHandler = { +"our team" }
-        override val title: TextHandler = { +"We are Kotlin experts..." }
-        override val chapo: TextHandler = {
-            styledP {
-                css {
-                    width = 75.pct
-                    margin(LinearDimension.auto)
-                    maxSize(768) { width = 85.pct }
-                }
-
-                +"""...and humans, after all!""".trimMargin()
-                br {}
-                +"""Viens on se fera un petit Qake à l'ancienne! :)""".trimMargin()
-            }
-
-            styledDiv { css.height = 5.rem }
-
-        }
-    }
+    val strings = useText().team
 
     child(MenuTop) {
         attrs {
@@ -56,7 +37,7 @@ val Team = functionalComponent<RProps> {
                 overTitle = Color.kodein.korail,
                 text = Color.kodein.orange
             )
-            content = coverStrings
+            content = strings.cover
             overrideContentRuleSet = {
                 width = 100.pct
                 padding(horizontal = 0.rem)

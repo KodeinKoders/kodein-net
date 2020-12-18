@@ -1,0 +1,29 @@
+package net.kodein.lang.fr
+
+import net.kodein.TextHandler
+import net.kodein.components.strings.CoverStrings
+import net.kodein.pages.team.JobDescription
+import net.kodein.pages.team.MemberStrings
+import net.kodein.pages.team.TeamStrings
+
+object FrenchTeamStrings : TeamStrings {
+    override val cover: CoverStrings = object : CoverStrings {
+        override val overTitle: TextHandler = { +"notre équipe" }
+        override val title: TextHandler = { +"Nous sommes humains, avant tout !" }
+        override val chapo: TextHandler = {}
+    }
+    override val salomon = MemberStrings.salomon.copy(
+        position = "Fondateur",
+        bio = { +"bio fr" }
+    )
+    override val romain = MemberStrings.romain.copy(
+        position = "Fondateur",
+        bio = { +"bio fr" }
+    )
+    override val verdOn: String = "Suivez le sur"
+    override val jobs: List<JobDescription> = listOf(JobDescription("Développeur Kotlin"){
+        // TODO change this! copy / paste from Touchlab!
+        +"""Nous recherchons des développeurs mobile, avec une expérience sur Kotlin & Android, 
+            |un interet pour Kotlin Multiplatform Mobile (KMM) est un plus.""".trimMargin()
+    })
+}
