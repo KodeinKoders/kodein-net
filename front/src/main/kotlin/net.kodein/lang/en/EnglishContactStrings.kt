@@ -19,13 +19,13 @@ import styled.styledSpan
 object EnglishContactStrings : ContactStrings {
 
     override val cover: CoverStrings = object : CoverStrings {
-        override val overTitle: TextHandler = { +"let's keep in touch!" }
+        override val overTitle: TextHandler = { +"let's keep in touch" }
         override val title: TextHandler = {
             +"Tell us about "
-            span("nowrap") { +"your projects" }
+            span("nowrap") { +"your projects!" }
         }
         override val chapo: TextHandler = {
-            +"Or just have a chat, "
+            +"...or just have a chat, "
             span("nowrap") { +"we are here to listen :-)" }
 
             br {}
@@ -46,7 +46,7 @@ object EnglishContactStrings : ContactStrings {
 
     override val form: ContactFormStrings = object : ContactFormStrings {
         override val title: String = "Contact us"
-        override val from: Pair<String, String> = "From:" to "Your e-mail*"
+        override val from: Pair<String, String> = "From:" to "Your e-mail.*"
         override val subject: Pair<String, String> = "Object:" to "What's on your mind?*"
         override val message: Pair<String, String> = "Message:" to "Tell us a little more about your needs.*"
         override val send: String = "SEND"
@@ -57,7 +57,7 @@ object EnglishContactStrings : ContactStrings {
             +"We'll be in touch soon."
         }
         override val messageNotSent: TextHandler = {
-            +"You're message could not be sent :("
+            +"You're message could not be sent :-("
             br {}
             +"Reach us out at "
             styledA(href = "mailto:contact@kodein.net") {
@@ -68,7 +68,7 @@ object EnglishContactStrings : ContactStrings {
             br {}
             br {}
         }
-        override val invalidForm: String = "Invalid form"
+        override val invalidForm: String = "Invalid form."
     }
 
 }
