@@ -34,6 +34,8 @@ val Training = functionalComponent<RProps>("Training") {
                 )
                 content = strings.cover
             }
+
+            strings.cover.chapo(this)
         }
 
         child(Description)
