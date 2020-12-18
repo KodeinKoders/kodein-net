@@ -4,6 +4,8 @@ import kotlinx.browser.window
 import kotlinx.css.*
 import net.kodein.charter.kodein
 import net.kodein.components.ContactUsProps
+import net.kodein.pages.team.MemberStrings
+import net.kodein.useText
 import net.kodein.utils.*
 import net.kodein.withBasePath
 import org.w3c.dom.HTMLDivElement
@@ -16,6 +18,8 @@ import styled.styledImg
 import styled.styledP
 
 val Members = functionalComponent<ContactUsProps>("Members") {
+    val strings = useText().team
+
     flexRow {
         css {
             "a" {
@@ -38,17 +42,7 @@ val Members = functionalComponent<ContactUsProps>("Members") {
                 maxWidth(768) { width = 100.pct }
             }
             child(Member) {
-                attrs {
-                    name = "Salomon Brys"
-                    photo = "salomon"
-                    position = "Founder"
-                    bio = "bio"
-                    socialMediaList = listOf(
-                        Twitter("salomonbrys"),
-                        LinkedIn("salomonbrys"),
-                        Github("SalomonBrys")
-                    )
-                }
+                attrs.member = strings.salomon
             }
         }
 
@@ -59,39 +53,26 @@ val Members = functionalComponent<ContactUsProps>("Members") {
             }
 
             child(Member) {
-                attrs {
-                    name = "Romain Boisselle"
-                    photo = "romain"
-                    position = "Founder"
-                    bio = "bio"
-                    socialMediaList = listOf(
-                        Twitter("romainbsl"),
-                        LinkedIn("romainbsl"),
-                        Github("romainbsl")
-                    )
-                }
+                attrs.member = strings.romain
             }
         }
     }
 }
 
 interface MemberProps : RProps {
-    var name: String
-    var photo: String
-    var position: String
-    var bio: String
-    var socialMediaList: List<SocialMedia>
+    var member: MemberStrings
 }
 private val Member = functionalComponent<MemberProps>("Member") { props ->
-    val div = useRef<HTMLDivElement?>(null)
+    val strings = useText().team
 
+    val div = useRef<HTMLDivElement?>(null)
     var image: String? by useState(null)
 
     useEffectWithCleanup(emptyList()) {
         val onResize: ((Event?) -> Unit) = {
             val divWidth = div.current!!.clientWidth
             val imgWidth = illustrationWidths.firstOrNull { it >= (divWidth * 1.2) } ?: illustrationWidths.last()
-            image = "${props.photo}_${imgWidth}"
+            image = "${props.member.photo}_${imgWidth}"
         }
         window.addEventListener("resize", onResize)
         onResize(null)
@@ -132,7 +113,7 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
                         color = Color.kodein.dark
                         fontWeight = FontWeight.semiBold
                     }
-                    +props.name
+                    +props.member.name
                 }
                 styledDiv {
                     css {
@@ -144,7 +125,7 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
                 }
                 styledP {
                     css { color = Color.kodein.korail }
-                    +props.position
+                    +props.member.position
                 }
 
             }
@@ -155,7 +136,7 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
                     textAlign = TextAlign.start
                     margin(top = .5.rem, bottom = 2.rem)
                 }
-                +props.bio
+                props.member.bio(this)
             }
 
             flexRow {
@@ -165,13 +146,13 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
                         color = Color.kodein.dark
                         fontWeight = FontWeight.semiBold
                     }
-                    if (props.socialMediaList.isNotEmpty()) {
-                        +"Nerd on "
-                        props.socialMediaList.forEachIndexed { index, media ->
+                    if (props.member.socialMediaList.isNotEmpty()) {
+                        +strings.nerdOn
+                        props.member.socialMediaList.forEachIndexed { index, media ->
                             a(href = "${media.url.removeSuffix("/")}/${media.handler}", target = "_blank") {
                                 +media.service.capitalize()
                             }
-                            if (index < props.socialMediaList.lastIndex) +", "
+                            if (index < props.member.socialMediaList.lastIndex) +", "
                         }
                     }
                 }

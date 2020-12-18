@@ -9,6 +9,7 @@ import net.kodein.components.AccordionElement
 import net.kodein.components.ContactUsProps
 import net.kodein.components.contentRow
 import net.kodein.components.imageRow
+import net.kodein.useText
 import net.kodein.utils.Illus
 import net.kodein.utils.maxWidth
 import react.child
@@ -17,6 +18,7 @@ import react.functionalComponent
 
 
 val Jobs = functionalComponent<ContactUsProps>("Members") {
+    val strings = useText().team
 
     imageRow(
         backgroundColor = Color.kodein.kinzolin, indexPosition = 1,
@@ -34,20 +36,16 @@ val Jobs = functionalComponent<ContactUsProps>("Members") {
         illustration = Illus(Illus.Title.TEAM, Illus.Position.RIGHT, Illus.Alignment.CENTER),
         bottomLayers = listOf(Color.kodein.orange, Color.kodein.kaumon)
     ) {
-        child(AccordionElement) {
-            attrs {
-                title = "Job offer 1"
-                borderColor = Color.kodein.orange
-                fontColor = Color.kodein.orange
-            }
-        }
+        strings.jobs.forEachIndexed { index, job ->
+            child(AccordionElement) {
+                attrs {
+                    title = job.title
+                    last = (index == strings.jobs.size - 1)
+                    borderColor = Color.kodein.orange
+                    fontColor = Color.kodein.orange
+                }
 
-        child(AccordionElement) {
-            attrs {
-                title = "Job offer 2"
-                borderColor = Color.kodein.orange
-                fontColor = Color.kodein.orange
-                last = true
+                job.content(this)
             }
         }
     }
