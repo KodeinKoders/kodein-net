@@ -19,7 +19,7 @@ import styled.styledImg
 object FrenchTrainingStrings : TrainingStrings {
 
     override val cover: CoverStrings = object : CoverStrings {
-        override val overTitle: TextHandler = { +"Partageons le savoir!" }
+        override val overTitle: TextHandler = { +"partageons le savoir" }
         override val title: TextHandler = {
             +"Nous sommes"
             br {}
@@ -37,7 +37,6 @@ object FrenchTrainingStrings : TrainingStrings {
         }
         override val chapo: TextHandler = {
             +"""
-                Notre expertise Kotlin s'étend au delà de son objectif premier : l'environement JVM.
                 Nous proposons des formations et workshops pour entreprises et évenements à travers le monde,
                 comme les conférences Kotlin/Everywhere Paris et KotlinConf'19.
                 Nous fournissons des formations sur les diffèrents niveaux & cibles de Kotlin.
@@ -62,25 +61,25 @@ object FrenchTrainingStrings : TrainingStrings {
                 Grâce à notre expérience en pedagogie ainsi qu'en architecture et développement,
                 nous avons developpé un ensemble de formations et d'exercises permettant à une équipe technique d'intégrer des connaissances pratiques en quelques jours.
                 Chaque notion est toujours mise en perspective avec un exercice de programmation.
-                Nous mettons l'accent sur la productivité et la qualité, développant non seulement les notions techniques, mais aussi et surtout leurs "best practices".
+                Nous mettons l'accent sur la productivité et la qualité, développant non seulement les notions techniques, mais aussi et surtout leurs bonnes pratiques.
             """
         }
         p {
             +"""
-                Puisque Kotlin fonctionne partout (Serveur, Android, iOS, web, embarqué, ...), vous pouvez former une équipe technique à intervenir à tous les niveaux de votre architecture.
+                Puisque Kotlin s'utilise dans de nombreux contextes (Serveur, Android, iOS, web, embarqué, ...), vous pouvez former une équipe technique à intervenir à tous les niveaux de votre architecture.
                 Cela permet aux membres de votre équipe d'être non seulement plus proactifs, mais également plus communicants, puisque chacun partage une langue commune.
             """
         }
     }
 
-    override val trainingTitle: TextHandler = { +"Voici quelques programmes formations." }
+    override val trainingTitle: TextHandler = { +"Voici quelques programmes de formations." }
 
     override val courseCoroutines = TrainingStrings.CourseStrings(
         "Concurence structurée avec les coroutines de Kotlin",
         "1 jour",
     ) {
         +"""
-            Les coroutines de permettent de modéliser des scénarios de concurrence complexes d'une manière expressive et structurée.
+            Les coroutines permettent de modéliser des scénarios de concurrence complexes d'une manière expressive et structurée.
             Apprenez à modéliser une tâche concurrente, et à utiliser la puissance de la librairie KotlinX Coroutines (pour le scoping, l'annulation, etc).
         """
     }
@@ -90,7 +89,7 @@ object FrenchTrainingStrings : TrainingStrings {
         "2 jours",
     ) {
         +"""
-            Kotlin propose beaucoup de fonctionalités de languages avancés, typiquement utilisées par les développeurs de libraries, leur permettant de fournir aux développeirs applicatifs de puissants outils.
+            Kotlin propose beaucoup de fonctionalités de languages avancés, typiquement utilisées par les développeurs de librairies, leur permettant de fournir aux développeurs applicatifs de puissants outils.
             Découvrez ces fonctionalités avancées, et maîtrisez les pour créer des APIs Kotlin élégantes et puissantes.
         """
     }
@@ -101,7 +100,7 @@ object FrenchTrainingStrings : TrainingStrings {
     ) {
         +"""
             La syntaxe Kotlin est très similaire à celle de Swift, mais leurs philosophies divergent sur plusieurs points.
-            Cette formation est destinée aux développeurs Swift iOS qui souhaitent pouvoir intervenir sur une projet Kotlin multiplatform.
+            Cette formation est destinée aux développeurs Swift iOS qui souhaitent pouvoir intervenir sur un projet Kotlin/Multiplatform.
         """
     }
 
@@ -113,7 +112,11 @@ object FrenchTrainingStrings : TrainingStrings {
             Partagez du code métier et comportemental significatif entre vos apps Android & iOS, tout en conservant leurs vues natives & spècifiques. Quel rêve !
             Apprenez comment implémenter ce rêve, comment architecturer votre application en conséquence, et comment communiquer proprement entre un noyeau partagé et une UI native.
         """
-        small { +"Nécéssite: \"Concurence structurée avec les coroutines de Kotlin\" and peut-être \"Le language Kotlin pour les développeurs iOS\"." }
+        small {
+            +"""Nécéssite: "Concurence structurée avec les coroutines de Kotlin""""
+            br {}
+            + """et éventuellement "Le language Kotlin pour les développeurs iOS".""""
+        }
     }
 
     override val courseNative = TrainingStrings.CourseStrings(
@@ -121,14 +124,14 @@ object FrenchTrainingStrings : TrainingStrings {
         "1 jour",
     ) {
         +"""
-            Kotlin/Native est le compilateur Kotlin qui produits des exécutables natifs pour de multiples cibles (iOS etant l'une d'entre elles).
+            Kotlin/Native est le compilateur Kotlin qui produit des exécutables natifs pour de multiples cibles (iOS etant l'une d'entre elles).
             Ce compilateur offre des APIs Kotlin permettant au code natif d'accéder aux librairies C, à la mémoire bas niveau, et aux APIs systèmes de la plateforme (comme POSIX).
         """
         small { +"Nécéssite: \"KMM: Koltin Mobile Multiplatform pour Android & iOS\"." }
     }
 
     override val courseKtor = TrainingStrings.CourseStrings(
-        "Efficient pure Kotlin backend",
+        "Développememt d'applications serveur en pur Kotlin",
         "1 jour",
     ) {
         +"""
