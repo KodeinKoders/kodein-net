@@ -40,10 +40,10 @@ object EnglishBlogStrings : BlogStrings {
             +"."
         }
         override val chapo: TextHandler = {
-            +"""Stay close through our """
+            +"Stay close through our "
             span("nowrap") { +"social media accounts." }
             br {}
-            +"""Follow us on """
+            +"Follow us on "
             span("nowrap") {
                 a(href = "https://twitter.com/KodeinKoders") { +"Twitter" }
                 +" & "
@@ -53,7 +53,7 @@ object EnglishBlogStrings : BlogStrings {
         }
     }
 
-    override val errorLoadingFeed: String = "There was an error loading the feed :("
+    override val errorLoadingFeed: String = "There was an error loading the feed :-("
 
 
 }

@@ -23,7 +23,7 @@ object FrenchTrainingStrings : TrainingStrings {
         override val title: TextHandler = {
             +"Nous sommes"
             br {}
-            +"Formateurs Certifiés JetBrains"
+            +"Formateurs Certifiés JetBrains."
             br {}
             withBasePath { path ->
                 styledImg(src = "$path/imgs/badge-orange.svg") {
