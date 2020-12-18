@@ -59,7 +59,7 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
             ref = accordionHeader
             css {
                 width = 100.pct
-                height = 5.rem
+                height = 5.5.rem
                 alignItems = Align.center
                 cursor = Cursor.pointer
                 borderTop(1.px, BorderStyle.solid, borderColor.withAlpha(0.5))
