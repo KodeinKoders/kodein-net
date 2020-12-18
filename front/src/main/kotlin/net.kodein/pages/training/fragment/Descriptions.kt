@@ -4,6 +4,7 @@ import kotlinx.css.*
 import net.kodein.charter.kodein
 import net.kodein.components.contentRow
 import net.kodein.components.imageRow
+import net.kodein.useText
 import net.kodein.utils.Illus
 import net.kodein.utils.flexColumn
 import net.kodein.utils.light
@@ -11,9 +12,11 @@ import net.kodein.utils.maxWidth
 import react.RProps
 import react.functionalComponent
 import styled.css
+import styled.styledH3
 import styled.styledP
 
 val Description = functionalComponent<RProps>("Description") {
+    val strings = useText().training
 
     imageRow(
         backgroundColor = Color.kodein.kaumon, indexPosition = 1,
@@ -30,32 +33,24 @@ val Description = functionalComponent<RProps>("Description") {
         bottomLayers = listOf(Color.kodein.purple)
     ) {
         flexColumn {
-            styledP {
-                css {
-                    +kodein.chapo
-                    color = Color.kodein.korail
-                }
-
-                +"// TODO"
-            }
-            styledP {
-                css {
-                    +kodein.intertitre
-                    color = Color.kodein.kaumon
-                }
-
-                +"// TODO"
-            }
-
-            styledP {
-                css {
+            css {
+                "p" {
                     +kodein.body
                     color = Color.kodein.korail
+                    paddingBottom = 0.5.em
+                }
+            }
+            styledH3 {
+                css {
+                    +kodein.chapo
+                    color = Color.kodein.kaumon
+                    paddingBottom = 0.5.em
                 }
 
-                +"// TODO"
+                strings.descriptionTitle(this)
             }
 
+            strings.descriptionText(this)
         }
     }
 }

@@ -30,7 +30,7 @@ val Training = functionalComponent<RProps>("Training") {
                     backgroundColor = Color.kodein.cute,
                     text = Color.kodein.korail,
                     title = Color.kodein.kyzantium,
-                    layers = listOf(Color.kodein.korail, Color.kodein.kaumon, Color.kodein.korail)
+                    layers = listOf(Color.kodein.korail, Color.kodein.kaumon)
                 )
                 content = strings.cover
             }
