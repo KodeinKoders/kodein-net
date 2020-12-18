@@ -1,14 +1,13 @@
 package net.kodein.lang.en
 
-import net.kodein.components.strings.MenuStrings
 import net.kodein.lang.Strings
-import net.kodein.pages.blog.BlogStrings
-import net.kodein.pages.contact.ContactStrings
+
 
 object English : Strings {
-    override val menu: MenuStrings = EnglishMenuStrings
+    override val blog = EnglishBlogStrings
+    override val contact = EnglishContactStrings
     override val home = EnglishHomeStrings
+    override val menu = EnglishMenuStrings
+    override val oss = EnglishOssStrings
     override val training = EnglishTrainingStrings
-    override val blog: BlogStrings = EnglishBlogStrings
-    override val contact: ContactStrings = EnglishContactStrings
 }
