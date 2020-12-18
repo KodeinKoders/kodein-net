@@ -22,8 +22,8 @@ object FrenchOssStrings : OssStrings {
         }
         override val chapo: TextHandler = {
             +"""
-                Le saviez-vous ? Kodein Koders est le créateur de la toute première librairie communautaire Open Source pour Kotlin/Multiplatform.
-                Nous sommes toujours à l'affut de nouvelles manière de contribuer à l'histoire du multiplatformes !
+                Le saviez-vous ? Kodein Koders est le créateur de la toute première librairie communautaire Open Source, pour Kotlin/Multiplatform.
+                Nous sommes toujours à l'affût de nouvelles manières de contribuer à l'histoire du multiplatforme !
             """
         }
     }
@@ -57,13 +57,13 @@ object FrenchOssStrings : OssStrings {
         }
         +"Framework"
         br {}
-        +"facilite les applications multiplatformes."
+        +"facilite la création d'applications multiplatformes."
     }
     override val onionLayerAndroid: TextHandler = {
         +"""
             Kotlin est le langage de développent officiel pour Android depuis 2019.
             Kotlin/Multiplatform et le Kodein Framework s'intègrent nativement dans Android.
-            Les apps Multiplatform Android ne sont en réalité que des apps Android, avec une UI et une intégration native.
+            Les apps multiplatformes Android ne sont en réalité que des apps Android, avec une UI et une intégration native.
         """
     }
     override val onionLayerDesktop: TextHandler = {
@@ -74,9 +74,9 @@ object FrenchOssStrings : OssStrings {
     }
     override val onionLayerIos: TextHandler = {
         +"""
-            Le language Kotlin est non seulement proche de Swift (le language iOS natif), il s'y intègre aisément.
-            Le Kodein Framework fournis des outils faciles à utiliser aussi bien dans une librairie Multiplatformes, que dans le contexte d'une app iOS.
-            Les apps Multiplatform iOS ne sont en réalité que des apps iOS, avec une UI et une intégration native.
+            Le language Kotlin est non seulement proche de Swift (le language iOS natif), il s'y intègre aussi aisément.
+            Le Kodein Framework fournis des outils faciles à utiliser aussi bien dans une librairie Multiplatforme, que dans le contexte d'une app iOS.
+            Les apps multiplatformes iOS ne sont en réalité que des apps iOS, avec une UI et une intégration native.
         """
     }
     override val onionLayerJs: TextHandler = {
@@ -94,14 +94,14 @@ object FrenchOssStrings : OssStrings {
     }
     override val onionLayerKodein: TextHandler = {
         +"""
-            le Kodein Framework fournis un ensemble de composants haut niveau vous permettant de vous concentrer sur le métier de votre application.
+            Le Kodein Framework fournit un ensemble de composants haut niveau vous permettant de vous concentrer sur le métier de votre application.
             Il représente notre opinion, ainsi que des années de bonnes pratiques en développement applicatif mobile, web, et logiciel.
             Entièrement Open Source, il est utilisé dans de nombreuses applications Kotlin par une communauté grandissante.
         """
     }
     override val onionLayerKotlin: TextHandler = {
         +"""
-            Le language Kotlin est la "lingua franca" du développement multiplatformes.
+            Le language Kotlin est la "lingua franca" du développement multiplatforme.
             KotlinX de Jetbrains propose de nombreuses librairies multiplatformes nécéssaires au développement bas niveau, comme la concurence, l'atomicité, la serialisation, etc.
             Le Kodein Framework réutilise autant que possible ces primitives, s'integrant ainsi nativement dans l'écosystème Kotlin/Multiplatform.
         """
@@ -130,7 +130,9 @@ object FrenchOssStrings : OssStrings {
         override val chapo: TextHandler = {
             +"Questionnez nous sur le "
             b { +"KODEIN" }
-            +"Framework Open Source sur "
+            +"Framework Open Source "
+            br {}
+            +"sur "
             a(href = "https://stackoverflow.com/tags/kodein", target = "_blank") { +"Stack Overflow" }
             +", "
             a(href = "https://kotlinlang.slack.com/archives/C0BLU9K96", target = "_blank") { +"Slack" }

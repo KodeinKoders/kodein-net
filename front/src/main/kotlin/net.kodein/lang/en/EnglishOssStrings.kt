@@ -76,7 +76,7 @@ object EnglishOssStrings : OssStrings {
         +"""
             The Kotlin language is not only close to Swift (the native iOS language), it also integrates nicely with it.
             The Kodein Framework provides tools that are easy to use both in a Multiplatform shared library, and in the context of an iOS application.
-            Multiplatform iOS apps are really just Android apps, with native look, feel and integration.
+            Multiplatform iOS apps are really just iOS apps, with native look, feel and integration.
         """
     }
     override val onionLayerJs: TextHandler = {
@@ -108,7 +108,7 @@ object EnglishOssStrings : OssStrings {
     }
     override val onionLayerNative: TextHandler = {
         +"""
-            Kotlin/Native is the Kotlin compiler that produces native executable for multiple targets (iOS being just one of them).
+            Kotlin/Native is the Kotlin compiler that produces native executables for multiple targets (iOS being just one of them).
             While being cutting edge, many large companies are already using Kotlin/Native to compile shared business code.
         """
     }
@@ -130,7 +130,9 @@ object EnglishOssStrings : OssStrings {
         override val chapo: TextHandler = {
             +"Ask us anything about the Open Source "
             b { +"KODEIN" }
-            +"Framework on "
+            +"Framework "
+            br{}
+            +"on "
             a(href = "https://stackoverflow.com/tags/kodein", target = "_blank") { +"Stack Overflow" }
             +", "
             a(href = "https://kotlinlang.slack.com/archives/C0BLU9K96", target = "_blank") { +"Slack" }

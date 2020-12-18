@@ -16,7 +16,7 @@ object FrenchBlogStrings : BlogStrings {
             +"au service de la technologie."
         }
         override val chapo: TextHandler = {
-            +"Notre mission est de partager notre passion pour le développement multi-plateforme."
+            +"Notre mission est de partager notre passion pour le développement multiplateforme."
 
             br {}
             br {}
