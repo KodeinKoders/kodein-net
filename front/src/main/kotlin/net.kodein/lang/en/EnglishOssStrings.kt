@@ -68,8 +68,8 @@ object EnglishOssStrings : OssStrings {
     }
     override val onionLayerDesktop: TextHandler = {
         +"""
-            When you need the full power of a computer, Kotlin & Kodein have you covered.
-            All the Kodein Open Sources tools we develop are also compatible with all desktop JVMs (Linux, MacOS, Windows).
+            When you need the full power of a computer, Kotlin & the Kodein Framework have you covered.
+            All the Kodein Framework Open Sources tools we develop are also compatible with all desktop JVMs (Linux, MacOS, Windows).
         """
     }
     override val onionLayerIos: TextHandler = {
