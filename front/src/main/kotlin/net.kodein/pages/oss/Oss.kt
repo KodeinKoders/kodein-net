@@ -7,6 +7,7 @@ import net.kodein.components.*
 import net.kodein.components.strings.CoverStrings
 import net.kodein.pages.oss.fragment.FrameworkLayers
 import net.kodein.pages.oss.fragment.FrameworkOnion
+import net.kodein.useText
 import net.kodein.utils.Illus
 import net.kodein.utils.maxWidth
 import react.RProps
@@ -20,41 +21,7 @@ import styled.styledDiv
 
 val Oss = functionalComponent<RProps> {
 
-    // TODO refactor this
-    val coverStrings = object : CoverStrings {
-        override val overTitle: TextHandler = { +"Kodein Framework" }
-        override val title: TextHandler = {
-            +"Discover our powerful"
-            br {}
-            +"Open Source Software."
-        }
-        override val chapo: TextHandler = {
-            +"""Since the dawn of Kotlin/Multiplatform, we have been contributing many tools to the ecosystem.
-                        |In fact, Kodein Koders released the very first Open Source Kotlin/Multiplatform community library.
-                        |We are always looking for new ways to contribute to the multiplatform narrative!""".trimMargin()
-        }
-    }
-
-    // TODO refactor this
-    val wantMoreStrings = object : CoverStrings {
-        override val overTitle: TextHandler = { +"Want more?" }
-        override val title: TextHandler = {
-            +"Check our "
-            a(href = "https://github.com/Kodein-Framework", target = "_blank") { +"Github" }
-            +"."
-        }
-        override val chapo: TextHandler = {
-            +"Ask us anything about the Open Source "
-            b { +"KODEIN" }
-            +"Framework on "
-            a(href = "https://stackoverflow.com/tags/kodein", target = "_blank") { +"Stack Overflow" }
-            +", "
-            a(href = "https://kotlinlang.slack.com/archives/C0BLU9K96", target = "_blank") { +"Slack" }
-            +" or "
-            a(href = "https://twitter.com/KodeinKoders", target = "_blank") { +"Twitter" }
-            +"!"
-        }
-    }
+    val strings = useText().oss
 
     child(MenuTop) {
         attrs {
@@ -73,7 +40,7 @@ val Oss = functionalComponent<RProps> {
                 overTitle = Color.kodein.korail,
                 layers = listOf(Color.kodein.krouille, Color.kodein.orange)
             )
-            content = coverStrings
+            content = strings.cover
         }
     }
 
@@ -109,7 +76,7 @@ val Oss = functionalComponent<RProps> {
                 title = Color.kodein.orange,
                 layers = listOf(Color.kodein.orange, Color.kodein.kaumon, Color.kodein.kinzolin)
             )
-            content = wantMoreStrings
+            content = strings.wantMore
         }
     }
 

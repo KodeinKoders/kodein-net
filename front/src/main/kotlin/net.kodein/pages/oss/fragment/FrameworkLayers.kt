@@ -6,6 +6,7 @@ import kotlinx.css.properties.boxShadow
 import kotlinx.css.properties.boxShadowInset
 import net.kodein.charter.KodeinStyles
 import net.kodein.charter.kodein
+import net.kodein.useText
 import net.kodein.utils.*
 import react.RProps
 import react.dom.*
@@ -14,6 +15,8 @@ import styled.*
 
 
 val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
+    val strings = useText().oss
+
     flexColumn {
         css {
             paddingTop = 8.rem
@@ -38,14 +41,7 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                 padding(1.rem, 2.rem)
                 maxWidth(360) { padding(1.rem, 1.rem) }
             }
-            +"The "
-            styledB {
-                css.fontWeight = FontWeight.semiBold
-                +"KODEIN"
-            }
-            +"Framework"
-            br {}
-            +"focuses on Application Business Code."
+            strings.layerKodein(this)
         }
 
         styledSpan {
@@ -69,7 +65,7 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                 minWidth(2500) { padding(vertical = 2.4.rem) }
                 boxShadowInset(Color.kodein.purple.darken(30), offsetY = 0.8.rem, blurRadius = 0.5.rem, spreadRadius = (-0.6).rem)
             }
-            +"Platform specific UI"
+            strings.layerUI(this)
         }
 
         flexColumn(JustifyContent.center, Align.center) {
@@ -103,9 +99,9 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                     css {
                         maxWidth(680) { paddingBottom = 1.rem }
                     }
-                    span { +"Dependency Injection" }
+                    span { +strings.layerKF_DI }
                     hr {}
-                    span { +"Embedded Database" }
+                    span { +strings.layerKF_DB }
                 }
                 styledHr {
                     css {
@@ -113,9 +109,9 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                     }
                 }
                 flexRow {
-                    span { +"Logging & Reporting" }
+                    span { +strings.layerKF_Log }
                     hr {}
-                    span { +"Presentation Behaviour" }
+                    span { +strings.layerKF_MVI }
                 }
             }
             styledSpan {
@@ -171,9 +167,9 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                     css {
                         maxWidth(680) { paddingBottom = 1.rem }
                     }
-                    span { +"Coroutines" }
+                    span { +strings.layerKX_Coroutines }
                     hr {}
-                    span { +"Atomic operations" }
+                    span { +strings.layerKX_Atomic }
                 }
                 styledHr {
                     css {
@@ -181,9 +177,9 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                     }
                 }
                 flexRow {
-                    span { +"Serialization" }
+                    span { +strings.layerKX_Serialization }
                     hr {}
-                    span { +"Platform APIs" }
+                    span { +strings.layerKX_Platform }
                 }
             }
 
@@ -199,7 +195,7 @@ val FrameworkLayers = functionalComponent<RProps>("FrameworkLayers") {
                 minWidth(2500) { padding(top = 2.4.em, bottom = 2.5.em) }
                 boxShadowInset(Color.kodein.kyzantium.darken(30), offsetY = 0.8.rem, blurRadius = 0.5.rem, spreadRadius = (-0.6).rem)
             }
-            +"Low-level Android, iOS & Web"
+            strings.layerLow(this)
         }
 
     }
