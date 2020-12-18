@@ -37,8 +37,6 @@ val Contact = functionalComponent<RProps> {
                 }
             }
         }
-
-        strings.cover.chapo(this)
     }
 
     styledDiv { css.height = 10.rem }

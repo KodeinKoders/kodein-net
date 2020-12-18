@@ -75,8 +75,6 @@ val Oss = functionalComponent<RProps> {
             )
             content = coverStrings
         }
-
-        coverStrings.chapo(this)
     }
 
     contentRow(

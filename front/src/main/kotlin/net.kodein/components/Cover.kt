@@ -119,6 +119,8 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                 props.overrideContentRuleSet?.invoke(this)
             }
 
+            props.content.chapo(this)
+
             props.children()
         }
     }
