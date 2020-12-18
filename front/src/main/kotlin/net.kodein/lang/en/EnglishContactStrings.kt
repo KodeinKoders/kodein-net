@@ -1,35 +1,61 @@
 package net.kodein.lang.en
 
-import kotlinx.css.Color
-import kotlinx.css.color
+import kotlinx.css.*
 import net.kodein.TextHandler
 import net.kodein.charter.kodein
 import net.kodein.components.strings.ContactFormStrings
 import net.kodein.components.strings.CoverStrings
 import net.kodein.pages.contact.ContactStrings
 import net.kodein.pages.home.HomeStrings
+import net.kodein.utils.landscapeMobile
+import net.kodein.utils.maxSize
 import react.dom.a
 import react.dom.br
 import react.dom.span
+import styled.css
 import styled.styledA
+import styled.styledSpan
 
 object EnglishContactStrings : ContactStrings {
 
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"let's keep in touch!" }
         override val title: TextHandler = {
-            +"Need some help on a project / a training?"
-            br {}
-            +"Just send us a message :-)"
+            +"Tell us about "
+            span("nowrap") { +"your projects" }
         }
         override val chapo: TextHandler = {
-            +"""Stay close through our social media accounts."""
+            +"Or just have a chat, "
+            span("nowrap") { +"we are here to listen :-)" }
+
+            styledSpan {
+                css {
+                    display = Display.block
+                    width = 5.rem
+                    height = 0.05.rem
+                    opacity = .5
+                    backgroundColor = Color.kodein.korail
+                    margin(2.rem, LinearDimension.auto)
+                    maxSize(768) {
+                        width = 3.rem
+                        margin(1.rem, LinearDimension.auto)
+                    }
+                    landscapeMobile {
+                        margin(2.rem, LinearDimension.auto)
+                    }
+                }
+            }
+
+            +"Also, stay close through "
+            span("nowrap") { +"our social media accounts." }
             br {}
             +"""Follow us on """
-            a(href = "https://twitter.com/KodeinKoders") { +"Twitter" }
-            +" & "
-            a(href = "https://www.linkedin.com/company/kodein") { +"LinkedIn" }
-            +"!"
+            span("nowrap") {
+                a(href = "https://twitter.com/KodeinKoders") { +"Twitter" }
+                +" & "
+                a(href = "https://www.linkedin.com/company/kodein") { +"LinkedIn" }
+                +"!"
+            }
         }
     }
 

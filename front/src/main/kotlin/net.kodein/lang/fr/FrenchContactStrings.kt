@@ -1,18 +1,18 @@
 package net.kodein.lang.fr
 
-import kotlinx.css.Color
-import kotlinx.css.color
-import kotlinx.css.fontSize
-import kotlinx.css.rem
+import kotlinx.css.*
 import net.kodein.TextHandler
 import net.kodein.charter.kodein
 import net.kodein.components.strings.ContactFormStrings
 import net.kodein.components.strings.CoverStrings
 import net.kodein.pages.contact.ContactStrings
 import net.kodein.pages.home.HomeStrings
+import net.kodein.utils.landscapeMobile
+import net.kodein.utils.maxSize
 import react.dom.a
 import react.dom.br
 import react.dom.span
+import styled.css
 import styled.styledA
 import styled.styledSpan
 
@@ -21,18 +21,43 @@ object FrenchContactStrings : ContactStrings {
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"restons en contact!" }
         override val title: TextHandler = {
-            +"Besoin d'aide pour un projet / une formation?"
-            br {}
-            +"Envoyez-nous simplement un message :-)"
+            +"Parlez-nous de "
+            span("nowrap") { +"vos projets." }
         }
         override val chapo: TextHandler = {
-            +"""Suivez notre actualité via les réseaux sociaux."""
+            +"Ou lancez une discussion,"
+            br {}
+            +"nous sommes ici "
+            span("nowrap") { +"pour vous écouter :-)" }
+
+            styledSpan {
+                css {
+                    display = Display.block
+                    width = 5.rem
+                    height = 0.05.rem
+                    opacity = .5
+                    backgroundColor = Color.kodein.korail
+                    margin(2.rem, LinearDimension.auto)
+                    maxSize(768) {
+                        width = 3.rem
+                        margin(1.rem, LinearDimension.auto)
+                    }
+                    landscapeMobile {
+                        margin(2.rem, LinearDimension.auto)
+                    }
+                }
+            }
+
+            +"Vous pouvez également suivre notre actualité "
+            span("nowrap") { +"via les réseaux sociaux." }
             br {}
             +"""Retrouvez-nous sur """
-            a(href = "https://twitter.com/KodeinKoders") { +"Twitter" }
-            +" & "
-            a(href = "https://www.linkedin.com/company/kodein") { +"LinkedIn" }
-            +"!"
+            span("nowrap") {
+                a(href = "https://twitter.com/KodeinKoders") { +"Twitter" }
+                +" & "
+                a(href = "https://www.linkedin.com/company/kodein") { +"LinkedIn" }
+                +"!"
+            }
         }
     }
 

@@ -47,6 +47,10 @@ val Cover = functionalComponent<CoverProps>("Cover") { props ->
                     color = Color.kodein.purple
                 }
             }
+
+            "span.nowrap" {
+                whiteSpace = WhiteSpace.nowrap
+            }
         }
 
         styledP {

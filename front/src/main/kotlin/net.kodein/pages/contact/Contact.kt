@@ -13,7 +13,7 @@ import styled.styledDiv
 
 
 val Contact = functionalComponent<RProps> {
-    val coverStrings = useText().contact.cover
+    val strings = useText().contact
 
     child(MenuTop) {
         attrs {
@@ -30,7 +30,7 @@ val Contact = functionalComponent<RProps> {
                 title = Color.kodein.kinzolin,
                 layers = listOf(Color.kodein.orange, Color.kodein.kinzolin, Color.kodein.krouille)
             )
-            content = coverStrings
+            content = strings.cover
             overrideContentRuleSet = {
                 "a" {
                     put("text-shadow", "none")
