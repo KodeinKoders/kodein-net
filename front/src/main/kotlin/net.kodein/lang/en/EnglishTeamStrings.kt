@@ -9,8 +9,8 @@ import react.dom.br
 
 object EnglishTeamStrings  : TeamStrings {
     override val cover: CoverStrings = object : CoverStrings {
-        override val overTitle: TextHandler = { +"our team" }
-        override val title: TextHandler = { +"We are humans, after all!" }
+        override val overTitle: TextHandler = { +"we are humans" }
+        override val title: TextHandler = { +"Driven by our passion for Kotlin." }
         override val chapo: TextHandler = {}
     }
     override val salomon = MemberStrings.salomon.copy(

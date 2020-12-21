@@ -8,8 +8,8 @@ import net.kodein.pages.team.TeamStrings
 
 object FrenchTeamStrings : TeamStrings {
     override val cover: CoverStrings = object : CoverStrings {
-        override val overTitle: TextHandler = { +"notre équipe" }
-        override val title: TextHandler = { +"Nous sommes humains, avant tout !" }
+        override val overTitle: TextHandler = { +"Nous sommes humains" }
+        override val title: TextHandler = { +"Motivés par notre passion pour Kotlin." }
         override val chapo: TextHandler = {}
     }
     override val salomon = MemberStrings.salomon.copy(
