@@ -2,6 +2,8 @@ package net.kodein.pages.home.fragment
 
 import kotlinx.css.*
 import net.kodein.charter.kodein
+import net.kodein.pages.home.DepartmentStrings
+import net.kodein.useText
 import net.kodein.utils.*
 import net.kodein.withBasePath
 import react.RProps
@@ -14,6 +16,8 @@ import styled.styledImg
 import styled.styledSvg
 
 val Departments = functionalComponent<RProps>("Departments") {
+    val strings = useText().home
+
     flexRow {
         css {
             maxWidth(889) {
@@ -23,33 +27,27 @@ val Departments = functionalComponent<RProps>("Departments") {
         }
 
         child(Department) {
-            attrs.title = "ADVISORY"
-            attrs.icon = "advisory"
-            +"Empowering your engineering teams to take on challenges with Kotlin"
+            attrs.description = strings.advisory
         }
 
         child(Department) {
-            attrs.title = "TRAINING"
-            attrs.icon = "training"
-            +"Regardless that you do Mobile, Backend or Frontend we can help you increase your Kotlin expertise!"
+            attrs.description = strings.training
         }
 
         child(Department) {
-            attrs.title = "DEVELOPMENT"
-            attrs.icon = "development"
+            attrs.description = strings.development
             attrs.isLastItem = true
-            +"We can help you reach your goals by taking care of the technical challenges you have!"
         }
     }
 }
 
 private interface DepartmentProps : RProps {
-    var title: String
-    var icon: String
+    var description: DepartmentStrings
     var isLastItem: Boolean?
 }
 
 private val Department = functionalComponent<DepartmentProps>("Department") { props ->
+    val strings = useText().home
 
     val dptHeight = 32.rem
 
@@ -72,7 +70,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
         }
 
         withBasePath { path ->
-            styledImg(alt="${props.title} icon", src="$path/imgs/ic_${props.icon}.svg") {
+            styledImg(alt="${props.description.title} icon", src="$path/imgs/ic_${props.description.icon}.svg") {
                 attrs {
                     width = "48"
                     height = "38"
@@ -91,7 +89,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                 specific { textAlign = TextAlign.start }
                 padding(0.5.rem, 1.rem)
             }
-            +props.title.toUpperCase()
+            +props.description.title.toUpperCase()
         }
 
         styledDiv {
@@ -102,10 +100,10 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                 height = 15.rem
                 maxWidth(889) { height = 5.rem }
             }
-            props.children()
+            props.description.content(this)
         }
 
-        a { +"READ MORE" }
+        a { +strings.readMore }
     }
 
     if(props.isLastItem != true) {

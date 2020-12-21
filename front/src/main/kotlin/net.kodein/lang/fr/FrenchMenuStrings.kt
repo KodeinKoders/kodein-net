@@ -9,5 +9,5 @@ object FrenchMenuStrings : MenuStrings {
     override val team: String = "équipe"
     override val blog: String = "blog"
     override val contact: String = "contact"
-    override val hiring: String = "on embauche!"
+    override val hiring: String = "on embauche !"
 }
