@@ -21,7 +21,9 @@ object FrenchServicesStrings : ServicesStrings {
 
         override val chapo: TextHandler = {
             p {
-                +"Nous croyons sincèrement que seules les applications natives peuvent combler le fossé qu'il y a entre vous et vos utilisateurs."
+                +"Nous croyons sincèrement que seules les applications natives peuvent "
+                span("nowrap") { +"combler le fossé" }
+                +" qu'il y a entre vous et vos utilisateurs."
                 br {}
                 +"C'est pourquoi nous utilisons Kotlin pour créer des applications multipateformes stables et robustes."
             }
@@ -35,8 +37,7 @@ object FrenchServicesStrings : ServicesStrings {
 
     override val consultancy: ServiceDescription = ServiceDescription("Accompagnement") {
         p {
-            +"""Quelque soit la plateforme, donnez a vos équipes de développement 
-            |la capacité de relever tous les défis, """.trimMargin()
+            +"Quelque soit la plateforme, donnez a vos équipes de développement la capacité de relever tous les défis, "
             span("nowrap") { +"avec à Kotlin." }
         }
         br{}
@@ -54,9 +55,13 @@ object FrenchServicesStrings : ServicesStrings {
         }
         br{}
         p {
-            +"""À la recherche de guides pour vos choix techniques, de conseils pour votre architecture serveur ou mobile, 
-                |ou simplement un besoin de support en développement, vous pouvez nous faire confiance pour vous accompagner  
-            """.trimMargin()
+            +"À la recherche de guides pour vos "
+            span("nowrap") { b { +"choix techniques" } }
+            +", de conseils pour "
+            span("nowrap") { b { +"votre architecture " } }
+            +"serveur ou mobile, ou simplement un besoin de "
+            span("nowrap") { b { +"support en développement" } }
+            +", vous pouvez nous faire confiance pour vous accompagner  "
             span("nowrap") { +"tout au long de votre projet." }
         }
     }

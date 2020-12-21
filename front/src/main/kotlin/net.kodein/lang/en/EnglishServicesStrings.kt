@@ -54,7 +54,13 @@ object EnglishServicesStrings : ServicesStrings {
         }
         br {}
         p {
-            +"That you need technical guidance, advices on back-end or mobile architecture, or just development support, you can trust us "
+            +"That you need "
+            span("nowrap") { b { +"technical guidance" } }
+            +", advices on back-end or mobile "
+            span("nowrap") { b { +"architecture" } }
+            +", or "
+            span("nowrap") { b { +"development support" } }
+            +", you can trust us "
             span("nowrap") { +"to help you reach your goals." }
         }
     }
