@@ -23,9 +23,10 @@ object FrenchServicesStrings : ServicesStrings {
             p {
                 +"Nous croyons sincèrement que seules les applications natives peuvent "
                 span("nowrap") { +"combler le fossé" }
-                +" qu'il y a entre vous et vos utilisateurs."
-                br {}
-                +"C'est pourquoi nous utilisons Kotlin pour créer des applications multipateformes stables et robustes."
+                +""" qu'il y a entre vous et vos utilisateurs. 
+                    |C'est pourquoi nous utilisons Kotlin pour créer des applications 
+                    |multipateformes stables et robustes.
+                """.trimMargin()
             }
             br{}
             p {

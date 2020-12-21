@@ -24,12 +24,13 @@ object EnglishTeamStrings  : TeamStrings {
             p {
                 +"""Romain has been talking to computers for almost 15 years. For some times, he has been working on 
                     |server side architectures with Java, then with Kotlin, since its early days. 
-                    |He has a new string to its bow since KotlinConf'18, when he started contributing 
-                    |to Kodein-DI, the first Kotlin/Multiplatform community library.""".trimMargin()
+                    |He has a new string to its bow since KotlinConf'18, when he met Salomon and started contributing 
+                    |to Kodein-DI, the very first Kotlin/Multiplatform community library.
+                """.trimMargin()
             }
             br {}
             p {
-                +"He loves wild and quiet spaces, mountain hikes and climbing."
+                +"He loves wild spaces, mountain hikes and climbing."
             }
         }
     )

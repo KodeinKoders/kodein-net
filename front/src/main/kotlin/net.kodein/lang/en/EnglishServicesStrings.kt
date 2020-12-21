@@ -16,14 +16,14 @@ object EnglishServicesStrings : ServicesStrings {
         override val title: TextHandler = {
             +"Meet your audience, "
             br {}
-            +"with native applications."
+            +"with natives applications."
         }
 
         override val chapo: TextHandler = {
             p {
-                +"We honestly believe that only native applications can fulfill the gap between you and your users. "
-                br {}
-                +"That is why we use Kotlin to build strong and robust "
+                +"""We honestly believe that only native applications can fulfill the gap between you and your users. 
+                    |That is why we use Kotlin to build strong and robust 
+                """.trimMargin()
                 span("nowrap") { +"multi-platform" }
                 +" applications."
             }

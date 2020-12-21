@@ -22,14 +22,15 @@ object FrenchTeamStrings : TeamStrings {
         position = "Fondateur",
         bio = {
             p {
-                +"""Ro main parle aux ordinateurs depuis presque 15 ans. Pendant quelques temps, il a travaillé sur des 
-                    |architectures serveur en Java, puis en Kotlin, dès ses premières versions. 
-                    |Il a une nouvelle corde à son arc Depuis la KotlinConf'18, oú il a commencer ses contributions 
-                    |a Kodein-DI, la première librairie communautaire Kotlin/Multiplatorm.""".trimMargin()
+                +"""Romain parle "ordinateur 2e langue" depuis presque 15 ans. Pendant ses premières années, 
+                    |il a travaillé sur des architectures serveur en Java, puis en Kotlin, dès ses premières versions. 
+                    |Il a une nouvelle corde à son arc depuis la KotlinConf'18, oú il a rentré Salomon et commencé à 
+                    |contribuer a Kodein-DI, la toute première librairie communautaire Kotlin/Multiplatorm.
+                """.trimMargin()
             }
             br {}
             p {
-                +"He loves wild and quiet spaces, mountain hikes and climbing."
+                +"Il aime les grands espaces, la randonnée en montagne et l'escalade."
             }
         }
     )
