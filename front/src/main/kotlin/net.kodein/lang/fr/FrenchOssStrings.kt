@@ -42,7 +42,7 @@ object FrenchOssStrings : OssStrings {
     override val layerKF_DI: String = "Injection de Dépendance"
     override val layerKF_DB: String = "Base de Données"
     override val layerKF_Log: String = "Logs & Rapports"
-    override val layerKF_MVI: String = "Comportement des vues"
+    override val layerKF_MVI: String = "Conduite des vues"
     override val layerKX_Coroutines: String = "Coroutines"
     override val layerKX_Atomic: String = "Opérations Atomiques"
     override val layerKX_Serialization: String = "Serialisation"
