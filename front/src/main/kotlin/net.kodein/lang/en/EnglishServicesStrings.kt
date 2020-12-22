@@ -21,13 +21,13 @@ object EnglishServicesStrings : ServicesStrings {
 
         override val chapo: TextHandler = {
             p {
-                +"""We honestly believe that natives applications are the best answer to a better user experience. 
-                    |That is why we use Kotlin to build nice looking and robust multiplatform applications. 
+                +"""We believe that native applications always provide the best user experience. 
+                    |We use Kotlin to build nice looking, integrated and robust multiplatform applications. 
                 """.trimMargin()
             }
             br {}
             p {
-                +"Thanks to our strong experience, we shall "
+                +"Thanks to our strong experience, we will "
                 span("nowrap") { +"guide you through." }
             }
         }
@@ -35,43 +35,43 @@ object EnglishServicesStrings : ServicesStrings {
 
     override val consultancy: ServiceDescription = ServiceDescription("Consultancy") {
         p {
-            +"Empowering your engineering teams to take on challenges with Kotlin, either it's back-end or mobile."
+            +"Whatever the platform, empower your engineering team to take on their challenges with Kotlin."
         }
         br {}
         p {
-            +"""That you are starting a new project, looking for team reinforcement and expertise, or in the middle of one other, 
-                |considering taking some accompaniment to validate or boost your development process, 
-                |we can provide you with a team of  
+            +"""Whether you are starting a new project or looking for reinforcement and expertise, 
+                |we can help you validate and/or boost your development process. 
+                |We can provide you with a team of  
             """.trimMargin()
             span("nowrap") {
                 b { +"highly qualified engineers" }
             }
-            +", where the "
-            span("nowrap") { b { +"humankind" } }
-            +" is at the center of their shared values."
+            +", with our "
+            span("nowrap") { b { +"humanist philosophy" } }
+            +" being at the center of their work."
         }
         br {}
         p {
-            +"That you need "
+            +"Whether you are looking for "
             span("nowrap") { b { +"technical guidance" } }
-            +", back-end or mobile "
+            +", back-end or application "
             span("nowrap") { b { +"architecture" } }
-            +" advice, or "
+            +" expertise, or just a simple need of "
             span("nowrap") { b { +"development support" } }
-            +", you can trust us "
-            span("nowrap") { +"to help you reach your goals." }
+            +", you can trust us to be with you "
+            span("nowrap") { +"during your project full lifetime." }
         }
     }
 
     override val projectDevelopment: ServiceDescription = ServiceDescription("Project Development") {
         p {
-            +"""That engineering is not part of your business, or that you are running out of resources, 
-                |we can help you meet your business expectations by taking care of the technical challenges you have. 
-                |Using  
+            +"""Whether engineering is not part of your business, or you are running out of resources, 
+                |we can help you meet your business expectations by taking care of your technical challenges. 
+                |Using the  
             """.trimMargin()
             b { +"Scrum" }
-            +""" methodology, we will provide you a nice and easy way to follow up on your project, 
-                |while we are taking care of everything 
+            +""" methodology, we provide you with a nice and easy way to follow up on your project, 
+                |while we take care of everything 
             """.trimMargin()
             span("nowrap") { b { +"sprint by sprint" } }
             +"."
@@ -88,9 +88,9 @@ object EnglishServicesStrings : ServicesStrings {
             +"Focused on running Kotlin code everywhere, our experts take advantage of "
             b { +"Kotlin/Multiplatform" }
             +" to elegantly factorize your business logic in "
-            span("nowrap") { b { +"one common code" } }
-            +", that we write, test and run once while allowing us to stick to native development "
-            b { +"for each targeted system" }
+            span("nowrap") { b { +"one common shared code" } }
+            +", that we can write and test once while sticking to native development "
+            b { +"for each targeted platform" }
             +" (Backend / Mobile / Web / Desktop)."
         }
     }
