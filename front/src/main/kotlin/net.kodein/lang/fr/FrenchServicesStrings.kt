@@ -47,7 +47,7 @@ object FrenchServicesStrings : ServicesStrings {
             span("nowrap") { b { +"ingénieurs hautement qualifiés" } }
             +", ayant nos "
             b { +"valeurs humanistes" }
-            +" au centre de leurs travail."
+            +" au centre de leur travail."
         }
         br{}
         p {

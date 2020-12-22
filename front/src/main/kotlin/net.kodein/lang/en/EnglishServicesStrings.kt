@@ -16,7 +16,7 @@ object EnglishServicesStrings : ServicesStrings {
         override val title: TextHandler = {
             +"Meet your users expectations, "
             br {}
-            +"with natives applications."
+            +"with native applications."
         }
 
         override val chapo: TextHandler = {
