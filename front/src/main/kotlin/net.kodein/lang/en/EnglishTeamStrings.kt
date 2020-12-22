@@ -24,7 +24,7 @@ object EnglishTeamStrings  : TeamStrings {
             p {
                 +"""Romain has been talking to computers for almost 15 years. For some times, he has been working on 
                     |server side architectures with Java, then with Kotlin, since its early days. 
-                    |He has a new string to its bow since KotlinConf'18, when he met Salomon and started contributing 
+                    |He has a new string to its bow since KotlinConf'18, where he met Salomon and started contributing 
                     |to Kodein-DI, the very first Kotlin/Multiplatform community library.
                 """.trimMargin()
             }
