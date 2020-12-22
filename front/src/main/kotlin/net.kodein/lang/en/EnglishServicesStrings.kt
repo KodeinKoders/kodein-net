@@ -14,22 +14,20 @@ object EnglishServicesStrings : ServicesStrings {
         override val overTitle: TextHandler = { +"professional companions" }
 
         override val title: TextHandler = {
-            +"Meet your audience, "
+            +"Meet your users expectations, "
             br {}
             +"with natives applications."
         }
 
         override val chapo: TextHandler = {
             p {
-                +"""We honestly believe that only native applications can fulfill the gap between you and your users. 
-                    |That is why we use Kotlin to build strong and robust 
+                +"""We honestly believe that natives applications are the best answer to a better user experience. 
+                    |That is why we use Kotlin to build nice looking and robust multiplatform applications. 
                 """.trimMargin()
-                span("nowrap") { +"multi-platform" }
-                +" applications."
             }
             br {}
             p {
-                +"Thanks to our strong experience, we can "
+                +"Thanks to our strong experience, we shall "
                 span("nowrap") { +"guide you through." }
             }
         }
@@ -43,22 +41,22 @@ object EnglishServicesStrings : ServicesStrings {
         p {
             +"""That you are starting a new project, looking for team reinforcement and expertise, or in the middle of one other, 
                 |considering taking some accompaniment to validate or boost your development process, 
-                |we can provide you with 
+                |we can provide you with a team of  
             """.trimMargin()
-            span("nowrap") { b { +"truly valuable persons" } }
-            +" and "
             span("nowrap") {
                 b { +"highly qualified engineers" }
-                +"."
             }
+            +", where the "
+            span("nowrap") { b { +"humankind" } }
+            +" is at the center of their shared values."
         }
         br {}
         p {
             +"That you need "
             span("nowrap") { b { +"technical guidance" } }
-            +", advices on back-end or mobile "
+            +", back-end or mobile "
             span("nowrap") { b { +"architecture" } }
-            +", or "
+            +" advice, or "
             span("nowrap") { b { +"development support" } }
             +", you can trust us "
             span("nowrap") { +"to help you reach your goals." }
