@@ -24,7 +24,7 @@ object FrenchTeamStrings : TeamStrings {
             p {
                 +"""Romain code depuis presque 15 ans. 
                     |Il a d'abord travaillé sur des architectures serveur en Java, puis en Kotlin, dès les premières versions. 
-                    |Il a une nouvelle corde à son arc depuis la KotlinConf'18, oú il a rentré Salomon et commencé à 
+                    |Il a une nouvelle corde à son arc depuis la KotlinConf'18, oú il a rencontré Salomon et commencé à 
                     |contribuer a Kodein-DI, la toute première librairie communautaire Kotlin/Multiplatform.
                 """.trimMargin()
             }
