@@ -65,11 +65,16 @@ object EnglishServicesStrings : ServicesStrings {
 
     override val projectDevelopment: ServiceDescription = ServiceDescription("Project Development") {
         p {
-            +"""That engineering is not at the core of your business, or that you ran out of resources, 
+            +"""That engineering is not part of your business, or that you are running out of resources, 
                 |we can help you meet your business expectations by taking care of the technical challenges you have. 
-                |Using Scrum methodology, we will provide you a nice and easy way to follow up on your project 
-                |while we are taking care of everything, sprint by sprint.
+                |Using  
             """.trimMargin()
+            b { +"Scrum" }
+            +""" methodology, we will provide you a nice and easy way to follow up on your project, 
+                |while we are taking care of everything 
+            """.trimMargin()
+            span("nowrap") { b { +"sprint by sprint" } }
+            +"."
         }
         br {}
         p {
@@ -80,10 +85,13 @@ object EnglishServicesStrings : ServicesStrings {
         }
         br {}
         p {
-            +"""Focused on running Kotlin code everywhere, our experts take advantage of Kotlin/Multiplatform 
-                |to elegantly factorize your business logic in one common code, that we write, test and run once 
-                |while allowing us to stick to native development for each targeted system (Backend / Mobile / Web / Desktop).
-            """.trimMargin()
+            +"Focused on running Kotlin code everywhere, our experts take advantage of "
+            b { +"Kotlin/Multiplatform" }
+            +" to elegantly factorize your business logic in "
+            span("nowrap") { b { +"one common code" } }
+            +", that we write, test and run once while allowing us to stick to native development "
+            b { +"for each targeted system" }
+            +" (Backend / Mobile / Web / Desktop)."
         }
     }
 }

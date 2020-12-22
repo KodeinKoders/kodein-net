@@ -14,9 +14,9 @@ object FrenchServicesStrings : ServicesStrings {
         override val overTitle: TextHandler = { +"on vous accompagne" }
 
         override val title: TextHandler = {
-            +"Une meilleure expérience utilisateur, "
+            +"Des applications natives au service"
             br {}
-            +"avec des applications natives."
+            +"d'une meilleure expérience utilisateur."
         }
 
         override val chapo: TextHandler = {
@@ -64,12 +64,17 @@ object FrenchServicesStrings : ServicesStrings {
 
     override val projectDevelopment: ServiceDescription = ServiceDescription("Développement") {
         p{
-            +"""Que le développement d'applications ne fasse pas parti du coeur de votre métier, 
+            +"""Que le développement d'applications soit pas au coeur de votre métier, 
                 |ou que vous soyez en manque de ressources, nous pouvons vous aider à attendre vos objectifs 
-                |en prenant en charge les challenges techniques que vous avez. En utilisant la méthodologie Scrum, 
-                |nous vous proposons une manière simple et efficace de suivre votre projet, 
-                |pendant que nous nous occupons de tout, sprint après sprint.
+                |en prenant en charge les challenges techniques que vous avez. 
+                |En utilisant la méthodologie , 
            """.trimMargin()
+            b { +"Scrum" }
+            +""", nous vous proposons une manière simple et efficace de suivre votre projet, 
+                |pendant que nous nous occupons de tout, 
+           """.trimMargin()
+            span("nowrap") { b { +"sprint après sprint" } }
+            +"."
         }
         br{}
         p {
@@ -80,12 +85,15 @@ object FrenchServicesStrings : ServicesStrings {
         }
         br{}
         p {
-            +"""Focalisés sur la possiblité d'éxecuter du code Kotlin partout ou cela est possible,
-                |nos experts utilisent à leur avantage Kotlin/Multiplatform pour élégamment factoriser votre logoique métier 
-                |dans un code common, que nous écrivons, testons et éxecutons une seule fois, 
-                |tout en nous permettant de profiter des outils de développement natifs de chacun des systèmes 
-                |que nous ciblons (Serveur / Mobile / Web / Desktop).
-            """.trimMargin()
+            +"Focalisés sur la possiblité d'éxecuter du code Kotlin partout ou cela est possible, nos experts utilisent "
+            span("nowrap") { b { +"Kotlin/Multiplatform" } }
+            +" à leur avantage pour élégamment factoriser votre logoique métier dans "
+            span("nowrap") { b { +"un code common" } }
+            +", que nous écrivons, testons et éxecutons une seule fois, tout en nous permettant de profiter des outils de développement natifs "
+            span("nowrap") { b { +"pour chacun des systèmes" } }
+            +" que nous ciblons "
+            span("nowrap") { +"(Serveur / Mobile / Web / Desktop)" }
+            +"."
         }
     }
 }
