@@ -67,7 +67,7 @@ object FrenchServicesStrings : ServicesStrings {
             +"""Que le développement d'applications soit pas au coeur de votre métier, 
                 |ou que vous soyez en manque de ressources, nous pouvons vous aider à attendre vos objectifs 
                 |en prenant en charge les challenges techniques que vous avez. 
-                |En utilisant la méthodologie , 
+                |En utilisant la méthodologie 
            """.trimMargin()
             b { +"Scrum" }
             +""", nous vous proposons une manière simple et efficace de suivre votre projet, 
