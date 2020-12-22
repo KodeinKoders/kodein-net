@@ -36,8 +36,7 @@ object EnglishTeamStrings  : TeamStrings {
     )
     override val nerdOn: String = "Nerd on "
     override val jobs: List<JobDescription> = listOf(JobDescription("Kotlin developer") {
-        // TODO change this! copy / paste from Touchlab!
-        +"""We are looking for a Mobile Developer, with Android/Kotlin experience, 
-            |who is eager to dive into Kotlin Multiplatform Mobile (KMM) development.""".trimMargin()
+        +"""We are looking for Kotlin Developers, craftmanship lovers, with or without experience, 
+            |who wish to deeply get into Kotlin Multiplatform Mobile (KMM) development.""".trimMargin()
     })
 }
