@@ -28,6 +28,7 @@ val Contact = functionalComponent<RProps> {
             colors = CoverPalette(
                 backgroundColor = Color.kodein.kaumon,
                 title = Color.kodein.kinzolin,
+                text = Color.kodein.orange,
                 layers = listOf(Color.kodein.orange, Color.kodein.kinzolin, Color.kodein.krouille)
             )
             content = strings.cover

@@ -5,6 +5,7 @@ import kotlinx.css.properties.border
 import kotlinx.css.properties.lh
 import kotlinx.html.unsafe
 import net.kodein.charter.kodein
+import net.kodein.useText
 import net.kodein.utils.flexColumn
 import net.kodein.utils.flexRow
 import net.kodein.utils.maxSize
@@ -18,6 +19,7 @@ import styled.*
 
 
 val Footer = functionalComponent<RProps>("Footer") {
+    val strings = useText().footer
 
     flexColumn {
 
@@ -121,43 +123,45 @@ val Footer = functionalComponent<RProps>("Footer") {
                 }
 
                 div {
-                    b { +"Un gros footer" }
+                    b { +strings.siteMap }
                     ul {
-                        li { a(href = "nowhere") { +"Un gros footer" } }
-                        li { a(href = "nowhere") { +"On est sérieux" } }
-                        li { a(href = "nowhere") { +"KKoders = big boss" } }
-                        li { a(href = "nowhere") { +"Du boulot. Vite !" } }
+                        li { a(href = "index.html") { +strings.home } }
+                        li { a(href = "services.html") { +strings.services } }
+                        li { a(href = "training.html") { +strings.training } }
+                        li { a(href = "oss.html") { +strings.openSource } }
+                        li { a(href = "team.html") { +strings.team } }
+                        li { a(href = "blog.html") { +strings.blog } }
                     }
                 }
 
                 div {
-                    b { +"Keep contact" }
+                    b { +"Contact us!" }
                     ul {
-                        li { a(href = "nowhere") { +"E-mail" } }
-                        li { a(href = "nowhere") { +"Twitter" } }
-                        li { a(href = "nowhere") { +"Linkedin" } }
+                        li { a(href = "contact.html") { +strings.contactForm } }
+                        li { a(href = "contact@kodein.net", target = "_blank") { +"E-mail" } }
+                        li { a(href = "https://twitter.com/KodeinKoders", target = "_blank") { +"Twitter" } }
+                        li { a(href = "https://www.linkedin.com/company/kodein", target = "_blank") { +"LinkedIn" } }
                     }
                 }
 
                 div {
-                    b { +"Lisez ça" }
+                    b { +strings.openSource }
                     ul {
-                        li { a(href = "nowhere") { +"Un gros footer" } }
-                        li { a(href = "nowhere") { +"On est sérieux" } }
-                        li { a(href = "nowhere") { +"KKoders = big boss" } }
-                        li { a(href = "nowhere") { +"Du boulot. Vite !" } }
+                        li { a(href = "https://kodein.org", target = "_blank") { +"Kodein Framework" } }
+                        li { a(href = "https://github.com/KodeinKoders", target = "_blank") { +"Github" } }
+                        li { a(href = "https://medium.com/kodein-koders", target = "_blank") { +"Medium" } }
                     }
                 }
 
                 div {
-                    b { +"Des trucs" }
+                    b { +"Kodein SAS" }
                     ul {
-                        li { a(href = "nowhere") { +"Sans déconner ?" } }
-                        li { a(href = "nowhere") { +"Faut pas lire ça !" } }
-                        li { a(href = "nowhere") { +"Arrête de lire !" } }
-                        li { a(href = "nowhere") { +"Fait un truc de ta vie" } }
-                        li { a(href = "nowhere") { +"Un truc bien." } }
-                        li { a(href = "nowhere") { +"Faut pas lire ça." } }
+                        li { +"2 Cour de la Badiane" }
+                        li { +"94000, Créteil" }
+                        li { +"FRANCE" }
+                        li { attrs.unsafe { +"&nbsp;" } }
+                        li { +"+33 6 83 54 55 96" }
+                        li { +"+33 6 12 56 56 50" }
                     }
                 }
             }
@@ -176,7 +180,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                 }
                 flexRow(alignItems = Align.center) {
                     css {
-                        maxSize(768) {
+                        maxWidth(768) {
                             flexDirection = FlexDirection.column
                         }
                     }
@@ -189,7 +193,6 @@ val Footer = functionalComponent<RProps>("Footer") {
                                 padding(0.5.rem)
                                 marginRight = 1.rem
                                 border(0.05.rem, BorderStyle.solid, Color.kodein.korail, 0.15.rem)
-                                cursor = Cursor.pointer
                             }
                         }
                     }
@@ -200,23 +203,20 @@ val Footer = functionalComponent<RProps>("Footer") {
                                 padding(1.rem, 0.rem)
                             }
                         }
-                        +"Proudly powered by the"
-                        span { attrs.unsafe { +"&nbsp;" } }
-                        styledA(href = "https://kodein.org") {
-                            css {
-                                color = Color.kodein.kinzolin
-                            }
-                            b { +"KODEIN" }
-                            +"Framework"
-                        }
-                        +"."
+                        strings.powered(this)
                     }
                 }
 
                 p {
                     +"© 2020 "
                     b { +"KODEIN" }
-                    +"Koders. All rights reserved."
+                    +"Koders ("
+                    styledA(href = "credits.html") {
+                        css.color = Color.kodein.kinzolin
+                        +strings.credits
+                    }
+                    +"). "
+                    +strings.allRightsReserved
                 }
             }
         }

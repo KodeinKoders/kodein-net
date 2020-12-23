@@ -2,6 +2,7 @@ package net.kodein
 
 import net.kodein.pages.blog.Blog
 import net.kodein.pages.contact.Contact
+import net.kodein.pages.credits.Credits
 import net.kodein.pages.home.Home
 import net.kodein.pages.oss.Oss
 import net.kodein.pages.services.Services
@@ -24,4 +25,5 @@ val appPages = listOf(
     Page("team") { Team },
     Page("blog") { Blog },
     Page("contact") { Contact },
+    Page("credits") { Credits },
 )
