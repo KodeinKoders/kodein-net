@@ -12,20 +12,21 @@ interface TeamStrings {
     val salomon: MemberStrings
     val romain: MemberStrings
     val nerdOn: String
+    val joinUs: String
     val jobs: List<JobDescription>
 }
 
 data class MemberStrings(
     val name: String,
-    val photo: String,
-    val position: String = "",
+    val photo: Pair<String, String>,
+    val status: String = "",
     val bio: TextHandler = {},
     val socialMediaList: List<SocialMedia> = emptyList()
 ) {
     companion object {
         val salomon = MemberStrings(
             name = "Salomon Brys",
-            photo = "salomon",
+            photo = "salomon" to "top left",
             socialMediaList = listOf(
                 Twitter("salomonbrys"),
                 LinkedIn("salomonbrys"),
@@ -34,7 +35,7 @@ data class MemberStrings(
         )
         val romain = MemberStrings(
             name = "Romain Boisselle",
-            photo = "romain",
+            photo = "romain" to "top center",
             socialMediaList = listOf(
                 Twitter("romainbsl"),
                 LinkedIn("romainbsl"),

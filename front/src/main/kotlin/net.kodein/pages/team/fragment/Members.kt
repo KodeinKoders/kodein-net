@@ -68,11 +68,13 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
     val div = useRef<HTMLDivElement?>(null)
     var image: String? by useState(null)
 
+    val teamWidths = listOf(960, 1200, 1440, 1680, 1920, 2400)
+
     useEffectWithCleanup(emptyList()) {
         val onResize: ((Event?) -> Unit) = {
             val divWidth = div.current!!.clientWidth
-            val imgWidth = illustrationWidths.firstOrNull { it >= (divWidth * 1.2) } ?: illustrationWidths.last()
-            image = "${props.member.photo}_${imgWidth}"
+            val imgWidth = teamWidths.firstOrNull { it >= (divWidth * 1.2) } ?: teamWidths.last()
+            image = "${props.member.photo.first}_${imgWidth}"
         }
         window.addEventListener("resize", onResize)
         onResize(null)
@@ -91,7 +93,7 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
                     css {
                         width = 100.pct
                         objectFit = ObjectFit.cover
-                        objectPosition = "top"
+                        objectPosition = props.member.photo.second
                         minHeight = 20.rem
                         maxHeight = 40.rem
 
@@ -125,7 +127,7 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
                 }
                 styledP {
                     css { color = Color.kodein.korail }
-                    +props.member.position
+                    +props.member.status
                 }
 
             }

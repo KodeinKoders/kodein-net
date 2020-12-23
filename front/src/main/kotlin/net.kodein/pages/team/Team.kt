@@ -35,7 +35,8 @@ val Team = functionalComponent<RProps> {
                 backgroundColor = Color.kodein.cute,
                 title = Color.kodein.kinzolin,
                 overTitle = Color.kodein.korail,
-                text = Color.kodein.orange
+                text = Color.kodein.orange,
+                layers = listOf(Color.kodein.kamethiste, Color.kodein.orange)
             )
             content = strings.cover
             overrideContentRuleSet = {

@@ -1,8 +1,6 @@
 package net.kodein.pages.team.fragment
 
-import kotlinx.css.Color
-import kotlinx.css.Display
-import kotlinx.css.display
+import kotlinx.css.*
 import kotlinx.html.id
 import net.kodein.charter.kodein
 import net.kodein.components.AccordionElement
@@ -15,6 +13,8 @@ import net.kodein.utils.maxWidth
 import react.child
 import react.dom.div
 import react.functionalComponent
+import styled.css
+import styled.styledH3
 
 
 val Jobs = functionalComponent<ContactUsProps>("Members") {
@@ -36,13 +36,21 @@ val Jobs = functionalComponent<ContactUsProps>("Members") {
         illustration = Illus(Illus.Title.TEAM, Illus.Position.RIGHT, Illus.Alignment.CENTER),
         bottomLayers = listOf(Color.kodein.orange, Color.kodein.kaumon)
     ) {
+        styledH3 {
+            css {
+                +kodein.display2
+                color = Color.kodein.korail
+                paddingBottom = 1.5.em
+            }
+            +strings.joinUs
+        }
         strings.jobs.forEachIndexed { index, job ->
             child(AccordionElement) {
                 attrs {
                     title = job.title
                     last = (index == strings.jobs.size - 1)
-                    borderColor = Color.kodein.orange
-                    fontColor = Color.kodein.orange
+                    borderColor = Color.kodein.kaumon
+                    fontColor = Color.kodein.kaumon
                 }
 
                 job.content(this)

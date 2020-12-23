@@ -81,7 +81,8 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
             styledP {
                 css {
                     classes.add("accordionTitle")
-                    flexGrow = 8.0
+                    flexGrow = 1.0
+                    flexBasis = FlexBasis.zero
                     +kodein.intertitre
                     color = if(isHeaderHover) borderColor else fontColor
 
@@ -95,7 +96,6 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
 
             styledDiv {
                 css {
-                    flexGrow = 1.0
                     textAlign = TextAlign.end
                     minWidth = LinearDimension.fitContent
                     paddingRight = 1.rem
@@ -154,9 +154,8 @@ private val Chevron = functionalComponent<ChevronProps>("Chevron") { props ->
     styledDiv {
         css {
             display = Display.flex
-            flexGrow = 1.0
             minWidth = 2.rem
-            paddingRight = .5.rem
+            paddingRight = 1.5.rem
 
             "span.chevron" {
                 display= Display.inlineBlock
