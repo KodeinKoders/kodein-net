@@ -35,7 +35,7 @@ data class MemberStrings(
         )
         val romain = MemberStrings(
             name = "Romain Boisselle",
-            photo = "romain" to "top center",
+            photo = "romain" to "top left",
             socialMediaList = listOf(
                 Twitter("romainbsl"),
                 LinkedIn("romainbsl"),
