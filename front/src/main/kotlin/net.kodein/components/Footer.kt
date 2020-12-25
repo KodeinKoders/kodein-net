@@ -213,7 +213,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                                 padding(1.rem, 0.rem)
                             }
                         }
-                        strings.powered(this)
+                        strings.openSourced(this)
                     }
                 }
 
