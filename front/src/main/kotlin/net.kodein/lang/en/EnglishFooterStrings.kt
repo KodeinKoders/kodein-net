@@ -18,11 +18,11 @@ object EnglishFooterStrings : FooterStrings {
 
     override val contactForm: String = "Contact Form"
 
-    override val powered: TextHandler = {
-        +"Proudly powered by "
+    override val openSourced: TextHandler = {
+        +"Proudly "
         styledA(href = "https://github.com/KodeinKoders/kodein-net") {
             css.color = Color.kodein.kinzolin
-            +"Open Source"
+            +"Open Sourced"
         }
         +"."
     }

@@ -4,6 +4,7 @@ import net.kodein.components.FooterStrings
 import net.kodein.components.strings.MenuStrings
 import net.kodein.pages.blog.BlogStrings
 import net.kodein.pages.contact.ContactStrings
+import net.kodein.pages.credits.CreditsStrings
 import net.kodein.pages.home.HomeStrings
 import net.kodein.pages.oss.OssStrings
 import net.kodein.pages.services.ServicesStrings
@@ -20,5 +21,6 @@ interface Strings {
     val services: ServicesStrings
     val team: TeamStrings
     val training: TrainingStrings
+    val credits: CreditsStrings
     val footer: FooterStrings
 }

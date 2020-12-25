@@ -84,26 +84,36 @@ val Footer = functionalComponent<RProps>("Footer") {
                     letterSpacing = 0.05.em
                     lineHeight = 1.8.em.lh
                     maxWidth = 65.rem
+                    flexWrap = FlexWrap.wrap
                     margin(LinearDimension.auto)
 
                     maxWidth(768) {
+                        justifyContent = JustifyContent.spaceAround
+                    }
+                    maxWidth(480) {
                         flexDirection = FlexDirection.column
+                        alignItems = Align.center
                     }
 
                     "div" {
                         width = 10.rem
                         maxWidth(768) {
-                            width = 100.pct
+                            width = 30.pct
+                            paddingLeft = 5.pct
+                            paddingBottom = 2.rem
+                        }
+                        maxWidth(480) {
+                            width = 10.rem
                         }
 
                         "b" {
                             display = Display.block
                             paddingBottom = 2.rem
 
-                            maxWidth(768) {
-                                paddingTop = 1.rem
-                                paddingBottom = 1.rem
-                            }
+//                            maxWidth(768) {
+//                                paddingTop = 1.rem
+//                                paddingBottom = 1.rem
+//                            }
                         }
 
                         "ul" {
@@ -203,7 +213,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                                 padding(1.rem, 0.rem)
                             }
                         }
-                        strings.powered(this)
+                        strings.openSourced(this)
                     }
                 }
 

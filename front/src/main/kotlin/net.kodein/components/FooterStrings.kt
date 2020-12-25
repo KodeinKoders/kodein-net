@@ -14,7 +14,7 @@ interface FooterStrings {
 
     val contactForm: String
 
-    val powered: TextHandler
+    val openSourced: TextHandler
 
     val credits: String
     val allRightsReserved: String
