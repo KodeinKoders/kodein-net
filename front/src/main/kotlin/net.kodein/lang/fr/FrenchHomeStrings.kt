@@ -9,7 +9,7 @@ import react.dom.span
 
 object FrenchHomeStrings : HomeStrings {
 
-    override val everywhere: TextHandler = {
+    override val title: TextHandler = {
         +"Où que "
         span("nowrap") { +"Kotlin aille," }
         br {}
@@ -18,6 +18,21 @@ object FrenchHomeStrings : HomeStrings {
         +"les experts "
         span("nowrap") { +"qu'il vous faut!" }
     }
+
+    override val subTitle: TextHandler = {
+        +"Nous sommes Kodein Koders, "
+        br("mobile") {}
+        +"une startup tech "
+        br("desktop") {}
+        +"motivée par "
+        br("mobile") {}
+        +"nos idées pour le multi-platformes "
+        br("desktop") {}
+        +"et notre passion "
+        span("nowrap") { +"pour l'état de l'art." }
+    }
+
+    override val scroll: String = "DÉFILER"
 
     override val advisory: DepartmentStrings = DepartmentStrings("ACCOMPAGNEMENT", "advisory") {
         +"..." // TODO

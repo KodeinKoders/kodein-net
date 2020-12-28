@@ -256,15 +256,7 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 landscapeMobile { padding(1.rem, 1.rem, 0.5.rem, 1.rem) }
             }
 
-            strings.everywhere(this)
-
-//            +"Everywhere "
-//            span("nowrap") { +"Kotlin goes," }
-//            br {}
-//            +"you should find"
-//            br {}
-//            +"the experts "
-//            span("nowrap") { +"you need!" }
+            strings.title(this)
         }
 
         styledP {
@@ -285,16 +277,7 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                     maxWidth(420) { display = Display.none }
                 }
             }
-            +"We are Kodein Koders, "
-            br("mobile") {}
-            +"a tech company "
-            br("desktop") {}
-            +"driven by "
-            br("mobile") {}
-            +"our ideas for multiplatform "
-            br {}
-            +"and our passion "
-            span("nowrap") { +"for craftsmanship." }
+            strings.subTitle(this)
         }
 
         flexColumn(alignItems = Align.center) {
@@ -489,6 +472,7 @@ private val Sphere = functionalComponent<SphereProps>("Sphere") { props ->
 }
 
 private val ScrollIndicator = functionalComponent<HeaderProps>("ScrollIndicator") { props ->
+    val strings = useText().home
     var isTop by useState(true)
     var isVisible by useState(false)
     val img = useRef<HTMLImageElement?>(null)
@@ -568,7 +552,7 @@ private val ScrollIndicator = functionalComponent<HeaderProps>("ScrollIndicator"
             css {
                 color = Color.kodein.korail
             }
-            +"SCROLL"
+            +strings.scroll
         }
     }
 }

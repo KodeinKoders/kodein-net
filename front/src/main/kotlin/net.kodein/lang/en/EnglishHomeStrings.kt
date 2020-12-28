@@ -11,7 +11,7 @@ import react.dom.span
 
 object EnglishHomeStrings : HomeStrings {
 
-    override val everywhere: TextHandler = {
+    override val title: TextHandler = {
         +"Everywhere "
         span("nowrap") { +"Kotlin goes," }
         br {}
@@ -20,6 +20,21 @@ object EnglishHomeStrings : HomeStrings {
         +"the experts "
         span("nowrap") { +"you need!" }
     }
+
+    override val subTitle: TextHandler = {
+        +"We are Kodein Koders, "
+        br("mobile") {}
+        +"a tech company "
+        br("desktop") {}
+        +"driven by "
+        br("mobile") {}
+        +"our ideas for multiplatform "
+        br {}
+        +"and our passion "
+        span("nowrap") { +"for craftsmanship." }
+    }
+
+    override val scroll: String = "SCROLL"
 
     override val advisory: DepartmentStrings = DepartmentStrings("ADVISORY", "advisory") {
         +"..." // TODO
