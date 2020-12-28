@@ -5,7 +5,9 @@ import net.kodein.TextHandler
 
 interface HomeStrings {
 
-    val everywhere: TextHandler
+    val title: TextHandler
+    val subTitle: TextHandler
+    val scroll: String
 
     val advisory: DepartmentStrings
     val training: DepartmentStrings
