@@ -2,7 +2,7 @@ package net.kodein.pages.home.fragment
 
 import kotlinx.css.*
 import net.kodein.charter.kodein
-import net.kodein.pages.home.DepartmentStrings
+import net.kodein.pages.home.HomeStrings
 import net.kodein.useText
 import net.kodein.utils.*
 import net.kodein.withBasePath
@@ -27,14 +27,17 @@ val Departments = functionalComponent<RProps>("Departments") {
         }
 
         child(Department) {
+            attrs.icon = "advisory"
             attrs.description = strings.advisory
         }
 
         child(Department) {
+            attrs.icon = "training"
             attrs.description = strings.training
         }
 
         child(Department) {
+            attrs.icon = "development"
             attrs.description = strings.development
             attrs.isLastItem = true
         }
@@ -42,7 +45,8 @@ val Departments = functionalComponent<RProps>("Departments") {
 }
 
 private interface DepartmentProps : RProps {
-    var description: DepartmentStrings
+    var icon: String
+    var description: HomeStrings.TitledContent
     var isLastItem: Boolean?
 }
 
@@ -70,7 +74,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
         }
 
         withBasePath { path ->
-            styledImg(alt="${props.description.title} icon", src="$path/imgs/ic_${props.description.icon}.svg") {
+            styledImg(alt="${props.description.title} icon", src="$path/imgs/ic_${props.icon}.svg") {
                 attrs {
                     width = "48"
                     height = "38"

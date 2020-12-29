@@ -7,6 +7,8 @@ import kotlinx.css.properties.s
 import kotlinx.css.properties.transition
 import kotlinx.html.classes
 import net.kodein.charter.kodein
+import net.kodein.pages.home.HomeStrings
+import net.kodein.useText
 import net.kodein.utils.*
 import net.kodein.withBasePath
 import org.w3c.dom.HTMLDivElement
@@ -17,6 +19,7 @@ import styled.*
 
 
 val Descriptions = functionalComponent<RProps>("Descriptions") {
+    val strings = useText().home
 
     flexColumn {
         css {
@@ -27,40 +30,28 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
 
         child(Description) {
             attrs.even = true
-            attrs.title = "Who are the Kodein Koders ?"
+            attrs.content = strings.kodeinKoders
             attrs.illus = "services"
             attrs.first = true
-
-            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus euismod ullamcorper. Fusce nibh nisi, imperdiet id libero id, iaculis consectetur libero. Morbi turpis dui, eleifend ut bibendum et, lobortis sit amet velit. Vivamus malesuada viverra tellus eget finibus. Praesent eget turpis ut neque egestas varius. Cras ac facilisis odio. Pellentesque posuere, ante at elementum vestibulum, ante odio semper dui, ac accumsan felis nisl ac est." }
-            p { +"Aliquam nunc urna, imperdiet non viverra eu, interdum ut dui. In hac habitasse platea dictumst." }
         }
 
         child(Description) {
             attrs.even = false
-            attrs.title = "Work for humans"
+            attrs.content = strings.workForHumans
             attrs.illus = "team"
-
-            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus euismod ullamcorper. Fusce nibh nisi, imperdiet id libero id, iaculis consectetur libero. Morbi turpis dui, eleifend ut bibendum et, lobortis sit amet velit. Vivamus malesuada viverra tellus eget finibus. Praesent eget turpis ut neque egestas varius. Cras ac facilisis odio. Pellentesque posuere, ante at elementum vestibulum, ante odio semper dui, ac accumsan felis nisl ac est." }
-            p { +"Aliquam nunc urna, imperdiet non viverra eu, interdum ut dui. In hac habitasse platea dictumst." }
         }
 
         child(Description) {
             attrs.even = true
-            attrs.title = "Kodein Framework: Open Source at our core"
+            attrs.content = strings.oss
             attrs.illus = "open-source"
-
-            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus euismod ullamcorper. Fusce nibh nisi, imperdiet id libero id, iaculis consectetur libero. Morbi turpis dui, eleifend ut bibendum et, lobortis sit amet velit. Vivamus malesuada viverra tellus eget finibus. Praesent eget turpis ut neque egestas varius. Cras ac facilisis odio. Pellentesque posuere, ante at elementum vestibulum, ante odio semper dui, ac accumsan felis nisl ac est." }
-            p { +"Aliquam nunc urna, imperdiet non viverra eu, interdum ut dui. In hac habitasse platea dictumst." }
         }
 
         child(Description) {
             attrs.even = false
-            attrs.title = "Training: Jetbrains Certified"
+            attrs.content = strings.training
             attrs.illus = "training"
             attrs.last = true
-
-            p { +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent maximus euismod ullamcorper. Fusce nibh nisi, imperdiet id libero id, iaculis consectetur libero. Morbi turpis dui, eleifend ut bibendum et, lobortis sit amet velit. Vivamus malesuada viverra tellus eget finibus. Praesent eget turpis ut neque egestas varius. Cras ac facilisis odio. Pellentesque posuere, ante at elementum vestibulum, ante odio semper dui, ac accumsan felis nisl ac est." }
-            p { +"Aliquam nunc urna, imperdiet non viverra eu, interdum ut dui. In hac habitasse platea dictumst." }
         }
     }
 
@@ -68,7 +59,7 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
 
 private interface DescriptionProps : RProps {
     var even: Boolean
-    var title: String
+    var content: HomeStrings.TitledContent
     var illus: String
     var first: Boolean?
     var last: Boolean?
@@ -158,7 +149,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
                         flexGrow = 1.0
                         margin(1.rem, 0.rem)
                     }
-                    +props.title
+                    +props.content.title
                 }
 
                 styledDiv {
@@ -171,7 +162,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
                         }
                     }
 
-                    props.children()
+                    props.content.content(this)
                 }
 
                 styledA {

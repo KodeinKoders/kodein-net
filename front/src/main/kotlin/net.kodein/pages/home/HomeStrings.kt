@@ -9,17 +9,16 @@ interface HomeStrings {
     val subTitle: TextHandler
     val scroll: String
 
-    val advisory: DepartmentStrings
-    val training: DepartmentStrings
-    val development: DepartmentStrings
+    data class TitledContent(val title: String, val content: TextHandler)
 
-//    val kodeinKoders: DescriptionStrings
-//    val workForHumans: DescriptionStrings
-//    val oss: DescriptionStrings
-//    val trainings: DescriptionStrings
+    val advisory: TitledContent
+    val training: TitledContent
+    val development: TitledContent
+
+    val kodeinKoders: TitledContent
+    val workForHumans: TitledContent
+    val oss: TitledContent
+    val trainings: TitledContent
 
     val readMore: String
 }
-
-data class DepartmentStrings(val title: String, val icon: String, val content: TextHandler)
-data class DescriptionStrings(val title: String, val illustration: String, val content: TextHandler)
