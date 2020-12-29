@@ -1,10 +1,7 @@
 package net.kodein.lang.en
 
 import net.kodein.TextHandler
-import net.kodein.pages.home.DepartmentStrings
-import net.kodein.pages.home.DescriptionStrings
 import net.kodein.pages.home.HomeStrings
-import react.dom.b
 import react.dom.br
 import react.dom.p
 import react.dom.span
@@ -36,28 +33,58 @@ object EnglishHomeStrings : HomeStrings {
 
     override val scroll: String = "SCROLL"
 
-    override val advisory: DepartmentStrings = DepartmentStrings("ADVISORY", "advisory") {
+    override val advisory = HomeStrings.TitledContent("ADVISORY") {
         +"..." // TODO
     }
-    override val training: DepartmentStrings = DepartmentStrings("TRAINING", "training") {
+    override val training = HomeStrings.TitledContent("TRAINING") {
         +"..."  // TODO
     }
-    override val development: DepartmentStrings = DepartmentStrings("DEVELOPMENT", "development") {
+    override val development = HomeStrings.TitledContent("DEVELOPMENT") {
         +"..."  // TODO
     }
 
     override val readMore: String = "READ MORE"
 
-//    override val kodeinKoders: DescriptionStrings = DescriptionStrings("Who are the Kodein Koders ?", "services") {
-//        b { +"KODEIN" }
-//        +"""Koders is a tech company that is driven by
-//                            |our passion for Kotlin.
-//                            |This technology allows us to develop applications
-//                            |and share code between systems; backend (based on Spring / Ktor)
-//                            |or frontend (iOS / Android / Web / Desktop).
-//                            |We are able to guide you to modernize your applications
-//                            |or reinforce your existing teams to help you reach your goals,
-//                            |with Kotlin, everywhere you need.""".trimMargin()
-//    }
+    override val kodeinKoders = HomeStrings.TitledContent("Who are the Kodein Koders?") {
+        p {
+            +"""
+                We are tech lovers & experts driven by our passion for Kotlin/Multiplatform.
+            """
+            br {}
+            +"""
+                With this technology, we develop complex applications and share meaningful code between platforms,
+                whether the backend server (based on Spring or Ktor) or the multiple frontends (Android, iOS, Desktop, Web).
+            """
+        }
+        p {
+            +"""
+                We create multiplatform mobile application architectures, modernize existing systems,
+                or help teams reach their development goals with Kotlin, everywhere you need.
+            """
+        }
+    }
 
+    override val workForHumans = HomeStrings.TitledContent("Work for humans") {
+        p {
+            +"""
+                ...
+            """
+        }
+    }
+
+    override val oss = HomeStrings.TitledContent("Kodein Framework: Open Source at our core") {
+        p {
+            +"""
+                ...
+            """
+        }
+    }
+
+    override val trainings = HomeStrings.TitledContent("Training: Jetbrains Certified") {
+        p {
+            +"""
+                ...
+            """
+        }
+    }
 }
