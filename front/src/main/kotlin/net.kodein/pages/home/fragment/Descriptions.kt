@@ -14,7 +14,6 @@ import net.kodein.withBasePath
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.events.Event
 import react.*
-import react.dom.p
 import styled.*
 
 
@@ -30,26 +29,26 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
 
         child(Description) {
             attrs.even = true
-            attrs.content = strings.kodeinKoders
+            attrs.content = strings.kodeinKodersDescription
             attrs.illus = "services"
             attrs.first = true
         }
 
         child(Description) {
             attrs.even = false
-            attrs.content = strings.workForHumans
+            attrs.content = strings.humanistDescription
             attrs.illus = "team"
         }
 
         child(Description) {
             attrs.even = true
-            attrs.content = strings.oss
+            attrs.content = strings.openSourceDescription
             attrs.illus = "open-source"
         }
 
         child(Description) {
             attrs.even = false
-            attrs.content = strings.training
+            attrs.content = strings.trainingDescription
             attrs.illus = "training"
             attrs.last = true
         }

@@ -33,19 +33,19 @@ object EnglishHomeStrings : HomeStrings {
 
     override val scroll: String = "SCROLL"
 
-    override val advisory = HomeStrings.TitledContent("ADVISORY") {
+    override val advisoryDepartment = HomeStrings.TitledContent("ADVISORY") {
         +"..." // TODO
     }
-    override val training = HomeStrings.TitledContent("TRAINING") {
+    override val trainingDepartment = HomeStrings.TitledContent("TRAINING") {
         +"..."  // TODO
     }
-    override val development = HomeStrings.TitledContent("DEVELOPMENT") {
+    override val developmentDepartment = HomeStrings.TitledContent("DEVELOPMENT") {
         +"..."  // TODO
     }
 
     override val readMore: String = "READ MORE"
 
-    override val kodeinKoders = HomeStrings.TitledContent("Who are the Kodein Koders?") {
+    override val kodeinKodersDescription = HomeStrings.TitledContent("Who are the Kodein Koders?") {
         p {
             +"""
                 We are tech lovers & experts driven by our passion for Kotlin/Multiplatform.
@@ -64,7 +64,32 @@ object EnglishHomeStrings : HomeStrings {
         }
     }
 
-    override val workForHumans = HomeStrings.TitledContent("Work for humans") {
+    override val humanistDescription = HomeStrings.TitledContent("Work for humans") {
+        p {
+            +"""
+                Before companies, we are working with and for persons.
+                We are proud of the partnership we created with each of them.
+            """
+            br {}
+            +"""
+                We advertise the humanist values that shape our work and relationships, both inside Kodein Koders and with our clients.
+            """
+        }
+        p {
+            +"""
+                In both our trainings and consulting services, we approach each mission with humans first:
+                How can we communicate efficiently? What is the best way to help you progress?
+            """
+        }
+        p {
+            +"""
+                Humans change their minds, and their vision keep evolving.
+                We take pride in promoting the agile methods to help you clear your very own path.
+            """
+        }
+    }
+
+    override val openSourceDescription = HomeStrings.TitledContent("Kodein Framework: Open Source at our core") {
         p {
             +"""
                 ...
@@ -72,15 +97,7 @@ object EnglishHomeStrings : HomeStrings {
         }
     }
 
-    override val oss = HomeStrings.TitledContent("Kodein Framework: Open Source at our core") {
-        p {
-            +"""
-                ...
-            """
-        }
-    }
-
-    override val trainings = HomeStrings.TitledContent("Training: Jetbrains Certified") {
+    override val trainingDescription = HomeStrings.TitledContent("Training: Jetbrains Certified") {
         p {
             +"""
                 ...

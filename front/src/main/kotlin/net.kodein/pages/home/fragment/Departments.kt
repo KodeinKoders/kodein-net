@@ -28,17 +28,17 @@ val Departments = functionalComponent<RProps>("Departments") {
 
         child(Department) {
             attrs.icon = "advisory"
-            attrs.description = strings.advisory
+            attrs.description = strings.advisoryDepartment
         }
 
         child(Department) {
             attrs.icon = "training"
-            attrs.description = strings.training
+            attrs.description = strings.trainingDepartment
         }
 
         child(Department) {
             attrs.icon = "development"
-            attrs.description = strings.development
+            attrs.description = strings.developmentDepartment
             attrs.isLastItem = true
         }
     }

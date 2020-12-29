@@ -11,14 +11,14 @@ interface HomeStrings {
 
     data class TitledContent(val title: String, val content: TextHandler)
 
-    val advisory: TitledContent
-    val training: TitledContent
-    val development: TitledContent
+    val advisoryDepartment: TitledContent
+    val trainingDepartment: TitledContent
+    val developmentDepartment: TitledContent
 
-    val kodeinKoders: TitledContent
-    val workForHumans: TitledContent
-    val oss: TitledContent
-    val trainings: TitledContent
+    val kodeinKodersDescription: TitledContent
+    val humanistDescription: TitledContent
+    val openSourceDescription: TitledContent
+    val trainingDescription: TitledContent
 
     val readMore: String
 

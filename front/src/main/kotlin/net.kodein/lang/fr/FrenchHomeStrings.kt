@@ -33,19 +33,19 @@ object FrenchHomeStrings : HomeStrings {
 
     override val scroll: String = "DÉFILER"
 
-    override val advisory = HomeStrings.TitledContent("ACCOMPAGNEMENT") {
+    override val advisoryDepartment = HomeStrings.TitledContent("ACCOMPAGNEMENT") {
         +"..." // TODO
     }
-    override val training = HomeStrings.TitledContent("FORMATION") {
+    override val trainingDepartment = HomeStrings.TitledContent("FORMATION") {
         +"..." // TODO
     }
-    override val development = HomeStrings.TitledContent("DÉVELOPPEMENT") {
+    override val developmentDepartment = HomeStrings.TitledContent("DÉVELOPPEMENT") {
         +"..." // TODO
     }
 
     override val readMore: String = "EN SAVOIR PLUS"
 
-    override val kodeinKoders = HomeStrings.TitledContent("Qui sont les Kodein Koders?") {
+    override val kodeinKodersDescription = HomeStrings.TitledContent("Qui sont les Kodein Koders?") {
         p {
             +"""
                 Nous sommes experts et amoureux de technologie, motivés par notre passion pour Kotlin/Multiplatform.
@@ -64,7 +64,32 @@ object FrenchHomeStrings : HomeStrings {
         }
     }
 
-    override val workForHumans = HomeStrings.TitledContent("Travailler pour les Humains") {
+    override val humanistDescription = HomeStrings.TitledContent("Travailler pour les Humains") {
+        p {
+            +"""
+                Plus que les entreprises, nous travaillons pour et avec des personnes.
+                Nous sommes fiers des partenariats que nous avons créé avec chacun d'entre eux.
+            """
+            br {}
+            +"""
+                Nous promouvons les valeures humanistes qui régissent notre travail et nos relations, aussi bien chez Kodein Koders qu'avec nos clients.
+            """
+        }
+        p {
+            +"""
+                Que ça soit dans nos formations ou nos services de consulting, nous approchons chaque mission d'abord par l'humain :
+                Comment pouvons nous communiquer éfficacement ? Quelle est la meilleure manière de vous aider à progresser ?
+            """
+        }
+        p {
+            +"""
+                Les humains changent d'avis, et leur vision ne cesse d'évoluer.
+                Nous sommes fièrs de promouvoir les méthodes agiles pour vous aider à former votre propre chemin.
+            """
+        }
+    }
+
+    override val openSourceDescription = HomeStrings.TitledContent("Kodein Framework: L'Open Source au cœur de nos travaux") {
         p {
             +"""
                 ...
@@ -72,15 +97,7 @@ object FrenchHomeStrings : HomeStrings {
         }
     }
 
-    override val oss = HomeStrings.TitledContent("Kodein Framework: L'Open Source au cœur de nos travaux") {
-        p {
-            +"""
-                ...
-            """
-        }
-    }
-
-    override val trainings = HomeStrings.TitledContent("Formation : Certifié par Jetbrains") {
+    override val trainingDescription = HomeStrings.TitledContent("Formation : Certifié par Jetbrains") {
         p {
             +"""
                 ...
