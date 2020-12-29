@@ -50,7 +50,7 @@ fun getHtml(page: Page, lang: Language, mode: Mode): String {
             link(rel = "preload", href = "${lang.basePath}/picon/LCTPicon/ExtendedMedium/LCTPicon-ExtendedMedium.woff") { attributes["as"] = "font" ; attributes["crossorigin"] = "" }
 
             link(href = "${lang.basePath}/picon/LCTPicon.css", rel = "stylesheet")
-            link(href = "${lang.basePath}/favicons/favicon-${page.favicon()}.png", rel = "icon", type = "image/png")
+            link(href = "${lang.basePath}/favicon.png", rel = "icon", type = "image/png")
 
             title("Kodein Koders")
 

@@ -17,11 +17,6 @@ data class Page(
     val component: () -> FunctionalComponent<RProps>
 )
 
-fun Page.favicon(): String = when(id) {
-    "index", "services", "oss", "blog"  -> "dark"
-    else -> "kute"
-}
-
 val appPages = listOf(
     Page("index") { Home },
     Page("services") { Services },
