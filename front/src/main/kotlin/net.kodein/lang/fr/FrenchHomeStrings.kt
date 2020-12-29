@@ -2,6 +2,7 @@ package net.kodein.lang.fr
 
 import net.kodein.TextHandler
 import net.kodein.pages.home.HomeStrings
+import react.dom.b
 import react.dom.br
 import react.dom.p
 import react.dom.span
@@ -91,8 +92,23 @@ object FrenchHomeStrings : HomeStrings {
 
     override val openSourceDescription = HomeStrings.TitledContent("Kodein Framework: L'Open Source au cœur de nos travaux") {
         p {
+            +"Le "
+            b { +"KODEIN" }
+            +"Framework"
             +"""
-                ...
+                est le premier framework mobile Open-Source écrit spécifiquement pour Kotlin & Kotlin/Multiplatform.
+                Il permet aux créateurs d'applications mobiles de se concentrer sur le métier et la qualité de leur application.
+            """
+        }
+
+        p {
+            +"""
+                Nous sommes convaincu qu'open-sourcer les composants non critiques pour le métier ainsi que contribuer aux projets open-source existants mène à de meilleurs logiciels.
+            """
+            br {}
+            +"""
+                Kodein Koders est lourdement investi dans l'utilisation et la contribution à des initiatives Open Source.
+                Le langage Kotlin language et sa runtime ainsi que le Kodein Framework : tout est ouvert !
             """
         }
     }
@@ -100,7 +116,21 @@ object FrenchHomeStrings : HomeStrings {
     override val trainingDescription = HomeStrings.TitledContent("Formation : Certifié par Jetbrains") {
         p {
             +"""
-                ...
+                Le langage Kotlin, l'asynchronicité des coroutines, l'infrastructure Kotlin/Multiplatform, les spécificités de Kotlin/Native: essayer de tout comprendre peut être intimidant.
+            """
+        }
+        p {
+            b { +"KODEIN" }
+            +"Koders"
+            +"""
+                est la première société Européenne à être certifiée par JetBrains pour ses formations Kotlin.
+                Elle est maintenant le premier fourniseeur de formations en Europe spécialisée sur les technologies Kotlin/Multiplatform. 
+            """
+        }
+        p {
+            +"""
+                Nous affinons toujours sur mesure nos workshops de formation pour l'équipe concernée,
+                et utilisons un matériel pédagogique précis pour rendre les équipes efficientes en quelques jours.
             """
         }
     }

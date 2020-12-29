@@ -2,6 +2,7 @@ package net.kodein.lang.en
 
 import net.kodein.TextHandler
 import net.kodein.pages.home.HomeStrings
+import react.dom.b
 import react.dom.br
 import react.dom.p
 import react.dom.span
@@ -91,8 +92,23 @@ object EnglishHomeStrings : HomeStrings {
 
     override val openSourceDescription = HomeStrings.TitledContent("Kodein Framework: Open Source at our core") {
         p {
+            +"The "
+            b { +"KODEIN" }
+            +"Framework"
             +"""
-                ...
+                is the first Open-Source multiplatform mobile framework written specifically for Kotlin & Kotlin/Multiplatform.
+                It allows mobile application creators to focus on their application business and quality.
+            """
+        }
+
+        p {
+            +"""
+                We firmly believe that open-sourcing non business-critical components and contributing to existing open-source projects leads to better software.
+            """
+            br {}
+            +"""
+                Kodein Koders is heavily invested in using and contributing to Open Source initiatives.
+                The Kotlin language & runtime as well as the Kodein Framework: everything is open!
             """
         }
     }
@@ -100,7 +116,21 @@ object EnglishHomeStrings : HomeStrings {
     override val trainingDescription = HomeStrings.TitledContent("Training: Jetbrains Certified") {
         p {
             +"""
-                ...
+                The Kotlin language, coroutines asynchronicity, the Kotlin/Multiplatform infrastructure, Kotlin/Native specifics: trying to understand them all can be daunting.
+            """
+        }
+        p {
+            b { +"KODEIN" }
+            +"Koders"
+            +"""
+                is the first European company to be certified by JetBrains for Kotlin training.
+                It is now the first training provider in Europe specialised on Kotlin/Multiplatform technologies. 
+            """
+        }
+        p {
+            +"""
+                We always tailor our training workshops for the team we are addressing,
+                and use precise teaching material to make teams efficient in a matter of days.
             """
         }
     }
