@@ -21,4 +21,7 @@ interface HomeStrings {
     val trainings: TitledContent
 
     val readMore: String
+
+    val humansTitle: String
+    val humansSubtitle: String
 }

@@ -87,4 +87,7 @@ object EnglishHomeStrings : HomeStrings {
             """
         }
     }
+
+    override val humansTitle = "Humans trust us!"
+    override val humansSubtitle = "Are you next?"
 }

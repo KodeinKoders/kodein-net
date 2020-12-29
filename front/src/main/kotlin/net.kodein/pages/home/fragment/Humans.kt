@@ -7,6 +7,7 @@ import kotlinx.css.properties.*
 import kotlinx.html.classes
 import net.kodein.charter.kodein
 import net.kodein.components.SwipeableDiv
+import net.kodein.useText
 import net.kodein.utils.flexColumn
 import net.kodein.utils.flexRow
 import net.kodein.utils.hairline
@@ -21,6 +22,7 @@ import kotlin.math.ceil
 
 
 val Humans = functionalComponent<RProps>("Humans") {
+    val strings = useText().home
 
     styledDiv {
         css {
@@ -39,7 +41,7 @@ val Humans = functionalComponent<RProps>("Humans") {
                 maxWidth(440) { paddingLeft = 2.rem }
                 maxWidth(360) { paddingLeft = 0.75.rem }
             }
-            +"Humans trust us!"
+            +strings.humansTitle
         }
 
         styledH3 {
@@ -51,7 +53,7 @@ val Humans = functionalComponent<RProps>("Humans") {
                 maxWidth(440) { paddingLeft = 2.rem }
                 maxWidth(360) { paddingLeft = 0.75.rem }
             }
-            +"Are you next?"
+            +strings.humansSubtitle
         }
 
         child(HumanSlider)
