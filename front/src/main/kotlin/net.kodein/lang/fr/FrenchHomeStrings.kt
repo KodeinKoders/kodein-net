@@ -26,7 +26,7 @@ object FrenchHomeStrings : HomeStrings {
         br("desktop") {}
         +"motivée par "
         br("mobile") {}
-        +"nos idées pour le multi-platformes "
+        +"nos idées pour le multiplatforme "
         br("desktop") {}
         +"et notre passion "
         span("nowrap") { +"pour l'état de l'art." }
@@ -85,7 +85,7 @@ object FrenchHomeStrings : HomeStrings {
         p {
             +"""
                 Les humains changent d'avis, et leur vision ne cesse d'évoluer.
-                Nous sommes fièrs de promouvoir les méthodes agiles pour vous aider à former votre propre chemin.
+                Nous sommes fiers de promouvoir les méthodes agiles pour vous aider à former votre propre chemin.
             """
         }
     }
