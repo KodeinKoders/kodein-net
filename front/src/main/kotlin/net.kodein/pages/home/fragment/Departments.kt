@@ -71,6 +71,9 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                 alignSelf = Align.flexStart
                 margin(1.rem)
             }
+            "span.nowrap" {
+                whiteSpace = WhiteSpace.nowrap
+            }
         }
 
         withBasePath { path ->
@@ -100,8 +103,8 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
             css {
                 color = Color.kodein.orange
                 +kodein.body
-                padding(0.5.rem, 1.rem)
-                height = 15.rem
+                padding(0.5.rem, 0.5.rem)
+                minHeight = 60.pct
                 maxWidth(889) { height = 5.rem }
             }
             props.description.content(this)

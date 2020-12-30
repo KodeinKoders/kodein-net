@@ -35,13 +35,30 @@ object EnglishHomeStrings : HomeStrings {
     override val scroll: String = "SCROLL"
 
     override val advisoryDepartment = HomeStrings.TitledContent("ADVISORY") {
-        +"..." // TODO
+        p { +"Starting a new project or looking for reinforcement and expertise?" }
+        br{}
+        p { +"""
+                We can help you validate and boost your development process, 
+                with technical guidance, architecture or even development support, 
+            """.trimIndent()
+        }
+        p { +"using Kotlin." }
     }
     override val trainingDepartment = HomeStrings.TitledContent("TRAINING") {
-        +"..."  // TODO
+        p { +"Want to give to your team the tools to be even more efficient?" }
+        br {}
+        p {
+            +"""
+                We have developed a set of training that focuses on providing technical teams
+                the most practical knowledge in a couple of days.
+            """.trimIndent()
+
+        }
     }
     override val developmentDepartment = HomeStrings.TitledContent("DEVELOPMENT") {
-        +"..."  // TODO
+        p { +"You do not have the resources to take on your next project?" }
+        br {}
+        p { +"We can help you meet your business expectations by taking care your technical challenges." }
     }
 
     override val readMore: String = "READ MORE"

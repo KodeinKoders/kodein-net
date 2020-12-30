@@ -65,7 +65,7 @@ object FrenchServicesStrings : ServicesStrings {
     override val projectDevelopment: ServiceDescription = ServiceDescription("Développement de projet") {
         p{
             +"""Que le développement d'applications ne soit pas au coeur de votre métier, 
-                |ou que vous soyez en manque de ressources, nous pouvons vous aider à attendre vos objectifs 
+                |ou que vous soyez en manque de ressources, nous pouvons vous aider à atteindre vos objectifs 
                 |en prenant en charge vos challenges techniques. 
                 |En utilisant la méthodologie 
            """.trimMargin()

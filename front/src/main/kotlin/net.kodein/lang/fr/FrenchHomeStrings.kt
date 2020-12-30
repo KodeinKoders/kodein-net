@@ -34,14 +34,34 @@ object FrenchHomeStrings : HomeStrings {
 
     override val scroll: String = "DÉFILER"
 
-    override val advisoryDepartment = HomeStrings.TitledContent("ACCOMPAGNEMENT") {
-        +"..." // TODO
+    override val advisoryDepartment = HomeStrings.TitledContent("ADVISORY") {
+        p {
+            +"Vous démarrez un projet ou vous souhaitiez renforcer vos équipes "
+            span("nowrap") { +"et votre expertise ?" }
+        }
+        br{}
+        p { +"Nous pouvons vous aider à valider et améliorer votre process de développement, avec Kotlin." }
     }
-    override val trainingDepartment = HomeStrings.TitledContent("FORMATION") {
-        +"..." // TODO
+    override val trainingDepartment = HomeStrings.TitledContent("TRAINING") {
+        p {
+            +"Vous voulez donner à votre équipe les outils pour être encore "
+            span("nowrap") { +"plus efficiente ?" }
+        }
+        br {}
+        p {
+            +"""
+                Nous avons developpé un ensemble de formations permettant à une équipe technique 
+                d'acquérir des connaissances pratiques en quelques jours.
+            """.trimIndent()
+        }
     }
-    override val developmentDepartment = HomeStrings.TitledContent("DÉVELOPPEMENT") {
-        +"..." // TODO
+    override val developmentDepartment = HomeStrings.TitledContent("DEVELOPMENT") {
+        p {
+            +"Vous êtes en manque de ressources pour réaliser "
+            span("nowrap") { +"votre prochain projet ?" }
+        }
+        br {}
+        p { +"Nous pouvons vous aider à atteindre vos objectifs en prenant en charge vos challenges techniques." }
     }
 
     override val readMore: String = "EN SAVOIR PLUS"
