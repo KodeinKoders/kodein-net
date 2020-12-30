@@ -2,6 +2,7 @@ package net.kodein.pages.services.fragment
 
 import kotlinx.css.*
 import kotlinx.css.properties.borderBottom
+import kotlinx.html.id
 import net.kodein.charter.kodein
 import net.kodein.components.contentRow
 import net.kodein.components.imageRow
@@ -10,6 +11,7 @@ import net.kodein.useText
 import net.kodein.utils.*
 import net.kodein.utils.Illus.Title
 import react.*
+import react.dom.div
 import styled.css
 import styled.styledP
 
@@ -17,6 +19,7 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
 
     val strings = useText().services
 
+    div { attrs.id = "consultancy" }
     contentRow(
         backgroundColor = Color.kodein.kaumon, indexPosition = 1,
         illustration = Illus(Title.SERVICES, Illus.Position.RIGHT, Illus.Alignment.LEFT),
@@ -35,7 +38,7 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
         display = Display.none
         maxWidth(980) { display = Display.flex }
     }
-
+    div { attrs.id = "development" }
     contentRow(
         backgroundColor = Color.kodein.cute, indexPosition = 3,
         illustration = Illus(Title.SERVICES, Illus.Position.LEFT, Illus.Alignment.RIGHT),

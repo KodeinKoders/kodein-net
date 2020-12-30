@@ -31,6 +31,7 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
             attrs.even = true
             attrs.content = strings.kodeinKodersDescription
             attrs.illus = "services"
+            attrs.readMoreLink = "services.html"
             attrs.first = true
         }
 
@@ -38,18 +39,21 @@ val Descriptions = functionalComponent<RProps>("Descriptions") {
             attrs.even = false
             attrs.content = strings.humanistDescription
             attrs.illus = "team"
+            attrs.readMoreLink = "team.html"
         }
 
         child(Description) {
             attrs.even = true
             attrs.content = strings.openSourceDescription
             attrs.illus = "open-source"
+            attrs.readMoreLink = "oss.html"
         }
 
         child(Description) {
             attrs.even = false
             attrs.content = strings.trainingDescription
             attrs.illus = "training"
+            attrs.readMoreLink = "training.html"
             attrs.last = true
         }
     }
@@ -60,6 +64,7 @@ private interface DescriptionProps : RProps {
     var even: Boolean
     var content: HomeStrings.TitledContent
     var illus: String
+    var readMoreLink: String
     var first: Boolean?
     var last: Boolean?
 }
@@ -164,7 +169,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
                     props.content.content(this)
                 }
 
-                styledA {
+                styledA(href = props.readMoreLink) {
                     css {
                         +kodein.button
                         alignSelf = Align.flexStart

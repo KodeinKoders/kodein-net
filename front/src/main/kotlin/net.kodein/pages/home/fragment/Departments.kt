@@ -29,16 +29,19 @@ val Departments = functionalComponent<RProps>("Departments") {
         child(Department) {
             attrs.icon = "advisory"
             attrs.description = strings.advisoryDepartment
+            attrs.readMoreLink = "services.html#consultancy"
         }
 
         child(Department) {
             attrs.icon = "training"
             attrs.description = strings.trainingDepartment
+            attrs.readMoreLink = "training.html"
         }
 
         child(Department) {
             attrs.icon = "development"
             attrs.description = strings.developmentDepartment
+            attrs.readMoreLink = "services.html#development"
             attrs.isLastItem = true
         }
     }
@@ -47,6 +50,7 @@ val Departments = functionalComponent<RProps>("Departments") {
 private interface DepartmentProps : RProps {
     var icon: String
     var description: HomeStrings.TitledContent
+    var readMoreLink: String
     var isLastItem: Boolean?
 }
 
@@ -77,7 +81,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
         }
 
         withBasePath { path ->
-            styledImg(alt="${props.description.title} icon", src="$path/imgs/ic_${props.icon}.svg") {
+            styledImg(alt="${props.icon} icon", src="$path/imgs/ic_${props.icon}.svg") {
                 attrs {
                     width = "48"
                     height = "38"
@@ -110,7 +114,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
             props.description.content(this)
         }
 
-        a { +strings.readMore }
+        a(href = props.readMoreLink) { +strings.readMore }
     }
 
     if(props.isLastItem != true) {

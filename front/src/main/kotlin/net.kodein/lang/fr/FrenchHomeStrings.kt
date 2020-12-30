@@ -34,7 +34,7 @@ object FrenchHomeStrings : HomeStrings {
 
     override val scroll: String = "DÉFILER"
 
-    override val advisoryDepartment = HomeStrings.TitledContent("ADVISORY") {
+    override val advisoryDepartment = HomeStrings.TitledContent("CONSEIL") {
         p {
             +"Vous démarrez un projet ou vous souhaitiez renforcer vos équipes "
             span("nowrap") { +"et votre expertise ?" }
@@ -42,7 +42,7 @@ object FrenchHomeStrings : HomeStrings {
         br{}
         p { +"Nous pouvons vous aider à valider et améliorer votre process de développement, avec Kotlin." }
     }
-    override val trainingDepartment = HomeStrings.TitledContent("TRAINING") {
+    override val trainingDepartment = HomeStrings.TitledContent("FORMATION") {
         p {
             +"Vous voulez donner à votre équipe les outils pour être encore "
             span("nowrap") { +"plus efficiente ?" }
@@ -55,7 +55,7 @@ object FrenchHomeStrings : HomeStrings {
             """.trimIndent()
         }
     }
-    override val developmentDepartment = HomeStrings.TitledContent("DEVELOPMENT") {
+    override val developmentDepartment = HomeStrings.TitledContent("DÉVELOPPEMENT") {
         p {
             +"Vous êtes en manque de ressources pour réaliser "
             span("nowrap") { +"votre prochain projet ?" }
