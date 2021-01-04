@@ -20,10 +20,10 @@ import styled.*
 val Departments = functionalComponent<RProps>("Departments") {
     val strings = useText().home
 
-    flexRow {
+    flexRow(JustifyContent.center) {
         css {
             backgroundColor = Color.kodein.cute
-            maxWidth(889) {
+            maxWidth(1024 - 1) {
                 display = Display.block
                 flexDirection = FlexDirection.column
             }
@@ -62,22 +62,31 @@ private interface DepartmentProps : RProps {
 }
 
 private val Department = functionalComponent<DepartmentProps>("Department") { props ->
-    val dptHeight = 32.rem
-
     val index = props.index * 3
 
     flexColumn {
         css {
             position = Position.relative
             zIndex = 100 - index
+            minWidth(1024) {
+                maxWidth = 38.rem
+            }
             flex(flexGrow = 1.0, flexBasis = FlexBasis.zero)
             padding(4.rem, 2.rem)
 
+            minWidth(1680) {
+                padding(vertical = 6.rem)
+            }
+
+            minWidth(2880) {
+                padding(vertical = 8.rem)
+            }
+
             if(props.isLastItem != true) {
-                minWidth(890) {
+                minWidth(1024) {
                     filter = "drop-shadow(1rem 0 0.5rem ${Color.kodein.kaumon.withAlpha(0.3)})"
                 }
-                maxWidth(889) {
+                maxWidth(1024 - 1) {
                     filter = "drop-shadow(0 1rem 0.5rem ${Color.kodein.kaumon.withAlpha(0.3)})"
                 }
 
@@ -87,10 +96,10 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                     top = 0.px; bottom = 0.px; right = 0.px; left = 0.px
                     backgroundColor = Color.kodein.cute
                     content = QuotedString("")
-                    minWidth(890) {
+                    minWidth(1024) {
                         clipPath = "polygon(0 0, 100% 0, 95% 70%, 95% 100%, 0 100%)"
                     }
-                    maxWidth(889) {
+                    maxWidth(1024 - 1) {
                         clipPath = "polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 98%)"
                     }
                 }
@@ -101,6 +110,8 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
             css {
                 flexGrow = 1.0
                 zIndex = 100
+                maxWidth = 38.rem
+                margin(LinearDimension.auto)
             }
 
             withBasePath { path ->
@@ -139,16 +150,16 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                 }
                 props.description.content(this)
             }
-        }
 
-        styledA(href = props.readMoreLink) {
-            css {
-                zIndex = 100
-                +kodein.button
-                alignSelf = Align.flexStart
-                margin(vertical = 1.rem)
+            styledA(href = props.readMoreLink) {
+                css {
+                    zIndex = 100
+                    +kodein.button
+                    alignSelf = Align.flexStart
+                    margin(top = 2.5.rem, bottom = 1.rem, left = 0.5.rem, right = 0.5.rem)
+                }
+                +props.description.readMore
             }
-            +props.description.readMore
         }
     }
 }
