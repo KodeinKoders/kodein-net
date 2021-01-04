@@ -93,22 +93,24 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
                 maxHeight = 40.rem
                 maxSizeStrict(980) { height = 20.rem }
             }
-            withBasePath { path ->
-                picture {
-                    source("image/webp", "$path/imgs/team/$image.webp" to null)
-                    source("image/jpeg", "$path/imgs/team/$image.jpg" to null)
+            if (image != null) {
+                withBasePath { path ->
+                    picture {
+                        source("image/webp", "$path/imgs/team/$image.webp" to null)
+                        source("image/jpeg", "$path/imgs/team/$image.jpg" to null)
 
-                    styledImg(src = "$path/imgs/team/$image.jpg", alt = props.member.name) {
-                        attrs {
-                            width = "100%"
-                            height = "100%"
-                        }
+                        styledImg(src = "$path/imgs/team/$image.jpg", alt = props.member.name) {
+                            attrs {
+                                width = "100%"
+                                height = "100%"
+                            }
 
-                        css {
-                            width = 100.pct
-                            height = 100.pct
-                            objectFit = ObjectFit.cover
-                            objectPosition = props.member.photo.second
+                            css {
+                                width = 100.pct
+                                height = 100.pct
+                                objectFit = ObjectFit.cover
+                                objectPosition = props.member.photo.second
+                            }
                         }
                     }
                 }
