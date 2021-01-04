@@ -164,6 +164,7 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
                         +strings.nerdOn
                         props.member.socialMediaList.forEachIndexed { index, media ->
                             a(href = "${media.url.removeSuffix("/")}/${media.handler}", target = "_blank") {
+                                attrs.rel = "noopener"
                                 +media.service.capitalize()
                             }
                             if (index < props.member.socialMediaList.lastIndex) +", "

@@ -1,9 +1,10 @@
 package net.kodein.pages.home
 
+import net.kodein.PageStrings
 import net.kodein.TextHandler
 
 
-interface HomeStrings {
+interface HomeStrings : PageStrings {
 
     val title: TextHandler
     val subTitle: TextHandler

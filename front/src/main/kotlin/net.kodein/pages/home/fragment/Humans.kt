@@ -41,7 +41,7 @@ val Humans = functionalComponent<RProps>("Humans") {
             +strings.humansTitle
         }
 
-        styledH3 {
+        styledH2 {
             css {
                 +kodein.display1
                 specific { textAlign = TextAlign.start }
@@ -389,6 +389,7 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                     textAlign = TextAlign.center
                 }
                 a(href = props.personUrl, target = "_blank") {
+                    attrs.rel = "noopener"
                     +props.personName
                 }
             }
@@ -407,6 +408,7 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                 }
             }
             a(href = props.companyUrl, target = "_blank") {
+                attrs.rel = "noopener"
                 styledImg(src = "$path/imgs/logos/${props.companyLogo}", alt = props.companyName) {
                     attrs.classes += "logo"
                     attrs {

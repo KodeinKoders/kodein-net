@@ -1,5 +1,6 @@
 package net.kodein.pages.team
 
+import net.kodein.PageStrings
 import net.kodein.TextHandler
 import net.kodein.components.strings.CoverStrings
 import net.kodein.utils.Github
@@ -7,7 +8,7 @@ import net.kodein.utils.LinkedIn
 import net.kodein.utils.SocialMedia
 import net.kodein.utils.Twitter
 
-interface TeamStrings {
+interface TeamStrings : PageStrings {
     val cover: CoverStrings
     val salomon: MemberStrings
     val romain: MemberStrings

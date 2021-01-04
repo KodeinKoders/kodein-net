@@ -150,18 +150,18 @@ val Footer = functionalComponent<RProps>("Footer") {
                     b { +"Contact us!" }
                     ul {
                         li { a(href = "contact.html") { +strings.contactForm } }
-                        li { a(href = "contact@kodein.net", target = "_blank") { +"E-mail" } }
-                        li { a(href = "https://twitter.com/KodeinKoders", target = "_blank") { +"Twitter" } }
-                        li { a(href = "https://www.linkedin.com/company/kodein", target = "_blank") { +"LinkedIn" } }
+                        li { a(href = "contact@kodein.net", target = "_blank") { attrs.rel = "noopener" ; +"E-mail" } }
+                        li { a(href = "https://twitter.com/KodeinKoders", target = "_blank") { attrs.rel = "noopener" ; +"Twitter" } }
+                        li { a(href = "https://www.linkedin.com/company/kodein", target = "_blank") { attrs.rel = "noopener" ; +"LinkedIn" } }
                     }
                 }
 
                 div {
                     b { +strings.openSource }
                     ul {
-                        li { a(href = "https://kodein.org", target = "_blank") { +"Kodein Framework" } }
-                        li { a(href = "https://github.com/KodeinKoders", target = "_blank") { +"Github" } }
-                        li { a(href = "https://medium.com/kodein-koders", target = "_blank") { +"Medium" } }
+                        li { a(href = "https://kodein.org", target = "_blank") { attrs.rel = "noopener" ; +"Kodein Framework" } }
+                        li { a(href = "https://github.com/KodeinKoders", target = "_blank") { attrs.rel = "noopener" ; +"Github" } }
+                        li { a(href = "https://medium.com/kodein-koders", target = "_blank") { attrs.rel = "noopener" ; +"Medium" } }
                     }
                 }
 

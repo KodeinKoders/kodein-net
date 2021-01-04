@@ -1,10 +1,11 @@
 package net.kodein.pages.oss
 
+import net.kodein.PageStrings
 import net.kodein.TextHandler
 import net.kodein.components.strings.CoverStrings
 
 
-interface OssStrings {
+interface OssStrings : PageStrings {
 
     val cover: CoverStrings
 

@@ -33,10 +33,10 @@ fun getHtml(page: Page, lang: Language, mode: Mode): String {
         }
     }
 
-    return createHTML().html {
+    return "<!DOCTYPE html>\n" + createHTML().html {
         this.lang = lang.id
         head {
-            meta("charset", "UTF-8")
+            meta { charset = "UTF-8" }
             meta("viewport", "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no")
             meta("description", "Kodein Koders: Kotlin/Multiplatform expertise")
 
@@ -53,7 +53,10 @@ fun getHtml(page: Page, lang: Language, mode: Mode): String {
             link(href = "${lang.basePath}/picon/LCTPicon.css", rel = "stylesheet")
             link(href = "${lang.basePath}/favicon.png", rel = "icon", type = "image/png")
 
-            title("Kodein Koders")
+            val title = page.title(lang.strings).pageTitle
+            if (title.isNotEmpty()) title("Kodein Koders - $title")
+            else title("Kodein Koders")
+
 
             unsafe { raw(css) }
         }

@@ -13,6 +13,9 @@ import styled.styledB
 
 
 object FrenchOssStrings : OssStrings {
+
+    override val pageTitle: String = "Open Source"
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"Kodein Framework" }
         override val title: TextHandler = {
@@ -124,7 +127,7 @@ object FrenchOssStrings : OssStrings {
         override val overTitle: TextHandler = { +"Plus de contenus ?" }
         override val title: TextHandler = {
             +"Rendez vous sur notre "
-            a(href = "https://github.com/Kodein-Framework", target = "_blank") { +"Github" }
+            a(href = "https://github.com/Kodein-Framework", target = "_blank") { attrs.rel = "noopener" ; +"Github" }
             +"."
         }
         override val chapo: TextHandler = {
@@ -133,11 +136,11 @@ object FrenchOssStrings : OssStrings {
             +"Framework Open Source "
             br {}
             +"sur "
-            a(href = "https://stackoverflow.com/tags/kodein", target = "_blank") { +"Stack Overflow" }
+            a(href = "https://stackoverflow.com/tags/kodein", target = "_blank") { attrs.rel = "noopener" ; +"Stack Overflow" }
             +", "
-            a(href = "https://kotlinlang.slack.com/archives/C0BLU9K96", target = "_blank") { +"Slack" }
+            a(href = "https://kotlinlang.slack.com/archives/C0BLU9K96", target = "_blank") { attrs.rel = "noopener" ; +"Slack" }
             +" ou "
-            a(href = "https://twitter.com/KodeinKoders", target = "_blank") { +"Twitter" }
+            a(href = "https://twitter.com/KodeinKoders", target = "_blank") { attrs.rel = "noopener" ; +"Twitter" }
             +" !"
         }
     }

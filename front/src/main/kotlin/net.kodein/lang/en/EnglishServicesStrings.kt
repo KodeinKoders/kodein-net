@@ -10,6 +10,9 @@ import react.dom.p
 import react.dom.span
 
 object EnglishServicesStrings : ServicesStrings {
+
+    override val pageTitle: String = "Services"
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"professional companions" }
 

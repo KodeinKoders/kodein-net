@@ -1,5 +1,6 @@
 package net.kodein
 
+import net.kodein.lang.Strings
 import net.kodein.pages.blog.Blog
 import net.kodein.pages.contact.Contact
 import net.kodein.pages.credits.Credits
@@ -12,18 +13,23 @@ import react.FunctionalComponent
 import react.RProps
 
 
+interface PageStrings {
+    val pageTitle: String
+}
+
 data class Page(
     val id: String,
+    val title: Strings.() -> PageStrings,
     val component: () -> FunctionalComponent<RProps>
 )
 
 val appPages = listOf(
-    Page("index") { Home },
-    Page("services") { Services },
-    Page("training") { Training },
-    Page("oss") { Oss },
-    Page("team") { Team },
-    Page("blog") { Blog },
-    Page("contact") { Contact },
-    Page("credits") { Credits },
+    Page("index", Strings::home) { Home },
+    Page("services", Strings::services) { Services },
+    Page("training", Strings::training) { Training },
+    Page("oss", Strings::oss) { Oss },
+    Page("team", Strings::team) { Team },
+    Page("blog", Strings::blog) { Blog },
+    Page("contact", Strings::contact) { Contact },
+    Page("credits", Strings::credits) { Credits },
 )

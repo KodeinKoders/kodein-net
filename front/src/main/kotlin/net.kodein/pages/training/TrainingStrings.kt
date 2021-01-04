@@ -1,10 +1,11 @@
 package net.kodein.pages.training
 
+import net.kodein.PageStrings
 import net.kodein.TextHandler
 import net.kodein.components.strings.CoverStrings
 
 
-interface TrainingStrings {
+interface TrainingStrings : PageStrings {
 
     data class CourseStrings(val title: String, val duration: String, val description: TextHandler)
 
