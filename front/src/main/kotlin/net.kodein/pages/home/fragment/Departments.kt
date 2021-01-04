@@ -1,7 +1,12 @@
 package net.kodein.pages.home.fragment
 
 import kotlinx.css.*
+import kotlinx.css.properties.border
+import kotlinx.css.properties.borderRight
+import kotlinx.css.properties.borderTop
+import kotlinx.html.InputType
 import net.kodein.charter.kodein
+import net.kodein.components.layerSeparator
 import net.kodein.pages.home.HomeStrings
 import net.kodein.useText
 import net.kodein.utils.*
@@ -10,16 +15,14 @@ import react.RProps
 import react.child
 import react.dom.a
 import react.functionalComponent
-import styled.css
-import styled.styledDiv
-import styled.styledImg
-import styled.styledSvg
+import styled.*
 
 val Departments = functionalComponent<RProps>("Departments") {
     val strings = useText().home
 
     flexRow {
         css {
+            backgroundColor = Color.kodein.cute
             maxWidth(889) {
                 display = Display.block
                 flexDirection = FlexDirection.column
@@ -27,18 +30,21 @@ val Departments = functionalComponent<RProps>("Departments") {
         }
 
         child(Department) {
+            attrs.index = 1
             attrs.icon = "advisory"
             attrs.description = strings.advisoryDepartment
             attrs.readMoreLink = "services.html#consultancy"
         }
 
         child(Department) {
+            attrs.index = 2
             attrs.icon = "training"
             attrs.description = strings.trainingDepartment
             attrs.readMoreLink = "training.html#description"
         }
 
         child(Department) {
+            attrs.index = 3
             attrs.icon = "development"
             attrs.description = strings.developmentDepartment
             attrs.readMoreLink = "services.html#development"
@@ -48,6 +54,7 @@ val Departments = functionalComponent<RProps>("Departments") {
 }
 
 private interface DepartmentProps : RProps {
+    var index: Int
     var icon: String
     var description: HomeStrings.TitledContent
     var readMoreLink: String
@@ -55,124 +62,93 @@ private interface DepartmentProps : RProps {
 }
 
 private val Department = functionalComponent<DepartmentProps>("Department") { props ->
-    val strings = useText().home
-
     val dptHeight = 32.rem
+
+    val index = props.index * 3
 
     flexColumn {
         css {
-            backgroundColor = Color.kodein.cute
+            position = Position.relative
+            zIndex = 100 - index
             flex(flexGrow = 1.0, flexBasis = FlexBasis.zero)
-            padding(5.rem, 3.rem)
+            padding(4.rem, 2.rem)
 
-            minWidth(890) { height = dptHeight - 5.em * 2 }
-            maxWidth(889) {
-                padding(2.rem)
+            if(props.isLastItem != true) {
+                minWidth(890) {
+                    filter = "drop-shadow(1rem 0 0.5rem ${Color.kodein.kaumon.withAlpha(0.3)})"
+                }
+                maxWidth(889) {
+                    filter = "drop-shadow(0 1rem 0.5rem ${Color.kodein.kaumon.withAlpha(0.3)})"
+                }
+
+                "&:before" {
+                    position = Position.absolute
+                    zIndex = 99 - index
+                    top = 0.px; bottom = 0.px; right = 0.px; left = 0.px
+                    backgroundColor = Color.kodein.cute
+                    content = QuotedString("")
+                    minWidth(890) {
+                        clipPath = "polygon(0 0, 100% 0, 95% 70%, 95% 100%, 0 100%)"
+                    }
+                    maxWidth(889) {
+                        clipPath = "polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 98%)"
+                    }
+                }
+            }
+        }
+
+        flexColumn {
+            css {
+                flexGrow = 1.0
+                zIndex = 100
             }
 
-            "a" {
+            withBasePath { path ->
+                styledImg(alt="${props.icon} icon", src="$path/imgs/ic_${props.icon}.svg") {
+                    attrs {
+                        width = "48"
+                        height = "38"
+                    }
+                    css {
+                        width = 3.em
+                        padding(0.rem, 0.rem, 1.rem, 3.rem)
+                    }
+                }
+            }
+
+            styledP {
+                css {
+                    color = Color.kodein.purple
+                    +kodein.display1
+                    specific { textAlign = TextAlign.start }
+                    padding(0.5.rem, 1.rem)
+                }
+                +props.description.title.toUpperCase()
+            }
+
+            styledP {
+                css {
+                    flexGrow = 1.0
+                    color = Color.kodein.orange
+                    +kodein.body
+                    padding(0.5.rem, 0.5.rem)
+
+                    "span.nowrap" {
+                        whiteSpace = WhiteSpace.nowrap
+                    }
+                }
+                props.description.content(this)
+            }
+        }
+
+        styledA(href = props.readMoreLink) {
+            css {
+                zIndex = 100
                 +kodein.button
                 alignSelf = Align.flexStart
-                margin(1.rem)
+                margin(vertical = 1.rem)
             }
-            "span.nowrap" {
-                whiteSpace = WhiteSpace.nowrap
-            }
-        }
-
-        withBasePath { path ->
-            styledImg(src="$path/imgs/ic_${props.icon}.svg", alt=props.description.title.toLowerCase().capitalize()) {
-                attrs {
-                    width = "48"
-                    height = "38"
-                }
-                css {
-                    width = 3.em
-                    padding(0.rem, 0.rem, 1.rem, 3.rem)
-                }
-            }
-        }
-
-        styledDiv {
-            css {
-                color = Color.kodein.purple
-                +kodein.display1
-                specific { textAlign = TextAlign.start }
-                padding(0.5.rem, 1.rem)
-            }
-            +props.description.title.toUpperCase()
-        }
-
-        styledDiv {
-            css {
-                color = Color.kodein.orange
-                +kodein.body
-                padding(0.5.rem, 0.5.rem)
-                minHeight = 60.pct
-                maxWidth(889) { height = 5.rem }
-            }
-            props.description.content(this)
-        }
-
-        a(href = props.readMoreLink) { +props.description.readMore }
-    }
-
-    if(props.isLastItem != true) {
-        styledDiv {
-            css {
-                height = dptHeight
-                backgroundColor = Color.kodein.cute
-            }
-
-            styledSvg {
-                css {
-                    maxWidth(889) { display = Display.none }
-
-                    height = dptHeight
-                    filter = "drop-shadow(.8rem 0 1.5rem ${Color.kodein.kaumon.withAlpha(0.5)})"
-                    put("clip-path", "polygon(0% 0%, 0% 100%, 500% 100%, 500% 0%)")
-                }
-
-                attrs.viewBox(0, 0, 6, 100)
-
-                draw {
-                    path(fill = Color.kodein.cute) {
-                        moveTo(0, 0)
-                        verticalLineTo(100)
-                        horizontalLineTo(2)
-                        verticalLineTo(60)
-                        lineTo(6, 0)
-                        closePath()
-                    }
-                }
-            }
-
-            styledSvg {
-                css {
-                    height = dptHeight / 10
-                    width = 100.pct
-
-                    minWidth(890) { display = Display.none }
-                    landscapeMobile { height = dptHeight / 8 }
-                    filter = "drop-shadow(0 0.8rem 1rem  ${Color.kodein.kaumon.withAlpha(0.5)})"
-                    put("clip-path", "polygon(0 30%, 100% 30%, 100% 35%, 100% 500%, 0 500%)")
-                }
-
-                attrs.viewBox(0, 0, 300, 12)
-
-                draw {
-                    // M 0 0, H 300, V 6, L 100 2, H 0, Z
-                    path(fill = Color.kodein.cute) {
-                        moveTo(0, 0)
-                        horizontalLineTo(300)
-                        verticalLineTo(10)
-                        lineTo(100, 4)
-                        horizontalLineTo(0)
-                        closePath()
-                    }
-                }
-            }
+            +props.description.readMore
         }
     }
-
 }
