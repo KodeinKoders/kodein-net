@@ -14,6 +14,7 @@ import styled.*
 
 interface KodeinLogoProps : RProps {
     var logo: String
+    var logoAlt: String
     var logoHeight: LinearDimension?
     var bold: String
     var light: String
@@ -36,14 +37,20 @@ val KodeinLogo = functionalComponent<KodeinLogoProps>("KodeinLogo") { props ->
             zIndex = 1001
         }
         withBasePath { path ->
-            styledImg(alt = "Kodein logo", src = "$path/imgs/logo-${props.logo}.svg") {
+            styledImg(src = "$path/imgs/logo-${props.logo}.svg", alt = props.logoAlt) {
+                attrs {
+                    width = "30"
+                    height = "38"
+                }
                 css {
                     display = Display.block
                     padding(right = 1.em)
                     maxWidth(350) { padding(right = 0.5.em) }
                     height = props.logoHeight ?: 1.8.em
+                    width = (props.logoHeight ?: 1.8.em) * 0.8
                     maxSize(480) {
                         height = props.logoHeight ?: 1.4.em
+                        width = (props.logoHeight ?: 1.4.em) * 0.8
                     }
                 }
             }

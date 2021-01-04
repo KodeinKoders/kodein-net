@@ -20,6 +20,7 @@ import styled.*
 
 val Footer = functionalComponent<RProps>("Footer") {
     val strings = useText().footer
+    val globalStrings = useText().global
 
     flexColumn {
 
@@ -43,6 +44,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                 child(KodeinLogo) {
                     attrs {
                         logo = "orange-fat"
+                        logoAlt = globalStrings.kodeinLogo
                         logoHeight = 3.5.rem
                         bold = "KODEIN"
                         light = "Koders"
@@ -196,7 +198,11 @@ val Footer = functionalComponent<RProps>("Footer") {
                     }
 
                     withBasePath { path ->
-                        styledImg(src = "$path/imgs/logo-kaumon.svg") {
+                        styledImg(src = "$path/imgs/logo-kaumon.svg", alt = globalStrings.kodeinLogo) {
+                            attrs {
+                                width = "24"
+                                height = "24"
+                            }
                             css {
                                 width = 1.5.rem
                                 height = 1.5.rem

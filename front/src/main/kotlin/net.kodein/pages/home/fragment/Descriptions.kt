@@ -127,6 +127,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
             attrs.color = if (props.even) Color.kodein.kyzantium else Color.kodein.kuivre
             attrs.slantCorrection = if (props.first == true || props.last  == true) (slant / 2).rem else 0.rem
             attrs.image = props.illus
+            attrs.imageAlt = props.content.title
         }
 
         styledDiv {
@@ -190,6 +191,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
 interface IllustrationProps : RProps {
     var color: Color
     var image: String
+    var imageAlt: String
     var slantCorrection: LinearDimension
 }
 
@@ -237,7 +239,12 @@ private val Illustration = functionalComponent<IllustrationProps>("Illustration"
                     source("image/webp", "$path/imgs/illus/$image.webp" to null)
                     source("image/jpeg", "$path/imgs/illus/$image.jpg" to null)
 
-                    styledImg(alt = image, src = "$path/imgs/illus/$image.jpg") {
+                    styledImg(src = "$path/imgs/illus/$image.jpg", alt = props.imageAlt) {
+                        attrs {
+                            width = "100%"
+                            height = "100%"
+                        }
+
                         css {
                             width = 100.pct
                             height = 100.pct

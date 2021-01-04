@@ -331,8 +331,13 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                     width = 100.pct
                     height = 10.rem
                 }
-                styledImg(src = "$path/imgs/humans/${props.personPicture}") {
+                styledImg(src = "$path/imgs/humans/${props.personPicture}", alt = props.personName) {
                     attrs.classes += "background-pic"
+                    attrs {
+                        width = "345"
+                        height = "195"
+                    }
+
                     css {
                         width = 20.rem + 3.rem
                         height = 10.rem + 3.rem
@@ -350,6 +355,10 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
             }
             styledImg(src = "$path/imgs/humans/${props.personPicture}", alt = props.personName) {
                 attrs.classes += "profile-pic"
+                attrs {
+                    width = "150"
+                    height = "150"
+                }
                 css {
                     position = Position.absolute
                     left = 50.pct - 5.rem
@@ -392,8 +401,12 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                 }
             }
             a(href = props.companyUrl, target = "_blank") {
-                styledImg(src = "$path/imgs/logos/${props.companyLogo}") {
+                styledImg(src = "$path/imgs/logos/${props.companyLogo}", alt = props.companyName) {
                     attrs.classes += "logo"
+                    attrs {
+                        width = "120"
+                        height = "60"
+                    }
                     css {
                         width = 8.em
                         height = 4.em

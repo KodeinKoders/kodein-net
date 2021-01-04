@@ -81,7 +81,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
         }
 
         withBasePath { path ->
-            styledImg(alt="${props.icon} icon", src="$path/imgs/ic_${props.icon}.svg") {
+            styledImg(src="$path/imgs/ic_${props.icon}.svg", alt=props.description.title.toLowerCase().capitalize()) {
                 attrs {
                     width = "48"
                     height = "38"

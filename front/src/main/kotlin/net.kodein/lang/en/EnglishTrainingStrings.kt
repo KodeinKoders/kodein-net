@@ -26,7 +26,11 @@ object EnglishTrainingStrings : TrainingStrings {
             +"JetBrains Certified Trainers."
             br {}
             withBasePath { path ->
-                styledImg(src = "$path/imgs/badge-orange.svg") {
+                styledImg(src = "$path/imgs/badge-orange.svg", alt = "Certification logo") {
+                    attrs {
+                        width = "150"
+                        height = "150"
+                    }
                     css {
                         width = 10.rem
                         height = 10.rem
@@ -144,5 +148,7 @@ object EnglishTrainingStrings : TrainingStrings {
             This training is for those who want to create web UIs while still using the structured & safe language they know and love: Kotlin!
         """
     }
+
+    override val duration = "Duration"
 
 }

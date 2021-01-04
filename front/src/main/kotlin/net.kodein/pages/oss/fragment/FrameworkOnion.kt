@@ -1,5 +1,6 @@
 package net.kodein.pages.oss.fragment
 
+import kotlinext.js.jsObject
 import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
@@ -76,7 +77,7 @@ private val Slice = functionalComponent<SliceProps>("Slice") { props ->
         }
 
         div.current!!.addEventListener("mouseenter", onMouseEnter)
-        div.current!!.addEventListener("touchstart", onTouchStart)
+        div.current!!.addEventListener("touchstart", onTouchStart, jsObject { passive = true })
 
         ({
             div.current!!.removeEventListener("mouseenter", onMouseEnter)

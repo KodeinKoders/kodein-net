@@ -26,7 +26,11 @@ object FrenchTrainingStrings : TrainingStrings {
             +"Formateurs Certifiés JetBrains."
             br {}
             withBasePath { path ->
-                styledImg(src = "$path/imgs/badge-orange.svg") {
+                styledImg(src = "$path/imgs/badge-orange.svg", alt = "Logo certificaton") {
+                    attrs {
+                        width = "150"
+                        height = "150"
+                    }
                     css {
                         width = 10.rem
                         height = 10.rem
@@ -148,5 +152,7 @@ object FrenchTrainingStrings : TrainingStrings {
             Cette formation est adressée à ceux qui souhaitent créer des interfaces web sans renoncer au langage structuré et sécurisé qu'ils pratiquent déjà : Kotlin!
         """
     }
+
+    override val duration = "Durée"
 
 }

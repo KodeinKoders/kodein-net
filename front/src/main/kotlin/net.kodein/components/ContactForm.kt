@@ -240,7 +240,12 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
                     marginTop = 3.rem
                 }
                 withBasePath { path ->
-                    styledImg(src = "$path/imgs/send-cute.svg") {
+                    styledImg(src = "$path/imgs/send-cute.svg", alt = strings.send) {
+                        attrs {
+                            width = "15"
+                            height = "15"
+                        }
+
                         css {
                             height = 1.em // not rem!
                             marginRight = 0.4.em // not rem!

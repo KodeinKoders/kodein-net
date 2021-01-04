@@ -14,4 +14,5 @@ object French : Strings {
     override val training = FrenchTrainingStrings
     override val credits = FrenchCreditsStrings
     override val footer = FrenchFooterStrings
+    override val global = FrenchGlobalStrings
 }
