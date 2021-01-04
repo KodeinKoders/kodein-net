@@ -177,6 +177,7 @@ private val EntryBlock = functionalComponent<EntryBlockProps> { props ->
 
     styledA(href = props.entry.url, target = "_blank") {
         ref = box
+        attrs.rel = "noopener"
         css {
             display = Display.block
             position = Position.relative

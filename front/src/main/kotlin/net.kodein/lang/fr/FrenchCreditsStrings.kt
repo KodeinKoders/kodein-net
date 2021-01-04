@@ -10,6 +10,9 @@ import react.dom.p
 
 
 object FrenchCreditsStrings : CreditsStrings {
+
+    override val pageTitle: String = "Crédits"
+
     override val cover = object : CoverStrings {
         override val overTitle: TextHandler = { +"un super projet" }
         override val title: TextHandler = { +"On a collaboré avec des super artistes !" }
@@ -36,33 +39,42 @@ object FrenchCreditsStrings : CreditsStrings {
         b { +"Crédits techniques:" }
         br {}
         +"Ce site web est écrit en "
-        a(href = "https://kotlinlang.org/docs/reference/js-overview.html", target = "_blank") { +"Kotlin/JS" }
+        a(href = "https://kotlinlang.org/docs/reference/js-overview.html", target = "_blank") {
+            attrs.rel = "noopener"
+            +"Kotlin/JS"
+        }
         +" avec les "
         a(href = "https://github.com/JetBrains/kotlin-wrappers", target = "_blank") {
+            attrs.rel = "noopener"
             +"Kotlin/React wrappers"
         }
         +", qui utilisent "
         a(href = "https://reactjs.org", target = "_blank") {
+            attrs.rel = "noopener"
             +"ReactJS"
         }
         +" et "
         a(href = "https://styled-components.com", target = "_blank") {
+            attrs.rel = "noopener"
             +"Styled Components"
         }
         +"."
         br {}
         +"Il est hébergé par "
         a(href = "https://pages.github.com", target = "_blank") {
+            attrs.rel = "noopener"
             +"Github pages"
         }
         +"."
         br {}
         +"Le formulaire de contacts utilise "
         a(href = "https://cloud.google.com/functions", target = "_blank") {
+            attrs.rel = "noopener"
             +"Google Cloud Functions"
         }
         +" et "
         a(href = "https://sendgrid.com", target = "_blank") {
+            attrs.rel = "noopener"
             +"Sendgrid"
         }
         +"."

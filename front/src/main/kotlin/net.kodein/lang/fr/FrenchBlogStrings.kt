@@ -8,6 +8,9 @@ import react.dom.br
 import react.dom.span
 
 object FrenchBlogStrings : BlogStrings {
+
+    override val pageTitle: String = "Blog"
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"plaisirs partagés" }
         override val title: TextHandler = {
@@ -35,7 +38,7 @@ object FrenchBlogStrings : BlogStrings {
         override val overTitle: TextHandler = { +"Plus de contenus ?" }
         override val title: TextHandler = {
             +"Rendez vous sur notre "
-            a(href = "https://medium.com/kodein-koders", target = "_blank") { +"page Medium" }
+            a(href = "https://medium.com/kodein-koders", target = "_blank") { attrs.rel = "noopener" ; +"page Medium" }
             +"."
         }
         override val chapo: TextHandler = {

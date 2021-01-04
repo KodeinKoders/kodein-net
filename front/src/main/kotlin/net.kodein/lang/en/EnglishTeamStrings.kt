@@ -9,11 +9,15 @@ import react.dom.br
 import react.dom.p
 
 object EnglishTeamStrings  : TeamStrings {
+
+    override val pageTitle: String = "The team"
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"we are humans" }
         override val title: TextHandler = { +"Driven by our passion for Kotlin." }
         override val chapo: TextHandler = {}
     }
+
     override val salomon = MemberStrings.salomon.copy(
         status = "Founder",
         bio = {

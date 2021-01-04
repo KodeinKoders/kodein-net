@@ -1,5 +1,6 @@
 package net.kodein.pages.services
 
+import net.kodein.PageStrings
 import net.kodein.TextHandler
 import net.kodein.components.strings.CoverStrings
 import net.kodein.pages.team.JobDescription
@@ -9,7 +10,8 @@ import net.kodein.utils.LinkedIn
 import net.kodein.utils.SocialMedia
 import net.kodein.utils.Twitter
 
-interface ServicesStrings {
+
+interface ServicesStrings : PageStrings {
     val cover: CoverStrings
     val consultancy: ServiceDescription
     val projectDevelopment: ServiceDescription

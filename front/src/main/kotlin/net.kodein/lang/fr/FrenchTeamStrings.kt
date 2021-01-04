@@ -9,6 +9,9 @@ import react.dom.br
 import react.dom.p
 
 object FrenchTeamStrings : TeamStrings {
+
+    override val pageTitle: String = "L'équipe"
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"Nous sommes humains" }
         override val title: TextHandler = { +"Animés par notre passion pour Kotlin." }

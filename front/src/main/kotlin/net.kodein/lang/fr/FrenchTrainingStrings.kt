@@ -18,6 +18,8 @@ import styled.styledImg
 
 object FrenchTrainingStrings : TrainingStrings {
 
+    override val pageTitle: String = "Formation"
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"partageons le savoir" }
         override val title: TextHandler = {

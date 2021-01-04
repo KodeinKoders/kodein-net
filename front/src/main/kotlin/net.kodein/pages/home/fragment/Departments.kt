@@ -120,6 +120,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
     if(props.isLastItem != true) {
         styledDiv {
             css {
+                height = dptHeight
                 backgroundColor = Color.kodein.cute
             }
 

@@ -9,6 +9,8 @@ import react.dom.span
 
 object EnglishHomeStrings : HomeStrings {
 
+    override val pageTitle: String = ""
+
     override val title: TextHandler = {
         +"Everywhere "
         span("nowrap") { +"Kotlin goes," }

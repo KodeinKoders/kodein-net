@@ -142,7 +142,7 @@ val Header = functionalComponent<HeaderProps>("Header") { props ->
         ref = containerRef
         css {
             width = 100.pct
-            height = 100.pct
+            height = 100.vh
             backgroundColor = Color.kodein.dark
             position = Position.relative
         }

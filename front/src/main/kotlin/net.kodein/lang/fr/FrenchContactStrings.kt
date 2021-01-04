@@ -18,6 +18,8 @@ import styled.styledSpan
 
 object FrenchContactStrings : ContactStrings {
 
+    override val pageTitle: String = "Contact"
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"restons en contact" }
         override val title: TextHandler = {

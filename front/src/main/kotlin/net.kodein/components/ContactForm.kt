@@ -6,6 +6,8 @@ import kotlinx.css.properties.borderBottom
 import kotlinx.css.properties.lh
 import kotlinx.html.ButtonType
 import kotlinx.html.InputType
+import kotlinx.html.for_
+import kotlinx.html.id
 import kotlinx.html.js.onChangeFunction
 import kotlinx.html.js.onClickFunction
 import net.kodein.charter.KodeinColors
@@ -165,7 +167,7 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
                 borderBottom(0.1.rem, BorderStyle.solid, Color.kodein.cute)
                 padding(3.rem, 0.1.rem, 0.4.rem, 0.1.rem)
 
-                "span" {
+                "label" {
                     fontFamily = KodeinStyles.piconExtended
                     color = KodeinColors.kyzantium
                     width = 7.rem
@@ -197,22 +199,26 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
         }
 
         p("input") {
-            styledSpan {
+            styledLabel {
+                attrs["htmlFor"] = "contact-email"
                 if ("from" in props.bads) css.specific(3) { color = Color.red }
                 +strings.from.first
             }
             input(InputType.email, name = "email") {
+                attrs.id = "contact-email"
                 attrs.placeholder = strings.from.second
                 attrs.onChangeFunction = { props.setFrom((it.target as HTMLInputElement).value) }
             }
         }
 
         p("input") {
-            styledSpan {
+            styledLabel {
+                attrs["htmlFor"] = "contact-object"
                 if ("subject" in props.bads) css.specific(3) { color = Color.red }
                 +strings.subject.first
             }
             input(InputType.text, name = "object") {
+                attrs.id = "contact-object"
                 attrs.placeholder = strings.subject.second
                 attrs.onChangeFunction = {
                     attrs.onChangeFunction = { props.setSubject((it.target as HTMLInputElement).value) }
@@ -221,11 +227,13 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
         }
 
         p("input") {
-            styledSpan {
+            styledLabel {
+                attrs["htmlFor"] = "contact-message"
                 if ("message" in props.bads) css.specific(3) { color = Color.red }
                 +strings.message.first
             }
             textArea {
+                attrs.id = "contact-message"
                 attrs.placeholder = strings.message.second
                 attrs.onChangeFunction = { props.setMessage((it.target as HTMLTextAreaElement).value) }
             }
