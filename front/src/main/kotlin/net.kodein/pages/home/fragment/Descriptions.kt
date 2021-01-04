@@ -203,7 +203,7 @@ private val Illustration = functionalComponent<IllustrationProps>("Illustration"
     useEffectWithCleanup(emptyList()) {
         val onResize: ((Event?) -> Unit) = {
             val divWidth = div.current!!.clientWidth
-            val imgWidth = illustrationWidths.firstOrNull { it >= (divWidth * 1.2) } ?: illustrationWidths.last()
+            val imgWidth = illustrationWidths.firstOrNull { it >= divWidth } ?: illustrationWidths.last()
             image = "${props.image}_${imgWidth}"
         }
         window.addEventListener("resize", onResize)
