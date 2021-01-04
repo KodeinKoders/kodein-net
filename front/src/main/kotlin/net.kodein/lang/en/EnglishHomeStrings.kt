@@ -39,7 +39,7 @@ object EnglishHomeStrings : HomeStrings {
         br{}
         p {
             +"""
-                We can help you validate and boost your development process, 
+                We can help you validate and boost your development process 
                 with technical guidance, architecture or even development support, 
             """.trimIndent()
             span("nowrap") { +"using Kotlin." }

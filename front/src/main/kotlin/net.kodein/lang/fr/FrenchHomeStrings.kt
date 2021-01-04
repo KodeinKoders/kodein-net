@@ -40,7 +40,13 @@ object FrenchHomeStrings : HomeStrings {
             span("nowrap") { +"et votre expertise ?" }
         }
         br{}
-        p { +"Nous pouvons vous aider à valider et améliorer votre process de développement, avec Kotlin." }
+        p {
+            +"""
+                Nous pouvons vous aider à valider et améliorer votre process de développement
+                grâce à du conseil technique, d'architecture, ou de support en développement,
+            """
+            span("nowrap") { +"avec Kotlin." }
+        }
     }
     override val trainingDepartment = HomeStrings.TitledContent("FORMATION") {
         p {
