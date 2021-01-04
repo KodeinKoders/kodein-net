@@ -68,15 +68,39 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
 
     flexColumn {
         css {
-            backgroundColor = Color.kodein.cute
-            flex(flexGrow = 1.0, flexBasis = FlexBasis.zero)
+            position = Position.relative
             zIndex = 100 - index
-            padding(3.rem, 1.rem)
+            flex(flexGrow = 1.0, flexBasis = FlexBasis.zero)
+            padding(4.rem, 2.rem)
+
+            if(props.isLastItem != true) {
+                minWidth(890) {
+                    filter = "drop-shadow(1rem 0 0.5rem ${Color.kodein.kaumon.withAlpha(0.3)})"
+                }
+                maxWidth(889) {
+                    filter = "drop-shadow(0 1rem 0.5rem ${Color.kodein.kaumon.withAlpha(0.3)})"
+                }
+
+                "&:before" {
+                    position = Position.absolute
+                    zIndex = 99 - index
+                    top = 0.px; bottom = 0.px; right = 0.px; left = 0.px
+                    backgroundColor = Color.kodein.cute
+                    content = QuotedString("")
+                    minWidth(890) {
+                        clipPath = "polygon(0 0, 100% 0, 95% 70%, 95% 100%, 0 100%)"
+                    }
+                    maxWidth(889) {
+                        clipPath = "polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 98%)"
+                    }
+                }
+            }
         }
 
         flexColumn {
             css {
                 flexGrow = 1.0
+                zIndex = 100
             }
 
             withBasePath { path ->
@@ -119,77 +143,12 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
 
         styledA(href = props.readMoreLink) {
             css {
+                zIndex = 100
                 +kodein.button
                 alignSelf = Align.flexStart
-                margin(1.rem)
+                margin(vertical = 1.rem)
             }
             +props.description.readMore
-        }
-    }
-
-    if(props.isLastItem != true) {
-        styledDiv {
-            css {
-                flexGrow = 0.25
-                zIndex = 99 - index
-                backgroundColor = Color.kodein.cute
-            }
-
-            styledSvg {
-                css {
-                    maxWidth(889) { display = Display.none }
-
-                    height = dptHeight
-                    flexGrow = 0.25
-                    filter = "drop-shadow(.8rem 0 1.5rem ${Color.kodein.kaumon.withAlpha(0.5)})"
-                    put("clip-path", "polygon(0% 0%, 0% 100%, 500% 100%, 500% 0%)")
-                }
-
-                attrs {
-                    viewBox(0, 0, 6, 100)
-                    preserveAspectRatio = "none"
-                }
-
-                draw {
-                    path(fill = Color.kodein.cute) {
-                        moveTo(0, 0)
-                        verticalLineTo(100)
-                        horizontalLineTo(2)
-                        verticalLineTo(60)
-                        lineTo(6, 0)
-                        closePath()
-                    }
-                }
-            }
-
-            styledSvg {
-                css {
-                    minWidth(890) { display = Display.none }
-
-                    height = dptHeight / 10
-                    width = 100.pct
-                    landscapeMobile { height = dptHeight / 8 }
-                    filter = "drop-shadow(0 1rem 1.5rem ${Color.kodein.kaumon.withAlpha(0.5)})"
-                    put("clip-path", "polygon(0 30%, 100% 30%, 100% 35%, 100% 500%, 0 500%)")
-                }
-
-                attrs {
-                    viewBox(0, 0, 300, 12)
-                    preserveAspectRatio = "none"
-                }
-
-                draw {
-                    // M0,0 H300 V6 L100,4 H0 Z
-                    path(fill = Color.kodein.cute) {
-                        moveTo(0, 0)
-                        horizontalLineTo(300)
-                        verticalLineTo(6)
-                        lineTo(100, 4)
-                        horizontalLineTo(0)
-                        closePath()
-                    }
-                }
-            }
         }
     }
 }
