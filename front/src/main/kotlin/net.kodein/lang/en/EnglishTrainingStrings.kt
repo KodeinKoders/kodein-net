@@ -59,15 +59,14 @@ object EnglishTrainingStrings : TrainingStrings {
         p {
             +"""
                 Thanks to our experience in pedagogy as well as in architecture & development,
-                we have developed a set of training courses & exercises that focuses on providing technical teams the most practical knowledge in mere days.
-                Each notion is always put in perspective with a corresponding coding exercise.
-                We focus on productivity and quality, not only addressing technical notions, but more importantly outlining their best practices.
+                we have developed a set of training courses & exercises that focuses on providing technical teams
             """
-        }
-        p {
+            b { +"the most practical knowledge in mere days" }
+            +"."
+            br {}
             +"""
-                Because Kotlin runs everywhere (Server, Android, iOS, web, embedded, ...), you can train a technical team to intervene at all levels of your architecture stack.
-                This makes members of your team more proactive, but also more communicative since they share a common language.
+                Each notion set is always put in perspective with a corresponding coding exercise.
+                We focus on productivity and quality, not only addressing technical notions, but more importantly outlining their best practices.
             """
         }
     }

@@ -35,7 +35,7 @@ val Departments = functionalComponent<RProps>("Departments") {
         child(Department) {
             attrs.icon = "training"
             attrs.description = strings.trainingDepartment
-            attrs.readMoreLink = "training.html"
+            attrs.readMoreLink = "training.html#description"
         }
 
         child(Department) {

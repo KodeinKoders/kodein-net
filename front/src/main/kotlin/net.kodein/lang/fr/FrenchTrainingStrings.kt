@@ -59,15 +59,14 @@ object FrenchTrainingStrings : TrainingStrings {
         p {
             +"""
                 Grâce à notre expérience en pedagogie ainsi qu'en architecture et développement,
-                nous avons developpé un ensemble de formations et d'exercises permettant à une équipe technique d'intégrer des connaissances pratiques en quelques jours.
-                Chaque notion est toujours mise en perspective avec un exercice de programmation.
-                Nous mettons l'accent sur la productivité et la qualité, développant non seulement les notions techniques, mais aussi et surtout leurs bonnes pratiques.
+                nous avons developpé un ensemble de formations et d'exercises permettant à une équipe technique d'intégrer
             """
-        }
-        p {
+            b { +"des connaissances pratiques en quelques jours" }
+            +"."
+            br {}
             +"""
-                Puisque Kotlin s'utilise dans de nombreux contextes (Serveur, Android, iOS, web, embarqué, ...), vous pouvez former une équipe technique à intervenir à tous les niveaux de votre architecture.
-                Cela permet aux membres de votre équipe d'être non seulement plus proactifs, mais également plus communicants, puisque chacun partage une langue commune.
+                Chaque ensemble de notions est toujours mis en perspective avec un exercice de programmation.
+                Nous mettons l'accent sur la productivité et la qualité, développant non seulement les notions techniques, mais aussi et surtout leurs bonnes pratiques.
             """
         }
     }

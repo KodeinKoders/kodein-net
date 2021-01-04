@@ -1,6 +1,7 @@
 package net.kodein.pages.training.fragment
 
 import kotlinx.css.*
+import kotlinx.html.id
 import net.kodein.charter.kodein
 import net.kodein.components.contentRow
 import net.kodein.components.imageRow
@@ -10,6 +11,7 @@ import net.kodein.utils.flexColumn
 import net.kodein.utils.light
 import net.kodein.utils.maxWidth
 import react.RProps
+import react.dom.div
 import react.functionalComponent
 import styled.css
 import styled.styledH3
@@ -26,6 +28,8 @@ val Description = functionalComponent<RProps>("Description") {
         display = Display.none
         maxWidth(980) { display = Display.flex }
     }
+
+    div { attrs.id = "description" }
 
     contentRow(
         backgroundColor = Color.kodein.kyzantium, indexPosition = 2,
