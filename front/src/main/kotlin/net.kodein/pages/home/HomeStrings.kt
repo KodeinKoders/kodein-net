@@ -10,7 +10,7 @@ interface HomeStrings : PageStrings {
     val subTitle: TextHandler
     val scroll: String
 
-    data class TitledContent(val title: String, val content: TextHandler)
+    data class TitledContent(val title: String, val readMore: String, val content: TextHandler)
 
     val advisoryDepartment: TitledContent
     val trainingDepartment: TitledContent
@@ -20,8 +20,6 @@ interface HomeStrings : PageStrings {
     val humanistDescription: TitledContent
     val openSourceDescription: TitledContent
     val trainingDescription: TitledContent
-
-    val readMore: String
 
     val humansTitle: String
     val humansSubtitle: String

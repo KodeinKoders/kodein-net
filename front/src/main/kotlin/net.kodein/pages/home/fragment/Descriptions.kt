@@ -181,7 +181,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
                         alignSelf = Align.flexStart
                         margin(1.rem, 0.rem)
                     }
-                    +strings.readMore
+                    +props.content.readMore
                 }
             }
         }

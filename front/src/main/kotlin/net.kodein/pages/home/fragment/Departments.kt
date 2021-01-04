@@ -114,7 +114,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
             props.description.content(this)
         }
 
-        a(href = props.readMoreLink) { +strings.readMore }
+        a(href = props.readMoreLink) { +props.description.readMore }
     }
 
     if(props.isLastItem != true) {

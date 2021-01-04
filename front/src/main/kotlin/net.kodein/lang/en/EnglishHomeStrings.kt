@@ -36,7 +36,7 @@ object EnglishHomeStrings : HomeStrings {
 
     override val scroll: String = "SCROLL"
 
-    override val advisoryDepartment = HomeStrings.TitledContent("ADVISORY") {
+    override val advisoryDepartment = HomeStrings.TitledContent("ADVISORY", "CONSULTING SERVICES") {
         p { +"Starting a new project or looking for reinforcement and expertise?" }
         br{}
         p {
@@ -47,7 +47,7 @@ object EnglishHomeStrings : HomeStrings {
             span("nowrap") { +"using Kotlin." }
         }
     }
-    override val trainingDepartment = HomeStrings.TitledContent("TRAINING") {
+    override val trainingDepartment = HomeStrings.TitledContent("TRAINING", "TRAINING PROGRAMS") {
         p { +"Want to give to your team the tools to be even more efficient?" }
         br {}
         p {
@@ -58,15 +58,14 @@ object EnglishHomeStrings : HomeStrings {
 
         }
     }
-    override val developmentDepartment = HomeStrings.TitledContent("DEVELOPMENT") {
+    override val developmentDepartment = HomeStrings.TitledContent("DEVELOPMENT", "PROJECT DEVELOPMENT") {
         p { +"You do not have the resources to take on your next project?" }
         br {}
         p { +"We can help you meet your business expectations by taking care your technical challenges." }
     }
 
-    override val readMore: String = "READ MORE"
 
-    override val kodeinKodersDescription = HomeStrings.TitledContent("Who are the Kodein Koders?") {
+    override val kodeinKodersDescription = HomeStrings.TitledContent("Who are the Kodein Koders?", "OUR SERVICES") {
         p {
             +"""
                 We are tech lovers & experts driven by our passion for Kotlin/Multiplatform.
@@ -85,7 +84,7 @@ object EnglishHomeStrings : HomeStrings {
         }
     }
 
-    override val humanistDescription = HomeStrings.TitledContent("Work for humans") {
+    override val humanistDescription = HomeStrings.TitledContent("Work for humans", "OUR TEAM") {
         p {
             +"""
                 Before companies, we are working with and for persons.
@@ -110,7 +109,7 @@ object EnglishHomeStrings : HomeStrings {
         }
     }
 
-    override val openSourceDescription = HomeStrings.TitledContent("Kodein Framework: Open Source at our core") {
+    override val openSourceDescription = HomeStrings.TitledContent("Kodein Framework: Open Source at our core", "OUR OPEN-SOURCE EFFORT") {
         p {
             +"The "
             b { +"KODEIN" }
@@ -133,7 +132,7 @@ object EnglishHomeStrings : HomeStrings {
         }
     }
 
-    override val trainingDescription = HomeStrings.TitledContent("Training: Jetbrains Certified") {
+    override val trainingDescription = HomeStrings.TitledContent("Training: Jetbrains Certified", "OUR TRAINING PROGRAMS") {
         p {
             +"""
                 The Kotlin language, coroutines asynchronicity, the Kotlin/Multiplatform infrastructure, Kotlin/Native specifics: trying to understand them all can be daunting.
