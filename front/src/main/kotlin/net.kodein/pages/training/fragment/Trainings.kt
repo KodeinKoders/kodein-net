@@ -183,7 +183,7 @@ val Trainings = functionalComponent<RProps>("Trainings") {
                 child(AccordionElement) {
                     attrs {
                         title = course.strings.title
-                        sub = duration(course.strings.duration)
+                        sub = duration(course.strings.duration, strings.duration)
                     }
 
                     course.strings.description(this)
@@ -199,9 +199,13 @@ val Trainings = functionalComponent<RProps>("Trainings") {
     }
 }
 
-private fun duration(duration: String): RBuilder.() -> Unit = {
+private fun duration(duration: String, imageAlt: String): RBuilder.() -> Unit = {
     withBasePath { path ->
-        styledImg(src = "$path/imgs/stopwatch-kaumon.svg") {
+        styledImg(src = "$path/imgs/stopwatch-kaumon.svg", alt = imageAlt) {
+            attrs {
+                width = "16"
+                height = "16"
+            }
             css {
                 width = 1.rem
                 height = 1.rem

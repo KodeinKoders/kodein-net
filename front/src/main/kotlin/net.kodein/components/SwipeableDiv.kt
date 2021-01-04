@@ -1,8 +1,10 @@
 package net.kodein.components
 
+import kotlinext.js.jsObject
 import kotlinx.browser.window
 import kotlinx.css.*
 import kotlinx.css.properties.*
+import net.kodein.useText
 import net.kodein.withBasePath
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLImageElement
@@ -23,6 +25,8 @@ interface SwipeableDivProps : RProps {
 }
 
 val SwipeableDiv = functionalComponent<SwipeableDivProps>("SwipeableDiv") { props ->
+    val globalStrings = useText().global
+
     val div = useRef<HTMLDivElement?>(null)
     val img = useRef<HTMLImageElement?>(null)
 
@@ -57,9 +61,9 @@ val SwipeableDiv = functionalComponent<SwipeableDivProps>("SwipeableDiv") { prop
             }
         }
 
-        div.current!!.addEventListener("touchstart", onTouchStart)
-        div.current!!.addEventListener("touchmove", onTouchMove)
-        div.current!!.addEventListener("touchend", onTouchEnd)
+        div.current!!.addEventListener("touchstart", onTouchStart, jsObject { passive = false })
+        div.current!!.addEventListener("touchmove", onTouchMove, jsObject { passive = false })
+        div.current!!.addEventListener("touchend", onTouchEnd, jsObject { passive = false })
 
         ({
             div.current!!.removeEventListener("touchstart", onTouchStart)
@@ -86,7 +90,7 @@ val SwipeableDiv = functionalComponent<SwipeableDivProps>("SwipeableDiv") { prop
                 swipeIndicatorInView = true
             }
         }
-        window.addEventListener("scroll", onScroll)
+        window.addEventListener("scroll", onScroll, jsObject { passive = true })
         ({ window.removeEventListener("scroll", onScroll) })
     }
 
@@ -104,8 +108,12 @@ val SwipeableDiv = functionalComponent<SwipeableDivProps>("SwipeableDiv") { prop
         }
 
         withBasePath { path ->
-            styledImg(src = "$path/imgs/swipe.svg") {
+            styledImg(src = "$path/imgs/swipe.svg", alt = globalStrings.swipe) {
                 ref = img
+                attrs {
+                    width = "45"
+                    height = "45"
+                }
                 css {
                     props.indicatorCss?.invoke(this)
                     position = Position.absolute

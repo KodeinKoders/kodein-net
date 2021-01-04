@@ -200,7 +200,11 @@ private val EntryBlock = functionalComponent<EntryBlockProps> { props ->
                 }
             }
         }
-        styledImg(src = props.entry.image) {
+        styledImg(src = props.entry.image, alt = props.entry.title) {
+            attrs {
+                width = "100%"
+                height = "100%"
+            }
             css {
                 width = 100.pct
                 height = 100.pct

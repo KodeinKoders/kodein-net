@@ -1,5 +1,6 @@
 package net.kodein.pages.home.fragment
 
+import kotlinext.js.jsObject
 import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.css.*
@@ -215,6 +216,7 @@ private interface HeaderTextProps : HeaderProps {
 
 private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { props ->
     val strings = useText().home
+    val globalStrings = useText().global
 
     flexColumn(justifyContent = JustifyContent.center, alignItems = Align.flexStart) {
         css {
@@ -303,7 +305,11 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
             }
 
             withBasePath { path ->
-                styledImg(src = "$path/imgs/logo-kaumon.svg") {
+                styledImg(src = "$path/imgs/logo-kaumon.svg", alt = globalStrings.kodeinLogo) {
+                    attrs {
+                        width = "24"
+                        height = "24"
+                    }
                     css {
                         width = 1.5.rem
                         height = 1.5.rem
@@ -516,7 +522,7 @@ private val ScrollIndicator = functionalComponent<HeaderProps>("ScrollIndicator"
         val scroll = EventListener {
             isTop = window.scrollY < 1.0
         }
-        window.addEventListener("scroll", scroll)
+        window.addEventListener("scroll", scroll, jsObject { passive = true })
         ({ window.removeEventListener("scroll", scroll) })
     }
 
@@ -536,7 +542,11 @@ private val ScrollIndicator = functionalComponent<HeaderProps>("ScrollIndicator"
                 marginBottom = .5.em
             }
             withBasePath { path ->
-                styledImg(src = "$path/imgs/pointer-${if (isMobile) "hand" else "mouse"}-korail.svg") {
+                styledImg(src = "$path/imgs/pointer-${if (isMobile) "hand" else "mouse"}-korail.svg", alt = strings.scroll.toLowerCase().capitalize()) {
+                    attrs {
+                        width = "36"
+                        height = "36"
+                    }
                     ref = img
                     css {
                         height = 2.em

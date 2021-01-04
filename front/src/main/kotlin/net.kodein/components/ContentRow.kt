@@ -209,7 +209,11 @@ private val ContentRowIllustration = functionalComponent<ContentRowIllustrationP
                     source("image/webp", "$path/imgs/illus/$image.webp" to null)
                     source("image/jpeg", "$path/imgs/illus/$image.jpg" to null)
 
-                    styledImg(alt = image, src = "$path/imgs/illus/$image.jpg") {
+                    styledImg(src = "$path/imgs/illus/$image.jpg", alt = image) {
+                        attrs {
+                            width = "100%"
+                            height = "100%"
+                        }
                         css {
                             width = 100.pct
                             height = 100.pct

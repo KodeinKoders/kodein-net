@@ -34,6 +34,7 @@ fun getHtml(page: Page, lang: Language, mode: Mode): String {
     }
 
     return createHTML().html {
+        this.lang = lang.id
         head {
             meta("charset", "UTF-8")
             meta("viewport", "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no")

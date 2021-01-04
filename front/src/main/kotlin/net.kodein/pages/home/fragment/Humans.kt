@@ -8,10 +8,7 @@ import kotlinx.html.classes
 import net.kodein.charter.kodein
 import net.kodein.components.SwipeableDiv
 import net.kodein.useText
-import net.kodein.utils.flexColumn
-import net.kodein.utils.flexRow
-import net.kodein.utils.hairline
-import net.kodein.utils.maxWidth
+import net.kodein.utils.*
 import net.kodein.withBasePath
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.events.Event
@@ -65,7 +62,7 @@ val Humans = functionalComponent<RProps>("Humans") {
 val humans = listOf(
         HumanProps(
             personName = "Fabrice Drouin",
-            personPicture = "fabrice-drouin.jpeg",
+            personPicture = "fabrice-drouin",
             personJob = "Founder & CTO",
             personUrl = "https://www.linkedin.com/in/fabrice-drouin-95ab8012",
             companyName = "ACINQ",
@@ -74,7 +71,7 @@ val humans = listOf(
         ),
         HumanProps(
             personName = "Thalia Cruz Castañares",
-            personPicture = "thalia-cruz.jpg",
+            personPicture = "thalia-cruz",
             personJob = "Android team manager",
             personUrl = "https://www.linkedin.com/in/thal%C3%ADa-cruz-casta%C3%B1ares-a1257a3a",
             companyName = "Softbank Robotics",
@@ -83,7 +80,7 @@ val humans = listOf(
         ),
         HumanProps(
             personName = "Jochen Buhler",
-            personPicture = "jochen-buhler.jpg",
+            personPicture = "jochen-buhler",
             personJob = "Software Engineer",
             personUrl = "https://www.xing.com/profile/Jochen_Buehler8",
             companyName = "Bosch",
@@ -92,7 +89,7 @@ val humans = listOf(
         ),
         HumanProps(
             personName = "Cedric Ravalec",
-            personPicture = "cedric-ravalec.jpeg",
+            personPicture = "cedric-ravalec",
             personJob = "Embedded & IoT Business Line Manager",
             companyName = "Smile",
             companyLogo = "smile.png",
@@ -331,39 +328,57 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                     width = 100.pct
                     height = 10.rem
                 }
-                styledImg(src = "$path/imgs/humans/${props.personPicture}") {
-                    attrs.classes += "background-pic"
-                    css {
-                        width = 20.rem + 3.rem
-                        height = 10.rem + 3.rem
-                        marginLeft = (-1.5).rem
-                        marginTop = (-1.5).rem
-                        objectFit = ObjectFit.cover
-                        filter = "blur(1rem)"
-                        opacity = 0.4
-                        transition(::width, 0.6.s)
-                        transition(::height, 0.6.s)
-                        transition(::marginLeft, 0.6.s)
-                        transition(::marginTop, 0.6.s)
+                picture {
+                    source("image/webp", "$path/imgs/humans/${props.personPicture}.webp" to null)
+                    source("image/jpeg", "$path/imgs/humans/${props.personPicture}.jpg" to null)
+
+                    styledImg(src = "$path/imgs/humans/${props.personPicture}.jpg", alt = props.personName) {
+                        attrs.classes += "background-pic"
+                        attrs {
+                            width = "345"
+                            height = "195"
+                        }
+
+                        css {
+                            width = 20.rem + 3.rem
+                            height = 10.rem + 3.rem
+                            marginLeft = (-1.5).rem
+                            marginTop = (-1.5).rem
+                            objectFit = ObjectFit.cover
+                            filter = "blur(1rem)"
+                            opacity = 0.4
+                            transition(::width, 0.6.s)
+                            transition(::height, 0.6.s)
+                            transition(::marginLeft, 0.6.s)
+                            transition(::marginTop, 0.6.s)
+                        }
                     }
                 }
             }
-            styledImg(src = "$path/imgs/humans/${props.personPicture}", alt = props.personName) {
-                attrs.classes += "profile-pic"
-                css {
-                    position = Position.absolute
-                    left = 50.pct - 5.rem
-                    top = 10.rem - 5.rem
-                    width = 10.rem
-                    height = 10.rem
-                    objectFit = ObjectFit.cover
-                    borderRadius = 5.rem
-                    zIndex = 1
-                    transition(::width, 0.6.s)
-                    transition(::height, 0.6.s)
-                    transition(::left, 0.6.s)
-                    transition(::top, 0.6.s)
-                    transition(::borderRadius, 0.6.s)
+            picture {
+                source("image/webp", "$path/imgs/humans/${props.personPicture}.webp" to null)
+                source("image/jpeg", "$path/imgs/humans/${props.personPicture}.jpg" to null)
+                styledImg(src = "$path/imgs/humans/${props.personPicture}.jpg", alt = props.personName) {
+                    attrs.classes += "profile-pic"
+                    attrs {
+                        width = "150"
+                        height = "150"
+                    }
+                    css {
+                        position = Position.absolute
+                        left = 50.pct - 5.rem
+                        top = 10.rem - 5.rem
+                        width = 10.rem
+                        height = 10.rem
+                        objectFit = ObjectFit.cover
+                        borderRadius = 5.rem
+                        zIndex = 1
+                        transition(::width, 0.6.s)
+                        transition(::height, 0.6.s)
+                        transition(::left, 0.6.s)
+                        transition(::top, 0.6.s)
+                        transition(::borderRadius, 0.6.s)
+                    }
                 }
             }
             styledH3 {
@@ -392,8 +407,12 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
                 }
             }
             a(href = props.companyUrl, target = "_blank") {
-                styledImg(src = "$path/imgs/logos/${props.companyLogo}") {
+                styledImg(src = "$path/imgs/logos/${props.companyLogo}", alt = props.companyName) {
                     attrs.classes += "logo"
+                    attrs {
+                        width = "120"
+                        height = "60"
+                    }
                     css {
                         width = 8.em
                         height = 4.em

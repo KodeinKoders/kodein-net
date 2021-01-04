@@ -1,6 +1,7 @@
 package net.kodein.lang
 
 import net.kodein.components.FooterStrings
+import net.kodein.components.strings.GlobalStrings
 import net.kodein.components.strings.MenuStrings
 import net.kodein.pages.blog.BlogStrings
 import net.kodein.pages.contact.ContactStrings
@@ -23,4 +24,5 @@ interface Strings {
     val training: TrainingStrings
     val credits: CreditsStrings
     val footer: FooterStrings
+    val global: GlobalStrings
 }

@@ -26,7 +26,11 @@ object EnglishTrainingStrings : TrainingStrings {
             +"JetBrains Certified Trainers."
             br {}
             withBasePath { path ->
-                styledImg(src = "$path/imgs/badge-orange.svg") {
+                styledImg(src = "$path/imgs/badge-orange.svg", alt = "Certification logo") {
+                    attrs {
+                        width = "150"
+                        height = "150"
+                    }
                     css {
                         width = 10.rem
                         height = 10.rem
@@ -59,15 +63,14 @@ object EnglishTrainingStrings : TrainingStrings {
         p {
             +"""
                 Thanks to our experience in pedagogy as well as in architecture & development,
-                we have developed a set of training courses & exercises that focuses on providing technical teams the most practical knowledge in mere days.
-                Each notion is always put in perspective with a corresponding coding exercise.
-                We focus on productivity and quality, not only addressing technical notions, but more importantly outlining their best practices.
+                we have developed a set of training courses & exercises that focuses on providing technical teams
             """
-        }
-        p {
+            b { +"the most practical knowledge in mere days" }
+            +"."
+            br {}
             +"""
-                Because Kotlin runs everywhere (Server, Android, iOS, web, embedded, ...), you can train a technical team to intervene at all levels of your architecture stack.
-                This makes members of your team more proactive, but also more communicative since they share a common language.
+                Each notion set is always put in perspective with a corresponding coding exercise.
+                We focus on productivity and quality, not only addressing technical notions, but more importantly outlining their best practices.
             """
         }
     }
@@ -145,5 +148,7 @@ object EnglishTrainingStrings : TrainingStrings {
             This training is for those who want to create web UIs while still using the structured & safe language they know and love: Kotlin!
         """
     }
+
+    override val duration = "Duration"
 
 }

@@ -21,4 +21,6 @@ interface TrainingStrings {
     val courseNative: CourseStrings
     val courseKtor: CourseStrings
     val courseReact: CourseStrings
+
+    val duration: String
 }

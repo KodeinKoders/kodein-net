@@ -2,6 +2,7 @@ package net.kodein.pages.team.fragment
 
 import kotlinx.browser.window
 import kotlinx.css.*
+import kotlinx.css.properties.border
 import net.kodein.charter.kodein
 import net.kodein.components.ContactUsProps
 import net.kodein.pages.team.MemberStrings
@@ -84,20 +85,31 @@ private val Member = functionalComponent<MemberProps>("Member") { props ->
     flexColumn {
         ref = div
 
-        withBasePath { path ->
-            picture {
-                source("image/webp", "$path/imgs/team/$image.webp" to null)
-                source("image/jpeg", "$path/imgs/team/$image.jpg" to null)
+        styledDiv {
+            css {
+                width = 100.pct
+                height = 50.vw * 0.66
+                minHeight = 20.rem
+                maxHeight = 40.rem
+                maxSizeStrict(980) { height = 20.rem }
+            }
+            withBasePath { path ->
+                picture {
+                    source("image/webp", "$path/imgs/team/$image.webp" to null)
+                    source("image/jpeg", "$path/imgs/team/$image.jpg" to null)
 
-                styledImg(alt = image, src = "$path/imgs/team/$image.jpg") {
-                    css {
-                        width = 100.pct
-                        objectFit = ObjectFit.cover
-                        objectPosition = props.member.photo.second
-                        minHeight = 20.rem
-                        maxHeight = 40.rem
+                    styledImg(src = "$path/imgs/team/$image.jpg", alt = props.member.name) {
+                        attrs {
+                            width = "100%"
+                            height = "100%"
+                        }
 
-                        maxSizeStrict(980) { height = 20.rem }
+                        css {
+                            width = 100.pct
+                            height = 100.pct
+                            objectFit = ObjectFit.cover
+                            objectPosition = props.member.photo.second
+                        }
                     }
                 }
             }

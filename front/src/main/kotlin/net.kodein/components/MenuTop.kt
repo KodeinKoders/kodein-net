@@ -1,5 +1,6 @@
 package net.kodein.components
 
+import kotlinext.js.jsObject
 import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.css.*
@@ -67,18 +68,18 @@ val MenuTop = functionalComponent<MenuTopProps>("MenuTop") { props ->
 
     useEffectWithCleanup {
         val onTouchmove = EventListener { it.preventDefault() }
-        menuContainer.current!!.addEventListener("touchmove", onTouchmove)
+        menuContainer.current!!.addEventListener("touchmove", onTouchmove, jsObject { passive = false })
         ({ menuContainer.current!!.removeEventListener("touchmove", onTouchmove) })
     }
 
     if (props.animated) {
         useEffectWithCleanup {
-            val scroll = EventListener {
+            val onScroll = EventListener {
                 val top = menuContainer.current!!.getBoundingClientRect().top.toInt()
                 isTop = top != 0
             }
-            window.addEventListener("scroll", scroll)
-            ({ window.removeEventListener("scroll", scroll) })
+            window.addEventListener("scroll", onScroll, jsObject { passive = true })
+            ({ window.removeEventListener("scroll", onScroll) })
         }
     }
 
@@ -175,6 +176,7 @@ interface MenuContentProps : RProps{
 }
 
 val MenuContent = functionalComponent<MenuContentProps>("MenuContent") { props ->
+    val globalStrings = useText().global
 
     var isMobile by useState(false)
 
@@ -226,6 +228,7 @@ val MenuContent = functionalComponent<MenuContentProps>("MenuContent") { props -
             child(KodeinLogo) {
                 attrs {
                     logo = if(props.isMobileMenuOpen && isMobile) "purple-fat" else  "orange-fat"
+                    logoAlt = globalStrings.kodeinLogo
                     bold = "KODEIN"
                     light = "Koders"
                     color = if(props.isMobileMenuOpen && isMobile) Color.kodein.purple else  Color.kodein.orange
