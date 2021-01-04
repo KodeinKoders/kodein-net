@@ -10,16 +10,14 @@ import react.RProps
 import react.child
 import react.dom.a
 import react.functionalComponent
-import styled.css
-import styled.styledDiv
-import styled.styledImg
-import styled.styledSvg
+import styled.*
 
 val Departments = functionalComponent<RProps>("Departments") {
     val strings = useText().home
 
     flexRow {
         css {
+            backgroundColor = Color.kodein.cute
             maxWidth(889) {
                 display = Display.block
                 flexDirection = FlexDirection.column
@@ -61,23 +59,14 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
 
     flexColumn {
         css {
-            backgroundColor = Color.kodein.cute
+//            backgroundColor = Color.kodein.cute
             flex(flexGrow = 1.0, flexBasis = FlexBasis.zero)
             padding(5.rem, 3.rem)
 
             minWidth(890) { height = dptHeight - 5.em * 2 }
-            maxWidth(889) {
-                padding(2.rem)
-            }
-
-            "a" {
-                +kodein.button
-                alignSelf = Align.flexStart
-                margin(1.rem)
-            }
-            "span.nowrap" {
-                whiteSpace = WhiteSpace.nowrap
-            }
+            maxWidth(1280) { padding(5.rem, 1.rem) }
+            maxWidth(1024) { padding(2.rem, 1.rem) }
+            maxWidth(889) { padding(2.rem) }
         }
 
         withBasePath { path ->
@@ -87,6 +76,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                     height = "38"
                 }
                 css {
+                    flexGrow = 1.0
                     width = 3.em
                     padding(0.rem, 0.rem, 1.rem, 3.rem)
                 }
@@ -95,6 +85,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
 
         styledDiv {
             css {
+                flexGrow = 1.0
                 color = Color.kodein.purple
                 +kodein.display1
                 specific { textAlign = TextAlign.start }
@@ -105,21 +96,38 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
 
         styledDiv {
             css {
+                flexGrow = 1.0
                 color = Color.kodein.orange
                 +kodein.body
                 padding(0.5.rem, 0.5.rem)
-                minHeight = 60.pct
-                maxWidth(889) { height = 5.rem }
+                minHeight = 55.pct
+
+                maxWidth(1280) { minHeight = 65.pct }
+                maxWidth(1024) { minHeight = 80.pct }
+
+                "span.nowrap" {
+                    whiteSpace = WhiteSpace.nowrap
+                }
             }
             props.description.content(this)
         }
 
-        a(href = props.readMoreLink) { +strings.readMore }
+        styledA(href = props.readMoreLink) {
+            css {
+                +kodein.button
+                flexGrow = 1.0
+                alignSelf = Align.flexStart
+                margin(1.rem)
+            }
+
+            +strings.readMore
+        }
     }
 
     if(props.isLastItem != true) {
         styledDiv {
             css {
+                flexGrow = .1
                 backgroundColor = Color.kodein.cute
             }
 
