@@ -457,12 +457,14 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
                 }
                 appLanguages.forEachIndexed { index, language ->
                     if (index != 0) {
-                        styledA {
+                        styledSpan {
                             css {
+                                padding(horizontal = 0.8.em)
                                 specific {
-                                    cursor = Cursor.text
-                                    textDecoration = TextDecoration.none
-                                    if (props.isMobile) margin(horizontal = 0.3.rem)
+                                    if (props.isMobile) {
+                                        padding(horizontal = 0.em)
+                                        margin(horizontal = 0.3.rem)
+                                    }
                                 }
                             }
                             +"/"
@@ -470,14 +472,9 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
                     }
 
                     if (language.id == data.language.id) {
-                        styledA {
+                        styledSpan {
                             css {
                                 opacity = 0.5
-                                specific {
-                                    padding(0.em)
-                                    cursor = Cursor.text
-                                    textDecoration = TextDecoration.none
-                                }
                             }
                             +language.id.toUpperCase()
                         }

@@ -120,7 +120,7 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                 margin(1.rem)
             }
 
-            +strings.readMore
+            +props.description.readMore
         }
     }
 
