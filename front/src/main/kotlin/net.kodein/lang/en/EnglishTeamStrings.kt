@@ -53,7 +53,7 @@ object EnglishTeamStrings  : TeamStrings {
             p {
                 +"You want to work with Kotlin everywhere it goes: Android, iOS, Server, even maybe Web/JS."
                 br {}
-                +"You want develop tools & libraries that will advance the state of the art of mobile multiplatform programming."
+                +"You want to develop tools & libraries that will advance the state of the art of mobile multiplatform programming."
                 br {}
                 +"You want to work on different projects and help create tailored applications."
             }

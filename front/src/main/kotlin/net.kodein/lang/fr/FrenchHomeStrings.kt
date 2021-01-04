@@ -74,7 +74,7 @@ object FrenchHomeStrings : HomeStrings {
             br {}
             +"""
                 Grâce à cette technologie, nous développons des applications complexes et partageons le code significatif entre les platformes,
-                que ce soit le serveur backend (basé sur Spring ou Ktor) ou les multiples frontends (Android, iOS, Desktop, Web).
+                que ce soit le backend (basé sur Spring ou Ktor) ou les multiples frontends (Android, iOS, Desktop, Web).
             """
         }
         p {
@@ -92,9 +92,9 @@ object FrenchHomeStrings : HomeStrings {
                 Nous sommes fiers des partenariats que nous avons créé avec chacun d'entre eux.
             """
             br {}
-            +"""
-                Nous promouvons les valeures humanistes qui régissent notre travail et nos relations, aussi bien chez Kodein Koders qu'avec nos clients.
-            """
+            +"Nous promouvons les valeures humanistes qui régissent notre travail et nos relations, aussi bien chez "
+            span("nowrap") { +"Kodein Koders" }
+            +" qu'avec nos clients."
         }
         p {
             +"""
@@ -125,9 +125,10 @@ object FrenchHomeStrings : HomeStrings {
             +"""
                 Nous sommes convaincu qu'open-sourcer les composants non critiques pour le métier ainsi que contribuer aux projets open-source existants mène à de meilleurs logiciels.
             """
-            br {}
+        }
+        p {
             +"""
-                Kodein Koders est lourdement investi dans l'utilisation et la contribution à des initiatives Open Source.
+                Kodein Koders est énormément investi dans l'utilisation et la contribution à des initiatives Open Source.
                 Le langage Kotlin language et sa runtime ainsi que le Kodein Framework : tout est ouvert !
             """
         }
@@ -144,7 +145,7 @@ object FrenchHomeStrings : HomeStrings {
             +"Koders"
             +"""
                 est la première société Européenne à être certifiée par JetBrains pour ses formations Kotlin.
-                Elle est maintenant le premier fourniseeur de formations en Europe spécialisée sur les technologies Kotlin/Multiplatform. 
+                Elle est maintenant le premier fournisseur de formations en Europe spécialisé sur les technologies Kotlin/Multiplatform. 
             """
         }
         p {

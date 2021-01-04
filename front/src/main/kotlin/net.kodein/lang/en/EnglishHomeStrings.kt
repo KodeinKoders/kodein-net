@@ -37,12 +37,13 @@ object EnglishHomeStrings : HomeStrings {
     override val advisoryDepartment = HomeStrings.TitledContent("ADVISORY") {
         p { +"Starting a new project or looking for reinforcement and expertise?" }
         br{}
-        p { +"""
+        p {
+            +"""
                 We can help you validate and boost your development process, 
                 with technical guidance, architecture or even development support, 
             """.trimIndent()
+            span("nowrap") { +"using Kotlin." }
         }
-        p { +"using Kotlin." }
     }
     override val trainingDepartment = HomeStrings.TitledContent("TRAINING") {
         p { +"Want to give to your team the tools to be even more efficient?" }

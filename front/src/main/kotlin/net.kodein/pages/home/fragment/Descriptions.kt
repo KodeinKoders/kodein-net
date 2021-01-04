@@ -70,6 +70,8 @@ private interface DescriptionProps : RProps {
 }
 
 private val Description = functionalComponent<DescriptionProps>("Description") { props ->
+    val strings = useText().home
+
     flexRow {
         val slant = 4
         css {
@@ -164,6 +166,9 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
                         "p" {
                             paddingBottom = 0.6.rem
                         }
+                        "span.nowrap" {
+                            whiteSpace = WhiteSpace.nowrap
+                        }
                     }
 
                     props.content.content(this)
@@ -175,7 +180,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
                         alignSelf = Align.flexStart
                         margin(1.rem, 0.rem)
                     }
-                    +"READ MORE"
+                    +strings.readMore
                 }
             }
         }
