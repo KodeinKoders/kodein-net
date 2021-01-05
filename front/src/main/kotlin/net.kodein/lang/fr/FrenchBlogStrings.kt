@@ -24,7 +24,7 @@ object FrenchBlogStrings : BlogStrings {
             br {}
             br {}
 
-            +"""Lorsque nous acquierons de nouvelles expériences, découvrons de nouveaux horizons,
+            +"""Lorsque nous acquérons de nouvelles expériences, découvrons de nouveaux horizons,
                 |ou créons des outils, nous écrivons un article """.trimMargin()
             span("nowrap") { +" ou tournons une vidéo." }
 

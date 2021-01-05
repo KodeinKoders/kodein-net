@@ -13,7 +13,7 @@ object FrenchTeamStrings : TeamStrings {
     override val pageTitle: String = "L'équipe"
 
     override val cover: CoverStrings = object : CoverStrings {
-        override val overTitle: TextHandler = { +"Nous sommes humains" }
+        override val overTitle: TextHandler = { +"nous sommes humains" }
         override val title: TextHandler = { +"Animés par notre passion pour Kotlin." }
         override val chapo: TextHandler = {}
     }
@@ -22,7 +22,7 @@ object FrenchTeamStrings : TeamStrings {
         bio = {
             p {
                 +"""
-                    Salomon programme depuis plus de 20 ans (il a commencé à l'âge de 12 ans), et travaille sur des applications on mobiles depuis que les smartphones existent.
+                    Salomon programme depuis plus de 20 ans (il a commencé à l'âge de 12 ans), et travaille sur des applications mobiles depuis que les smartphones existent.
                     Profondément ancré dans la philosophie Open Source, il aime créer des outils et librairies, contribuant toujours à l'état de l'art de l'industrie.
                     Il est toujours à l'affut du futur de la programmation, et a contribué à Kotlin & Kotlin/Native dès leur création.
                 """
@@ -39,7 +39,7 @@ object FrenchTeamStrings : TeamStrings {
             p {
                 +"""Romain code depuis presque 15 ans. 
                     |Il a d'abord travaillé sur des architectures serveur en Java, puis en Kotlin dès les premières versions. 
-                    |Il a une nouvelle corde à son arc depuis la KotlinConf 2018, oú il a rencontré Salomon et commencé à 
+                    |Il a une nouvelle corde à son arc depuis la KotlinConf 2018, où il a rencontré Salomon et commencé à 
                     |contribuer a Kodein-DI, la toute première librairie communautaire Kotlin/Multiplatform.
                 """.trimMargin()
             }
@@ -54,7 +54,7 @@ object FrenchTeamStrings : TeamStrings {
     override val jobs: List<JobDescription> = listOf(
         JobDescription("Développeur Kotlin/Multiplatform") {
             p {
-                +"Tu veux travailler avec Kotlin partout où il existe: Android, iOS, Serveur, peut-être même Web/JS."
+                +"Tu veux travailler avec Kotlin partout où il existe : Android, iOS, Serveur, peut-être même Web/JS."
                 br {}
                 +"Tu veux développer des outils & librairies qui font progresser l'état de l'art du développement mobile multiplateforme."
                 br {}
@@ -77,7 +77,7 @@ object FrenchTeamStrings : TeamStrings {
                 br {}
                 +"Tu veux attaquer le marché par le bas : parler aux dévelopeurs pour qu'ils convainquent eux-mêmes leur management."
                 br {}
-                +"Tu veux créer avec nous la renomée d'un centre d'excellence européen dans le développement d'applications mobiles."
+                +"Tu veux créer avec nous la renommée d'un centre d'excellence européen dans le développement d'applications mobiles."
             }
             br {}
             p {

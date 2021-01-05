@@ -48,7 +48,7 @@ object FrenchOssStrings : OssStrings {
     override val layerKF_MVI: String = "Conduite des vues"
     override val layerKX_Coroutines: String = "Coroutines"
     override val layerKX_Atomic: String = "Opérations Atomiques"
-    override val layerKX_Serialization: String = "Serialisation"
+    override val layerKX_Serialization: String = "Sérialisation"
     override val layerKX_Platform: String = "APIs des plateformes"
     override val layerLow: TextHandler = { +"Android, iOS & Web bas niveau" }
 
@@ -64,7 +64,7 @@ object FrenchOssStrings : OssStrings {
     }
     override val onionLayerAndroid: TextHandler = {
         +"""
-            Kotlin est le langage de développent officiel pour Android depuis 2019.
+            Kotlin est le langage de développement officiel pour Android depuis 2019.
             Kotlin/Multiplatform et le Kodein Framework s'intègrent nativement dans Android.
             Les apps multiplateformes Android ne sont en réalité que des apps Android, avec une UI et une intégration native.
         """
@@ -72,27 +72,27 @@ object FrenchOssStrings : OssStrings {
     override val onionLayerDesktop: TextHandler = {
         +"""
             Si vous avez besoin de la puissance d'un ordinateur, Kotlin et le Kodein Framework sont là pour vous.
-            Tous les outils Open Source du Kodein Framework que nous développons sont également compatible avec les JVMs "desktop" (Linux, MacOS, Windows).
+            Tous les outils Open Source du Kodein Framework que nous développons sont également compatibles avec les JVMs "desktop" (Linux, MacOS, Windows).
         """
     }
     override val onionLayerIos: TextHandler = {
         +"""
-            Le language Kotlin est non seulement proche de Swift (le language iOS natif), il s'y intègre aussi aisément.
-            Le Kodein Framework fournis des outils faciles à utiliser aussi bien dans une librairie multiplateforme, que dans le contexte d'une app iOS.
+            Le langage Kotlin est non seulement proche de Swift (le langage iOS natif), il s'y intègre aussi aisément.
+            Le Kodein Framework fournit des outils faciles à utiliser aussi bien dans une librairie multiplateforme, que dans le contexte d'une app iOS.
             Les apps multiplatformes iOS ne sont en réalité que des apps iOS, avec une UI et une intégration native.
         """
     }
     override val onionLayerJs: TextHandler = {
         +"""
             Javascript fut la deuxième plateforme majeure ciblée par Kotlin (dès la version 1.1).
-            L'équipe Kotlin fournis un ensemble d'outils permettant de partager facilement du code métier avec JavaScript.
+            L'équipe Kotlin fournit un ensemble d'outils permettant de partager facilement du code métier avec JavaScript.
         """
     }
     override val onionLayerJvm: TextHandler = {
         +"""
             La "Java Virtual Machine" est la cible historique du premier compilateur Kotlin.
-            Grâce à la JVM, Kotlin assure non seulement la compatibilité avec Android et les JVMs "desktop" ou serveur;
-            mais profite également de plus d'une dixiaine d'années d'opimisation, de recherche en sécuritè, et d'amélioration de stabilité.
+            Grâce à la JVM, Kotlin assure non seulement la compatibilité avec Android et les JVMs "desktop" ou serveur ;
+            mais profite également de plus d'une dizaine d'années d'opimisation, de recherche en sécurité, et d'amélioration de stabilité.
         """
     }
     override val onionLayerKodein: TextHandler = {
@@ -104,14 +104,14 @@ object FrenchOssStrings : OssStrings {
     }
     override val onionLayerKotlin: TextHandler = {
         +"""
-            Le language Kotlin est la "lingua franca" du développement multiplateforme.
-            KotlinX de Jetbrains propose de nombreuses librairies multiplateformes nécéssaires au développement bas niveau, comme la concurence, l'atomicité, la serialisation, etc.
-            Le Kodein Framework réutilise autant que possible ces primitives, s'integrant ainsi nativement dans l'écosystème Kotlin/Multiplatform.
+            Le langage Kotlin est la "lingua franca" du développement multiplateforme.
+            KotlinX de Jetbrains propose de nombreuses librairies multiplateformes nécéssaires au développement bas niveau, comme la concurrence, l'atomicité, la sérialisation, etc.
+            Le Kodein Framework réutilise autant que possible ces primitives, s'intégrant ainsi nativement dans l'écosystème Kotlin/Multiplatform.
         """
     }
     override val onionLayerNative: TextHandler = {
         +"""
-            Kotlin/Native est le compilateur Kotlin qui produit des exécutables natifs pour de multiples cibles (iOS etant l'une d'entre elles).
+            Kotlin/Native est le compilateur Kotlin qui produit des exécutables natifs pour de multiples cibles (iOS étant l'une d'entre elles).
             Bien qu'étant une toute nouvelle technologie, de nombreuses grandes entreprises utilisent déjà Kotlin/Native pour compiler du code métier commun.
         """
     }

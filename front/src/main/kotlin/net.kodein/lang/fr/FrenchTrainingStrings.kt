@@ -45,7 +45,7 @@ object FrenchTrainingStrings : TrainingStrings {
             +"""
                 Nous proposons des formations et workshops pour entreprises et évenements à travers le monde,
                 comme les conférences Kotlin/Everywhere Paris et KotlinConf'19.
-                Nous fournissons des formations sur les diffèrents niveaux & cibles de Kotlin.
+                Nous fournissons des formations sur les différents niveaux & cibles de Kotlin.
             """
         }
     }
@@ -59,7 +59,7 @@ object FrenchTrainingStrings : TrainingStrings {
             +"Parce-que chaque équipe est unique en sa composition, son historique, et ses objectifs, "
             b { +"chaque workshop est taillé sur mesure" }
             +" pour les besoins spécifiques de l'équipe addressée, rendant ainsi chaque formation "
-            b { +"unique à son client" }
+            b { +"unique à son destinataire" }
             +"."
         }
         p {
@@ -80,7 +80,7 @@ object FrenchTrainingStrings : TrainingStrings {
     override val trainingTitle: TextHandler = { +"Voici quelques programmes de formations." }
 
     override val courseCoroutines = TrainingStrings.CourseStrings(
-        "Concurence structurée avec les coroutines de Kotlin",
+        "Concurrence structurée avec les coroutines de Kotlin",
         "1 jour",
     ) {
         +"""
@@ -90,21 +90,21 @@ object FrenchTrainingStrings : TrainingStrings {
     }
 
     override val courseAdvanced = TrainingStrings.CourseStrings(
-        "Kotlin avancé pour le développement de librarie et de SDK",
+        "Kotlin avancé pour le développement de librairie et de SDK",
         "2 jours",
     ) {
         +"""
-            Kotlin propose beaucoup de fonctionalités de languages avancés, typiquement utilisées par les développeurs de librairies, leur permettant de fournir aux développeurs applicatifs de puissants outils.
+            Kotlin propose beaucoup de fonctionalités de langages avancés, typiquement utilisées par les développeurs de librairies, leur permettant de fournir aux développeurs applicatifs de puissants outils.
             Découvrez ces fonctionalités avancées, et maîtrisez les pour créer des APIs Kotlin élégantes et puissantes.
         """
     }
 
     override val courseIos = TrainingStrings.CourseStrings(
-        "Le language Kotlin pour les développeurs iOS",
+        "Le langage Kotlin pour les développeurs iOS",
         "1 jour",
     ) {
         +"""
-            La syntaxe Kotlin est très similaire à celle de Swift, mais leurs philosophies divergent sur plusieurs points.
+            La syntaxe de Kotlin est très similaire à celle de Swift, mais leurs philosophies divergent sur plusieurs points.
             Cette formation est destinée aux développeurs Swift iOS qui souhaitent pouvoir intervenir sur un projet Kotlin/Multiplatform.
         """
     }
@@ -115,12 +115,12 @@ object FrenchTrainingStrings : TrainingStrings {
     ) {
         +"""
             Partagez du code métier et comportemental significatif entre vos apps Android & iOS, tout en conservant leurs vues natives & spècifiques. Quel rêve !
-            Apprenez comment implémenter ce rêve, comment architecturer votre application en conséquence, et comment communiquer proprement entre un noyeau partagé et une UI native.
+            Apprenez comment implémenter ce rêve, comment architecturer votre application en conséquence, et comment communiquer proprement entre un noyau partagé et une UI native.
         """
         small {
-            +"""Nécéssite: "Concurence structurée avec les coroutines de Kotlin""""
+            +"""Nécéssite: "Concurrence structurée avec les coroutines de Kotlin""""
             br {}
-            + """et éventuellement "Le language Kotlin pour les développeurs iOS".""""
+            + """et éventuellement "Le langage Kotlin pour les développeurs iOS".""""
         }
     }
 
@@ -129,20 +129,20 @@ object FrenchTrainingStrings : TrainingStrings {
         "1 jour",
     ) {
         +"""
-            Kotlin/Native est le compilateur Kotlin qui produit des exécutables natifs pour de multiples cibles (iOS etant l'une d'entre elles).
+            Kotlin/Native est le compilateur Kotlin qui produit des exécutables natifs pour de multiples cibles (iOS étant l'une d'entre elles).
             Ce compilateur offre des APIs Kotlin permettant au code natif d'accéder aux librairies C, à la mémoire bas niveau, et aux APIs systèmes de la plateforme (comme POSIX).
         """
         small { +"Nécéssite: \"KMM: Koltin Mobile Multiplatform pour Android & iOS\"." }
     }
 
     override val courseKtor = TrainingStrings.CourseStrings(
-        "Développememt d'applications serveur en pur Kotlin",
+        "Développement d'applications serveur en pur Kotlin",
         "1 jour",
     ) {
         +"""
             Apprenez comment créer un serveur HTTP concurrent, léger, en Kotlin pur avec le framework dédié de Jetbrains: Ktor.
         """
-        small { +"Nécéssite: \"Concurence structurée avec les coroutines de Kotlin\"." }
+        small { +"Nécéssite: \"Concurrence structurée avec les coroutines de Kotlin\"." }
     }
 
     override val courseReact = TrainingStrings.CourseStrings(
@@ -150,7 +150,7 @@ object FrenchTrainingStrings : TrainingStrings {
         "1 jour",
     ) {
         +"""
-            React est le framework du web, permettant de créer des composants et applications web efficaces.
+            React est le framework du web, permettant de créer des composants et applications web éfficaces.
             Cette formation est adressée à ceux qui souhaitent créer des interfaces web sans renoncer au langage structuré et sécurisé qu'ils pratiquent déjà : Kotlin!
         """
     }

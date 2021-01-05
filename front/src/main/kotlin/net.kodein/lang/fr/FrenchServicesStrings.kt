@@ -38,7 +38,7 @@ object FrenchServicesStrings : ServicesStrings {
 
     override val consultancy: ServiceDescription = ServiceDescription("Conseil") {
         p {
-            +"Quelle que soit la plateforme, donnez a vos équipes de développement la capacité de relever leurs défis "
+            +"Quelle que soit la plateforme, donnez à vos équipes de développement la capacité de relever leurs défis "
             span("nowrap") { +"avec Kotlin." }
         }
         br{}
@@ -58,7 +58,7 @@ object FrenchServicesStrings : ServicesStrings {
             span("nowrap") { b { +"choix techniques" } }
             +", de conseils pour "
             span("nowrap") { b { +"votre architecture " } }
-            +"serveur ou applicative, ou simplement un besoin de "
+            +"serveur ou applicative, ou simplement de "
             span("nowrap") { b { +"support en développement" } }
             +", vous pouvez nous faire confiance pour vous accompagner "
             span("nowrap") { +"tout au long de votre projet." }
@@ -81,18 +81,18 @@ object FrenchServicesStrings : ServicesStrings {
         }
         br{}
         p {
-            +"""Kotlin est le premier langage issue de l'industrie à avoir été développé dans le but de créer des applications multiplateformes. 
+            +"""Kotlin est le premier langage issu de l'industrie à avoir été développé dans le but de créer des applications multiplateformes. 
                 |Cela signifie que, plutôt que d'essayer de faire fonctionner un langage existant sur une plateforme qui n'est pas compatible,
                 |le langage Kotlin a été pensé, dès le début de sa conception, pour sa portabilité et sa capacité à fonctionner dans de multiples environnements. 
             """.trimMargin()
         }
         br{}
         p {
-            +"Focalisés sur la possiblité d'éxecuter du code Kotlin partout ou cela est possible, nos experts utilisent "
+            +"Focalisés sur la possiblité d'éxecuter du code Kotlin partout où cela est possible, nos experts utilisent "
             span("nowrap") { b { +"Kotlin/Multiplatform" } }
             +" pour factoriser élégamment votre logique métier dans "
             span("nowrap") { b { +"un code commun" } }
-            +", que nous pouvons écrire et tester une seule fois, tout en concervant un développement natif "
+            +", que nous pouvons écrire et tester une seule fois, tout en conservant un développement natif "
             span("nowrap") { b { +"pour chaque plateforme ciblée " } }
             +" (Serveur / Mobile / Web / Desktop)."
         }

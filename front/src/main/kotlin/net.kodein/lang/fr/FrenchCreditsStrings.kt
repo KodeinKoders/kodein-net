@@ -15,10 +15,10 @@ object FrenchCreditsStrings : CreditsStrings {
 
     override val cover = object : CoverStrings {
         override val overTitle: TextHandler = { +"un super projet" }
-        override val title: TextHandler = { +"On a collaboré avec des super artistes !" }
+        override val title: TextHandler = { +"On a collaboré avec de super artistes !" }
         override val chapo: TextHandler = {
             p {
-                +"Le design de ce site web à été créé par le très talentueux "
+                +"Le design de ce site web a été créé par le très talentueux "
                 a(href = "https://www.crc-studio.fr/") {
                     +"Rémi B. Loizeau"
                 }

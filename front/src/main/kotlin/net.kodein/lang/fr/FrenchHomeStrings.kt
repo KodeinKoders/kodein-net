@@ -38,7 +38,7 @@ object FrenchHomeStrings : HomeStrings {
 
     override val advisoryDepartment = HomeStrings.TitledContent("CONSEIL", "SERVICES DE CONSEIL") {
         p {
-            +"Vous démarrez un projet ou vous souhaitiez renforcer vos équipes "
+            +"Vous démarrez un projet ou vous souhaitez renforcer vos équipes "
             span("nowrap") { +"et votre expertise ?" }
         }
         br{}
@@ -85,7 +85,7 @@ object FrenchHomeStrings : HomeStrings {
         }
         p {
             +"""
-                Nous créons les architectures d'applications mobiles multiplateformes, modernizons les systèmes existants,
+                Nous créons les architectures d'applications mobiles multiplateformes, modernisons les systèmes existants,
                 ou aidons les équipes à réaliser leur objectifs de développement avec Kotlin, où que vous en ayez besoin.
             """
         }
@@ -95,7 +95,7 @@ object FrenchHomeStrings : HomeStrings {
         p {
             +"""
                 Plus que les entreprises, nous travaillons pour et avec des personnes.
-                Nous sommes fiers des partenariats que nous avons créé avec chacun d'entre eux.
+                Nous sommes fiers des partenariats que nous avons créé avec chacune d'entre elles.
             """
             br {}
             +"Nous promouvons les valeures humanistes qui régissent notre travail et nos relations, aussi bien chez "
@@ -110,7 +110,7 @@ object FrenchHomeStrings : HomeStrings {
         }
         p {
             +"""
-                Les humains changent d'avis, et leur vision ne cesse d'évoluer.
+                Les humains changent d'avis et leur vision ne cesse d'évoluer.
                 Nous sommes fiers de promouvoir les méthodes agiles pour vous aider à former votre propre chemin.
             """
         }
@@ -129,21 +129,21 @@ object FrenchHomeStrings : HomeStrings {
 
         p {
             +"""
-                Nous sommes convaincu qu'open-sourcer les composants non critiques pour le métier ainsi que contribuer aux projets open-source existants mène à de meilleurs logiciels.
+                Nous sommes convaincus qu'open-sourcer les composants non critiques pour le métier ainsi que contribuer aux projets open-source existants mène à de meilleurs logiciels.
             """
         }
         p {
             +"""
-                Kodein Koders est énormément investi dans l'utilisation et la contribution à des initiatives Open Source.
-                Le langage Kotlin language et sa runtime ainsi que le Kodein Framework : tout est ouvert !
+                Kodein Koders est grandement investi dans l'utilisation et la contribution à des initiatives Open Source.
+                Le langage Kotlin et sa runtime ainsi que le Kodein Framework : tout est ouvert !
             """
         }
     }
 
-    override val trainingDescription = HomeStrings.TitledContent("Formation : Certifié par Jetbrains", "NOS PROGRAMMES DE FORMATION") {
+    override val trainingDescription = HomeStrings.TitledContent("Formation : Certifiée par Jetbrains", "NOS PROGRAMMES DE FORMATION") {
         p {
             +"""
-                Le langage Kotlin, l'asynchronicité des coroutines, l'infrastructure Kotlin/Multiplatform, les spécificités de Kotlin/Native: essayer de tout comprendre peut être intimidant.
+                Le langage Kotlin, l'asynchronicité des coroutines, l'infrastructure Kotlin/Multiplatform, les spécificités de Kotlin/Native : essayer de tout comprendre peut être intimidant.
             """
         }
         p {
@@ -156,7 +156,7 @@ object FrenchHomeStrings : HomeStrings {
         }
         p {
             +"""
-                Nous affinons toujours sur mesure nos workshops de formation pour l'équipe concernée,
+                Nous affinons toujours sur mesure nos workshops de formation pour l'équipe concernée
                 et utilisons un matériel pédagogique précis pour rendre les équipes efficientes en quelques jours.
             """
         }
