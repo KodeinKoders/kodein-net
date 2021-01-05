@@ -125,10 +125,10 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
                 transition(::opacity, duration = .5.s, Timing.linear)
 
                 if (isOpen) {
-                    maxHeight = 50.rem
+                    height = LinearDimension.auto
                     opacity = 1
                 } else {
-                    maxHeight = 0.rem
+                    height = 0.rem
                     opacity = 0
                 }
             }
@@ -137,7 +137,10 @@ val AccordionElement = functionalComponent<AccordionElementProps>("AccordionElem
                 css {
                     +kodein.body
                     color = fontColor
-                    padding(1.rem, 2.rem, 3.rem, 2.rem)
+                    padding(2.rem)
+                    maxWidth(1024) {
+                        padding(vertical = 2.rem, horizontal = 0.rem)
+                    }
                 }
 
                 props.children()
