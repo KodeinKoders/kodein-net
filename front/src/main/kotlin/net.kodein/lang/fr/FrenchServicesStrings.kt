@@ -81,7 +81,7 @@ object FrenchServicesStrings : ServicesStrings {
         }
         br{}
         p {
-            +"""Kotlin est le premier langage issue de l'industrie à avoir été développé dans le but de créer des applications multiplatformes. 
+            +"""Kotlin est le premier langage issue de l'industrie à avoir été développé dans le but de créer des applications multiplateformes. 
                 |Cela signifie que, plutôt que d'essayer de faire fonctionner un langage existant sur une plateforme qui n'est pas compatible,
                 |le langage Kotlin a été pensé, dès le début de sa conception, pour sa portabilité et sa capacité à fonctionner dans de multiples environnements. 
             """.trimMargin()

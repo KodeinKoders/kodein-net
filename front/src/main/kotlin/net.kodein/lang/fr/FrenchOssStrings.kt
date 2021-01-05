@@ -26,7 +26,7 @@ object FrenchOssStrings : OssStrings {
         override val chapo: TextHandler = {
             +"""
                 Le saviez-vous ? Kodein Koders est le créateur de la toute première librairie communautaire Open Source, pour Kotlin/Multiplatform.
-                Nous sommes toujours à l'affût de nouvelles manières de contribuer à l'histoire du multiplatforme !
+                Nous sommes toujours à l'affût de nouvelles manières de contribuer à l'histoire du multiplateforme !
             """
         }
     }
@@ -60,13 +60,13 @@ object FrenchOssStrings : OssStrings {
         }
         +"Framework"
         br {}
-        +"facilite la création d'applications multiplatformes."
+        +"facilite la création d'applications multiplateformes."
     }
     override val onionLayerAndroid: TextHandler = {
         +"""
             Kotlin est le langage de développent officiel pour Android depuis 2019.
             Kotlin/Multiplatform et le Kodein Framework s'intègrent nativement dans Android.
-            Les apps multiplatformes Android ne sont en réalité que des apps Android, avec une UI et une intégration native.
+            Les apps multiplateformes Android ne sont en réalité que des apps Android, avec une UI et une intégration native.
         """
     }
     override val onionLayerDesktop: TextHandler = {
@@ -78,13 +78,13 @@ object FrenchOssStrings : OssStrings {
     override val onionLayerIos: TextHandler = {
         +"""
             Le language Kotlin est non seulement proche de Swift (le language iOS natif), il s'y intègre aussi aisément.
-            Le Kodein Framework fournis des outils faciles à utiliser aussi bien dans une librairie Multiplatforme, que dans le contexte d'une app iOS.
+            Le Kodein Framework fournis des outils faciles à utiliser aussi bien dans une librairie multiplateforme, que dans le contexte d'une app iOS.
             Les apps multiplatformes iOS ne sont en réalité que des apps iOS, avec une UI et une intégration native.
         """
     }
     override val onionLayerJs: TextHandler = {
         +"""
-            Javascript fut la deuxième platforme majeure ciblée par Kotlin (dès la version 1.1).
+            Javascript fut la deuxième plateforme majeure ciblée par Kotlin (dès la version 1.1).
             L'équipe Kotlin fournis un ensemble d'outils permettant de partager facilement du code métier avec JavaScript.
         """
     }
@@ -104,8 +104,8 @@ object FrenchOssStrings : OssStrings {
     }
     override val onionLayerKotlin: TextHandler = {
         +"""
-            Le language Kotlin est la "lingua franca" du développement multiplatforme.
-            KotlinX de Jetbrains propose de nombreuses librairies multiplatformes nécéssaires au développement bas niveau, comme la concurence, l'atomicité, la serialisation, etc.
+            Le language Kotlin est la "lingua franca" du développement multiplateforme.
+            KotlinX de Jetbrains propose de nombreuses librairies multiplateformes nécéssaires au développement bas niveau, comme la concurence, l'atomicité, la serialisation, etc.
             Le Kodein Framework réutilise autant que possible ces primitives, s'integrant ainsi nativement dans l'écosystème Kotlin/Multiplatform.
         """
     }
@@ -117,7 +117,7 @@ object FrenchOssStrings : OssStrings {
     }
     override val onionLayerWeb: TextHandler = {
         +"""
-            le web est une platforme souvent négligée, à tort.
+            le web est une plateforme souvent négligée, à tort.
             Cibler le web signifie cibler des millions d'utilisateurs ayant accès au web mais non à un smartphone moderne.
             Cela permet également au contenu de votre app d'être indexé par les moteurs de recherche.
         """

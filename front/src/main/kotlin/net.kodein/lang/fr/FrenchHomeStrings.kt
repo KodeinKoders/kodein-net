@@ -28,7 +28,7 @@ object FrenchHomeStrings : HomeStrings {
         br("desktop") {}
         +"motivée par "
         br("mobile") {}
-        +"nos idées pour le multiplatforme "
+        +"nos idées pour le multiplateforme "
         br("desktop") {}
         +"et notre passion "
         span("nowrap") { +"pour l'état de l'art." }
@@ -79,13 +79,13 @@ object FrenchHomeStrings : HomeStrings {
             """
             br {}
             +"""
-                Grâce à cette technologie, nous développons des applications complexes et partageons le code significatif entre les platformes,
+                Grâce à cette technologie, nous développons des applications complexes et partageons le code significatif entre les plateformes,
                 que ce soit le backend (basé sur Spring ou Ktor) ou les multiples frontends (Android, iOS, Desktop, Web).
             """
         }
         p {
             +"""
-                Nous créons les architectures d'applications mobiles multiplatformes, modernizons les systèmes existants,
+                Nous créons les architectures d'applications mobiles multiplateformes, modernizons les systèmes existants,
                 ou aidons les équipes à réaliser leur objectifs de développement avec Kotlin, où que vous en ayez besoin.
             """
         }
