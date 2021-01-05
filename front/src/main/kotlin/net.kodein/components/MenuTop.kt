@@ -436,7 +436,7 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
                         transition(::backgroundColor, 0.5.s)
                         transition(::color, 0.5.s)
                     } else {
-                        padding( vertical = .5.rem, horizontal = 0.rem)
+                        padding(vertical = .9.rem, horizontal = 0.rem)
                     }
                 }
                 +strings.hiring.asMenu()
