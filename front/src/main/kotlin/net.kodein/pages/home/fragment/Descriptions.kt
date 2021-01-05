@@ -70,12 +70,10 @@ private interface DescriptionProps : RProps {
 }
 
 private val Description = functionalComponent<DescriptionProps>("Description") { props ->
-    val strings = useText().home
-
     flexRow {
         val slant = 4
         css {
-            minWidth(769) {
+            minWidth(1024) {
                 flexDirection = if (props.even) FlexDirection.row else FlexDirection.rowReverse
 
                 put("clip-path",
@@ -104,7 +102,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
                 if (props.first != true) marginTop = -(slant.rem)
             }
 
-            maxWidth(768) {
+            maxWidth(1024 - 1) {
                 flexDirection = FlexDirection.column
 
                 ".illustration" {
@@ -134,6 +132,7 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
             css {
                 flexGrow = 45.0
                 flexBasis = FlexBasis.zero
+                alignSelf = Align.center
             }
 
             flexColumn {
@@ -217,11 +216,8 @@ private val Illustration = functionalComponent<IllustrationProps>("Illustration"
         css {
             flexGrow = 55.0
             flexBasis = FlexBasis.zero
-            minHeight = 38.rem - props.slantCorrection
-            minWidth(1950) {
-                minHeight = 44.rem - props.slantCorrection
-            }
-            maxWidth(768) {
+            maxHeight = 38.rem - props.slantCorrection
+            maxWidth(1024) {
                 minHeight = 24.rem
             }
             backgroundColor = props.color
