@@ -23,7 +23,7 @@ val Departments = functionalComponent<RProps>("Departments") {
     flexRow {
         css {
             backgroundColor = Color.kodein.cute
-            maxWidth(889) {
+            maxWidth(1023) {
                 display = Display.block
                 flexDirection = FlexDirection.column
             }
@@ -74,10 +74,10 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
             padding(4.rem, 2.rem)
 
             if(props.isLastItem != true) {
-                minWidth(890) {
+                minWidth(1024) {
                     filter = "drop-shadow(1rem 0 0.5rem ${Color.kodein.kaumon.withAlpha(0.3)})"
                 }
-                maxWidth(889) {
+                maxWidth(1023) {
                     filter = "drop-shadow(0 1rem 0.5rem ${Color.kodein.kaumon.withAlpha(0.3)})"
                 }
 
@@ -87,10 +87,10 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                     top = 0.px; bottom = 0.px; right = 0.px; left = 0.px
                     backgroundColor = Color.kodein.cute
                     content = QuotedString("")
-                    minWidth(890) {
+                    minWidth(1024) {
                         clipPath = "polygon(0 0, 100% 0, 95% 70%, 95% 100%, 0 100%)"
                     }
-                    maxWidth(889) {
+                    maxWidth(1023) {
                         clipPath = "polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 98%)"
                     }
                 }
