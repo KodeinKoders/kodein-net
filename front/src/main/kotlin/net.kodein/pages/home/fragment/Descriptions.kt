@@ -218,12 +218,10 @@ private val Illustration = functionalComponent<IllustrationProps>("Illustration"
             flexBasis = FlexBasis.zero
             val minSize = 38.rem - props.slantCorrection
             minHeight = minSize
-            minWidth(1920) {
-                maxHeight = minSize
-            }
             maxWidth(1024) {
                 minHeight = 24.rem
             }
+            maxHeight = 60.vh
             backgroundColor = props.color
             backgroundSize = "cover"
             backgroundPosition = "center"
