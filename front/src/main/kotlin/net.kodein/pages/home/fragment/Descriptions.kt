@@ -166,9 +166,6 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
                         "p" {
                             paddingBottom = 0.6.rem
                         }
-                        "span.nowrap" {
-                            whiteSpace = WhiteSpace.nowrap
-                        }
                     }
 
                     props.content.content(this)

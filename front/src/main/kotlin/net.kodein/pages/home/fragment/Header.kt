@@ -239,10 +239,6 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 paddingLeft = 0.pct
             }
             flexGrow = 1.0
-
-            "span.nowrap" {
-                whiteSpace = WhiteSpace.nowrap
-            }
         }
         styledH1 {
             ref = props.bigTextRef

@@ -223,7 +223,9 @@ val Footer = functionalComponent<RProps>("Footer") {
                     }
                 }
 
-                p {
+                styledP {
+                    css { textAlign = TextAlign.center }
+
                     +"© 2020 "
                     b { +"KODEIN" }
                     +"Koders ("
@@ -232,7 +234,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                         +strings.credits
                     }
                     +"). "
-                    +strings.allRightsReserved
+                    span("nowrap") { +strings.allRightsReserved }
                 }
             }
         }
