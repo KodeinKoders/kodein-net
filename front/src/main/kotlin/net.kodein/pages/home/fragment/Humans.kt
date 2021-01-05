@@ -12,8 +12,10 @@ import net.kodein.utils.*
 import net.kodein.withBasePath
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.events.Event
+import org.w3c.dom.events.EventListener
 import react.*
 import react.dom.a
+import react.dom.key
 import styled.*
 import kotlin.math.ceil
 
@@ -23,7 +25,7 @@ val Humans = functionalComponent<RProps>("Humans") {
 
     styledDiv {
         css {
-            margin(3.rem, 0.rem)
+            margin(top = 4.rem, bottom = 2.rem)
         }
 
         styledH1 {
@@ -100,70 +102,72 @@ val humans = listOf(
 
 @OptIn(ExperimentalStdlibApi::class)
 val HumanSlider = functionalComponent<RProps>("HumanList") {
+
     val div = useRef<HTMLDivElement?>(null)
 
-    var repeatCount by useState { 0 }
+    var count by useState(0)
+    var index by useState(0)
 
     useEffectWithCleanup(emptyList()) {
-        val batchWidth = (20 * 16) * humans.size // 1rem = 16px
         val onResize: ((Event?) -> Unit) = {
-            val count = (window.innerWidth.toDouble() / batchWidth.toDouble())
-            repeatCount = ceil(count).toInt() + 1
+            count = ceil(window.innerWidth.toDouble() / (20 * 16).toDouble()).toInt() + 1 // 1rem = 16px
         }
         window.addEventListener("resize", onResize)
         onResize(null)
         ({ window.removeEventListener("resize", onResize) })
     }
 
+    useEffectWithCleanup(emptyList()) {
+        var curIndex = index
+        val onAnimationend = EventListener {
+            ++curIndex
+            index = curIndex
+        }
+
+        div.current!!.addEventListener("animationend", onAnimationend)
+        ({ div.current!!.removeEventListener("animationend", onAnimationend) })
+    }
+
     styledDiv {
         css {
             overflow = Overflow.hidden
             width = 100.pct
+            height = 36.rem
             maxWidth(750) { display = Display.none }
             padding(top = 2.rem)
         }
 
-        styledDiv {
+        flexRow {
+            ref = div
             css {
+                width = 20.rem * count
+
                 animation(
-                    duration = (humans.size * 16).s,
-                    timing = Timing.linear,
-                    iterationCount = IterationCount.infinite
-                ) {
-                    from {
-                        transform { translateX(0.rem) }
-                    }
-                    to {
-                        transform { translateX((humans.size * -20).rem) }
-                    }
-                }
-                put("animation-play-state", "running")
-                hover {
-                    put("animation-play-state", "paused")
-                }
-            }
-            flexRow {
-                ref = div
-                css {
-                    width = 20.rem * humans.size * repeatCount
-                    animation(
-                        duration = (humans.size * 16).s,
-                        timing = Timing.linear,
-                        iterationCount = IterationCount.infinite
-                    ) {
+                    keyframes {
                         from {
-                            transform { translateX(0.rem) }
+                            transform { translateX(0.rem * index) } // Needed so that Kotlin-CSS generates a new animation name every index
                         }
                         to {
-                            transform { translateX((humans.size * -20).rem) }
+                            transform { translateX((-20).rem) }
                         }
-                    }
-                }
+                    },
+                    duration = 8.s,
+                    timing = Timing.linear,
+                    fillMode = FillMode.forwards
+                )
+//                hover {
+//                    put("animation-play-state", "paused")
+//                }
+            }
 
-                repeat(repeatCount) {
-                    humans.forEach { human ->
-                        child(Human, human)
+            for (i in 0 until count) {
+                styledDiv {
+                    css {
+                        width = 20.rem
+                        height = 32.rem
                     }
+                    key = "human-${index + i}"
+                    child(Human, humans[(index + i) % humans.size])
                 }
             }
         }
@@ -283,7 +287,8 @@ private val Human = functionalComponent<HumanProps>("Human") { props ->
         css {
             border(0.rem, BorderStyle.solid, Color.black, 0.2.rem)
             overflow = Overflow.hidden
-            boxShadow(Color.kodein.cute.withAlpha(0.6), 0.rem, 0.4.rem, blurRadius = 2.rem)
+//            boxShadow(Color.kodein.cute.withAlpha(0.6), 0.rem, 0.4.rem, blurRadius = 2.rem)
+            boxShadow(Color.black.withAlpha(0.15), 0.rem, 0.4.rem, blurRadius = 2.rem)
             put("clip-path", "polygon(-100% -100%, -100% 0%, 0% 0%, 0% 100%, -100% 100%, -100% 200%, 200% 200%, 200% -100%)")
             firstChild {
                 put("clip-path", "inherit")
