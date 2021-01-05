@@ -364,8 +364,9 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
                 color = Color.kodein.kamethiste
                 padding(horizontal = 2.rem)
 
+                fontSize = 1.5.rem
+
                 "a" {
-                    fontSize = 1.5.rem
                     flexDirection = FlexDirection.column
                     padding(horizontal = 0.em)
                     "span.text" {
@@ -447,8 +448,8 @@ val MenuNavigation = functionalComponent<MenuProps>("MenuNavigation") { props ->
                 css {
                     if (props.isMobile) {
                         position = Position.absolute
-                        left = 1.rem
-                        bottom = 1.rem
+                        left = 2.rem
+                        bottom = 1.5.rem
                     } else {
                         marginBottom = 0.3.rem
                         marginLeft = 2.rem
