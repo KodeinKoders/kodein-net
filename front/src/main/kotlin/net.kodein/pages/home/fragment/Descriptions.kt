@@ -138,10 +138,10 @@ private val Description = functionalComponent<DescriptionProps>("Description") {
             flexColumn {
                 css {
                     padding(4.rem)
-                    maxWidth(768) {
+                    maxWidth(1024 - 1) {
                         padding(2.rem)
                     }
-                    minWidth(769) {
+                    minWidth(1024) {
                         if (props.first != true) {
                             marginTop = if (props.even) (slant / 2).rem + 1.px
                             else slant.rem + 1.px
@@ -216,7 +216,11 @@ private val Illustration = functionalComponent<IllustrationProps>("Illustration"
         css {
             flexGrow = 55.0
             flexBasis = FlexBasis.zero
-            maxHeight = 38.rem - props.slantCorrection
+            val minSize = 38.rem - props.slantCorrection
+            minHeight = minSize
+            minWidth(1920) {
+                maxHeight = minSize
+            }
             maxWidth(1024) {
                 minHeight = 24.rem
             }
