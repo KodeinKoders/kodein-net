@@ -188,15 +188,13 @@ val Header = functionalComponent<HeaderProps>("Header") { props ->
                 position = Position.absolute
                 width = 6.rem
                 left = 50.pct - 3.rem
-                bottom = 2.em
+                bottom = 5.rem
                 +kodein.body
                 portraitMobile {
                     specific { fontSize = 0.8.rem }
-                    bottom = 1.em
                 }
                 landscapeMobile {
                     specific { fontSize = 0.8.rem }
-                    bottom = 1.em
                 }
                 maxHeight(320) {
                     marginLeft = 3.rem
@@ -221,14 +219,14 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
     flexColumn(justifyContent = JustifyContent.center, alignItems = Align.flexStart) {
         css {
             paddingTop = 4.pct
-            paddingBottom = 6.pct
+            paddingBottom = 6.vh
             portrait {
                 paddingTop = 8.pct
-                paddingBottom = 12.pct
+                paddingBottom = 12.vh
             }
             portraitMobile(800) {
                 paddingTop = 0.pct
-                paddingBottom = 0.pct
+                paddingBottom = 8.vh
             }
             landscapeMobile {
                 paddingTop = 0.pct
