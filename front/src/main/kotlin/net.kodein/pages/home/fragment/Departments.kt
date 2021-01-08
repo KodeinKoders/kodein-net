@@ -143,10 +143,6 @@ private val Department = functionalComponent<DepartmentProps>("Department") { pr
                     color = Color.kodein.orange
                     +kodein.body
                     padding(0.5.rem, 0.5.rem)
-
-                    "span.nowrap" {
-                        whiteSpace = WhiteSpace.nowrap
-                    }
                 }
                 props.description.content(this)
             }

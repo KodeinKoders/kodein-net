@@ -51,6 +51,10 @@ val appGlobalStyle: CSSBuilder.() -> Unit = {
     "noscroll" {
         overflow = Overflow.hidden
     }
+
+    "span.nowrap" {
+        whiteSpace = WhiteSpace.nowrap
+    }
 }
 
 fun renderApp() {

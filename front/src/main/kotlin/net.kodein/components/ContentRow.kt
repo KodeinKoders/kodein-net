@@ -75,10 +75,6 @@ val ContentRow = functionalComponent<ContentRowProps>("ContentRow") { props ->
            css {
                zIndex = 90 - indexPosition
                +kodein.dropShadow
-
-               "span.nowrap" {
-                   whiteSpace = WhiteSpace.nowrap
-               }
            }
 
             flexRow {
