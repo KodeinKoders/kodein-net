@@ -218,7 +218,9 @@ private val Illustration = functionalComponent<IllustrationProps>("Illustration"
             maxWidth(1024) {
                 minHeight = 24.rem
             }
-            maxHeight = 60.vh
+            minWidth(1920) {
+                maxHeight = 60.vh
+            }
             backgroundColor = props.color
             backgroundSize = "cover"
             backgroundPosition = "center"
