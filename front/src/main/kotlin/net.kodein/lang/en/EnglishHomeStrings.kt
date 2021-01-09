@@ -48,7 +48,7 @@ object EnglishHomeStrings : HomeStrings {
         }
     }
     override val trainingDepartment = HomeStrings.TitledContent("TRAINING", "TRAINING PROGRAMS") {
-        p { +"Want to give to your team the tools to be even more efficient?" }
+        p { +"Want to give to your team the tools to be even more efficient with Kotlin?" }
         br {}
         p {
             +"""
@@ -61,7 +61,11 @@ object EnglishHomeStrings : HomeStrings {
     override val developmentDepartment = HomeStrings.TitledContent("DEVELOPMENT", "PROJECT DEVELOPMENT") {
         p { +"You do not have the resources to take on your next project?" }
         br {}
-        p { +"We can help you meet your business expectations by taking care your technical challenges." }
+        p {
+            +"We can help you meet your business expectations by taking care of the development of your "
+             span("nowrap") { +"application mobile," }
+            +" for both Android and iOS, using Kotlin/Multiplatform."
+         }
     }
 
 

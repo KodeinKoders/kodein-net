@@ -47,13 +47,13 @@ object FrenchHomeStrings : HomeStrings {
                 Nous pouvons vous aider à valider et améliorer votre process de développement
                 grâce à du conseil technique, d'architecture, ou de support en développement,
             """
-            span("nowrap") { +"avec Kotlin." }
+            span("nowrap") { +"grâce à Kotlin." }
         }
     }
     override val trainingDepartment = HomeStrings.TitledContent("FORMATION", "PROGRAMMES DE FORMATION") {
         p {
-            +"Vous voulez donner à votre équipe les outils pour être encore "
-            span("nowrap") { +"plus efficiente ?" }
+            +"Vous voulez donner à votre équipe les outils pour être encore plus efficiente "
+            span("nowrap") { +"avec Kotlin ?" }
         }
         br {}
         p {
@@ -69,7 +69,11 @@ object FrenchHomeStrings : HomeStrings {
             span("nowrap") { +"votre prochain projet ?" }
         }
         br {}
-        p { +"Nous pouvons vous aider à atteindre vos objectifs en prenant en charge vos challenges techniques." }
+        p {
+            +"Nous pouvons vous aider à atteindre vos objectifs en prenant en charge le développement de votre "
+            span("nowrap") { +"application mobile," }
+            +" pour Android et iOS, à l'aide de Kotlin/Multiplatform."
+        }
     }
 
     override val kodeinKodersDescription = HomeStrings.TitledContent("Qui sont les Kodein Koders?", "NOS SERVICES") {
