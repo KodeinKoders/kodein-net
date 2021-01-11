@@ -13,9 +13,11 @@ object EnglishHomeStrings : HomeStrings {
 
     override val title: TextHandler = {
         +"We bring "
-        span("nowrap") { +"Multiplatform Mobile" }
-        br {}
-        +"solutions to your business!"
+        br("mobile") {}
+        +"Multiplatform Mobile"
+        br("desktop") {}
+        +" solutions to "
+        span("nowrap") { +"your business!" }
     }
 
     override val subTitle: TextHandler = {
