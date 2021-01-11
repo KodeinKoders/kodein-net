@@ -13,6 +13,8 @@ object EnglishCreditsStrings : CreditsStrings {
 
     override val pageTitle: String = "Credits"
 
+    override val pageDescription = "Website credits."
+
     override val cover = object : CoverStrings {
         override val overTitle: TextHandler = { +"a great project" }
         override val title: TextHandler = { +"We collaborated with great artists!" }

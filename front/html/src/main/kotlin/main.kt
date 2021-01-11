@@ -20,6 +20,8 @@ enum class Mode {
     SSR
 }
 
+private val PageStrings.fullTitle get() = if (pageTitle.isNotEmpty()) "Kodein Koders - $pageTitle" else "Kodein Koders"
+
 fun getHtml(page: Page, lang: Language, mode: Mode): String {
     val (html, css) = when (mode) {
         Mode.BARE -> "" to ""
@@ -35,12 +37,14 @@ fun getHtml(page: Page, lang: Language, mode: Mode): String {
         }
     }
 
+    val strings = page.strings(lang.strings)
+
     return "<!DOCTYPE html>\n" + createHTML().html {
         this.lang = lang.id
         head {
             meta { charset = "UTF-8" }
             meta("viewport", "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no")
-            meta("description", "Kodein Koders: Kotlin/Multiplatform expertise")
+            meta("description", strings.pageDescription)
             meta("author", "Kodein Koders")
             meta("copyright", "Kodein Koders")
             meta("language", lang.id)
@@ -55,6 +59,12 @@ fun getHtml(page: Page, lang: Language, mode: Mode): String {
             )
             meta("theme-color", KodeinColors.dark.toString())
 
+            meta("og:url", "https://kodein.net/" + (lang.path?.let { "$it/" } ?: "") + "${page.id}.html")
+            meta("og:site_name", "Kodein Koders")
+            meta("og:title", strings.fullTitle)
+            meta("og:description", strings.pageDescription)
+            meta("og:image", "https://kodein.net/imgs/illus/${page.illus}_1200.jpg")
+
             link(rel = "preload", href = "${lang.basePath}/picon/LCTPicon/Hairline/LCTPicon-Hairline.woff") { attributes["as"] = "font" ; attributes["crossorigin"] = "" }
             link(rel = "preload", href = "${lang.basePath}/picon/LCTPicon/Light/LCTPicon-Light.woff") { attributes["as"] = "font" ; attributes["crossorigin"] = "" }
             link(rel = "preload", href = "${lang.basePath}/picon/LCTPicon/Regular/LCTPicon-Regular.woff") { attributes["as"] = "font" ; attributes["crossorigin"] = "" }
@@ -68,9 +78,7 @@ fun getHtml(page: Page, lang: Language, mode: Mode): String {
             link(href = "${lang.basePath}/picon/LCTPicon.css", rel = "stylesheet")
             link(href = "${lang.basePath}/favicon.png", rel = "icon", type = "image/png")
 
-            val title = page.title(lang.strings).pageTitle
-            if (title.isNotEmpty()) title("Kodein Koders - $title")
-            else title("Kodein Koders")
+            title(strings.fullTitle)
 
 
             unsafe { raw(css) }

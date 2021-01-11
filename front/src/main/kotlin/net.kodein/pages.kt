@@ -15,21 +15,23 @@ import react.RProps
 
 interface PageStrings {
     val pageTitle: String
+    val pageDescription: String
 }
 
 data class Page(
     val id: String,
-    val title: Strings.() -> PageStrings,
+    val strings: Strings.() -> PageStrings,
+    val illus: String,
     val component: () -> FunctionalComponent<RProps>
 )
 
 val appPages = listOf(
-    Page("index", Strings::home) { Home },
-    Page("services", Strings::services) { Services },
-    Page("training", Strings::training) { Training },
-    Page("oss", Strings::oss) { Oss },
-    Page("team", Strings::team) { Team },
-    Page("blog", Strings::blog) { Blog },
-    Page("contact", Strings::contact) { Contact },
-    Page("credits", Strings::credits) { Credits },
+    Page("index", Strings::home, "services") { Home },
+    Page("services", Strings::services, "services") { Services },
+    Page("training", Strings::training, "training") { Training },
+    Page("oss", Strings::oss, "open-source") { Oss },
+    Page("team", Strings::team, "team") { Team },
+    Page("blog", Strings::blog, "open-source") { Blog },
+    Page("contact", Strings::contact, "training") { Contact },
+    Page("credits", Strings::credits, "team") { Credits },
 )

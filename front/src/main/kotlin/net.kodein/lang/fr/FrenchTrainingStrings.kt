@@ -20,6 +20,8 @@ object FrenchTrainingStrings : TrainingStrings {
 
     override val pageTitle: String = "Formation"
 
+    override val pageDescription = "Description & programmes de formation Kotlin."
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"partageons le savoir" }
         override val title: TextHandler = {

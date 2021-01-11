@@ -12,6 +12,8 @@ object FrenchTeamStrings : TeamStrings {
 
     override val pageTitle: String = "L'équipe"
 
+    override val pageDescription = "Notre super équipe !"
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"nous sommes humains" }
         override val title: TextHandler = { +"Animés par notre passion pour Kotlin." }
