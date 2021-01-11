@@ -12,13 +12,15 @@ object FrenchHomeStrings : HomeStrings {
     override val pageTitle: String = ""
 
     override val title: TextHandler = {
-        +"Où que "
-        span("nowrap") { +"Kotlin aille," }
+        +"Nous proposons "
+        br("mobile") {}
+        +"des solutions "
+        br("desktop") {}
+        +"mobile "
+        +"multiplateforme "
         br {}
-        +"vous trouverez"
-        br {}
-        +"les experts "
-        span("nowrap") { +"qu'il vous faut!" }
+        +"pour répondre "
+        span("nowrap") { +"à votre métier!" }
     }
 
     override val subTitle: TextHandler = {
@@ -26,11 +28,11 @@ object FrenchHomeStrings : HomeStrings {
         br("mobile") {}
         +"une startup tech "
         br("desktop") {}
-        +"motivée par "
+        +"dévouée à "
         br("mobile") {}
-        +"nos idées pour le multiplateforme "
+        +"Kotlin/Multiplatform Mobile (KMM), "
         br("desktop") {}
-        +"et notre passion "
+        +"motivée par notre passion "
         span("nowrap") { +"pour l'état de l'art." }
     }
 

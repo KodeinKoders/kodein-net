@@ -237,6 +237,15 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 paddingLeft = 0.pct
             }
             flexGrow = 1.0
+
+            "br.mobile" {
+                display = Display.none
+                maxWidth(420) { display = Display.inherit }
+            }
+            "br.desktop" {
+                display = Display.inherit
+                maxWidth(420) { display = Display.none }
+            }
         }
         styledH1 {
             ref = props.bigTextRef
@@ -264,14 +273,6 @@ private val HeaderText = functionalComponent<HeaderTextProps>("HeaderText") { pr
                 padding(1.rem, 2.rem)
                 portraitMobile(800) { padding(0.5.rem, 1.rem) }
                 landscapeMobile { padding(0.5.rem, 1.rem) }
-                "br.mobile" {
-                    display = Display.none
-                    maxWidth(420) { display = Display.inherit }
-                }
-                "br.desktop" {
-                    display = Display.inherit
-                    maxWidth(420) { display = Display.none }
-                }
             }
             strings.subTitle(this)
         }
