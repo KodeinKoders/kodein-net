@@ -16,8 +16,8 @@ object FrenchHomeStrings : HomeStrings {
         br("mobile") {}
         +"des solutions "
         br("desktop") {}
-        +"mobile "
-        +"multiplateforme "
+        +"Mobile "
+        +"Multiplateforme "
         br {}
         +"pour répondre "
         span("nowrap") { +"à votre métier!" }
