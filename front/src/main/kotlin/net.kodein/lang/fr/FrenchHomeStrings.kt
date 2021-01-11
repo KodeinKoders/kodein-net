@@ -11,6 +11,8 @@ object FrenchHomeStrings : HomeStrings {
 
     override val pageTitle: String = ""
 
+    override val pageDescription = "L'expertise Kotlin/Multiplatform."
+
     override val title: TextHandler = {
         +"Nous proposons "
         br("mobile") {}

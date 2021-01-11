@@ -9,7 +9,9 @@ import react.dom.span
 
 object EnglishBlogStrings : BlogStrings {
 
-    override val pageTitle: String = "Blog"
+    override val pageTitle = "Blog"
+
+    override val pageDescription = "Articles & videos that we posted."
 
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"sharing is caring" }

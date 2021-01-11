@@ -9,7 +9,9 @@ import react.dom.span
 
 object EnglishHomeStrings : HomeStrings {
 
-    override val pageTitle: String = ""
+    override val pageTitle = ""
+
+    override val pageDescription = "Kotlin/Multiplatform expertise."
 
     override val title: TextHandler = {
         +"We bring "

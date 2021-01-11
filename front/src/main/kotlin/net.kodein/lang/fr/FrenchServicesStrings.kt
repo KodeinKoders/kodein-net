@@ -13,6 +13,8 @@ object FrenchServicesStrings : ServicesStrings {
 
     override val pageTitle: String = "Services"
 
+    override val pageDescription = "Nos services : Conseil, Formation, Développement."
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"on vous accompagne" }
 

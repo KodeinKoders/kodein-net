@@ -20,6 +20,8 @@ object EnglishContactStrings : ContactStrings {
 
     override val pageTitle: String = "Contact"
 
+    override val pageDescription = "Contact us!"
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"let's keep in touch" }
         override val title: TextHandler = {

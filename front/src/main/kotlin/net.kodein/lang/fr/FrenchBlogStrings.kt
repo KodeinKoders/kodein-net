@@ -11,6 +11,8 @@ object FrenchBlogStrings : BlogStrings {
 
     override val pageTitle: String = "Blog"
 
+    override val pageDescription = "Les articles et vidéos que nous avons posté."
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"plaisirs partagés" }
         override val title: TextHandler = {

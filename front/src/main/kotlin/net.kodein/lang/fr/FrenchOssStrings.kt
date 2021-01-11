@@ -16,6 +16,8 @@ object FrenchOssStrings : OssStrings {
 
     override val pageTitle: String = "Open Source"
 
+    override val pageDescription = "Le Kodein Framework et nos contributions Open Source."
+
     override val cover: CoverStrings = object : CoverStrings {
         override val overTitle: TextHandler = { +"Kodein Framework" }
         override val title: TextHandler = {
