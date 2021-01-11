@@ -220,9 +220,7 @@ private val ContactFormView = functionalComponent<ContactFormViewProps>("Contact
             input(InputType.text, name = "object") {
                 attrs.id = "contact-object"
                 attrs.placeholder = strings.subject.second
-                attrs.onChangeFunction = {
-                    attrs.onChangeFunction = { props.setSubject((it.target as HTMLInputElement).value) }
-                }
+                attrs.onChangeFunction = { props.setSubject((it.target as HTMLInputElement).value) }
             }
         }
 
