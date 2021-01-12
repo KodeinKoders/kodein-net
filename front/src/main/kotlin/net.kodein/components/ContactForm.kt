@@ -6,7 +6,6 @@ import kotlinx.css.properties.borderBottom
 import kotlinx.css.properties.lh
 import kotlinx.html.ButtonType
 import kotlinx.html.InputType
-import kotlinx.html.for_
 import kotlinx.html.id
 import kotlinx.html.js.onChangeFunction
 import kotlinx.html.js.onClickFunction
@@ -33,7 +32,7 @@ private val emailRegex = Regex(
 private sealed class FormStatus {
     object Ready : FormStatus()
     object Sending : FormStatus()
-    data class Sent(val error: String?): FormStatus()
+    data class Sent(val error: String?, val subject: String, val message: String): FormStatus()
 }
 
 interface ContactUsProps : RProps {
@@ -72,26 +71,72 @@ val ContactUs = functionalComponent<ContactUsProps>("ContactUs") { props ->
                 attrs.submit = { from, subject, message ->
                     status = FormStatus.Sending
                     sendContactForm(from, subject, message) {
-                        status = FormStatus.Sent(it)
+                        status = FormStatus.Sent(it, subject, message)
                     }
                 }
                 attrs.big = props.big
             }
             FormStatus.Sending -> child(ContactMessage) {
                 attrs.isError = false
-                +strings.sending
+                styledP {
+                    css {
+                        +kodein.display1
+                        lineHeight = 1.8.em.lh
+                        color = KodeinColors.kyzantium
+                    }
+                    +strings.sending
+                }
             }
             is FormStatus.Sent -> child(ContactMessage) {
                 attrs.isError = s.error != null
                 if (s.error != null) {
-                    strings.messageNotSent(this)
-                    styledSpan {
-                        css.fontSize = 1.rem
+                    styledP {
+                        css {
+                            +kodein.body
+                            color = Color.red
+                            fontSize = 1.rem
+                        }
                         +s.error
+                    }
+                    styledP {
+                        css {
+                            +kodein.display1
+                            lineHeight = 1.8.em.lh
+                            color = Color.red
+                        }
+                        strings.messageNotSent(this)
+                    }
+                    styledDiv {
+                        css {
+                            maxWidth = 42.rem
+                            margin(LinearDimension.auto)
+                            textAlign = TextAlign.start
+                        }
+                        styledP {
+                            css {
+                                +kodein.body
+                            }
+                            +s.subject
+                            br {}
+                            br {}
+                            styledPre {
+                                css {
+                                    +kodein.body
+                                }
+                                +s.message
+                            }
+                        }
                     }
                 }
                 else {
-                    strings.messageSent(this)
+                    styledP {
+                        css {
+                            +kodein.display1
+                            lineHeight = 1.8.em.lh
+                            color = KodeinColors.kyzantium
+                        }
+                        strings.messageSent(this)
+                    }
                 }
             }
         }
@@ -287,12 +332,9 @@ private val ContactMessage = functionalComponent<ContactMessageProps>("ContactMe
         css {
             height = 25.rem
         }
-        styledP {
+        styledDiv {
             css {
-                +kodein.display1
                 textAlign = TextAlign.center
-                lineHeight = 1.8.em.lh
-                color = if (props.isError) Color.red else KodeinColors.kyzantium
             }
             props.children()
         }

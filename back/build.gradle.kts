@@ -16,12 +16,13 @@ dependencies {
     compileOnly("com.google.cloud.functions:functions-framework-api:1.0.2")
     invoker("com.google.cloud.functions.invoker:java-function-invoker:1.0.0")
 
-    implementation("com.sendgrid:sendgrid-java:4.0.1")
+    implementation("com.sendgrid:sendgrid-java:4.7.1")
 }
 
 tasks.named<ShadowJar>("shadowJar") {
     mergeServiceFiles()
-    minimize()
+// It seems minimize removes apache commons logging, which makes the clound function crash when it tries to log.
+//    minimize()
 
     (this as org.gradle.jvm.tasks.Jar).apply {
         archiveBaseName.set("kodein-net-back")
@@ -55,9 +56,14 @@ val runFunction by tasks.creating(JavaExec::class) {
     }
 }
 
+val gcloudSetProject by tasks.creating(Exec::class) {
+    executable = "gcloud"
+    args("config", "set", "project", "kodein-net-website")
+}
+
 val deployFunctionToGoogleCloud by tasks.creating(Exec::class) {
     group = "publishing"
-    dependsOn("shadowJar")
+    dependsOn("shadowJar", gcloudSetProject)
 
     doFirst {
         args(
