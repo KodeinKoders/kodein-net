@@ -1,5 +1,10 @@
 [
   {
+    "title": "Setting up a Kotlin/Multiplatform project",
+    "image": "https://img.youtube.com/vi/u1FR90ZIlkg/0.jpg",
+    "url": "https://medium.com/kodein-koders/setting-up-a-kotlin-multiplatform-project-68d71594f588"
+  },
+  {
     "title": "Announcing a painless Kotlin/Multiplatform NoSQL embedded database",
     "image": "https://miro.medium.com/max/1000/1*8X7-lbtcijsnHPVgzqfLHQ.png",
     "url": "https://medium.com/kodein-koders/announcing-a-painless-kotlin-multiplatform-nosql-embedded-database-30fed677549c"
