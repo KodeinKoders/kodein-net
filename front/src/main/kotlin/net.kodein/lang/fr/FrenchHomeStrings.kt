@@ -14,9 +14,7 @@ object FrenchHomeStrings : HomeStrings {
     override val pageDescription = "L'expertise Kotlin/Multiplatform."
 
     override val title: TextHandler = {
-        +"Nous proposons "
-        br("mobile") {}
-        +"des solutions "
+        +"Des solutions "
         br("desktop") {}
         +"Mobile "
         +"Multiplateforme "
@@ -137,7 +135,7 @@ object FrenchHomeStrings : HomeStrings {
 
         p {
             +"""
-                Nous sommes convaincus qu'open-sourcer les composants non critiques pour le métier ainsi que contribuer aux projets open-source existants mène à de meilleurs logiciels.
+                Nous sommes convaincus qu'open-sourcer les composants non critiques pour le métier ainsi que contribuer aux projets open-source existants mènent à de meilleurs logiciels.
             """
         }
         p {

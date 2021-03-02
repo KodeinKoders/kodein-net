@@ -23,7 +23,7 @@ object EnglishHomeStrings : HomeStrings {
     }
 
     override val subTitle: TextHandler = {
-        +"We are Kodein Koders, "
+        +"Kodein Koders is "
         br("mobile") {}
         +"a tech company "
         br("desktop") {}
