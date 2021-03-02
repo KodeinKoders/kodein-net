@@ -152,6 +152,7 @@ val Footer = functionalComponent<RProps>("Footer") {
                         li { a(href = "contact.html") { +strings.contactForm } }
                         li { a(href = "contact@kodein.net", target = "_blank") { attrs.rel = "noopener" ; +"E-mail" } }
                         li { a(href = "https://twitter.com/KodeinKoders", target = "_blank") { attrs.rel = "noopener" ; +"Twitter" } }
+                        li { a(href = "https://www.youtube.com/channel/UCbTrSXEB8flZ3XM9t3j4D8A", target = "_blank") { attrs.rel = "noopener" ; +"Youtube channel" } }
                         li { a(href = "https://www.linkedin.com/company/kodein", target = "_blank") { attrs.rel = "noopener" ; +"LinkedIn" } }
                     }
                 }

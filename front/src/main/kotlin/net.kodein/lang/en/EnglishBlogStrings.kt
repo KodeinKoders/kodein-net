@@ -42,6 +42,9 @@ object EnglishBlogStrings : BlogStrings {
         override val title: TextHandler = {
             +"Check our "
             a(href = "https://medium.com/kodein-koders", target = "_blank") { attrs.rel = "noopener" ; +"Medium page" }
+            br {}
+            +" or our "
+            a(href = "https://www.youtube.com/channel/UCbTrSXEB8flZ3XM9t3j4D8A", target = "_blank") { attrs.rel = "noopener" ; +"Youtube channel" }
             +"."
         }
         override val chapo: TextHandler = {
