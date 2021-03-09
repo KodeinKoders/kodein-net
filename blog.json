@@ -1,5 +1,15 @@
 [
   {
+    "title": "Publish a Kotlin/Multiplatform library on Maven Central",
+    "image": "https://img.youtube.com/vi/KJRFChUbbZg/0.jpg",
+    "url": "https://medium.com/kodein-koders/publish-a-kotlin-multiplatform-library-on-maven-central-6e8a394b7030"
+  },
+  {
+    "title": "Create a Kotlin/Multiplatform library with Swift",
+    "image": "https://img.youtube.com/vi/uEEYsBFwRzk/0.jpg",
+    "url": "https://medium.com/kodein-koders/create-a-kotlin-multiplatform-library-with-swift-1a818b2dc1b0"
+  },
+  {
     "title": "Dependency Injection for Kotlin/Multiplatform",
     "image": "https://img.youtube.com/vi/OEIMEVUC49I/0.jpg",
     "url": "https://medium.com/kodein-koders/dependency-injection-for-kotlin-multiplatform-50a7221cc3a5"
