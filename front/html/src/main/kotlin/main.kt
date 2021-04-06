@@ -82,6 +82,7 @@ fun getHtml(page: Page, lang: Language, mode: Mode): String {
 
 
             unsafe { raw(css) }
+            unsafe { raw("""<script async defer data-domain="kodein.net" src="https://plausible.io/js/plausible.js"></script>""") }
         }
 
         body {
