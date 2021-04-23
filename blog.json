@@ -1,5 +1,10 @@
 [
   {
+    "title": "Building Kotlin/Multiplatform with Github Actions",
+    "image": "https://miro.medium.com/max/1400/1*SNLS-t1m0SwLciGCDoqBcA.png",
+    "url": "https://medium.com/kodein-koders/building-kotlin-multiplatform-with-github-actions-2478801d6d46"
+  },
+  {
     "title": "Publish a Kotlin/Multiplatform library on Maven Central",
     "image": "https://img.youtube.com/vi/KJRFChUbbZg/0.jpg",
     "url": "https://medium.com/kodein-koders/publish-a-kotlin-multiplatform-library-on-maven-central-6e8a394b7030"
