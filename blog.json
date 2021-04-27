@@ -1,5 +1,15 @@
 [
   {
+    "title": "Deploy your internal libraries on Github",
+    "image": "https://miro.medium.com/max/4800/1*InjKs6yaQUo_v__qJFdKAQ.jpeg",
+    "url": "https://medium.com/kodein-koders/deploy-your-internal-libraries-on-github-e221d4a9a7a0"
+  },
+  {
+    "title": "Targeting Android in a Kotlin/Multiplatform Mobile library",
+    "image": "https://img.youtube.com/vi/yCLI_dIx660/0.jpg",
+    "url": "https://medium.com/kodein-koders/targeting-android-in-a-kotlin-multiplatform-mobile-library-b6ab75469287"
+  },
+  {
     "title": "Building Kotlin/Multiplatform with Github Actions",
     "image": "https://miro.medium.com/max/1400/1*SNLS-t1m0SwLciGCDoqBcA.png",
     "url": "https://medium.com/kodein-koders/building-kotlin-multiplatform-with-github-actions-2478801d6d46"
