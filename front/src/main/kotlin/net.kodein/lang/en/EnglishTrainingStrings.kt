@@ -103,7 +103,7 @@ object EnglishTrainingStrings : TrainingStrings {
 
     override val courseIos = TrainingStrings.CourseStrings(
         "The Kotlin language for iOS developers",
-        "1 day",
+        "2 days",
     ) {
         +"""
             Kotlin's syntax is very similar to Swift's, yet their philosophy may sometimes diverge.
