@@ -112,7 +112,7 @@ object EnglishTrainingStrings : TrainingStrings {
     }
 
     override val courseKmm = TrainingStrings.CourseStrings(
-        "KMM: Koltin Multiplatform Mobile for Android & iOS",
+        "KMM: Kotlin Multiplatform Mobile for Android & iOS",
         "2 days",
     ) {
         +"""
@@ -123,14 +123,14 @@ object EnglishTrainingStrings : TrainingStrings {
     }
 
     override val courseNative = TrainingStrings.CourseStrings(
-        "Advanced low-level Koltin/Native",
+        "Advanced low-level Kotlin/Native",
         "1 day",
     ) {
         +"""
             Kotlin/Native is the Kotlin compiler that produces native executable for multiple targets (iOS being just one of them).
             It exposes Kotlin APIs allowing native code to access C libraries, manage low-level memories, and access platform system APIs (such as POSIX).
         """
-        small { +"Requires: \"KMM: Koltin Multiplatform Mobile for Android & iOS\"." }
+        small { +"Requires: \"KMM: Kotlin Multiplatform Mobile for Android & iOS\"." }
     }
 
     override val courseKtor = TrainingStrings.CourseStrings(
