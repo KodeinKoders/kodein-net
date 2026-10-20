@@ -1,0 +1,29 @@
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+.plans/
+
+### IntelliJ IDEA ###
+.idea/
+
+### Kotlin ###
+.kotlin
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+### Android ###
+local.properties
+
+### Xcode ###
+xcuserdata/
+*.xcuserstate
+DerivedData/
+
+### Local review scratch file
+ISSUES.adoc
